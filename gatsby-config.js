@@ -4,12 +4,16 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
-  siteMetadata: {
-    title: "This is the title of the page",
-    description: "blah blah blah ..",
-    developer: "Kaung Khant Zaw",
-  },
+  // siteMetadata: {
+  //   title: "This is the title of the page",
+  //   description: "blah blah blah ..",
+  //   developer: "Kaung Khant Zaw",
+  // },
   /* Your site config here */
   plugins: [
     `gatsby-plugin-styled-components`,
@@ -36,7 +40,7 @@ module.exports = {
       options: {
         spaceId: `2sqj0p9gofjm`,
         // Learn about environment variables: https://gatsby.dev/env-vars
-        accessToken: `7A29BgVGaS45q1Y-wEaFW54zrJOEFhSufUcatDT7fZM`,
+        accessToken: process.env.ACCESS_TOKEN,
       },
     },
   ],

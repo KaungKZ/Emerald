@@ -5,17 +5,17 @@ import ExampleList from "./ExampleList";
 
 const getData = graphql`
   {
-    res: allContentfulBestSellers {
+    res: allContentfulAllProducts(filter: { category: { eq: "bs" } }) {
       edges {
         node {
           id
-          oldprice
-          price
           title
-          slug
-          rating
           by
+          price
+          oldprice
+          rating
           ratingAmount
+          slug
           images {
             fixed(height: 150, width: 150) {
               ...GatsbyContentfulFixed
