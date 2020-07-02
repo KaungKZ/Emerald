@@ -5,6 +5,39 @@
  */
 
 module.exports = {
+  siteMetadata: {
+    title: "This is the title of the page",
+    description: "blah blah blah ..",
+    developer: "Kaung Khant Zaw",
+  },
   /* Your site config here */
-  plugins: [],
-}
+  plugins: [
+    `gatsby-plugin-styled-components`,
+    `gatsby-transformer-json`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: "product-data",
+        path: `${__dirname}/src/products/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `2sqj0p9gofjm`,
+        // Learn about environment variables: https://gatsby.dev/env-vars
+        accessToken: `7A29BgVGaS45q1Y-wEaFW54zrJOEFhSufUcatDT7fZM`,
+      },
+    },
+  ],
+};
