@@ -2,13 +2,16 @@ import React from "react";
 import { graphql } from "gatsby";
 
 export default function TemplateItem({ data: { res } }) {
-  //console.log(data);
-  return <div>{res.title}</div>;
+  return (
+    <div>
+      <h1>This is {res.title} page</h1>
+    </div>
+  );
 }
 
 export const query = graphql`
   query MyQuery($slug: String) {
-    res: contentfulAllProducts(slug: { eq: $slug }) {
+    res: contentfulAllProducts(id: { eq: $slug }) {
       title
       by
       price

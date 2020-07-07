@@ -1,11 +1,11 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 
-import ExampleList from "./ExampleList";
+import ProductList from "./ProductList";
 
 const getData = graphql`
   {
-    res: allContentfulAllProducts(filter: { category: { eq: "bs" } }) {
+    res: allContentfulAllProducts(filter: { category: { regex: "/bs/" } }) {
       edges {
         node {
           id
@@ -17,7 +17,7 @@ const getData = graphql`
           ratingAmount
           slug
           images {
-            fixed(height: 150, width: 150) {
+            fixed(width: 150, height: 150, quality: 100) {
               ...GatsbyContentfulFixed
             }
           }
@@ -27,14 +27,14 @@ const getData = graphql`
   }
 `;
 
-export default function Example() {
+export default function Product() {
   const {
     res: { edges },
   } = useStaticQuery(getData);
 
   return edges.map(one => {
     // console.log(one.node);
-    return <ExampleList key={one.node.id} details={one.node}></ExampleList>;
+    return <ProductList key={one.node.id} details={one.node}></ProductList>;
   });
 
   // console.log(data);
