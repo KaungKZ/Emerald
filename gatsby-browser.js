@@ -3,3 +3,4 @@
 // export const wrapRootElement = ({ element }) => (
 //   <ContextIcons>{element}</ContextIcons>
 // );
+import "./src/styles/typography.css";

@@ -38,8 +38,32 @@ html {
  }
 
  .btn-link {
-     
+    padding: 10px 20px;
+    font-family: var(--secondary-font);
+    font-size: 18px;
+    color: var(--text-color);
+   
+    border: 1px solid rgba(96, 96, 96, 0.6);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    transition: padding 400ms;
+    text-transform: capitalize;
+    
+
+    .arrow-right-icon {
+        margin-left: 10px;
+    }
+
+    &:hover {
+        padding: 10px 23px 10px 20px;
+    }
+
+    
  }
+
+
 `;
 
 export default Global_styles;

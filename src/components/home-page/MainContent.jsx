@@ -11,6 +11,8 @@ import {
   HeaderDetailStyles,
   HeaderContent,
   HeaderBannerWrapper,
+  HeaderDetails,
+  HeaderTitle,
 } from "../../styles/Header_detailStyles";
 // import example from "../../images/home/covid 19 bg.jpg";
 
@@ -35,24 +37,33 @@ export default function MainContent() {
   return (
     <>
       <HeaderDetailStyles>
-        <HeaderContent>
+        <HeaderDetails>
           {/* <div className="titles"> */}
-          <div className="main-title">
+          <HeaderTitle>
             <h1>A place for your</h1>
             {/* <h1>Needs</h1>p */}
-          </div>
+          </HeaderTitle>
 
-          <p className="sub-title">Save up to 30% off for new arrivals !</p>
+          <HeaderContent>
+            <p className="sub-title">Save up to 30% off for new arrivals !</p>
+            {/* </div> */}
+            {/* <div className="links"> */}
+
+            <Link to="/products" className="btn-link header-btn-link">
+              Shop now{" "}
+              <Icon
+                icon={arrowRight}
+                style={{ color: "#606060", fontSize: "25px" }}
+                className="arrow-right-icon"
+              />
+            </Link>
+
+            <Link to="/products" className="special-offer">
+              winter season special offers
+            </Link>
+          </HeaderContent>
           {/* </div> */}
-          {/* <div className="links"> */}
-          <Link to="/products" className="shop-now-btn btn-link">
-            Shop Now
-          </Link>
-          <Link to="/products" className="special-offers">
-            winter season special offers
-          </Link>
-          {/* </div> */}
-        </HeaderContent>
+        </HeaderDetails>
         <HeaderBannerWrapper>
           {
             <Img
@@ -88,17 +99,15 @@ export default function MainContent() {
       <section className="best-sellers">
         <div className="section-title">
           <h1>Best Sellers</h1>
-          <span>
+
+          <Link to="/products" className="see-all-link">
             See all{" "}
-            <Link to="/products">
-              {" "}
-              <Icon
-                icon={arrowRight}
-                style={{ color: "#606060", fontSize: "25px" }}
-                className="see-all-icon arrow-right-icon"
-              />
-            </Link>
-          </span>
+            <Icon
+              icon={arrowRight}
+              style={{ color: "#606060", fontSize: "25px" }}
+              className="see-all-icon arrow-right-icon"
+            />
+          </Link>
         </div>
         <div className="wrapper-best-sellers">
           <Product product="bs"></Product>
@@ -112,17 +121,15 @@ export default function MainContent() {
       <section className="best-deals">
         <div className="section-title">
           <h1>Best deals for today</h1>
-          <span>
+
+          <Link to="/products" className="see-all-link">
             See all{" "}
-            <Link to="/products">
-              {" "}
-              <Icon
-                icon={arrowRight}
-                style={{ color: "#606060", fontSize: "25px" }}
-                className="see-all-icon arrow-right-icon"
-              />
-            </Link>
-          </span>
+            <Icon
+              icon={arrowRight}
+              style={{ color: "#606060", fontSize: "25px" }}
+              className="see-all-icon arrow-right-icon"
+            />
+          </Link>
         </div>
         <div className="wrapper-best-deals">
           <Product product="bd"></Product>
@@ -133,16 +140,14 @@ export default function MainContent() {
         <div className="featured-title">
           <h1>See what we are doing to fight covid 19</h1>
 
-          <div className="featured-btn">
-            <Link to="/" className="btn-link">
-              Read More
-            </Link>
+          <Link to="/products" className="btn-link">
+            Read more{" "}
             <Icon
               icon={arrowRight}
               style={{ color: "#606060", fontSize: "25px" }}
-              className="read-more-icon arrow-right-icon"
+              className="arrow-right-icon"
             />
-          </div>
+          </Link>
         </div>
 
         <div className="featured-banner">

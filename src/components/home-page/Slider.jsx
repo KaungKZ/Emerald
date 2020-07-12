@@ -18,16 +18,14 @@ export default function Slider() {
           <h1>Get the supplies for covid 19</h1>
         </div>
 
-        <div className="slider-btn">
-          <Link to="/" className="btn-link">
-            Get supplies
-          </Link>
+        <Link to="/products" className="btn-link">
+          Get supplies{" "}
           <Icon
             icon={arrowRight}
             style={{ color: "#606060", fontSize: "25px" }}
-            className="slider-btn-icon arrow-right-icon"
+            className="arrow-right-icon"
           />
-        </div>
+        </Link>
 
         <div className="slider-banner">
           <Img
@@ -43,16 +41,14 @@ export default function Slider() {
           <h3>Up to 50% off and free shipping</h3>
         </div>
 
-        <div className="slider-btn">
-          <Link to="/" className="btn-link">
-            Get your thing
-          </Link>
+        <Link to="/products" className="btn-link">
+          Get your thing{" "}
           <Icon
             icon={arrowRight}
             style={{ color: "#606060", fontSize: "25px" }}
-            className="slider-btn-icon arrow-right-icon"
+            className="arrow-right-icon"
           />
-        </div>
+        </Link>
 
         <div className="slider-banner">
           {/* <img src={example} alt="" /> */}
@@ -68,16 +64,14 @@ export default function Slider() {
           <h3>start finding biggest deals on thousands of items</h3>
         </div>
 
-        <div className="slider-btn">
-          <Link to="/" className="btn-link">
-            shop now
-          </Link>
+        <Link to="/products" className="btn-link">
+          Shop now{" "}
           <Icon
             icon={arrowRight}
             style={{ color: "#606060", fontSize: "25px" }}
-            className="slider-btn-icon arrow-right-icon"
+            className="arrow-right-icon"
           />
-        </div>
+        </Link>
 
         <div className="slider-banner">
           <Img
