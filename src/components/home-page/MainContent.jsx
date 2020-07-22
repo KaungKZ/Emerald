@@ -14,9 +14,43 @@ import {
   HeaderDetails,
   HeaderTitle,
 } from "../../styles/Header_detailStyles";
+// import { Categories, CategoryWrapper } from "../../styles/Category_styles";
+import styled from "styled-components";
 // import example from "../../images/home/covid 19 bg.jpg";
 
 // import { getImages } from "../../graphql-fragments/IndexQueries";
+
+const Categories = styled.section`
+  width: 100%;
+  margin-bottom: var(--section-margin);
+`;
+
+const CategoryWrapper = styled.div`
+  /* align-self: center; */
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 250px);
+  grid-column-gap: var(--item-margin);
+  /* grid-template-rows: repeat(auto-fit, 300px); */
+  grid-row-gap: 35px;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, 200px);
+  }
+`;
+
+const ShowcaseProducts = styled.section`
+  width: 100%;
+`;
+
+const ShowcaseProductsWrapper = styled.div`
+  display: flex;
+  width: fit-content;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 export default function MainContent() {
   // console.log(getImages);
@@ -79,11 +113,11 @@ export default function MainContent() {
         </HeaderBannerWrapper>
       </HeaderDetailStyles>
 
-      <section className="categories">
+      <Categories>
         <div className="section-title">
           <h1>Categories</h1>
         </div>
-        <div className="wrapper-categories">
+        <CategoryWrapper>
           {images.categoryImages.edges.map((one, _) => {
             return (
               <CategoryList
@@ -93,10 +127,10 @@ export default function MainContent() {
               ></CategoryList>
             );
           })}
-        </div>
-      </section>
+        </CategoryWrapper>
+      </Categories>
 
-      <section className="best-sellers">
+      <ShowcaseProducts>
         <div className="section-title">
           <h1>Best Sellers</h1>
 
@@ -109,16 +143,16 @@ export default function MainContent() {
             />
           </Link>
         </div>
-        <div className="wrapper-best-sellers">
+        <ShowcaseProductsWrapper>
           <Product product="bs"></Product>
-        </div>
-      </section>
+        </ShowcaseProductsWrapper>
+      </ShowcaseProducts>
 
       <section className="home-slider">
         <Slider></Slider>
       </section>
 
-      <section className="best-deals">
+      <ShowcaseProducts>
         <div className="section-title">
           <h1>Best deals for today</h1>
 
@@ -131,10 +165,10 @@ export default function MainContent() {
             />
           </Link>
         </div>
-        <div className="wrapper-best-deals">
+        <ShowcaseProductsWrapper>
           <Product product="bd"></Product>
-        </div>
-      </section>
+        </ShowcaseProductsWrapper>
+      </ShowcaseProducts>
 
       <section className="featured-section">
         <div className="featured-title">
@@ -181,7 +215,7 @@ const getImages = graphql`
       relativePath
 
       childImageSharp {
-        fluid(maxWidth: 700, maxHeight: 600, jpegQuality: 100) {
+        fluid(maxWidth: 700, maxHeight: 550, jpegQuality: 100) {
           ...GatsbyImageSharpFluid
           ...GatsbyImageSharpFluidLimitPresentationSize
         }

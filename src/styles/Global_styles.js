@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+// import React from "react";
+// import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 
 const Global_styles = createGlobalStyle`
@@ -20,7 +20,10 @@ html {
     --primary-font: 'Montserrat', sans-serif;
     --secondary-font: 'Poppins', sans-serif;
     --small-title-font: 'Raleway', sans-serif;
-
+    font-size: 16px;
+    /* --tablet-screen-font-size: 14px;
+    --phone-screen-font-size: 12px; */
+    --section-title-font-size: 1.8rem;
 }
  * {
      margin: 0;
@@ -34,7 +37,46 @@ html {
  }
 
  .section-title {
+    
+    font-family: var(--secondary-font);
+    
+    /* display: inline-block; */
+    width: 80%;
+    
+    margin: 0 auto var(--item-margin) auto;
+    display: flex;
+    align-items: center;
 
+
+    h1 {
+        background: var(--primary-light);
+        padding: 10px 20px;
+    font-size: var(--section-title-font-size);
+    font-weight: 700;
+    color: var(--light-text-color);
+    text-decoration: underline;
+    }
+
+    .see-all-link {
+        margin-left: 15px;
+        display: flex;
+        color: var(--light-text-color);
+        text-decoration: none;
+        text-transform: capitalize;
+        font-size: 1rem;
+        transition: opacity 300ms;
+        opacity: 0.9;
+        
+        .see-all-icon {
+            margin-left: 10px;
+        }
+
+        &:hover {
+            /* text-decoration: underline; */
+            opacity: 1;
+        }
+
+    }
  }
 
  .btn-link {

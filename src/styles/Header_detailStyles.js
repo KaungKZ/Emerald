@@ -1,10 +1,10 @@
-import React from "react";
+// import React from "react";
 import styled from "styled-components";
 
 export const HeaderDetailStyles = styled.section`
   width: 80%;
   /* // margin: auto; */
-  margin: var(--small-section-margin) auto var(--small-section-margin) auto;
+  margin: var(--small-section-margin) auto 94px auto;
   display: flex;
   justify-content: center;
 
@@ -122,6 +122,7 @@ export const HeaderBannerWrapper = styled.div`
 
   .gatsby-image-wrapper {
     width: 700px;
+    /* max-height: 550px; */
     position: relative;
 
     /* width: 700px;
@@ -153,7 +154,7 @@ export const HeaderBannerWrapper = styled.div`
   .stripe-background {
     position: absolute;
     z-index: -1;
-    top: 85%;
+    top: 83%;
     right: -30px;
   }
   @media (max-width: 1280px) {
@@ -181,7 +182,6 @@ export const HeaderBannerWrapper = styled.div`
     .gatsby-image-wrapper::before {
       top: 62px;
       font-size: 2.3rem;
-
     }
   }
   /* width: 100%; */

@@ -15,8 +15,6 @@ export default function Product({ product }) {
     return one.node.category.includes(product);
   });
 
-  // console.log(products);
-
   if (!products) return null;
 
   return products.map(one => {
