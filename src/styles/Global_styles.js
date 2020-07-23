@@ -13,6 +13,7 @@ html {
     --text-color: #353535;
     --light-text-color: #5a5a5a;
     --body-background-color: #fdfdfd;
+    --small-margin: 7px;
     --section-margin: 119px;
     --small-section-margin: 64px;
     --item-margin: 50px;
@@ -20,7 +21,10 @@ html {
     --primary-font: 'Montserrat', sans-serif;
     --secondary-font: 'Poppins', sans-serif;
     --small-title-font: 'Raleway', sans-serif;
-    font-size: 16px;
+    --normal-text: 16px;
+    --btn-text: 18px;
+    --btn-padding: 10px 20px;
+    --header-title: 3rem;
     /* --tablet-screen-font-size: 14px;
     --phone-screen-font-size: 12px; */
     --section-title-font-size: 1.8rem;
@@ -49,6 +53,7 @@ html {
 
 
     h1 {
+        border-radius: 9px 9px 0 0;
         background: var(--primary-light);
         padding: 10px 20px;
     font-size: var(--section-title-font-size);
@@ -63,7 +68,7 @@ html {
         color: var(--light-text-color);
         text-decoration: none;
         text-transform: capitalize;
-        font-size: 1rem;
+        font-size: var(--normal-text);
         transition: opacity 300ms;
         opacity: 0.9;
         
@@ -80,9 +85,9 @@ html {
  }
 
  .btn-link {
-    padding: 10px 20px;
+    padding: var(--btn-padding);
     font-family: var(--secondary-font);
-    font-size: 18px;
+    font-size: var(--btn-text);
     color: var(--text-color);
    
     border: 1px solid rgba(96, 96, 96, 0.6);
@@ -99,10 +104,38 @@ html {
     }
 
     &:hover {
-        padding: 10px 23px 10px 20px;
+        /* padding: 10px 23px 10px 20px; */
     }
 
     
+ }
+
+ @media (max-width: 1280px) {
+
+html {
+ 
+   --header-title: 2.7rem;
+   --btn-text: 16px;
+ 
+}
+
+}
+ @media (max-width: 1024px) {
+
+     html {
+        --btn-padding: 7px 20px;
+        --normal-text: 14px;
+        --header-title: 2.3rem;
+     }
+  
+ }
+
+ @media (max-width: 768px) {
+
+     html {
+        --section-title-font-size: 1.5rem;
+     }
+     
  }
 
 

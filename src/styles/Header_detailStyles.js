@@ -33,10 +33,14 @@ export const HeaderTitle = styled.div`
   font-family: var(--primary-font);
   font-weight: 700;
   text-transform: capitalize;
-  font-size: 2rem;
+  /* font-size: 2rem; */
   position: relative;
   margin: 100px 0 20px 0;
   letter-spacing: 3px;
+
+  h1 {
+    font-size: var(--header-title);
+  }
 
   /* &::after {
     content: "";
@@ -52,8 +56,11 @@ export const HeaderTitle = styled.div`
   }
 
   @media (max-width: 1280px) {
+    /* h1 {
+      font-size: 1.8rem;
+    } */
     /* .main-title { */
-    font-size: 1.8rem;
+
     /* letter-spacing: 1.5px; */
     /* } */
   }
@@ -62,7 +69,7 @@ export const HeaderTitle = styled.div`
     /* .main-title { */
     margin-top: 60px;
 
-    font-size: 1.6rem;
+    /* font-size: 1.6rem; */
     /* } */
   }
 `;
@@ -79,19 +86,19 @@ export const HeaderContent = styled.div`
   .sub-title {
     color: var(--light-text-color);
     text-transform: capitalize;
-    font-size: 1rem;
+    font-size: var(--normal-text);
     text-align: center;
   }
 
   .header-btn-link {
-    padding: 15px 30px;
+    /* padding: 15px 30px; */
     transition: padding 400ms;
     margin-top: auto;
     margin-bottom: var(--item-margin);
     /* margin-bottom: 10%; */
 
     &:hover {
-      padding: 15px 38px 15px 30px;
+      /* padding: 15px 38px 15px 30px; */
     }
   }
 

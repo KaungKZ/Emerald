@@ -43,6 +43,7 @@ const CategoryWrapper = styled.div`
 
 const ShowcaseProducts = styled.section`
   width: 100%;
+  margin-bottom: var(--section-margin);
 `;
 
 const ShowcaseProductsWrapper = styled.div`
@@ -50,6 +51,11 @@ const ShowcaseProductsWrapper = styled.div`
   width: fit-content;
   justify-content: space-between;
   align-items: center;
+`;
+
+const HomeSlider = styled.section`
+  width: 100%;
+  margin-bottom: var(--section-margin);
 `;
 
 export default function MainContent() {
@@ -148,9 +154,9 @@ export default function MainContent() {
         </ShowcaseProductsWrapper>
       </ShowcaseProducts>
 
-      <section className="home-slider">
+      <HomeSlider>
         <Slider></Slider>
-      </section>
+      </HomeSlider>
 
       <ShowcaseProducts>
         <div className="section-title">
@@ -189,7 +195,7 @@ export default function MainContent() {
 
           <Img
             fluid={images.featuredImage.childImageSharp.fluid}
-            style={{ maxHeight: "450px" }}
+            style={{ maxHeight: "500px" }}
             imgStyle={{ objectFit: "fill" }}
           ></Img>
         </div>
