@@ -44,6 +44,7 @@ const CategoryWrapper = styled.div`
 const ShowcaseProducts = styled.section`
   width: 100%;
   margin-bottom: var(--section-margin);
+  overflow: hidden;
 `;
 
 const ShowcaseProductsWrapper = styled.div`
@@ -56,6 +57,8 @@ const ShowcaseProductsWrapper = styled.div`
 const HomeSlider = styled.section`
   width: 100%;
   margin-bottom: var(--section-margin);
+  position: relative;
+  overflow: hidden;
 `;
 
 export default function MainContent() {

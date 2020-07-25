@@ -74,6 +74,10 @@ const ShowcaseProductImage = styled.div`
     z-index: -1;
   }
 
+  @media (max-width: 1024px) {
+    padding: 5px 4px;
+  }
+
   @media (max-width: 768px) {
     .gatsby-image-wrapper {
       height: 100px !important;
@@ -162,6 +166,16 @@ const ShowcaseATW = styled.div`
   &:hover {
     background: rgba(255, 239, 208, 1);
     transform: scale(1.1);
+  }
+
+  @media (max-width: 768px) {
+    top: 83%;
+    width: 28px;
+    height: 28px;
+    &:hover {
+      background: rgba(255, 239, 208, 0.8);
+      transform: scale(1);
+    }
   }
 `;
 

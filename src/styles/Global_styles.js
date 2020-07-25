@@ -89,7 +89,7 @@ html {
     font-family: var(--secondary-font);
     font-size: var(--btn-text);
     color: var(--text-color);
-   
+   background: #fff;
     border: 1px solid rgba(96, 96, 96, 0.6);
     text-decoration: none;
     display: flex;
