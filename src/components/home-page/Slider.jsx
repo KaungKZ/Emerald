@@ -17,24 +17,30 @@ export default function Slider() {
   const [transition, setTransition] = useState({
     activeIndex: 0,
     translate: 0,
-    transitionDuration: 400,
-    slides: [slide_one, slide_two, slide_three],
+    transitionDuration: 0,
   });
+
+  // const slides = document.querySelectorAll(".slide");
+
+  // const first_slide = slides[0];
+  // const second_slide = slides[0];
+  // const last_slide = slides[slides.length - 1];
 
   const { activeIndex, translate, transitionDuration } = transition;
 
   const autoPlayRef = useRef();
-  const slide_one = useRef();
-  const slide_two = useRef();
-  const slide_three = useRef();
+  const resizeRef = useRef();
+  // const transitionRef = useRef();
 
   const sliderImages = useStaticQuery(getSliderImage);
 
+  // const transitionEnd = window.addEventListener("transitionend", smooth);
+
   useEffect(() => {
     autoPlayRef.current = nextSlide;
+    resizeRef.current = handleResize;
+    // transitionRef.current = smoothTransition;
   });
-
-  console.log(translate);
 
   useEffect(() => {
     // console.log(autoPlayRef.current());
@@ -42,16 +48,65 @@ export default function Slider() {
       autoPlayRef.current();
     }
 
-    const interval = setInterval(play, 4000);
+    let interval = null;
 
-    return () => clearInterval(interval);
+    interval = setInterval(play, 4500);
+
+    const resize = window.addEventListener("resize", handleResizeRef);
+
+    function handleResizeRef() {
+      resizeRef.current();
+    }
+
+    return () => {
+      window.removeEventListener("resize", handleResizeRef);
+      clearInterval(interval);
+    };
   }, []);
+
+  useEffect(() => {
+    if (activeIndex === 2) {
+    }
+  }, [activeIndex]);
+
+  // useEffect(() => {
+  //   if (transitionDuration === 0) {
+  //     return setTransition({
+  //       ...transition,
+  //       transitionDuration: 700,
+  //     });
+  //   }
+  // });
+
+  // function smooth(e) {
+  //   if (e.target.className.includes("slide")) {
+  //     transitionRef.current();
+  //   }
+  // }
+
+  // function smoothTransition() {
+  //   setTransition({
+  //     ...transition,
+  //     transitionDuration: 0,
+  //     translate: getWidth(),
+  //   });
+  // }
+
+  function handleResize() {
+    console.log("resized");
+    setTransition({
+      ...transition,
+      translate: getWidth(),
+      transitionDuration: 0,
+    });
+  }
 
   function nextSlide() {
     setTransition({
       ...transition,
       activeIndex: activeIndex === 2 ? 0 : activeIndex + 1,
       translate: activeIndex === 2 ? 0 : translate + getWidth(),
+      transitionDuration: activeIndex === 2 ? 0 : 700,
     });
     // }
   }
@@ -61,6 +116,25 @@ export default function Slider() {
     return window.innerWidth;
   }
 
+  // function smoothTransition() {
+  //   let _slides = [];
+
+  //   // We're at the last slide.
+  //   if (activeSlide === slides.length - 1)
+  //     _slides = [slides[slides.length - 2], lastSlide, firstSlide];
+  //   // We're back at the first slide. Just reset to how it was on initial render
+  //   else if (activeSlide === 0) _slides = [lastSlide, firstSlide, secondSlide];
+  //   // Create an array of the previous last slide, and the next two slides that follow it.
+  //   else _slides = slides.slice(activeSlide - 1, activeSlide + 2);
+
+  //   setState({
+  //     ...state,
+  //     _slides,
+  //     transition: 0,
+  //     translate: getWidth(),
+  //   });
+  // }
+
   // console.log(sliderImages.allFile.edges[0]);
 
   //   console.log(sliderImages);
@@ -68,11 +142,16 @@ export default function Slider() {
   return (
     <>
       <Sliders width={getWidth()}>
+        {/* {slides.map(slide => {
+          return slide;
+        }} */}
+
         <SliderWrapper
           half_content
           width={getWidth()}
           transform={translate}
           transition={transitionDuration}
+          className="slide"
           // ref={slide_one}
         >
           <SliderContent half_content className="bg-pink">
@@ -103,6 +182,7 @@ export default function Slider() {
           width={getWidth()}
           transform={translate}
           transition={transitionDuration}
+          className="slide"
           // ref={slide_two}
         >
           <SliderContent second_slider>
@@ -134,6 +214,7 @@ export default function Slider() {
           width={getWidth()}
           transform={translate}
           transition={transitionDuration}
+          className="slide"
           // ref={slide_three}
         >
           <SliderContent half_content className="bg-white">

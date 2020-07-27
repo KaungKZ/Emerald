@@ -4,17 +4,98 @@ import twitter from "../../images/home/social medias/twitter.svg";
 import facebook from "../../images/home/social medias/facebook.svg";
 import youtube from "../../images/home/social medias/youtube.svg";
 import instagram from "../../images/home/social medias/instagram.svg";
+import styled, { css } from "styled-components";
+
+const FooterMain = styled.footer`
+  padding: 50px 0;
+  /* background:  */
+  position: relative;
+  background: rgba(255, 239, 208, 0.5);
+`;
+
+const FooterWrapperLinks = styled.div`
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+`;
+
+const FooterHeaderTitle = styled.div`
+  font-family: var(--primary-font);
+  margin-bottom: 25px;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-color);
+  }
+`;
+
+const FooterLinkList = styled.ul`
+  li:not(:last-child) {
+    margin-bottom: var(--small-margin);
+  }
+  li {
+    list-style-type: none;
+    font-family: var(--secondary-font);
+
+    a {
+      text-decoration: none;
+      color: var(--light-text-color);
+      opacity: 0.8;
+      font-size: 14px;
+      text-transform: capitalize;
+    }
+  }
+
+  ${props =>
+    props.social &&
+    css`
+      li:not(:last-child) {
+        margin-bottom: calc(var(--small-margin) * 2);
+      }
+      li a {
+        display: flex;
+        align-items: center;
+      }
+      img {
+        width: 23px;
+        height: 23px;
+        margin-right: var(--small-margin);
+      }
+    `}
+`;
+
+const FooterSection = styled.div``;
+
+const FooterCopyright = styled.div`
+  font-family: var(--secondary-font);
+  font-size: 14px;
+  position: absolute;
+  top: 85%;
+  right: 30%;
+  transform: translate(30%, -85%);
+  color: var(--light-text-color);
+  opacity: 0.8;
+`;
+
+// const FooterHelpCenter = styled.div``;
+
+// const FooterSell = styled.div``;
+
+// const FooterSocial = styled.div``;
 
 export default function Footer() {
   return (
-    <footer>
-      <div className="warpper-footer-links">
-        <div className="about">
-          <div className="about-title footer-title">
+    <FooterMain>
+      <FooterWrapperLinks>
+        <FooterSection>
+          <FooterHeaderTitle>
             <h1>About</h1>
-          </div>
-          <ul className="about-ul ul">
-            <li className="about-li li">
+          </FooterHeaderTitle>
+          <FooterLinkList>
+            <li className="about-li">
               <Link to="/" className="about-a a">
                 About
               </Link>
@@ -44,18 +125,18 @@ export default function Footer() {
                 Copyright
               </Link>
             </li>
-            <li className="about-li li">
+            <li className="about-li">
               <Link to="/" className="about-a a">
                 Advertise with us
               </Link>
             </li>
-          </ul>
-        </div>
-        <div className="help-center">
-          <div className="help-center-title footer-title">
+          </FooterLinkList>
+        </FooterSection>
+        <FooterSection>
+          <FooterHeaderTitle>
             <h1>Help center</h1>
-          </div>
-          <ul className="about-ul">
+          </FooterHeaderTitle>
+          <FooterLinkList>
             <li className="about-li">
               <Link to="/" className="about-a">
                 Guidelines
@@ -81,13 +162,13 @@ export default function Footer() {
                 Return and replacement
               </Link>
             </li>
-          </ul>
-        </div>
-        <div className="sell">
-          <div className="sell-title footer-title">
+          </FooterLinkList>
+        </FooterSection>
+        <FooterSection>
+          <FooterHeaderTitle>
             <h1>Sell</h1>
-          </div>
-          <ul className="about-ul">
+          </FooterHeaderTitle>
+          <FooterLinkList>
             <li className="about-li">
               <Link to="/" className="about-a">
                 Start selling
@@ -108,13 +189,13 @@ export default function Footer() {
                 Guides
               </Link>
             </li>
-          </ul>
-        </div>
-        <div className="social">
-          <div className="social-title footer-title">
+          </FooterLinkList>
+        </FooterSection>
+        <FooterSection>
+          <FooterHeaderTitle>
             <h1>Social</h1>
-          </div>
-          <ul className="about-ul">
+          </FooterHeaderTitle>
+          <FooterLinkList social>
             <li className="about-li">
               <Link to="/" className="about-a">
                 <img src={twitter} alt="" />
@@ -139,13 +220,13 @@ export default function Footer() {
                 instagram
               </Link>
             </li>
-          </ul>
-        </div>
-      </div>
-      <div className="copyright">
+          </FooterLinkList>
+        </FooterSection>
+      </FooterWrapperLinks>
+      <FooterCopyright>
         Copyright &#169; {new Date().getFullYear()} Emerald Inc. All rights
         reserved
-      </div>
-    </footer>
+      </FooterCopyright>
+    </FooterMain>
   );
 }

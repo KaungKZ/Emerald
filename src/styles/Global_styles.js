@@ -1,6 +1,7 @@
 // import React from "react";
 // import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
+import "./typography.css";
 
 const Global_styles = createGlobalStyle`
 
@@ -24,7 +25,7 @@ html {
     --normal-text: 16px;
     --btn-text: 18px;
     --btn-padding: 10px 20px;
-    --header-title: 3rem;
+    
     /* --tablet-screen-font-size: 14px;
     --phone-screen-font-size: 12px; */
     --section-title-font-size: 1.8rem;
@@ -60,6 +61,7 @@ html {
     font-weight: 700;
     color: var(--light-text-color);
     text-decoration: underline;
+    text-transform: capitalize;
     }
 
     .see-all-link {
@@ -114,7 +116,7 @@ html {
 
 html {
  
-   --header-title: 2.7rem;
+   
    --btn-text: 16px;
  
 }

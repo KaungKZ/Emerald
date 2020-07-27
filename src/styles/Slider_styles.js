@@ -29,6 +29,8 @@ width: ${props => props.width}px;
   /* .slider-banner {
     width: ${props => (props.half_content ? "70%" : "100%")};
   } */
+
+ 
 `;
 
 // const SliderOne = styled.div`
@@ -59,7 +61,7 @@ export const SliderTitle = styled.div`
   }
 
   h1 {
-    font-size: 36px;
+    font-size: 3rem;
     margin-bottom: 25px;
   }
 
@@ -72,7 +74,7 @@ export const SliderTitle = styled.div`
 
   @media (max-width: 1024px) {
     h1 {
-      font-size: 28px;
+      font-size: 2rem;
       margin-bottom: 20px;
     }
 
@@ -86,6 +88,7 @@ export const SliderTitle = styled.div`
 export const SliderBanner = styled.div`
   width: ${props => (props.half_content ? "60%" : "100%")};
   position: relative;
+  height: 100%;
 
   .gatsby-image-wrapper {
     height: 100%;
@@ -123,6 +126,7 @@ export const SliderContent = styled.div`
   }
   &.bg-white {
     background: #fff;
+    border: 1px solid rgba(90, 90, 90, 0.4);
   }
   /* &:first-child {
     background: var(--primary-light);
@@ -144,6 +148,14 @@ export const SliderContent = styled.div`
         padding: 30px;
       `}
   }
+  @media (max-width: 768px) {
+    ${props =>
+      props.second_slider &&
+      css`
+        /* padding: 30px 0 30px 30px; */
+        padding-left: 30px;
+      `}
+  }
 `;
 
 export const WrapperSliderNavigators = styled.div`
@@ -155,7 +167,7 @@ export const WrapperSliderNavigators = styled.div`
 `;
 
 export const SliderNavigator = styled.span`
-  width: 30px;
+  width: var(--item-margin);
   height: 2px;
   background: #fff;
   opacity: ${props => (props.active ? "1" : "0.75")};

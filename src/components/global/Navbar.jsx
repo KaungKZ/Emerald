@@ -5,7 +5,7 @@ import cart2Icon from "@iconify/icons-bi/cart2";
 import { Link } from "gatsby";
 import styled from "styled-components";
 
-const NavStyles = styled.nav`
+const NavMain = styled.nav`
   width: 80%;
   margin: auto;
   display: flex;
@@ -72,7 +72,7 @@ const NavLi = styled.li`
 export default function Navbar() {
   return (
     <header>
-      <NavStyles>
+      <NavMain>
         <Link to="/" className="logo">
           Emerald
         </Link>
@@ -90,7 +90,7 @@ export default function Navbar() {
             />
           </Link>
         </NavWrapperCarts>
-      </NavStyles>
+      </NavMain>
 
       {/* <div className="header-categories"> */}
       <NavUl>

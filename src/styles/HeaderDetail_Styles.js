@@ -15,6 +15,10 @@ export const HeaderDetailStyles = styled.section`
   @media (max-width: 1130px) {
     width: 90%;
   }
+
+  @media (max-width: 852px) {
+    margin: var(--item-margin) auto 94px auto;
+  }
 `;
 
 export const HeaderDetails = styled.div`
@@ -39,7 +43,7 @@ export const HeaderTitle = styled.div`
   letter-spacing: 3px;
 
   h1 {
-    font-size: var(--header-title);
+    font-size: 3rem;
   }
 
   /* &::after {
@@ -51,17 +55,10 @@ export const HeaderTitle = styled.div`
 
   @media (max-width: 1310px) {
     /* .main-title { */
+    h1 {
+      font-size: 2.5rem;
+    }
     letter-spacing: 1.5px;
-    /* } */
-  }
-
-  @media (max-width: 1280px) {
-    /* h1 {
-      font-size: 1.8rem;
-    } */
-    /* .main-title { */
-
-    /* letter-spacing: 1.5px; */
     /* } */
   }
 
@@ -71,6 +68,12 @@ export const HeaderTitle = styled.div`
 
     /* font-size: 1.6rem; */
     /* } */
+  }
+
+  @media (max-width: 852px) {
+    h1 {
+      font-size: 2rem;
+    }
   }
 `;
 
@@ -164,9 +167,9 @@ export const HeaderBannerWrapper = styled.div`
     top: 83%;
     right: -30px;
   }
-  @media (max-width: 1280px) {
+  @media (max-width: 1310px) {
     .gatsby-image-wrapper::before {
-      font-size: 2.5rem;
+      font-size: 2.3rem;
     }
   }
 
@@ -179,7 +182,7 @@ export const HeaderBannerWrapper = styled.div`
   } */
 
   @media (max-width: 1024px) {
-    width: 55%;
+    width: 50%;
     .stripe-background {
       width: 80px;
       /* top: calc(100% - 50px); */
@@ -187,8 +190,14 @@ export const HeaderBannerWrapper = styled.div`
     }
 
     .gatsby-image-wrapper::before {
-      top: 62px;
-      font-size: 2.3rem;
+      top: 65px;
+      /* font-size: 2.3rem; */
+    }
+  }
+
+  @media (max-width: 852px) {
+    .gatsby-image-wrapper::before {
+      font-size: 1.9rem;
     }
   }
   /* width: 100%; */

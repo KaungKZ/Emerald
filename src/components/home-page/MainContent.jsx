@@ -13,9 +13,15 @@ import {
   HeaderBannerWrapper,
   HeaderDetails,
   HeaderTitle,
-} from "../../styles/Header_detailStyles";
+} from "../../styles/HeaderDetail_Styles";
+import {
+  FeaturedContent,
+  FeaturedBanner,
+} from "../../styles/FeaturedSection_styles";
+import { ShowcaseArrows } from "../../styles/ShowcaseArrows_styles";
 // import { Categories, CategoryWrapper } from "../../styles/Category_styles";
 import styled from "styled-components";
+import chevronLeftFill from "@iconify/icons-eva/chevron-left-fill";
 // import example from "../../images/home/covid 19 bg.jpg";
 
 // import { getImages } from "../../graphql-fragments/IndexQueries";
@@ -31,6 +37,7 @@ const CategoryWrapper = styled.div`
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, 250px);
+
   grid-column-gap: var(--item-margin);
   /* grid-template-rows: repeat(auto-fit, 300px); */
   grid-row-gap: 35px;
@@ -45,9 +52,11 @@ const ShowcaseProducts = styled.section`
   width: 100%;
   margin-bottom: var(--section-margin);
   overflow: hidden;
+  padding-bottom: 7px;
 `;
 
 const ShowcaseProductsWrapper = styled.div`
+  position: relative;
   display: flex;
   width: fit-content;
   justify-content: space-between;
@@ -61,8 +70,15 @@ const HomeSlider = styled.section`
   overflow: hidden;
 `;
 
+const FeaturedSection = styled.section`
+  width: 100%;
+  margin-bottom: var(--section-margin);
+  position: relative;
+`;
+
 export default function MainContent() {
   // console.log(getImages);
+
   const images = useStaticQuery(getImages);
 
   // let classNames = [
@@ -154,6 +170,18 @@ export default function MainContent() {
         </div>
         <ShowcaseProductsWrapper>
           <Product product="bs"></Product>
+          <ShowcaseArrows>
+            <Icon
+              icon={chevronLeftFill}
+              style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
+              className="showcase-arrow-icon left"
+            />
+            <Icon
+              icon={chevronLeftFill}
+              style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
+              className="showcase-arrow-icon right"
+            />
+          </ShowcaseArrows>
         </ShowcaseProductsWrapper>
       </ShowcaseProducts>
 
@@ -176,12 +204,26 @@ export default function MainContent() {
         </div>
         <ShowcaseProductsWrapper>
           <Product product="bd"></Product>
+          <ShowcaseArrows>
+            <Icon
+              icon={chevronLeftFill}
+              style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
+              className="showcase-arrow-icon left"
+            />
+            <Icon
+              icon={chevronLeftFill}
+              style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
+              className="showcase-arrow-icon right"
+            />
+          </ShowcaseArrows>
         </ShowcaseProductsWrapper>
       </ShowcaseProducts>
 
-      <section className="featured-section">
-        <div className="featured-title">
-          <h1>See what we are doing to fight covid 19</h1>
+      <FeaturedSection>
+        <FeaturedContent>
+          <h1 className="featured-title">
+            See what we are doing to fight covid 19
+          </h1>
 
           <Link to="/products" className="btn-link">
             Read more{" "}
@@ -191,18 +233,18 @@ export default function MainContent() {
               className="arrow-right-icon"
             />
           </Link>
-        </div>
+        </FeaturedContent>
 
-        <div className="featured-banner">
+        <FeaturedBanner>
           {/* <img src={example} alt="" /> */}
 
           <Img
             fluid={images.featuredImage.childImageSharp.fluid}
             style={{ maxHeight: "500px" }}
-            imgStyle={{ objectFit: "fill" }}
+            // imgStyle={{ objectFit: "fill" }}
           ></Img>
-        </div>
-      </section>
+        </FeaturedBanner>
+      </FeaturedSection>
     </>
   );
 }
