@@ -19,14 +19,27 @@ export const HeaderDetailStyles = styled.section`
   @media (max-width: 852px) {
     margin: var(--item-margin) auto 94px auto;
   }
+
+  @media (max-width: 600px) {
+    /* width: 100%; */
+    flex-direction: column-reverse;
+    margin: 32px auto 60px auto;
+  }
 `;
 
 export const HeaderDetails = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 5px;
+
   /* width: 30%; */
   flex: 1;
+
+  @media (max-width: 600px) {
+    /* width: 90%; */
+    /* margin: 0 auto; */
+    margin-right: 0;
+  }
   /* width: 100%; */
 `;
 
@@ -202,6 +215,22 @@ export const HeaderBannerWrapper = styled.div`
   }
   /* width: 100%; */
   /* flex: 1; */
+  @media (max-width: 600px) {
+    width: 90%;
+    margin: 0 auto;
+
+    .gatsby-image-wrapper::before {
+      display: none;
+    }
+
+    .stripe-background {
+      display: none;
+    }
+    /* &::before {
+      content: "";
+      
+    } */
+  }
 `;
 
 // export default HeaderDetailStyles;

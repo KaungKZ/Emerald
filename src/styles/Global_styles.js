@@ -38,8 +38,23 @@ html {
 
  body {
      background: var(--body-background-color);
+
+     
+
      /* font-family: 'Montserrat', sans-serif, 'Poppins', sans-serif, 'Raleway', sans-serif; */
  }
+
+ #gatsby-focus-wrapper {
+    overflow: hidden;
+ }
+
+ /* #gatsby-focus-wrapper.close {
+     overflow: hidden;
+ }
+
+ #gatsby-focus-wrapper.open {
+    overflow: unset;
+ } */
 
  .section-title {
     

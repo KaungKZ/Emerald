@@ -93,7 +93,7 @@ export default function Slider() {
   // }
 
   function handleResize() {
-    console.log("resized");
+    // console.log("resized");
     setTransition({
       ...transition,
       translate: getWidth(),
