@@ -83,6 +83,21 @@ export const SliderTitle = styled.div`
       margin-bottom: 35px;
     }
   }
+
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 1.7rem;
+    }
+
+    h3 {
+      font-size: 12px;
+      /* display: none; */
+    }
+
+    .hidden-sm {
+      display: none;
+    }
+  }
 `;
 
 export const SliderBanner = styled.div`
@@ -174,5 +189,9 @@ export const SliderNavigator = styled.span`
 
   &:not(:last-child) {
     margin-right: 7px;
+  }
+
+  @media (max-width: 600px) {
+    width: 35px;
   }
 `;

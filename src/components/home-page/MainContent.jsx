@@ -18,10 +18,10 @@ import {
   FeaturedContent,
   FeaturedBanner,
 } from "../../styles/FeaturedSection_styles";
-import { ShowcaseArrows } from "../../styles/ShowcaseArrows_styles";
 // import { Categories, CategoryWrapper } from "../../styles/Category_styles";
 import styled from "styled-components";
-import chevronLeftFill from "@iconify/icons-eva/chevron-left-fill";
+// import { ShowcaseArrows } from "../../styles/ShowcaseArrows_styles";
+// import chevronLeftFill from "@iconify/icons-eva/chevron-left-fill";
 // import example from "../../images/home/covid 19 bg.jpg";
 
 // import { getImages } from "../../graphql-fragments/IndexQueries";
@@ -39,7 +39,6 @@ const CategoryWrapper = styled.div`
   grid-template-columns: repeat(auto-fit, 250px);
 
   grid-column-gap: var(--item-margin);
-  /* grid-template-rows: repeat(auto-fit, 300px); */
   grid-row-gap: 35px;
   justify-content: center;
 
@@ -51,16 +50,16 @@ const CategoryWrapper = styled.div`
 const ShowcaseProducts = styled.section`
   width: 100%;
   margin-bottom: var(--section-margin);
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow-x: scroll;
+  overflow-y: hidden;
   padding-bottom: 7px;
-`;
-
-const ShowcaseProductsWrapper = styled.div`
   position: relative;
-  display: flex;
-  width: fit-content;
-  justify-content: space-between;
-  align-items: center;
+  /* scroll-behavior: smooth; */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const HomeSlider = styled.section`
@@ -77,22 +76,8 @@ const FeaturedSection = styled.section`
 `;
 
 export default function MainContent() {
-  // console.log(getImages);
-
   const images = useStaticQuery(getImages);
 
-  // let classNames = [
-  //   "fashion",
-  //   "electronics",
-  //   "kids and babies",
-  //   "home appliances",
-  //   "sport",
-  //   "gaming",
-  //   "security",
-  //   "accessories",
-  // ];
-
-  // const categoryImages = useStaticQuery(getCategoryImages);
   return (
     <>
       <HeaderDetailStyles>
@@ -100,7 +85,7 @@ export default function MainContent() {
           {/* <div className="titles"> */}
           <HeaderTitle>
             <h1>A place for your</h1>
-            {/* <h1>Needs</h1>p */}
+            <h1 className="hidden-lg">Needs</h1>
           </HeaderTitle>
 
           <HeaderContent>
@@ -168,21 +153,20 @@ export default function MainContent() {
             />
           </Link>
         </div>
-        <ShowcaseProductsWrapper>
-          <Product product="bs"></Product>
-          <ShowcaseArrows>
-            <Icon
-              icon={chevronLeftFill}
-              style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
-              className="showcase-arrow-icon left"
-            />
-            <Icon
-              icon={chevronLeftFill}
-              style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
-              className="showcase-arrow-icon right"
-            />
-          </ShowcaseArrows>
-        </ShowcaseProductsWrapper>
+
+        <Product product="bs"></Product>
+        {/* <ShowcaseArrows>
+          <Icon
+            icon={chevronLeftFill}
+            style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
+            className="showcase-arrow-icon left"
+          />
+          <Icon
+            icon={chevronLeftFill}
+            style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
+            className="showcase-arrow-icon right"
+          />
+        </ShowcaseArrows> */}
       </ShowcaseProducts>
 
       <HomeSlider>
@@ -202,7 +186,7 @@ export default function MainContent() {
             />
           </Link>
         </div>
-        <ShowcaseProductsWrapper>
+        {/* <ShowcaseProductsWrapper>
           <Product product="bd"></Product>
           <ShowcaseArrows>
             <Icon
@@ -216,7 +200,24 @@ export default function MainContent() {
               className="showcase-arrow-icon right"
             />
           </ShowcaseArrows>
-        </ShowcaseProductsWrapper>
+        </ShowcaseProductsWrapper> */}
+        <Product product="bd"></Product>
+        {/* <ShowcaseArrows>
+          <Icon
+            icon={chevronLeftFill}
+            style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
+            className="showcase-arrow-icon left"
+          />
+          <Icon
+            icon={chevronLeftFill}
+            style={{
+              color: "#ffffff",
+              fontSize: "40.999996185302734px",
+              transform: "scale(1, -1)",
+            }}
+            className="showcase-arrow-icon right"
+          />
+        </ShowcaseArrows> */}
       </ShowcaseProducts>
 
       <FeaturedSection>

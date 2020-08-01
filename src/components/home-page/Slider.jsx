@@ -220,7 +220,9 @@ export default function Slider() {
           <SliderContent half_content className="bg-white">
             <SliderTitle className="black">
               <h1>it's easy to get started</h1>
-              <h3>start finding biggest deals on thousands of items</h3>
+              <h3 className="hidden-sm">
+                start finding biggest deals on thousands of items
+              </h3>
             </SliderTitle>
 
             <Link to="/products" className="btn-link">

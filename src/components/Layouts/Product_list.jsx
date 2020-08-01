@@ -9,23 +9,43 @@ import styled from "styled-components";
 import starFilled from "@iconify/icons-ant-design/star-filled";
 
 const ShowcaseProduct = styled.div`
-  width: 250px;
-  height: 350px;
+  min-width: 250px;
+  min-height: 350px;
+  /* width: 250px;
+  height: 350px; */
   border: 1px solid rgba(90, 90, 90, 0.4);
   border-radius: 9px;
   position: relative;
   transition: box-shadow 400ms;
+
+  &.swipe-active {
+    pointer-events: none;
+    /* cursor: grabbing;
+    cursor: -webkit-grabbing; */
+    /* cursor: not-allowed; */
+  }
 
   &:not(:last-child) {
     margin-right: var(--large-item-margin);
   }
 
   &:first-child {
-    margin-left: 5%;
+    margin-left: 75px;
   }
 
   &:last-child {
-    margin-right: 5%;
+    /* margin-right: 5%; */
+    position: relative;
+
+    &::after {
+      content: "";
+      /* margin-right: 100px; */
+      position: absolute;
+      top: 0;
+      left: 100%;
+      width: 75px;
+      height: 1px;
+    }
   }
 
   &:hover {
@@ -38,8 +58,8 @@ const ShowcaseProduct = styled.div`
   } */
 
   @media (max-width: 768px) {
-    width: 200px;
-    height: 250px;
+    min-width: 200px;
+    min-height: 250px;
 
     &:hover {
       box-shadow: none;
@@ -48,7 +68,7 @@ const ShowcaseProduct = styled.div`
 `;
 
 const ShowcaseProductLink = styled(Link)`
-  height: 100%;
+  min-height: inherit;
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -181,10 +201,10 @@ const ShowcaseATW = styled.div`
 
 const ShowcaseToolTip = styled.div``;
 
-export default function ProductList({ details }) {
+export default function ProductList({ details, pointerNone }) {
   // console.log(details);
   return (
-    <ShowcaseProduct>
+    <ShowcaseProduct className={`${pointerNone ? "swipe-active" : ""}`}>
       <ShowcaseProductLink
         to={`/product/${details.id}`}
         state={{ item: details }}
