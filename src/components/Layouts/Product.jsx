@@ -18,6 +18,10 @@ const ShowcaseProductsWrapper = styled.div`
   overflow-y: hidden;
   cursor: pointer;
   padding: 7px 0;
+  &.swipe-active {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+  }
 
   &::-webkit-scrollbar {
     display: none;
@@ -30,22 +34,17 @@ const ShowcaseProductsWrapper = styled.div`
 export default function Product({ product }) {
   const [isDown, setIsDown] = useState(false);
   const [startX, setStartX] = useState(null);
-  // const [distance, setDistance] = useState(null);
   const [pointerNone, setPointerNone] = useState(false);
   const [left, setLeft] = useState(null);
 
   const [ArrowscrollLeft, setArrowscrollLeft] = useState(150);
-  const [leftEnd, setLeftEnd] = useState(null);
+  const [leftMargin, setLeftMargin] = useState(38);
+  const [leftEnd, setLeftEnd] = useState(true);
+  const [rightEnd, setRightEnd] = useState(false);
 
-  // console.log(distance);
-
-  // console.log(startX);
+  // console.log(leftEnd, rightEnd);
 
   const productsRef = useRef();
-
-  // console.log(leftArrowRef.current);
-
-  // console.log(leftArrowRef.current);
 
   useEffect(() => {
     const ref = productsRef.current;
@@ -62,12 +61,6 @@ export default function Product({ product }) {
       ref.removeEventListener("mousemove", handleOnMouseMove);
     };
   });
-
-  // useEffect(() => {
-  //   if (isDown && )
-  // }, [isDown])
-
-  // useEffect(() => {});
 
   function handleOnMouseDown(e) {
     setIsDown(true);
@@ -98,6 +91,7 @@ export default function Product({ product }) {
       return;
     }
     if (isDown) {
+      handleTransitionEnd();
       setPointerNone(true);
     }
     e.preventDefault();
@@ -113,6 +107,8 @@ export default function Product({ product }) {
     const walk = x - startX;
 
     productsRef.current.scrollLeft = left - walk;
+
+    // setStartX(e.pageX - productsRef.current.offsetLeft);
   }
   function scrollLeft(element, change, duration) {
     var start = element.scrollLeft,
@@ -142,118 +138,105 @@ export default function Product({ product }) {
     const leftFromElem = productsRef.current.childNodes[0].getBoundingClientRect()
       .left;
 
+    // setLeftEnd(false);
+
     // console.log(productsRef.current.childNodes[0].getBoundingClientRect());
 
-    if (leftFromElem > 74) {
-      console.log("nop");
+    if (leftFromElem > 38) {
+      // console.log("nop");
+      setLeftEnd(true);
       // setLeftEnd(true);
 
       // leftArrowRef.current.classList.add("opacity-zero") = "0";
-      return;
+      // return;
+    } else {
+      setRightEnd(false);
+      setLeftEnd(false);
     }
-    scrollLeft(productsRef.current, -ArrowscrollLeft, 200);
+
+    // console.log("hi");
+    // setLeftEnd(false);
+    // console.log(leftEnd);
+
+    scrollLeft(productsRef.current, -ArrowscrollLeft, 400);
 
     // productsRef.current.scrollLeft += -150;
   }
 
   function handleRightArrow() {
-    const rightFromElem = productsRef.current.childNodes[
-      productsRef.current.childNodes.length - 1
-    ].getBoundingClientRect().right;
+    const rightFromElem =
+      window.innerWidth -
+      productsRef.current.childNodes[
+        productsRef.current.childNodes.length - 1
+      ].getBoundingClientRect().right;
 
-    // console.log(
-    //   productsRef.current.childNodes[
-    //     productsRef.current.childNodes.length - 1
-    //   ].getBoundingClientRect()
-    // );
-
-    // const windowWidth = window.innerWidth;
-
-    if (rightFromElem < 74) {
-      console.log("nop");
+    if (rightFromElem > 38) {
+      // console.log("nop");
+      setRightEnd(true);
       // setLeftEnd(false);
-      return;
+    } else {
+      setRightEnd(false);
+      setLeftEnd(false);
     }
-    scrollLeft(productsRef.current, ArrowscrollLeft, 200);
+    // setLeftEnd(false);
+
+    // console.log(rightEnd);
+
+    scrollLeft(productsRef.current, ArrowscrollLeft, 400);
 
     // productsRef.current.scrollLeft += 150;
   }
 
-  function handleScrollLeftResize(e) {
+  function handleSliderResize(e) {
     if (e.currentTarget.innerWidth < 600) {
       setArrowscrollLeft(250);
+      setLeftMargin(24);
     }
   }
 
   // console.log(leftEnd);
 
   useEffect(() => {
-    window.addEventListener("resize", handleScrollLeftResize);
+    window.addEventListener("resize", handleSliderResize);
 
     return () => {
-      window.removeEventListener("resize", handleScrollLeftResize);
+      window.removeEventListener("resize", handleSliderResize);
     };
   });
 
   // useEffect(() => {
-  //   const leftFromElem = productsRef.current.childNodes[0].getBoundingClientRect()
-  //     .left;
-  //   const rightFromElem = productsRef.current.childNodes[
-  //     productsRef.current.childNodes.length - 1
-  //   ].getBoundingClientRect().right;
+  //   productsRef.current.addEventListener("mousedown", handleTransitionEnd);
 
-  //   if (leftFromElem > 74) {
-  //     setLeftEnd(true);
-  //     // leftArrowRef.current.classList.add("opacity-zero") = "0";
-  //   } else {
-  //     setLeftEnd(false);
-  //   }
-
-  //   // const windowWidth = window.innerWidth;
-
-  //   // if (rightFromElem < 74) {
-  //   //   // console.log("nop");
-  //   //   console.log("rightended");
-  //   //   setLeftEnd(false);
-  //   // }
-  // }, [isDown]);
-  // console.log(leftEnd);
-
-  useEffect(() => {
-    productsRef.current.addEventListener("transitionend", handleTransitionEnd);
-
-    return () => {
-      productsRef.current.removeEventListener(
-        "transitionend",
-        handleTransitionEnd
-      );
-    };
-  });
+  //   return () => {
+  //     productsRef.current.removeEventListener("mousedown", handleTransitionEnd);
+  //   };
+  // });
 
   function handleTransitionEnd() {
     const leftFromElem = productsRef.current.childNodes[0].getBoundingClientRect()
       .left;
 
+    const rightFromElem =
+      window.innerWidth -
+      productsRef.current.childNodes[
+        productsRef.current.childNodes.length - 1
+      ].getBoundingClientRect().right;
+
+    // const leftFromElem = productsRef.current.childNodes[0].getBoundingClientRect()
+    // .left;
+
     if (leftFromElem > 74) {
       setLeftEnd(true);
-      // leftArrowRef.current.classList.add("opacity-zero") = "0";
     } else {
       setLeftEnd(false);
     }
+
+    if (rightFromElem > 74) {
+      setRightEnd(true);
+    } else {
+      setRightEnd(false);
+    }
   }
-
-  // const Arrow = forwardRef((props, ref) => (
-  //   <ShowcaseArrows
-  //     ref={ref}
-  //     icon={props.icon}
-  //     style={props.style}
-  //     className={props.className}
-  //     onClick={props.onClick}
-  //   ></ShowcaseArrows>
-  // ));
-
-  // const leftArrowRef = createRef();
-  // const rightArrowRef = createRef();
 
   const {
     res: { edges },
@@ -270,7 +253,10 @@ export default function Product({ product }) {
 
   return (
     <>
-      <ShowcaseProductsWrapper ref={productsRef}>
+      <ShowcaseProductsWrapper
+        ref={productsRef}
+        className={`${pointerNone ? "swipe-active" : ""}`}
+      >
         {products.map(one => {
           return (
             <ProductList
@@ -297,7 +283,7 @@ export default function Product({ product }) {
       <ShowcaseArrows
         icon={chevronLeftFill}
         style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
-        className={`showcase-arrow-icon right`}
+        className={`showcase-arrow-icon right ${rightEnd ? "right-end" : ""}`}
         onClick={handleRightArrow}
         // id="showcase-right-arrow"
         // ref={rightArrowRef}

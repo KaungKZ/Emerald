@@ -1,10 +1,13 @@
 import React from "react";
-import { Helmet } from "react-helmet";
-import Global_styles from "../styles/Global_styles";
+import { graphql } from "gatsby";
 import Layout from "../components/Layouts/Layout";
+// import CartItems from "../components/cart-page/CartItems";
 import EmptyPage from "../components/Layouts/EmptyPage";
 
-export default function products() {
+import Global_styles from "../styles/Global_styles";
+import { Helmet } from "react-helmet";
+
+export default function TemplateItem({ data: { res } }) {
   return (
     <>
       <Global_styles />
@@ -16,13 +19,10 @@ export default function products() {
             content="width=device-width,initial-scale=1.0"
           ></meta>
           <title itemProp="name" lang="en">
-            Products
+            {res.title}
           </title>
 
-          <meta
-            name="description"
-            content="A Front End E-commerce project using gatsby"
-          />
+          <meta name="description" content={`${res.description.description}`} />
           <meta
             name="keywords"
             content="e-commerce, front-end development, gatsby e-commerce"
@@ -32,13 +32,13 @@ export default function products() {
           <meta property="og:title" content="Emerald" />
           <meta
             property="og:description"
-            content="A Front End E-commerce project using gatsby"
+            content={`${res.description.description}`}
           />
           <meta property="og:url" content="" />
           <meta property="og:locale" content="en_US" />
           <link rel="canonical" href="" />
         </Helmet>
-        <EmptyPage>All Products</EmptyPage>
+        <EmptyPage>{res.title}</EmptyPage>
         {/* <MainContent></MainContent> */}
       </Layout>
 
@@ -46,3 +46,34 @@ export default function products() {
     </>
   );
 }
+
+export const query = graphql`
+  query MyQuery($slug: String) {
+    res: contentfulAllProducts(id: { eq: $slug }) {
+      title
+      by
+      price
+      oldprice
+      description {
+        description
+      }
+      rating
+      ratingAmount
+      gender
+      size
+      images {
+        fixed(height: 100, width: 100) {
+          src
+        }
+      }
+      reviews {
+        reviews {
+          name
+          rating
+          comment
+          date
+        }
+      }
+    }
+  }
+`;

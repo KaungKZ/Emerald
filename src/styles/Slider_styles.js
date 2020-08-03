@@ -29,6 +29,14 @@ width: ${props => props.width}px;
   /* .slider-banner {
     width: ${props => (props.half_content ? "70%" : "100%")};
   } */
+  @media (max-width: 520px) {
+    ${props =>
+      props.half_content &&
+      css`
+        flex-direction: column;
+        justify-content: space-between;
+      `}
+  }
 
  
 `;
@@ -118,6 +126,10 @@ export const SliderBanner = styled.div`
     height: 100%;
     background: rgba(0, 0, 0, 0.2);
   }
+
+  @media (max-width: 520px) {
+    width: 100%;
+  }
 `;
 
 export const SliderContent = styled.div`
@@ -179,6 +191,11 @@ export const WrapperSliderNavigators = styled.div`
   top: 90%;
   left: 60%;
   transform: translate(-60%, -90%);
+
+  @media (max-width: 520px) {
+    left: 50%;
+    transform: translate(-50%, -90%);
+  }
 `;
 
 export const SliderNavigator = styled.span`

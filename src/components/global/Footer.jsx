@@ -11,6 +11,10 @@ const FooterMain = styled.footer`
   /* background:  */
   position: relative;
   background: rgba(255, 239, 208, 0.5);
+
+  @media (max-width: 500px) {
+    padding: 50px 0 75px 0;
+  }
 `;
 
 const FooterWrapperLinks = styled.div`
@@ -18,6 +22,11 @@ const FooterWrapperLinks = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    width: 90%;
+    flex-direction: column;
+  }
   /* align-items: center; */
 `;
 
@@ -30,6 +39,20 @@ const FooterHeaderTitle = styled.div`
     font-weight: 400;
     color: var(--text-color);
   }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-align: center;
+    }
+  }
+
+  /* @media (max-width: 600px) {
+    h1 {
+      font-size: 1rem
+    }
+  } */
 `;
 
 const FooterLinkList = styled.ul`
@@ -65,19 +88,131 @@ const FooterLinkList = styled.ul`
         margin-right: var(--small-margin);
       }
     `}
+
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    row-gap: 10px;
+
+    li:nth-child(3n) {
+      text-align: right;
+    }
+
+    li:nth-child(3n - 1) {
+      text-align: center;
+    }
+
+    li:not(:last-child) {
+      margin-bottom: 0;
+    }
+    ${props =>
+      props.social &&
+      css`
+        li:nth-child(3n) a {
+          justify-content: flex-end;
+        }
+
+        li:nth-child(3n - 1) a {
+          justify-content: center;
+        }
+      `}
+  }
+  @media (max-width: 600px) {
+    li a {
+      font-size: 12px;
+    }
+    ${props =>
+      props.social &&
+      css`
+        img {
+          width: 18px;
+          height: 18px;
+          margin-right: var(--small-margin);
+        }
+      `}
+  }
 `;
 
-const FooterSection = styled.div``;
+const FooterSection = styled.div`
+  @media (max-width: 768px) {
+    margin-bottom: 30px;
+  }
+`;
+
+const FooterDeveloper = styled.div`
+  font-family: var(--secondary-font);
+  font-size: 14px;
+  width: fit-content;
+
+  position: absolute;
+  top: 95%;
+  left: 30%;
+  transform: translate(-30%, -95%);
+  color: var(--light-text-color);
+  opacity: 0.8;
+
+  .github-link {
+    color: var(--light-text-color);
+  }
+
+  @media (max-width: 1024px) {
+    left: 15%;
+    transform: translate(-15%, -95%);
+  }
+
+  @media (max-width: 768px) {
+    left: 5%;
+    transform: translate(-5%, -95%);
+  }
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
+
+  @media (max-width: 500px) {
+    /* width: 100%; */
+    top: 97%;
+    left: 50%;
+    transform: translate(-50%, -96%);
+  }
+`;
 
 const FooterCopyright = styled.div`
+  width: fit-content;
+  text-align: right;
   font-family: var(--secondary-font);
   font-size: 14px;
   position: absolute;
-  top: 85%;
+  top: 95%;
   right: 30%;
-  transform: translate(30%, -85%);
+  transform: translate(30%, -95%);
   color: var(--light-text-color);
   opacity: 0.8;
+
+  @media (max-width: 1024px) {
+    right: 15%;
+    transform: translate(15%, -95%);
+  }
+
+  @media (max-width: 768px) {
+    right: 20%;
+    transform: translate(20%, -95%);
+  }
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+    text-align: center;
+    top: 92%;
+    right: 0;
+    left: 50%;
+    transform: translate(-50%, -90%);
+  }
 `;
 
 // const FooterHelpCenter = styled.div``;
@@ -223,6 +358,18 @@ export default function Footer() {
           </FooterLinkList>
         </FooterSection>
       </FooterWrapperLinks>
+      <FooterDeveloper>
+        Made by{" "}
+        {
+          <a
+            href="https://github.com/KaungKZ"
+            target="_blank"
+            className="github-link"
+          >
+            KaungKZ
+          </a>
+        }
+      </FooterDeveloper>
       <FooterCopyright>
         Copyright &#169; {new Date().getFullYear()} Emerald Inc. All rights
         reserved

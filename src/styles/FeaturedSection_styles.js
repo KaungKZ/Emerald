@@ -80,4 +80,12 @@ export const FeaturedContent = styled.div`
       font-size: 1.6rem;
     }
   }
+
+  @media (max-width: 480px) {
+    width: 75%;
+
+    .featured-title {
+      line-height: 40px;
+    }
+  }
 `;

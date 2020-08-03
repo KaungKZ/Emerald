@@ -50,6 +50,12 @@ const CategoryTitle = styled.div`
       background: #fff;
     }
   }
+
+  @media (max-width: 480px) {
+    a {
+      font-size: 12px;
+    }
+  }
 `;
 
 const CategoryBanner = styled.div`

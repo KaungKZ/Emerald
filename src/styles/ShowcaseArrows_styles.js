@@ -37,7 +37,7 @@ export const ShowcaseArrows = styled(Icon)`
   cursor: pointer;
   top: calc(50% + 64px);
   transform: translateY(calc(50% - 64px));
-  transition: opacity 400ms;
+  transition: opacity 200ms;
 
   &.left-end {
     opacity: 0;
@@ -45,7 +45,8 @@ export const ShowcaseArrows = styled(Icon)`
   }
 
   &.right-end {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
   }
   /* } */
 
@@ -60,5 +61,11 @@ export const ShowcaseArrows = styled(Icon)`
     path {
       transform: scale(-1, 1) translateX(-100%);
     }
+  }
+
+  @media (max-width: 600px) {
+    width: 35px;
+    height: 55px;
+    font-size: 37px !important;
   }
 `;

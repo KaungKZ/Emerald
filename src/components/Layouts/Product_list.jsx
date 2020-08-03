@@ -20,9 +20,6 @@ const ShowcaseProduct = styled.div`
 
   &.swipe-active {
     pointer-events: none;
-    /* cursor: grabbing;
-    cursor: -webkit-grabbing; */
-    /* cursor: not-allowed; */
   }
 
   &:not(:last-child) {
@@ -40,7 +37,9 @@ const ShowcaseProduct = styled.div`
     &::after {
       content: "";
       /* margin-right: 100px; */
+      clear: both;
       position: absolute;
+      display: block;
       top: 0;
       left: 100%;
       width: 75px;
@@ -59,11 +58,23 @@ const ShowcaseProduct = styled.div`
 
   @media (max-width: 768px) {
     min-width: 200px;
-    min-height: 250px;
+    min-height: 270px;
 
     &:hover {
       box-shadow: none;
     }
+  }
+
+  @media (max-width: 600px) {
+    &:not(:last-child) {
+      margin-right: 75px;
+    }
+    /* &:first-child {
+      margin-left: 50px;
+    }
+    &:last-child::after {
+      width: 50px;
+    } */
   }
 `;
 
@@ -165,7 +176,26 @@ const ShowcaseProductDetails = styled.div`
 
   @media (max-width: 768px) {
     padding: 10px 15px 20px 15px;
+    .item-title,
+    .item-price {
+      font-size: 14px !important;
+    }
+    .item-by,
+    .item-rating {
+      font-size: 10px;
+    }
   }
+
+  /* @media (max-width: 480px) {
+    .item-title,
+    .item-price {
+      font-size: 14px !important;
+    }
+    .item-by,
+    .item-rating {
+      font-size: 10px;
+    }
+  } */
 `;
 
 const ShowcaseATW = styled.div`

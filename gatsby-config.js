@@ -9,16 +9,16 @@ require("dotenv").config({
 });
 
 module.exports = {
-  // siteMetadata: {
-  //   title: "This is the title of the page",
-  //   description: "blah blah blah ..",
-  //   developer: "Kaung Khant Zaw",
-  // },
+  siteMetadata: {
+    url: "",
+  },
   /* Your site config here */
   plugins: [
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-react-helmet`,
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
