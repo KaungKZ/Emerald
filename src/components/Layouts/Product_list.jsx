@@ -83,6 +83,7 @@ const ShowcaseProductLink = styled(Link)`
   display: flex;
   flex-direction: column;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
   /* justify-content: space-between; */
 `;
 

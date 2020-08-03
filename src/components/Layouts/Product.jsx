@@ -18,6 +18,7 @@ const ShowcaseProductsWrapper = styled.div`
   overflow-y: hidden;
   cursor: pointer;
   padding: 7px 0;
+  -webkit-tap-highlight-color: transparent;
   &.swipe-active {
     cursor: grabbing;
     cursor: -webkit-grabbing;
@@ -220,6 +221,8 @@ export default function Product({ product }) {
   function handleTransitionEnd() {
     const leftFromElem = productsRef.current.childNodes[0].getBoundingClientRect()
       .left;
+
+    console.log("sup");
 
     const rightFromElem =
       window.innerWidth -

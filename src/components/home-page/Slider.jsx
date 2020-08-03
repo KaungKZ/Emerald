@@ -14,6 +14,7 @@ import {
 } from "../../styles/Slider_styles";
 
 export default function Slider() {
+  const [windowWidth, setWindowWidth] = useState(null);
   const [transition, setTransition] = useState({
     activeIndex: 0,
     translate: 0,
@@ -65,41 +66,18 @@ export default function Slider() {
       }
       clearInterval(interval);
     };
-  }, []);
+  });
 
   useEffect(() => {
     if (activeIndex === 2) {
     }
   }, [activeIndex]);
 
-  // useEffect(() => {
-  //   if (transitionDuration === 0) {
-  //     return setTransition({
-  //       ...transition,
-  //       transitionDuration: 700,
-  //     });
-  //   }
-  // });
-
-  // function smooth(e) {
-  //   if (e.target.className.includes("slide")) {
-  //     transitionRef.current();
-  //   }
-  // }
-
-  // function smoothTransition() {
-  //   setTransition({
-  //     ...transition,
-  //     transitionDuration: 0,
-  //     translate: getWidth(),
-  //   });
-  // }
-
   function handleResize() {
     // console.log("resized");
     setTransition({
       ...transition,
-      translate: getWidth(),
+      translate: windowWidth,
       transitionDuration: 0,
     });
   }
@@ -108,18 +86,24 @@ export default function Slider() {
     setTransition({
       ...transition,
       activeIndex: activeIndex === 2 ? 0 : activeIndex + 1,
-      translate: activeIndex === 2 ? 0 : translate + getWidth(),
+      translate: activeIndex === 2 ? 0 : translate + windowWidth,
       transitionDuration: activeIndex === 2 ? 0 : 700,
     });
     // }
   }
 
-  function getWidth() {
-    // console.log(window.innerWidth());
+  useEffect(() => {
     if (typeof window !== "undefined") {
-      return window.innerWidth;
+      return setWindowWidth(window.innerWidth);
     }
-  }
+  }, [transition.translate]);
+
+  // function getWidth() {
+  //   // console.log(window.innerWidth());
+  //   if (typeof window !== "undefined") {
+  //     return window.innerWidth;
+  //   }
+  // }
 
   // function smoothTransition() {
   //   let _slides = [];
@@ -146,14 +130,14 @@ export default function Slider() {
 
   return (
     <>
-      <Sliders width={getWidth()}>
+      <Sliders width={windowWidth}>
         {/* {slides.map(slide => {
           return slide;
         }} */}
 
         <SliderWrapper
           half_content
-          width={getWidth()}
+          width={windowWidth}
           transform={translate}
           transition={transitionDuration}
           className="slide"
@@ -184,7 +168,7 @@ export default function Slider() {
 
         <SliderWrapper
           second_slider
-          width={getWidth()}
+          width={windowWidth}
           transform={translate}
           transition={transitionDuration}
           className="slide"
@@ -216,7 +200,7 @@ export default function Slider() {
 
         <SliderWrapper
           half_content
-          width={getWidth()}
+          width={windowWidth}
           transform={translate}
           transition={transitionDuration}
           className="slide"
