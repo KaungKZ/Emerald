@@ -49,17 +49,20 @@ export default function Slider() {
     }
 
     let interval = null;
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResizeRef);
+    }
 
     interval = setInterval(play, 4500);
-
-    window.addEventListener("resize", handleResizeRef);
 
     function handleResizeRef() {
       resizeRef.current();
     }
 
     return () => {
-      window.removeEventListener("resize", handleResizeRef);
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResizeRef);
+      }
       clearInterval(interval);
     };
   }, []);
@@ -113,7 +116,9 @@ export default function Slider() {
 
   function getWidth() {
     // console.log(window.innerWidth());
-    return window.innerWidth;
+    if (typeof window !== "undefined") {
+      return window.innerWidth;
+    }
   }
 
   // function smoothTransition() {

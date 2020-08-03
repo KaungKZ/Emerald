@@ -164,25 +164,26 @@ export default function Product({ product }) {
   }
 
   function handleRightArrow() {
-    const rightFromElem =
-      window.innerWidth -
-      productsRef.current.childNodes[
-        productsRef.current.childNodes.length - 1
-      ].getBoundingClientRect().right;
-
-    if (rightFromElem > 38) {
-      // console.log("nop");
-      setRightEnd(true);
+    if (typeof window !== "undefined") {
+      const rightFromElem =
+        window.innerWidth -
+        productsRef.current.childNodes[
+          productsRef.current.childNodes.length - 1
+        ].getBoundingClientRect().right;
+      if (rightFromElem > 38) {
+        // console.log("nop");
+        setRightEnd(true);
+        // setLeftEnd(false);
+      } else {
+        setRightEnd(false);
+        setLeftEnd(false);
+      }
       // setLeftEnd(false);
-    } else {
-      setRightEnd(false);
-      setLeftEnd(false);
+
+      // console.log(rightEnd);
+
+      scrollLeft(productsRef.current, ArrowscrollLeft, 400);
     }
-    // setLeftEnd(false);
-
-    // console.log(rightEnd);
-
-    scrollLeft(productsRef.current, ArrowscrollLeft, 400);
 
     // productsRef.current.scrollLeft += 150;
   }
@@ -197,10 +198,14 @@ export default function Product({ product }) {
   // console.log(leftEnd);
 
   useEffect(() => {
-    window.addEventListener("resize", handleSliderResize);
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleSliderResize);
+    }
 
     return () => {
-      window.removeEventListener("resize", handleSliderResize);
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleSliderResize);
+      }
     };
   });
 
