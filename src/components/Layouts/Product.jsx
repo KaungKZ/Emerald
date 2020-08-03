@@ -38,7 +38,7 @@ export default function Product({ product }) {
   const [left, setLeft] = useState(null);
 
   const [ArrowscrollLeft, setArrowscrollLeft] = useState(150);
-  const [leftMargin, setLeftMargin] = useState(38);
+  // const [leftMargin, setLeftMargin] = useState(38);
   const [leftEnd, setLeftEnd] = useState(true);
   const [rightEnd, setRightEnd] = useState(false);
 
@@ -190,7 +190,7 @@ export default function Product({ product }) {
   function handleSliderResize(e) {
     if (e.currentTarget.innerWidth < 600) {
       setArrowscrollLeft(250);
-      setLeftMargin(24);
+      // setLeftMargin(24);
     }
   }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Icon, InlineIcon } from "@iconify/react";
+import { Icon } from "@iconify/react";
 import shoppingBag2Line from "@iconify/icons-ri/shopping-bag-2-line";
 import alarmClockLine from "@iconify/icons-clarity/alarm-clock-line";
 // import { Link } from "gatsby";
@@ -112,6 +112,7 @@ export default function EmptyPage({ empty_cart, children }) {
                 href="https://github.com/KaungKZ/Emerald"
                 className="github-repo"
                 target="_blank"
+                rel="noreferrer"
               >
                 Take a look at what we are doing
               </a>

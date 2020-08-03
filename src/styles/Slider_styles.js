@@ -15,10 +15,6 @@ width: ${props => props.width}px;
     transition: transform ${props.transition}ms;
   `}
 
-  /* ${SliderContent} {
-    position: absolute;
-  } */
-
   ${props =>
     props.half_content &&
     css`

@@ -7,6 +7,32 @@ import styled from "styled-components";
 //   CategoryTitle,
 //   CategoryBanner,
 // } from "../../styles/Category_styles";
+const CategoryBanner = styled.div`
+  position: relative;
+  height: 100%;
+
+  .gatsby-image-wrapper {
+    transition: transform 400ms;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.3;
+    z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    .gatsby-image-wrapper {
+      width: 200px !important;
+      height: 250px !important;
+    }
+  }
+`;
 
 const Category = styled.div`
   position: relative;
@@ -54,33 +80,6 @@ const CategoryTitle = styled.div`
   @media (max-width: 480px) {
     a {
       font-size: 12px;
-    }
-  }
-`;
-
-const CategoryBanner = styled.div`
-  position: relative;
-  height: 100%;
-
-  .gatsby-image-wrapper {
-    transition: transform 400ms;
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    opacity: 0.3;
-    z-index: 1;
-  }
-
-  @media (max-width: 768px) {
-    .gatsby-image-wrapper {
-      width: 200px !important;
-      height: 250px !important;
     }
   }
 `;

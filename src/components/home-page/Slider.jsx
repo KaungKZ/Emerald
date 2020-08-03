@@ -52,7 +52,7 @@ export default function Slider() {
 
     interval = setInterval(play, 4500);
 
-    const resize = window.addEventListener("resize", handleResizeRef);
+    window.addEventListener("resize", handleResizeRef);
 
     function handleResizeRef() {
       resizeRef.current();

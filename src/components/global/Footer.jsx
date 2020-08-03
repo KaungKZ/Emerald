@@ -365,6 +365,7 @@ export default function Footer() {
             href="https://github.com/KaungKZ"
             target="_blank"
             className="github-link"
+            rel="noreferrer"
           >
             KaungKZ
           </a>

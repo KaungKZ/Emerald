@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Icon, InlineIcon } from "@iconify/react";
+import { Icon } from "@iconify/react";
 import heartOutlined from "@iconify/icons-ant-design/heart-outlined";
 import cart2Icon from "@iconify/icons-bi/cart2";
 import { Link } from "gatsby";
