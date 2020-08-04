@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Icon } from "@iconify/react";
 import shoppingBag2Line from "@iconify/icons-ri/shopping-bag-2-line";
 import alarmClockLine from "@iconify/icons-clarity/alarm-clock-line";
-// import { Link } from "gatsby";
 
 const EmptyPageStyles = styled.div`
   width: 80%;
@@ -30,7 +29,6 @@ const EmptyPageTitle = styled.h1`
   font-size: 2rem;
   position: relative;
   text-transform: capitalize;
-  /* width: 50%; */
 
   &::after {
     content: "";
@@ -67,12 +65,8 @@ const EmptySubtitle = styled.h3`
   text-align: center;
 
   .github-repo {
-    /* text-decoration: none; */
     display: block;
-    /* font-weight: 700; */
-    /* color: var(--primary-color); */
     color: #b19d7d;
-
     font-size: 14px;
     text-align: center;
     margin-top: calc(var(--small-margin) * 3);
@@ -84,11 +78,9 @@ const EmptySubtitle = styled.h3`
 `;
 
 export default function EmptyPage({ empty_cart, children }) {
-  // console.log(props);
   return (
     <EmptyPageStyles>
       <EmptyPageTitle>{children}</EmptyPageTitle>
-      {/* <div className="content"> */}
       {empty_cart ? (
         <>
           <Icon
@@ -120,14 +112,6 @@ export default function EmptyPage({ empty_cart, children }) {
           </EmptySubtitle>
         </>
       )}
-      {/* <Icon
-        icon={alarmClockLine}
-        style={{ color: "#606060", fontSize: "110px" }}
-      /> */}
-
-      {/* {empty_cart
-          ? 
-          : "Stay tuned, this page is coming soon ! Take a look at what we are doing  "} */}
     </EmptyPageStyles>
   );
 }

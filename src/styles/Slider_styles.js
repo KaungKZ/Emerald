@@ -7,7 +7,7 @@ export const Sliders = styled.div`
 `;
 
 export const SliderWrapper = styled.div`
-width: ${props => props.width}px;
+  width: ${props => props.width}px;
   display: ${props => props.half_content && "flex"};
   position: ${props => props.second_slider && "relative"};
   ${props => css`
@@ -21,10 +21,6 @@ width: ${props => props.width}px;
       flex-direction: row;
       justify-content: space-between;
     `}
-
-  /* .slider-banner {
-    width: ${props => (props.half_content ? "70%" : "100%")};
-  } */
   @media (max-width: 520px) {
     ${props =>
       props.half_content &&
@@ -33,13 +29,7 @@ width: ${props => props.width}px;
         justify-content: space-between;
       `}
   }
-
- 
 `;
-
-// const SliderOne = styled.div`
-
-// `;
 export const SliderTitle = styled.div`
   font-family: var(--secondary-font);
   text-transform: capitalize;
@@ -95,7 +85,6 @@ export const SliderTitle = styled.div`
 
     h3 {
       font-size: 12px;
-      /* display: none; */
     }
 
     .hidden-sm {
@@ -151,9 +140,6 @@ export const SliderContent = styled.div`
     background: #fff;
     border: 1px solid rgba(90, 90, 90, 0.4);
   }
-  /* &:first-child {
-    background: var(--primary-light);
-  } */
   ${props =>
     props.half_content &&
     css`
@@ -175,7 +161,6 @@ export const SliderContent = styled.div`
     ${props =>
       props.second_slider &&
       css`
-        /* padding: 30px 0 30px 30px; */
         padding-left: 30px;
       `}
   }

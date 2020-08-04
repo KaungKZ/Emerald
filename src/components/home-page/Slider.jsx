@@ -14,50 +14,37 @@ import {
 } from "../../styles/Slider_styles";
 
 export default function Slider() {
-  const [windowWidth, setWindowWidth] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(getInitialWindowWidth());
   const [transition, setTransition] = useState({
     activeIndex: 0,
     translate: 0,
     transitionDuration: 0,
   });
 
-  // const slides = document.querySelectorAll(".slide");
-
-  // const first_slide = slides[0];
-  // const second_slide = slides[0];
-  // const last_slide = slides[slides.length - 1];
-
   const { activeIndex, translate, transitionDuration } = transition;
 
   const autoPlayRef = useRef();
   const resizeRef = useRef();
-  // const transitionRef = useRef();
-
   const sliderImages = useStaticQuery(getSliderImage);
-
-  // const transitionEnd = window.addEventListener("transitionend", smooth);
 
   useEffect(() => {
     autoPlayRef.current = nextSlide;
     resizeRef.current = handleResize;
-    // transitionRef.current = smoothTransition;
   });
 
   useEffect(() => {
-    // console.log(autoPlayRef.current());
-    function play() {
-      autoPlayRef.current();
-    }
-
     let interval = null;
     if (typeof window !== "undefined") {
+      function play() {
+        autoPlayRef.current();
+      }
+
       window.addEventListener("resize", handleResizeRef);
+      interval = setInterval(play, 4500);
     }
-
-    interval = setInterval(play, 4500);
-
     function handleResizeRef() {
       resizeRef.current();
+      setWindowWidth(window.innerWidth);
     }
 
     return () => {
@@ -69,18 +56,58 @@ export default function Slider() {
   });
 
   useEffect(() => {
-    if (activeIndex === 2) {
+    var resizeTimer;
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          setTransition({
+            ...transition,
+            activeIndex: 0,
+            translate: 0,
+            transitionDuration: 0,
+          });
+        }, 500);
+      });
     }
-  }, [activeIndex]);
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(() => {
+            setTransition({
+              ...transition,
+              activeIndex: 0,
+              translate: 0,
+              transitionDuration: 0,
+            });
+          }, 500);
+        });
+      }
+    };
+  });
+
+  // getInitialWindowWidth
+
+  function getInitialWindowWidth() {
+    if (typeof window !== "undefined") {
+      return window.innerWidth;
+    }
+  }
+
+  // handleResize
 
   function handleResize() {
-    // console.log("resized");
     setTransition({
       ...transition,
-      translate: windowWidth,
+      activeIndex: 0,
+      translate: 0,
       transitionDuration: 0,
     });
   }
+
+  // nextSlide
 
   function nextSlide() {
     setTransition({
@@ -92,56 +119,15 @@ export default function Slider() {
     // }
   }
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      return setWindowWidth(window.innerWidth);
-    }
-  }, [transition.translate]);
-
-  // function getWidth() {
-  //   // console.log(window.innerWidth());
-  //   if (typeof window !== "undefined") {
-  //     return window.innerWidth;
-  //   }
-  // }
-
-  // function smoothTransition() {
-  //   let _slides = [];
-
-  //   // We're at the last slide.
-  //   if (activeSlide === slides.length - 1)
-  //     _slides = [slides[slides.length - 2], lastSlide, firstSlide];
-  //   // We're back at the first slide. Just reset to how it was on initial render
-  //   else if (activeSlide === 0) _slides = [lastSlide, firstSlide, secondSlide];
-  //   // Create an array of the previous last slide, and the next two slides that follow it.
-  //   else _slides = slides.slice(activeSlide - 1, activeSlide + 2);
-
-  //   setState({
-  //     ...state,
-  //     _slides,
-  //     transition: 0,
-  //     translate: getWidth(),
-  //   });
-  // }
-
-  // console.log(sliderImages.allFile.edges[0]);
-
-  //   console.log(sliderImages);
-
   return (
     <>
       <Sliders width={windowWidth}>
-        {/* {slides.map(slide => {
-          return slide;
-        }} */}
-
         <SliderWrapper
           half_content
           width={windowWidth}
           transform={translate}
           transition={transitionDuration}
           className="slide"
-          // ref={slide_one}
         >
           <SliderContent half_content className="bg-pink">
             <SliderTitle className="black">
@@ -161,7 +147,6 @@ export default function Slider() {
           <SliderBanner half_content>
             <Img
               fluid={sliderImages.allFile.edges[0].node.childImageSharp.fluid}
-              // style={{ maxWidth: "900px" }}
             ></Img>
           </SliderBanner>
         </SliderWrapper>
@@ -172,7 +157,6 @@ export default function Slider() {
           transform={translate}
           transition={transitionDuration}
           className="slide"
-          // ref={slide_two}
         >
           <SliderContent second_slider>
             <SliderTitle className="white">
@@ -191,7 +175,6 @@ export default function Slider() {
           </SliderContent>
 
           <SliderBanner>
-            {/* <img src={example} alt="" /> */}
             <Img
               fluid={sliderImages.allFile.edges[1].node.childImageSharp.fluid}
             ></Img>
@@ -204,7 +187,6 @@ export default function Slider() {
           transform={translate}
           transition={transitionDuration}
           className="slide"
-          // ref={slide_three}
         >
           <SliderContent half_content className="bg-white">
             <SliderTitle className="black">
@@ -227,8 +209,6 @@ export default function Slider() {
           <SliderBanner half_content>
             <Img
               fluid={sliderImages.allFile.edges[2].node.childImageSharp.fluid}
-              // imgStyle={{ maxWidth: "1440px" }}
-              // style={{ maxWidth: "900px" }}
             ></Img>
           </SliderBanner>
         </SliderWrapper>
@@ -241,13 +221,12 @@ export default function Slider() {
             key={i}
           ></SliderNavigator>
         ))}
-        {/* <SliderNavigator></SliderNavigator>
-        <SliderNavigator></SliderNavigator>
-        <SliderNavigator></SliderNavigator> */}
       </WrapperSliderNavigators>
     </>
   );
 }
+
+// graphql query
 
 const getSliderImage = graphql`
   {

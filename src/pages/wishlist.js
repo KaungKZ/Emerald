@@ -34,9 +34,12 @@ export default function wishlist() {
             property="og:description"
             content="A Front End E-commerce project using gatsby"
           />
-          <meta property="og:url" content="" />
+          <meta
+            property="og:url"
+            content="https://emeraldos.netlify.app/wishlist"
+          />
           <meta property="og:locale" content="en_US" />
-          <link rel="canonical" href="" />
+          <link rel="canonical" href="https://emeraldos.netlify.app/wishlist" />
         </Helmet>
         <EmptyPage>Wishlist</EmptyPage>
       </Layout>

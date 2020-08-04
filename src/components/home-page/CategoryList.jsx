@@ -2,11 +2,6 @@ import React from "react";
 import { Link } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
-// import {
-//   Category,
-//   CategoryTitle,
-//   CategoryBanner,
-// } from "../../styles/Category_styles";
 const CategoryBanner = styled.div`
   position: relative;
   height: 100%;
@@ -38,7 +33,6 @@ const Category = styled.div`
   position: relative;
   height: 300px;
   border-radius: 4px;
-  /* cursor: pointer; */
   overflow: hidden;
   &:hover {
     ${CategoryBanner} {
@@ -86,7 +80,6 @@ const CategoryTitle = styled.div`
 
 export default function CategoryList({ classNames, image }) {
   classNames = classNames.split(" ")[0];
-  // console.log(classNames);
   return (
     <Category>
       <CategoryTitle>{<Link to="/products">{classNames}</Link>}</CategoryTitle>

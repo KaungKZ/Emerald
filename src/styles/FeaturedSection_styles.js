@@ -35,12 +35,7 @@ export const FeaturedContent = styled.div`
   left: 20%;
   transform: translate(-20%, -40%);
   z-index: 1;
-  /* height: 50%; */
-  /* height: 100%; */
   width: 65%;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
 
   .featured-title {
     font-family: var(--primary-font);

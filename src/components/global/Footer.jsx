@@ -8,7 +8,6 @@ import styled, { css } from "styled-components";
 
 const FooterMain = styled.footer`
   padding: 50px 0;
-  /* background:  */
   position: relative;
   background: rgba(255, 239, 208, 0.5);
 
@@ -27,7 +26,6 @@ const FooterWrapperLinks = styled.div`
     width: 90%;
     flex-direction: column;
   }
-  /* align-items: center; */
 `;
 
 const FooterHeaderTitle = styled.div`
@@ -47,12 +45,6 @@ const FooterHeaderTitle = styled.div`
       text-align: center;
     }
   }
-
-  /* @media (max-width: 600px) {
-    h1 {
-      font-size: 1rem
-    }
-  } */
 `;
 
 const FooterLinkList = styled.ul`
@@ -214,12 +206,6 @@ const FooterCopyright = styled.div`
     transform: translate(-50%, -90%);
   }
 `;
-
-// const FooterHelpCenter = styled.div``;
-
-// const FooterSell = styled.div``;
-
-// const FooterSocial = styled.div``;
 
 export default function Footer() {
   return (

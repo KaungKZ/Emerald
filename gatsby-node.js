@@ -1,11 +1,7 @@
-// 4/46/39
 const path = require("path");
-// const { graphql } = require("gatsby");
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-
-  // let allItems = [];
 
   const result = await graphql(`
     {
@@ -17,11 +13,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  // allItems.push(...result.data.bs_items.nodes, ...result.data.bd_items.nodes);
-  // console.log(data.res.nodes);`
-
   result.data.items.nodes.forEach(node => {
-    // console.log(node);
     createPage({
       path: `/product/${node.id}`,
       component: path.resolve("src/template/TemplateItem.js"),

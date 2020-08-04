@@ -18,13 +18,7 @@ import {
   FeaturedContent,
   FeaturedBanner,
 } from "../../styles/FeaturedSection_styles";
-// import { Categories, CategoryWrapper } from "../../styles/Category_styles";
 import styled from "styled-components";
-// import { ShowcaseArrows } from "../../styles/ShowcaseArrows_styles";
-// import chevronLeftFill from "@iconify/icons-eva/chevron-left-fill";
-// import example from "../../images/home/covid 19 bg.jpg";
-
-// import { getImages } from "../../graphql-fragments/IndexQueries";
 
 const Categories = styled.section`
   width: 100%;
@@ -32,7 +26,6 @@ const Categories = styled.section`
 `;
 
 const CategoryWrapper = styled.div`
-  /* align-self: center; */
   width: 80%;
   margin: 0 auto;
   display: grid;
@@ -50,16 +43,9 @@ const CategoryWrapper = styled.div`
 const ShowcaseProducts = styled.section`
   width: 100%;
   margin-bottom: var(--section-margin);
-  /* overflow: hidden; */
-  overflow-x: scroll;
+  overflow-x: hidden;
   overflow-y: hidden;
-  padding-bottom: 7px;
   position: relative;
-  /* scroll-behavior: smooth; */
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 const HomeSlider = styled.section`
@@ -82,7 +68,6 @@ export default function MainContent() {
     <>
       <HeaderDetailStyles>
         <HeaderDetails>
-          {/* <div className="titles"> */}
           <HeaderTitle>
             <h1>A place for your</h1>
             <h1 className="hidden-lg">Needs</h1>
@@ -90,8 +75,6 @@ export default function MainContent() {
 
           <HeaderContent>
             <p className="sub-title">Save up to 30% off for new arrivals !</p>
-            {/* </div> */}
-            {/* <div className="links"> */}
 
             <Link to="/products" className="btn-link header-btn-link">
               Shop now{" "}
@@ -106,7 +89,6 @@ export default function MainContent() {
               winter season special offers
             </Link>
           </HeaderContent>
-          {/* </div> */}
         </HeaderDetails>
         <HeaderBannerWrapper>
           {
@@ -141,7 +123,7 @@ export default function MainContent() {
       </Categories>
 
       <ShowcaseProducts>
-        <div className="section-title">
+        <div className="section-title showcase-title">
           <h1>Best Sellers</h1>
 
           <Link to="/products" className="see-all-link">
@@ -155,18 +137,6 @@ export default function MainContent() {
         </div>
 
         <Product product="bs"></Product>
-        {/* <ShowcaseArrows>
-          <Icon
-            icon={chevronLeftFill}
-            style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
-            className="showcase-arrow-icon left"
-          />
-          <Icon
-            icon={chevronLeftFill}
-            style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
-            className="showcase-arrow-icon right"
-          />
-        </ShowcaseArrows> */}
       </ShowcaseProducts>
 
       <HomeSlider>
@@ -174,7 +144,7 @@ export default function MainContent() {
       </HomeSlider>
 
       <ShowcaseProducts>
-        <div className="section-title">
+        <div className="section-title showcase-title">
           <h1>Best deals for today</h1>
 
           <Link to="/products" className="see-all-link">
@@ -186,38 +156,7 @@ export default function MainContent() {
             />
           </Link>
         </div>
-        {/* <ShowcaseProductsWrapper>
-          <Product product="bd"></Product>
-          <ShowcaseArrows>
-            <Icon
-              icon={chevronLeftFill}
-              style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
-              className="showcase-arrow-icon left"
-            />
-            <Icon
-              icon={chevronLeftFill}
-              style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
-              className="showcase-arrow-icon right"
-            />
-          </ShowcaseArrows>
-        </ShowcaseProductsWrapper> */}
         <Product product="bd"></Product>
-        {/* <ShowcaseArrows>
-          <Icon
-            icon={chevronLeftFill}
-            style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
-            className="showcase-arrow-icon left"
-          />
-          <Icon
-            icon={chevronLeftFill}
-            style={{
-              color: "#ffffff",
-              fontSize: "40.999996185302734px",
-              transform: "scale(1, -1)",
-            }}
-            className="showcase-arrow-icon right"
-          />
-        </ShowcaseArrows> */}
       </ShowcaseProducts>
 
       <FeaturedSection>
@@ -237,12 +176,9 @@ export default function MainContent() {
         </FeaturedContent>
 
         <FeaturedBanner>
-          {/* <img src={example} alt="" /> */}
-
           <Img
             fluid={images.featuredImage.childImageSharp.fluid}
             style={{ maxHeight: "500px" }}
-            // imgStyle={{ objectFit: "fill" }}
           ></Img>
         </FeaturedBanner>
       </FeaturedSection>
@@ -250,14 +186,7 @@ export default function MainContent() {
   );
 }
 
-// const StyledBackgroundSection = styled(BackgroundSection)`
-//   width: 100%;
-//   background-position: bottom center;
-//   background-repeat: repeat-y;
-//   background-size: cover;
-// `
-
-// export default StyledBackgroundSection
+// graphql query
 
 const getImages = graphql`
   {

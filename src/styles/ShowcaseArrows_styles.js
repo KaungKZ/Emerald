@@ -1,42 +1,14 @@
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
-// import React, {  useEffect  } from "react";
-
-// function getScrollbarWidth() {
-
-//   let scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
-//   if (scrollBarWidth === 0) {
-//     scrollBarWidth = 16;
-//   }
-
-//   return scrollBarWidth;
-
-// }
-
-// function getWindowWidth() {
-//   return window.innerWidth;
-// }
 
 export const ShowcaseArrows = styled(Icon)`
-  /* position: absolute;
-  top: calc(50% + 64px);
-  height: 60px;
-  transform: translateY(calc(50% - 64px));
-  display: flex; */
-  /* width: 100vw; */
-  /* justify-content: space-between; */
-
-  /* .showcase-arrow-icon { */
-  /* position: absolute; */
-  /* top: 50%; */
-  /* transform: translateY(-50%); */
   background: var(--primary-color);
   width: 40px;
   height: 60px;
   position: absolute;
   cursor: pointer;
-  top: calc(50% + 64px);
-  transform: translateY(calc(50% - 64px));
+  top: calc(50% + 44px);
+  transform: translateY(calc(50% - 44px));
   transition: opacity 200ms;
 
   &.left-end {
@@ -48,7 +20,6 @@ export const ShowcaseArrows = styled(Icon)`
     opacity: 0;
     pointer-events: none;
   }
-  /* } */
 
   &.left {
     left: 0%;
@@ -64,8 +35,7 @@ export const ShowcaseArrows = styled(Icon)`
   }
 
   @media (max-width: 600px) {
-    width: 35px;
-    height: 55px;
-    font-size: 37px !important;
+    display: none;
+    pointer-events: none;
   }
 `;

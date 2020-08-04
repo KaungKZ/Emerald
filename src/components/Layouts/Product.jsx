@@ -11,27 +11,40 @@ const ShowcaseProductsWrapper = styled.div`
   transform: translateZ(0);
   display: flex;
   width: 100%;
-  /* width: fit-content; */
   justify-content: space-between;
   align-items: center;
-  overflow-x: scroll;
+  overflow-x: hidden;
   overflow-y: hidden;
   cursor: pointer;
-  padding: 7px 0;
+  padding: 50px 0 27px 0;
   -webkit-tap-highlight-color: transparent;
   &.swipe-active {
     cursor: grabbing;
     cursor: -webkit-grabbing;
   }
 
-  &::-webkit-scrollbar {
-    display: none;
+  @media (max-width: 600px) {
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 4px;
+    }
+    &::-webkit-scrollbar-track {
+      background: rgba(53, 53, 53, 0.1);
+    }
+    &::-webkit-scrollbar-thumb {
+      background: rgba(53, 53, 53, 0.4);
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(53, 53, 53, 0.5);
+    }
+    &::-webkit-scrollbar-thumb:active {
+      background: rgba(53, 53, 53, 0.9);
+    }
   }
-  /* transition: transform 300ms; */
 `;
 
-// const productsWrapper = styled.div`
-// `
 export default function Product({ product }) {
   const [isDown, setIsDown] = useState(false);
   const [startX, setStartX] = useState(null);
@@ -39,19 +52,18 @@ export default function Product({ product }) {
   const [left, setLeft] = useState(null);
 
   const [ArrowscrollLeft, setArrowscrollLeft] = useState(150);
-  // const [leftMargin, setLeftMargin] = useState(38);
   const [leftEnd, setLeftEnd] = useState(true);
   const [rightEnd, setRightEnd] = useState(false);
 
-  // console.log(leftEnd, rightEnd);
+  const [smScreen, setSmScreen] = useState(false);
 
   const productsRef = useRef();
 
   useEffect(() => {
     const ref = productsRef.current;
 
-    ref.addEventListener("mousedown", handleOnMouseDown);
     ref.addEventListener("mouseleave", handleOnMouseLeave);
+    ref.addEventListener("mousedown", handleOnMouseDown);
     ref.addEventListener("mouseup", handleOnMouseUp);
     ref.addEventListener("mousemove", handleOnMouseMove);
 
@@ -63,14 +75,22 @@ export default function Product({ product }) {
     };
   });
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleSliderResize);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleSliderResize);
+      }
+    };
+  });
+
   function handleOnMouseDown(e) {
     setIsDown(true);
-    // console.log(e);
     setStartX(e.pageX - productsRef.current.offsetLeft);
-
     setLeft(productsRef.current.scrollLeft);
-
-    // console.log(e.target.offsetLeft);
   }
 
   function handleOnMouseLeave() {
@@ -79,16 +99,12 @@ export default function Product({ product }) {
   }
 
   function handleOnMouseUp() {
-    // console.log("up");
     setIsDown(false);
     setPointerNone(false);
-    // console.log(e.clientX);
-    // setLeft(e.clientX);
   }
 
   function handleOnMouseMove(e) {
     if (!isDown) {
-      // console.log("mouse is not down anymore");
       return;
     }
     if (isDown) {
@@ -97,26 +113,18 @@ export default function Product({ product }) {
     }
     e.preventDefault();
 
-    // console.log(isDown);
-
-    // console.log("mouse is down");
     const x = e.pageX - productsRef.current.offsetLeft;
-
-    // console.log(x, startX);
-
-    // setDistance(x - startX);
     const walk = x - startX;
 
     productsRef.current.scrollLeft = left - walk;
-
-    // setStartX(e.pageX - productsRef.current.offsetLeft);
   }
+
+  // scrollLeft
+
   function scrollLeft(element, change, duration) {
     var start = element.scrollLeft,
       currentTime = 0,
       increment = 20;
-
-    // console.log(start);
 
     var animateScroll = function () {
       currentTime += increment;
@@ -135,34 +143,24 @@ export default function Product({ product }) {
     return (-c / 2) * (t * (t - 2) - 1) + b;
   };
 
+  // handleLeftArrow
+
   function handleLeftArrow() {
     const leftFromElem = productsRef.current.childNodes[0].getBoundingClientRect()
       .left;
 
-    // setLeftEnd(false);
+    const leftMargin = smScreen ? 25 : 38;
 
-    // console.log(productsRef.current.childNodes[0].getBoundingClientRect());
-
-    if (leftFromElem > 38) {
-      // console.log("nop");
+    if (leftFromElem > leftMargin) {
       setLeftEnd(true);
-      // setLeftEnd(true);
-
-      // leftArrowRef.current.classList.add("opacity-zero") = "0";
-      // return;
     } else {
       setRightEnd(false);
       setLeftEnd(false);
     }
 
-    // console.log("hi");
-    // setLeftEnd(false);
-    // console.log(leftEnd);
-
     scrollLeft(productsRef.current, -ArrowscrollLeft, 400);
-
-    // productsRef.current.scrollLeft += -150;
   }
+  // handleRightArrow
 
   function handleRightArrow() {
     if (typeof window !== "undefined") {
@@ -171,58 +169,36 @@ export default function Product({ product }) {
         productsRef.current.childNodes[
           productsRef.current.childNodes.length - 1
         ].getBoundingClientRect().right;
-      if (rightFromElem > 38) {
-        // console.log("nop");
+
+      const leftMargin = smScreen ? 25 : 38;
+
+      if (rightFromElem > leftMargin) {
         setRightEnd(true);
-        // setLeftEnd(false);
       } else {
         setRightEnd(false);
         setLeftEnd(false);
       }
-      // setLeftEnd(false);
-
-      // console.log(rightEnd);
 
       scrollLeft(productsRef.current, ArrowscrollLeft, 400);
     }
-
-    // productsRef.current.scrollLeft += 150;
   }
+  // handleSliderResize
 
   function handleSliderResize(e) {
     if (e.currentTarget.innerWidth < 600) {
       setArrowscrollLeft(250);
-      // setLeftMargin(24);
+
+      setSmScreen(true);
+    } else {
+      setSmScreen(false);
+      setArrowscrollLeft(150);
     }
   }
-
-  // console.log(leftEnd);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", handleSliderResize);
-    }
-
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("resize", handleSliderResize);
-      }
-    };
-  });
-
-  // useEffect(() => {
-  //   productsRef.current.addEventListener("mousedown", handleTransitionEnd);
-
-  //   return () => {
-  //     productsRef.current.removeEventListener("mousedown", handleTransitionEnd);
-  //   };
-  // });
+  // handleTransitionEnd
 
   function handleTransitionEnd() {
     const leftFromElem = productsRef.current.childNodes[0].getBoundingClientRect()
       .left;
-
-    console.log("sup");
 
     const rightFromElem =
       window.innerWidth -
@@ -230,16 +206,15 @@ export default function Product({ product }) {
         productsRef.current.childNodes.length - 1
       ].getBoundingClientRect().right;
 
-    // const leftFromElem = productsRef.current.childNodes[0].getBoundingClientRect()
-    // .left;
+    const leftMargin = smScreen ? 25 : 74;
 
-    if (leftFromElem > 74) {
+    if (leftFromElem > leftMargin) {
       setLeftEnd(true);
     } else {
       setLeftEnd(false);
     }
 
-    if (rightFromElem > 74) {
+    if (rightFromElem > leftMargin) {
       setRightEnd(true);
     } else {
       setRightEnd(false);
@@ -250,10 +225,7 @@ export default function Product({ product }) {
     res: { edges },
   } = useStaticQuery(getBsData);
 
-  // console.log(edges);
-
   const products = edges.filter(one => {
-    // console.log(one.node.category);
     return one.node.category.includes(product);
   });
 
@@ -275,29 +247,20 @@ export default function Product({ product }) {
           );
         })}
       </ShowcaseProductsWrapper>
-      {/* <ShowcaseArrows> */}
+
       <ShowcaseArrows
         icon={chevronLeftFill}
         style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
         className={`showcase-arrow-icon left ${leftEnd ? "left-end" : ""}`}
-        // id="showcase-left-arrow"
         onClick={handleLeftArrow}
-        // ref={leftArrowRef}
       ></ShowcaseArrows>
-      {/* <Icon
-          
-        /> */}
 
       <ShowcaseArrows
         icon={chevronLeftFill}
         style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}
         className={`showcase-arrow-icon right ${rightEnd ? "right-end" : ""}`}
         onClick={handleRightArrow}
-        // id="showcase-right-arrow"
-        // ref={rightArrowRef}
-        // ref={rightArrowRef}
       ></ShowcaseArrows>
-      {/* </ShowcaseArrows> */}
     </>
   );
 }

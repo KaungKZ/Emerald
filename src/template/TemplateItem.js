@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/Layouts/Layout";
-// import CartItems from "../components/cart-page/CartItems";
 import EmptyPage from "../components/Layouts/EmptyPage";
 
 import Global_styles from "../styles/Global_styles";
@@ -34,22 +33,28 @@ export default function TemplateItem({ data: { res } }) {
             property="og:description"
             content={`${res.description.description}`}
           />
-          <meta property="og:url" content="" />
+          <meta
+            property="og:url"
+            content={`https://emeraldos.netlify.app/product/${res.id}`}
+          />
           <meta property="og:locale" content="en_US" />
-          <link rel="canonical" href="" />
+          <link
+            rel="canonical"
+            href={`https://emeraldos.netlify.app/product/${res.id}`}
+          />
         </Helmet>
         <EmptyPage>{res.title}</EmptyPage>
-        {/* <MainContent></MainContent> */}
       </Layout>
-
-      {/* <Button>Click me</Button> */}
     </>
   );
 }
 
+// graphql query
+
 export const query = graphql`
   query MyQuery($slug: String) {
     res: contentfulAllProducts(id: { eq: $slug }) {
+      id
       title
       by
       price

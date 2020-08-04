@@ -36,9 +36,12 @@ export default function cart() {
             property="og:description"
             content="A Front End E-commerce project using gatsby"
           />
-          <meta property="og:url" content="" />
+          <meta
+            property="og:url"
+            content="https://emeraldos.netlify.app/cart"
+          />
           <meta property="og:locale" content="en_US" />
-          <link rel="canonical" href="" />
+          <link rel="canonical" href="https://emeraldos.netlify.app/cart" />
         </Helmet>
         <EmptyPage>Shopping cart</EmptyPage>
 

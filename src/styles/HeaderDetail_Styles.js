@@ -1,9 +1,7 @@
-// import React from "react";
 import styled from "styled-components";
 
 export const HeaderDetailStyles = styled.section`
   width: 80%;
-  /* // margin: auto; */
   margin: var(--small-section-margin) auto 94px auto;
   display: flex;
   justify-content: center;
@@ -21,7 +19,6 @@ export const HeaderDetailStyles = styled.section`
   }
 
   @media (max-width: 600px) {
-    /* width: 100%; */
     flex-direction: column-reverse;
     margin: 32px auto 60px auto;
   }
@@ -31,8 +28,6 @@ export const HeaderDetails = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 5px;
-
-  /* width: 30%; */
   flex: 1;
 
   @media (min-width: 1520px) {
@@ -40,26 +35,17 @@ export const HeaderDetails = styled.div`
   }
 
   @media (max-width: 600px) {
-    /* width: 90%; */
-    /* margin: 0 auto; */
     margin-right: 0;
     height: 240px;
   }
-
-  /* @media (max-width: 480px) {
-
-  } */
-  /* width: 100%; */
 `;
 
 export const HeaderTitle = styled.div`
-  /* .main-title { */
   color: var(--light-text-color);
   text-align: right;
   font-family: var(--primary-font);
   font-weight: 700;
   text-transform: capitalize;
-  /* font-size: 2rem; */
   position: relative;
   margin: 100px 0 20px 0;
   letter-spacing: 3px;
@@ -72,28 +58,15 @@ export const HeaderTitle = styled.div`
     display: none;
   }
 
-  /* &::after {
-    content: "";
-    display: inline-block;
-    width: 100%;
-  } */
-  /* } */
-
   @media (max-width: 1310px) {
-    /* .main-title { */
     h1 {
       font-size: 2.5rem;
     }
     letter-spacing: 1.5px;
-    /* } */
   }
 
   @media (max-width: 1024px) {
-    /* .main-title { */
     margin-top: 60px;
-
-    /* font-size: 1.6rem; */
-    /* } */
   }
 
   @media (max-width: 852px) {
@@ -146,15 +119,9 @@ export const HeaderContent = styled.div`
   }
 
   .header-btn-link {
-    /* padding: 15px 30px; */
     transition: padding 400ms;
     margin-top: auto;
     margin-bottom: var(--item-margin);
-    /* margin-bottom: 10%; */
-
-    &:hover {
-      /* padding: 15px 38px 15px 30px; */
-    }
   }
 
   .special-offer {
@@ -186,8 +153,6 @@ export const HeaderContent = styled.div`
   }
 `;
 
-// export const HeaderMainTitle = styled.h1``;
-
 export const HeaderBannerWrapper = styled.div`
   width: 55%;
   display: flex;
@@ -197,11 +162,7 @@ export const HeaderBannerWrapper = styled.div`
 
   .gatsby-image-wrapper {
     width: 700px;
-    /* max-height: 550px; */
     position: relative;
-
-    /* width: 700px;
-    height: 600px; */
 
     &::before {
       content: "Needs.";
@@ -242,25 +203,15 @@ export const HeaderBannerWrapper = styled.div`
     }
   }
 
-  /* @media (max-width: 1024px) {
-    .main-title {
-      margin-top: 60px;
-
-      font-size: 1.6rem;
-    }
-  } */
-
   @media (max-width: 1024px) {
     width: 50%;
     .stripe-background {
       width: 80px;
-      /* top: calc(100% - 50px); */
       right: -10px;
     }
 
     .gatsby-image-wrapper::before {
       top: 65px;
-      /* font-size: 2.3rem; */
     }
   }
 
@@ -281,8 +232,7 @@ export const HeaderBannerWrapper = styled.div`
       font-size: 1.65rem;
     }
   }
-  /* width: 100%; */
-  /* flex: 1; */
+
   @media (max-width: 600px) {
     width: 90%;
     margin: 0 auto;
@@ -294,12 +244,5 @@ export const HeaderBannerWrapper = styled.div`
     .stripe-background {
       display: none;
     }
-    /* &::before {
-      content: "";
-      
-    } */
   }
 `;
-
-// export default HeaderDetailStyles;
-// export default HeaderContent;

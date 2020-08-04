@@ -34,15 +34,15 @@ export default function products() {
             property="og:description"
             content="A Front End E-commerce project using gatsby"
           />
-          <meta property="og:url" content="" />
+          <meta
+            property="og:url"
+            content="https://emeraldos.netlify.app/products"
+          />
           <meta property="og:locale" content="en_US" />
-          <link rel="canonical" href="" />
+          <link rel="canonical" href="https://emeraldos.netlify.app/products" />
         </Helmet>
         <EmptyPage>All Products</EmptyPage>
-        {/* <MainContent></MainContent> */}
       </Layout>
-
-      {/* <Button>Click me</Button> */}
     </>
   );
 }

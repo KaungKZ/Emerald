@@ -1,11 +1,7 @@
-// import React from "react";
-// import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import "./typography.css";
 
 const Global_styles = createGlobalStyle`
-
-
 
 html {
     --primary-color: #E0CCA7;
@@ -25,13 +21,7 @@ html {
     --normal-text: 16px;
     --btn-text: 18px;
     --btn-padding: 10px 20px;
-    
-    /* --tablet-screen-font-size: 14px;
-    --phone-screen-font-size: 12px; */
     --section-title-font-size: 1.8rem;
-    /* scroll-behavior: smooth;
-    -webkit-scroll-behavior-duration: 0.5s;
--webkit-scroll-behavior-timing-function: ease-in; */
 }
  * {
      margin: 0;
@@ -44,48 +34,36 @@ html {
 
      @media (min-width: 2200px) {
         max-width: 2200px;
-     margin: 0 auto;
+        margin: 0 auto;
      }
-     
-
-     
-
-     /* font-family: 'Montserrat', sans-serif, 'Poppins', sans-serif, 'Raleway', sans-serif; */
  }
 
  #gatsby-focus-wrapper {
     overflow: hidden;
  }
 
- /* #gatsby-focus-wrapper.close {
-     overflow: hidden;
- }
-
- #gatsby-focus-wrapper.open {
-    overflow: unset;
- } */
-
  .section-title {
     
     font-family: var(--secondary-font);
-    
-    /* display: inline-block; */
     width: 80%;
-    
     margin: 0 auto var(--item-margin) auto;
     display: flex;
     align-items: center;
+
+    &.showcase-title {
+        margin: 0 auto;
+    }
 
 
     h1 {
         border-radius: 9px 9px 0 0;
         background: var(--primary-light);
         padding: 10px 20px;
-    font-size: var(--section-title-font-size);
-    font-weight: 700;
-    color: var(--light-text-color);
-    text-decoration: underline;
-    text-transform: capitalize;
+        font-size: var(--section-title-font-size);
+        font-weight: 700;
+        color: var(--light-text-color);
+        text-decoration: underline;
+        text-transform: capitalize;
     }
 
     .see-all-link {
@@ -104,7 +82,6 @@ html {
         }
 
         &:hover {
-            /* text-decoration: underline; */
             opacity: 1;
         }
 
@@ -123,12 +100,6 @@ html {
             }
        
     }
-
-    /* @media (max-width: 500px) {
-        h1 {
-
-        }
-    } */
  }
 
  @media (max-width: 360px) {
@@ -140,7 +111,6 @@ html {
  }
 
  .btn-link {
-
     padding: var(--btn-padding);
     font-family: var(--secondary-font);
     font-size: var(--btn-text);
@@ -154,13 +124,8 @@ html {
     transition: padding 400ms;
     text-transform: capitalize;
     
-
     .arrow-right-icon {
         margin-left: 10px;
-    }
-
-    &:hover {
-        /* padding: 10px 23px 10px 20px; */
     }
 
     @media (max-width: 600px) {
@@ -168,20 +133,12 @@ html {
             font-size: 18px !important;
         }
     }
-
-   
     }
-
-    
- }
 
  @media (max-width: 1280px) {
 
 html {
- 
-   
    --btn-text: 16px;
- 
 }
 
 }
@@ -192,7 +149,7 @@ html {
         --normal-text: 14px;
         --header-title: 2.3rem;
      }
-  
+
  }
 
  @media (max-width: 768px) {
@@ -207,8 +164,6 @@ html {
      html {
         --btn-text: 14px;
          --btn-padding: 5px 15px;
-         
-        
      }
  }
 
@@ -229,8 +184,6 @@ html {
         --section-title-font-size: 1.1rem;
      }
  }
-
-
 `;
 
 export default Global_styles;

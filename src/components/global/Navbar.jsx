@@ -20,7 +20,6 @@ const Header = styled.header`
         height: 100vh;
         background: rgba(0, 0, 0, 0.25);
         z-index: 2;
-        /* transition-delay: 400ms; */
       }
     }
   }
@@ -41,7 +40,6 @@ const NavMain = styled.nav`
   height: 100px;
 
   .logo {
-    /* flex: 1; */
     text-decoration: none;
     color: var(--general-color);
     font-family: var(--primary-font);
@@ -51,7 +49,6 @@ const NavMain = styled.nav`
   }
 
   .wishlist {
-    /* margin-right: 35px; */
     display: flex;
     align-items: center;
   }
@@ -59,16 +56,11 @@ const NavMain = styled.nav`
   @media (max-width: 600px) {
     position: relative;
     width: 100%;
-    /* overflow: hidden; */
 
     .logo {
       margin-left: 10%;
       font-size: 1.6rem;
     }
-
-    /* .wishlist {
-      margin-right: 10%;
-    } */
   }
 `;
 
@@ -88,7 +80,6 @@ const NavWrapperCarts = styled.div`
     justify-content: space-evenly;
     top: 0;
     right: 0;
-    /* transform: translateY(-50%); */
     min-width: auto;
     width: 50%;
     height: calc(30vh + 11px);
@@ -169,8 +160,6 @@ const NavUl = styled.ul`
     right: 0;
     width: 50%;
     box-shadow: -4px 4px 4px -4px rgba(0, 0, 0, 0.25);
-    /* height: auto; */
-    /* transform: translateY(-100%); */
     background: #fff;
     z-index: 2;
     justify-content: space-around;
@@ -213,23 +202,16 @@ const NavLi = styled.li`
   }
 
   @media (max-width: 600px) {
-    /* width: 90%;
-    margin: 0 auto; */
-
     flex: 1;
     width: 100%;
 
     a {
       padding: 0 5%;
       font-family: var(--small-title-font);
-      /* width: 100%; */
       display: flex;
       align-items: center;
       width: 100%;
-      /* font-size: 14px; */
-      /* font-weight: 700; */
       letter-spacing: 3px;
-      /* display: block; */
       height: 100%;
       opacity: 1;
     }
@@ -251,45 +233,20 @@ const NavMobile = styled.div`
   }
 `;
 
-// const BodyScrollbarHide = styled.css`
-//   &::webkit-scrollbar {
-//     display: none;
-//   }
-// `
-
-// const BodyScrollbarHide = styled.css`
-//   &::webkit-scrollbar {
-//     display: none;
-//   }
-// `
-
 export default function Navbar() {
   const [toggleNav, setToggleNav] = useState(false);
 
   const navRef = useRef(null);
-  // handleClickOutsideNav(navRef);
-
-  // const gatsby_focus_wrapper = document.querySelector("#gatsby-focus-wrapper");
 
   useEffect(() => {
-    // console.log(toggleNav);
     if (toggleNav) {
-      // document.body.classList.add("fixed-for-nav");
       document.body.style.overflow = "hidden";
-      // .example::-webkit-scrollbar {
-      //   display: none;
-      // }
     } else {
-      // document.body.classList.remove("fixed-for-nav");
       document.body.style.overflow = "unset";
     }
   }, [toggleNav]);
 
   useEffect(() => {
-    // if (!toggleNav) {
-    //   return;
-    // }
-
     document.addEventListener("click", handleClickOutsideNav);
 
     return () => {
@@ -298,7 +255,6 @@ export default function Navbar() {
   });
 
   function handleClickOutsideNav(e) {
-    // console.log(navRef.current);
     if (navRef.current && !navRef.current.contains(e.target)) {
       setToggleNav(false);
     }
@@ -306,10 +262,7 @@ export default function Navbar() {
 
   return (
     <Header className={`${toggleNav ? "open" : ""}`}>
-      <WrapperHeaderContent
-        ref={navRef}
-        // className={`${toggleNav ? "overlay-open" : ""}`}
-      >
+      <WrapperHeaderContent ref={navRef}>
         <NavMain>
           <Link to="/" className="logo">
             Emerald
@@ -343,8 +296,6 @@ export default function Navbar() {
             <Icon icon={menuAlt3} style={{ fontSize: "30px" }} />
           </NavMobile>
         </NavMain>
-
-        {/* <div className="header-categories"> */}
         <NavUl className={`${toggleNav && "open"}`}>
           <NavLi>
             <Link to="/products">Fashion</Link>
@@ -372,7 +323,6 @@ export default function Navbar() {
           </NavLi>
         </NavUl>
       </WrapperHeaderContent>
-      {/* </div> */}
     </Header>
   );
 }

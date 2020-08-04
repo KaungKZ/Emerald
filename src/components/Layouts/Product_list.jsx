@@ -1,18 +1,14 @@
 import React from "react";
 import { Link } from "gatsby";
-// import Images from "./Images";
 import Img from "gatsby-image";
 import { Icon } from "@iconify/react";
 import heartOutlined from "@iconify/icons-ant-design/heart-outlined";
 import styled from "styled-components";
-// import { Icon, InlineIcon } from '@iconify/react';
 import starFilled from "@iconify/icons-ant-design/star-filled";
 
 const ShowcaseProduct = styled.div`
   min-width: 250px;
   min-height: 350px;
-  /* width: 250px;
-  height: 350px; */
   border: 1px solid rgba(90, 90, 90, 0.4);
   border-radius: 9px;
   position: relative;
@@ -31,12 +27,10 @@ const ShowcaseProduct = styled.div`
   }
 
   &:last-child {
-    /* margin-right: 5%; */
     position: relative;
 
     &::after {
       content: "";
-      /* margin-right: 100px; */
       clear: both;
       position: absolute;
       display: block;
@@ -48,13 +42,8 @@ const ShowcaseProduct = styled.div`
   }
 
   &:hover {
-    /* filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15)) */
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
   }
-
-  /* &:first-child {
-    margin-left: 20%
-  } */
 
   @media (max-width: 768px) {
     min-width: 200px;
@@ -69,12 +58,12 @@ const ShowcaseProduct = styled.div`
     &:not(:last-child) {
       margin-right: 75px;
     }
-    /* &:first-child {
+    &:first-child {
       margin-left: 50px;
     }
     &:last-child::after {
       width: 50px;
-    } */
+    }
   }
 `;
 
@@ -84,7 +73,6 @@ const ShowcaseProductLink = styled(Link)`
   flex-direction: column;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
-  /* justify-content: space-between; */
 `;
 
 const ShowcaseProductImage = styled.div`
@@ -116,20 +104,14 @@ const ShowcaseProductImage = styled.div`
       width: 100px !important;
     }
   }
-  /* margin-bottom: 10px; */
 `;
 
 const ShowcaseProductDetails = styled.div`
   display: flex;
   flex-direction: column;
-  /* height: 100%;  */
   flex: 1;
   justify-content: space-between;
   padding: 10px 15px 40px 15px;
-
-  /* & * {
-    text-decoration: none;
-  } */
 
   .item-title {
     font-family: var(--small-title-font);
@@ -186,24 +168,12 @@ const ShowcaseProductDetails = styled.div`
       font-size: 10px;
     }
   }
-
-  /* @media (max-width: 480px) {
-    .item-title,
-    .item-price {
-      font-size: 14px !important;
-    }
-    .item-by,
-    .item-rating {
-      font-size: 10px;
-    }
-  } */
 `;
 
 const ShowcaseATW = styled.div`
   position: absolute;
   top: 87%;
   right: 10%;
-  /* transform: translate(10%, -90%); */
   background: rgba(255, 239, 208, 0.8);
   border-radius: 25px;
   width: 30px;
@@ -230,10 +200,7 @@ const ShowcaseATW = styled.div`
   }
 `;
 
-const ShowcaseToolTip = styled.div``;
-
 export default function ProductList({ details, pointerNone }) {
-  // console.log(details);
   return (
     <ShowcaseProduct className={`${pointerNone ? "swipe-active" : ""}`}>
       <ShowcaseProductLink
@@ -252,8 +219,6 @@ export default function ProductList({ details, pointerNone }) {
             there is not image for this item
           </div>
         )}
-
-        {/* {console.log(details.title.length)} */}
 
         <ShowcaseProductDetails>
           <h3 className="item-title">
@@ -289,12 +254,6 @@ export default function ProductList({ details, pointerNone }) {
           className="add-to-wishlist-icon"
         />
       </ShowcaseATW>
-
-      <ShowcaseToolTip>
-        <p></p>
-      </ShowcaseToolTip>
-
-      {/* </div> */}
     </ShowcaseProduct>
   );
 }
