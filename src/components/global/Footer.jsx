@@ -131,6 +131,10 @@ const FooterSection = styled.div`
   @media (max-width: 768px) {
     margin-bottom: 30px;
   }
+
+  @media (max-width: 480px) {
+    display: ${props => props.hide_sm && "none"};
+  }
 `;
 
 const FooterDeveloper = styled.div`
@@ -253,7 +257,7 @@ export default function Footer() {
             </li>
           </FooterLinkList>
         </FooterSection>
-        <FooterSection>
+        <FooterSection hide_sm>
           <FooterHeaderTitle>
             <h1>Help center</h1>
           </FooterHeaderTitle>
@@ -285,7 +289,7 @@ export default function Footer() {
             </li>
           </FooterLinkList>
         </FooterSection>
-        <FooterSection>
+        <FooterSection hide_sm>
           <FooterHeaderTitle>
             <h1>Sell</h1>
           </FooterHeaderTitle>

@@ -14,7 +14,7 @@ import {
 } from "../../styles/Slider_styles";
 
 export default function Slider() {
-  const [windowWidth, setWindowWidth] = useState(getInitialWindowWidth());
+  const [windowWidth, setWindowWidth] = useState(null);
   const [transition, setTransition] = useState({
     activeIndex: 0,
     translate: 0,
@@ -26,6 +26,12 @@ export default function Slider() {
   const autoPlayRef = useRef();
   const resizeRef = useRef();
   const sliderImages = useStaticQuery(getSliderImage);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setWindowWidth(window.innerWidth);
+    }
+  }, []);
 
   useEffect(() => {
     autoPlayRef.current = nextSlide;
@@ -87,14 +93,6 @@ export default function Slider() {
       }
     };
   });
-
-  // getInitialWindowWidth
-
-  function getInitialWindowWidth() {
-    if (typeof window !== "undefined") {
-      return window.innerWidth;
-    }
-  }
 
   // handleResize
 

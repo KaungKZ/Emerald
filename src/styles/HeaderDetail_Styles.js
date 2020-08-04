@@ -36,6 +36,7 @@ export const HeaderDetails = styled.div`
 
   @media (max-width: 600px) {
     margin-right: 0;
+    min-height: 240px;
     height: 240px;
   }
 `;

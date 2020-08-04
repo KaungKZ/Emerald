@@ -80,7 +80,7 @@ export const FeaturedContent = styled.div`
     width: 75%;
 
     .featured-title {
-      line-height: 40px;
+      line-height: 40px !important;
     }
   }
 `;
