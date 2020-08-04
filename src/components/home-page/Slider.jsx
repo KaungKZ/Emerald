@@ -63,34 +63,23 @@ export default function Slider() {
 
   useEffect(() => {
     var resizeTimer;
+    function handleResizeEnd() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        setTransition({
+          ...transition,
+          activeIndex: 0,
+          translate: 0,
+          transitionDuration: 0,
+        });
+      }, 500);
+    }
     if (typeof window !== "undefined") {
-      window.addEventListener("resize", function () {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          setTransition({
-            ...transition,
-            activeIndex: 0,
-            translate: 0,
-            transitionDuration: 0,
-          });
-        }, 500);
-      });
+      window.addEventListener("resize", handleResizeEnd);
     }
 
     return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("resize", function () {
-          clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(() => {
-            setTransition({
-              ...transition,
-              activeIndex: 0,
-              translate: 0,
-              transitionDuration: 0,
-            });
-          }, 500);
-        });
-      }
+      window.removeEventListener("resize", handleResizeEnd);
     };
   });
 
