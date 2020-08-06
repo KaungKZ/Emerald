@@ -7,7 +7,7 @@ import instagram from "../../images/home/social medias/instagram.svg";
 import styled, { css } from "styled-components";
 
 const FooterMain = styled.footer`
-  padding: 50px 0;
+  padding: 50px 0 65px 0;
   position: relative;
   background: rgba(255, 239, 208, 0.5);
 
@@ -143,7 +143,7 @@ const FooterDeveloper = styled.div`
   width: fit-content;
 
   position: absolute;
-  top: 95%;
+  top: 90%;
   left: 30%;
   transform: translate(-30%, -95%);
   color: var(--light-text-color);
@@ -155,23 +155,29 @@ const FooterDeveloper = styled.div`
 
   @media (max-width: 1024px) {
     left: 15%;
-    transform: translate(-15%, -95%);
+    top: 91%;
+    transform: translate(-15%, -91%);
   }
 
   @media (max-width: 768px) {
-    left: 5%;
-    transform: translate(-5%, -95%);
+    /* left: 5%;
+    top: 95%;
+    transform: translate(-5%, -95%); */
+    width: 100%;
+    text-align: center;
+    top: 97%;
+    right: 0;
+    left: 50%;
+    transform: translate(-50%, -97%);
   }
 
   @media (max-width: 600px) {
     font-size: 12px;
   }
 
-  @media (max-width: 500px) {
-    /* width: 100%; */
-    top: 97%;
-    left: 50%;
-    transform: translate(-50%, -96%);
+  @media (max-width: 480px) {
+    top: 95%;
+    transform: translate(-50%, -95%);
   }
 `;
 
@@ -181,7 +187,7 @@ const FooterCopyright = styled.div`
   font-family: var(--secondary-font);
   font-size: 14px;
   position: absolute;
-  top: 95%;
+  top: 90%;
   right: 30%;
   transform: translate(30%, -95%);
   color: var(--light-text-color);
@@ -189,25 +195,26 @@ const FooterCopyright = styled.div`
 
   @media (max-width: 1024px) {
     right: 15%;
-    transform: translate(15%, -95%);
+    top: 90%;
+    transform: translate(15%, -90%);
   }
 
   @media (max-width: 768px) {
-    right: 20%;
-    transform: translate(20%, -95%);
+    width: 100%;
+    text-align: center;
+    top: 92%;
+    right: 0;
+    left: 50%;
+    transform: translate(-50%, -92%);
   }
 
   @media (max-width: 600px) {
     font-size: 12px;
   }
 
-  @media (max-width: 500px) {
-    width: 100%;
-    text-align: center;
-    top: 92%;
-    right: 0;
-    left: 50%;
-    transform: translate(-50%, -90%);
+  @media (max-width: 480px) {
+    top: 88%;
+    transform: translate(-50%, -88%);
   }
 `;
 

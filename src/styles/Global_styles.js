@@ -108,6 +108,12 @@ html {
         margin-left: 7px;
     }
  }
+
+ @media (max-width: 330px) {
+    h1 {
+            padding: 7px 10px;
+        }
+    }
  }
 
  .btn-link {
@@ -155,6 +161,8 @@ html {
             }
         }
     }
+
+
     }
 
  @media (max-width: 1280px) {
