@@ -6,6 +6,43 @@ import heartOutlined from "@iconify/icons-ant-design/heart-outlined";
 import styled from "styled-components";
 import starFilled from "@iconify/icons-ant-design/star-filled";
 
+const ShowcaseProductImage = styled.div`
+  padding: 10px 7px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+
+  .gatsby-image-wrapper {
+    transform: scale(0.9);
+    transition: transform 400ms;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f9f9f9;
+    z-index: -1;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 5px 4px;
+  }
+
+  @media (max-width: 768px) {
+    .gatsby-image-wrapper {
+      height: 100px !important;
+      width: 100px !important;
+    }
+  }
+`;
+
 const ShowcaseProduct = styled.div`
   min-width: 250px;
   min-height: 350px;
@@ -43,7 +80,19 @@ const ShowcaseProduct = styled.div`
 
   &:hover {
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+    /* border-radius: 15px; */
+    ${ShowcaseProductImage} {
+    
+    .gatsby-image-wrapper {
+      transform: scale(0.95);
+    }
+   
+    }
   }
+  /* ${ShowcaseProductImage} {
+    transform: scale(1.1);
+    
+  } */
 
   @media (max-width: 768px) {
     min-width: 200px;
@@ -73,37 +122,7 @@ const ShowcaseProductLink = styled(Link)`
   flex-direction: column;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
-`;
-
-const ShowcaseProductImage = styled.div`
-  padding: 10px 7px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #f9f9f9;
-    z-index: -1;
-  }
-
-  @media (max-width: 1024px) {
-    padding: 5px 4px;
-  }
-
-  @media (max-width: 768px) {
-    .gatsby-image-wrapper {
-      height: 100px !important;
-      width: 100px !important;
-    }
-  }
+  /* overflow: hidden; */
 `;
 
 const ShowcaseProductDetails = styled.div`

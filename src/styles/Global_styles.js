@@ -121,16 +121,38 @@ html {
     display: flex;
     align-items: center;
     width: fit-content;
-    transition: padding 400ms;
     text-transform: capitalize;
-    
-    .arrow-right-icon {
-        margin-left: 10px;
-    }
+    transition: all 400ms;
 
+  .arrow-right-icon {
+    font-size: 0px !important;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 400ms;
+    }
+    
+
+    &:hover {
+        .arrow-right-icon {
+            transform: translateX(0%);
+            font-size: 25px !important;
+            opacity: 1;
+            margin-left: 10px;
+        }
+    } 
+    
+    
     @media (max-width: 600px) {
         .arrow-right-icon {
             font-size: 18px !important;
+            opacity: 1;
+            transform: translateX(0%);
+            transition: all 0s;
+            margin-left: 10px;
+
+            &:hover {
+                font-size: 18px !important;
+            }
         }
     }
     }

@@ -182,39 +182,44 @@ const NavUl = styled.ul`
 
 const NavLi = styled.li`
   list-style-type: none;
-  a {
-    text-decoration: none;
-    color: var(--light-text-color);
-    font-family: var(--secondary-font);
-    font-size: 14px;
-    opacity: 0.9;
-    transition: opacity 300ms;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-
-  @media (max-width: 768px) {
-    a {
-      font-size: 12px;
-    }
-  }
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 
   @media (max-width: 600px) {
     flex: 1;
     width: 100%;
+  }
+`;
 
-    a {
-      padding: 0 5%;
-      font-family: var(--small-title-font);
-      display: flex;
-      align-items: center;
-      width: 100%;
-      letter-spacing: 3px;
-      height: 100%;
-      opacity: 1;
-    }
+const NavLink = styled(Link)`
+  text-decoration: none;
+  color: var(--light-text-color);
+  font-family: var(--secondary-font);
+  font-size: 14px;
+  opacity: 0.9;
+  transition: opacity 300ms;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+
+  @media (max-width: 600px) {
+    color: var(--text-color);
+    padding: 0 5%;
+    font-family: var(--small-title-font);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    letter-spacing: 3px;
+    height: 100%;
+    opacity: 1;
   }
 `;
 
@@ -298,28 +303,28 @@ export default function Navbar() {
         </NavMain>
         <NavUl className={`${toggleNav && "open"}`}>
           <NavLi>
-            <Link to="/products">Fashion</Link>
+            <NavLink to="/products">Fashion</NavLink>
           </NavLi>
           <NavLi>
-            <Link to="/products">Electronics</Link>
+            <NavLink to="/products">Electronics</NavLink>
           </NavLi>
           <NavLi>
-            <Link to="/products">Kids and Babies</Link>
+            <NavLink to="/products">Kids and Babies</NavLink>
           </NavLi>
           <NavLi>
-            <Link to="/products">Home appliances</Link>
+            <NavLink to="/products">Home appliances</NavLink>
           </NavLi>
           <NavLi>
-            <Link to="/products">Sport</Link>
+            <NavLink to="/products">Sport</NavLink>
           </NavLi>
           <NavLi>
-            <Link to="/products">Gaming</Link>
+            <NavLink to="/products">Gaming</NavLink>
           </NavLi>
           <NavLi>
-            <Link to="/products">Security</Link>
+            <NavLink to="/products">Security</NavLink>
           </NavLi>
           <NavLi>
-            <Link to="/products">Accessories</Link>
+            <NavLink to="/products">Accessories</NavLink>
           </NavLi>
         </NavUl>
       </WrapperHeaderContent>
