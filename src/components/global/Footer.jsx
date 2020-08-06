@@ -141,11 +141,10 @@ const FooterDeveloper = styled.div`
   font-family: var(--secondary-font);
   font-size: 14px;
   width: fit-content;
-
   position: absolute;
   top: 90%;
   left: 30%;
-  transform: translate(-30%, -95%);
+  transform: translate(-30%, -90%);
   color: var(--light-text-color);
   opacity: 0.8;
 
@@ -160,9 +159,6 @@ const FooterDeveloper = styled.div`
   }
 
   @media (max-width: 768px) {
-    /* left: 5%;
-    top: 95%;
-    transform: translate(-5%, -95%); */
     width: 100%;
     text-align: center;
     top: 97%;
@@ -189,7 +185,7 @@ const FooterCopyright = styled.div`
   position: absolute;
   top: 90%;
   right: 30%;
-  transform: translate(30%, -95%);
+  transform: translate(30%, -90%);
   color: var(--light-text-color);
   opacity: 0.8;
 
