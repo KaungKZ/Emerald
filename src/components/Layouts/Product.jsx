@@ -46,6 +46,7 @@ const ShowcaseProductsWrapper = styled.div`
 `;
 
 export default function Product({ product }) {
+  // console.log(all_items);
   const [isDown, setIsDown] = useState(false);
   const [startX, setStartX] = useState(null);
   const [pointerNone, setPointerNone] = useState(false);
@@ -231,8 +232,38 @@ export default function Product({ product }) {
 
   if (!products) return null;
 
+  // const wrapperName = all_items ? ShowcaseProductsWrapper : AllItemsWrapper
+
   return (
     <>
+      {/* {all_items ? (
+        <AllItemsWrapper>
+          {products.map(one => {
+            return (
+              <ProductList
+                key={one.node.id}
+                details={one.node}
+                pointerNone={pointerNone}
+              ></ProductList>
+            );
+          })}
+        </AllItemsWrapper>
+      ) : (
+        <ShowcaseProductsWrapper
+          ref={productsRef}
+          className={`${pointerNone ? "swipe-active" : ""}`}
+        >
+          {products.map(one => {
+            return (
+              <ProductList
+                key={one.node.id}
+                details={one.node}
+                pointerNone={pointerNone}
+              ></ProductList>
+            );
+          })}
+        </ShowcaseProductsWrapper>
+      )} */}
       <ShowcaseProductsWrapper
         ref={productsRef}
         className={`${pointerNone ? "swipe-active" : ""}`}
@@ -254,7 +285,6 @@ export default function Product({ product }) {
         className={`showcase-arrow-icon left ${leftEnd ? "left-end" : ""}`}
         onClick={handleLeftArrow}
       ></ShowcaseArrows>
-
       <ShowcaseArrows
         icon={chevronLeftFill}
         style={{ color: "#ffffff", fontSize: "40.999996185302734px" }}

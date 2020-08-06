@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import Img from "gatsby-image";
 import { Icon } from "@iconify/react";
 import heartOutlined from "@iconify/icons-ant-design/heart-outlined";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import starFilled from "@iconify/icons-ant-design/star-filled";
 
 const ShowcaseProductImage = styled.div`
@@ -55,44 +55,49 @@ const ShowcaseProduct = styled.div`
     pointer-events: none;
   }
 
-  &:not(:last-child) {
+  /* &:not(:last-child) {
     margin-right: var(--large-item-margin);
   }
 
   &:first-child {
     margin-left: 75px;
-  }
+  } */
 
-  &:last-child {
-    position: relative;
+  ${props =>
+    !props.all_items &&
+    css`
+      &:not(:last-child) {
+        margin-right: var(--large-item-margin);
+      }
 
-    &::after {
-      content: "";
-      clear: both;
-      position: absolute;
-      display: block;
-      top: 0;
-      left: 100%;
-      width: 75px;
-      height: 1px;
-    }
-  }
+      &:first-child {
+        margin-left: 75px;
+      }
+
+      &:last-child {
+        position: relative;
+
+        &::after {
+          content: "";
+          clear: both;
+          position: absolute;
+          display: block;
+          top: 0;
+          left: 100%;
+          width: 75px;
+          height: 1px;
+        }
+      }
+    `}
 
   &:hover {
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
-    /* border-radius: 15px; */
     ${ShowcaseProductImage} {
-    
-    .gatsby-image-wrapper {
-      transform: scale(0.95);
-    }
-   
+      .gatsby-image-wrapper {
+        transform: scale(0.95);
+      }
     }
   }
-  /* ${ShowcaseProductImage} {
-    transform: scale(1.1);
-    
-  } */
 
   @media (max-width: 768px) {
     min-width: 200px;
@@ -104,15 +109,19 @@ const ShowcaseProduct = styled.div`
   }
 
   @media (max-width: 600px) {
-    &:not(:last-child) {
-      margin-right: 75px;
-    }
-    &:first-child {
-      margin-left: 50px;
-    }
-    &:last-child::after {
-      width: 50px;
-    }
+    ${props =>
+      !props.all_items &&
+      css`
+        &:not(:last-child) {
+          margin-right: 75px;
+        }
+        &:first-child {
+          margin-left: 50px;
+        }
+        &:last-child::after {
+          width: 50px;
+        }
+      `}
   }
 `;
 
@@ -122,7 +131,6 @@ const ShowcaseProductLink = styled(Link)`
   flex-direction: column;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
-  /* overflow: hidden; */
 `;
 
 const ShowcaseProductDetails = styled.div`
@@ -219,10 +227,12 @@ const ShowcaseATW = styled.div`
   }
 `;
 
-export default function ProductList({ details, pointerNone }) {
-  console.log(details);
+export default function ProductList({ details, pointerNone, all_items }) {
   return (
-    <ShowcaseProduct className={`${pointerNone ? "swipe-active" : ""}`}>
+    <ShowcaseProduct
+      className={`${pointerNone ? "swipe-active" : ""}`}
+      all_items={all_items}
+    >
       <ShowcaseProductLink
         to={`/product/${details.id}`}
         state={{ item: details }}

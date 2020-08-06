@@ -42,7 +42,7 @@ export default function products() {
           <meta property="og:locale" content="en_US" />
           <link rel="canonical" href="https://emeraldos.netlify.app/products" />
         </Helmet>
-        {/* <EmptyPage>All Products</EmptyPage> */}
+
         <ProductsMainContent></ProductsMainContent>
       </Layout>
     </>
