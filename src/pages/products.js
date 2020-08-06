@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import Global_styles from "../styles/Global_styles";
 import Layout from "../components/Layouts/Layout";
 import EmptyPage from "../components/Layouts/EmptyPage";
+import ProductsMainContent from "../components/products-page/ProductsMainContent";
 
 export default function products() {
   return (
@@ -41,7 +42,8 @@ export default function products() {
           <meta property="og:locale" content="en_US" />
           <link rel="canonical" href="https://emeraldos.netlify.app/products" />
         </Helmet>
-        <EmptyPage>All Products</EmptyPage>
+        {/* <EmptyPage>All Products</EmptyPage> */}
+        <ProductsMainContent></ProductsMainContent>
       </Layout>
     </>
   );

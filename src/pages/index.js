@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../components/Layouts/Layout";
 import Global_styles from "../styles/Global_styles";
-import MainContent from "../components/home-page/MainContent.jsx";
+import HomeMainContent from "../components/home-page/HomeMainContent.jsx";
 import { Helmet } from "react-helmet";
 import logo from "../images/home/logo.svg";
 
@@ -40,7 +40,7 @@ export default function index() {
           <meta property="og:locale" content="en_US" />
           <link rel="canonical" href="https://emeraldos.netlify.app/" />
         </Helmet>
-        <MainContent></MainContent>
+        <HomeMainContent></HomeMainContent>
       </Layout>
     </>
   );

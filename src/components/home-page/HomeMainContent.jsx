@@ -61,7 +61,7 @@ const FeaturedSection = styled.section`
   position: relative;
 `;
 
-export default function MainContent() {
+export default function HomeMainContent() {
   const images = useStaticQuery(getImages);
 
   return (
