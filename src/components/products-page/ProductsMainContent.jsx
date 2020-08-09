@@ -18,7 +18,7 @@ export default function ProductsMainContent() {
       {/* all products */}
       <AllProductStyles>
         <div className="section-title">
-          <h1>All Products</h1>
+          <h1>New All Products</h1>
 
           <Link to="/products" className="see-all-link">
             See all{" "}
