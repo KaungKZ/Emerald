@@ -38,9 +38,35 @@ const CategoryWrapper = styled.div`
   @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fit, 200px);
   }
+
+  @media (max-width: 600px) {
+    /* display: none; */
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+
+  @media (max-width: 530px) {
+    width: 85%;
+    grid-template-columns: repeat(auto-fit, 180px);
+    justify-content: space-around;
+  }
+
+  @media (max-width: 450px) {
+    width: 90%;
+    grid-column-gap: 15px;
+  }
+
+  @media (max-width: 420px) {
+    grid-template-columns: repeat(auto-fit, 150px);
+  }
+
+  @media (max-width: 360px) {
+    width: 100%;
+    grid-column-gap: 10px;
+  }
 `;
 
-const ShowcaseProducts = styled.section`
+export const ShowcaseProducts = styled.section`
   width: 100%;
   margin-bottom: var(--section-margin);
   overflow-x: hidden;

@@ -2,11 +2,11 @@ import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/Layouts/Layout";
 import EmptyPage from "../components/Layouts/EmptyPage";
-
 import Global_styles from "../styles/Global_styles";
 import { Helmet } from "react-helmet";
 
 export default function TemplateItem({ data: { res } }) {
+  // console.log(data);
   return (
     <>
       <Global_styles />

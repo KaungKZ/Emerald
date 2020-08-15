@@ -6,27 +6,48 @@ export const Sliders = styled.div`
   width: ${props => props.width * 3}px;
 `;
 
-export const SliderWrapper = styled.div`
-  width: ${props => props.width}px;
-  display: ${props => props.half_content && "flex"};
-  position: ${props => props.second_slider && "relative"};
-  ${props => css`
-    transform: translateX(-${props.transform}px);
-    transition: transform ${props.transition}ms;
-  `}
+// export const SliderWrapper = styled.div`
+//   width: ${props => props.width}px;
+//   display: ${props => props.half_content && "flex"};
+//   position: ${props => props.second_slider && "relative"};
+//   ${props => css`
+//     transform: translateX(-${props.transform}px);
+//     transition: transform ${props.transition}ms;
+//   `}
 
-  ${props =>
-    props.half_content &&
-    css`
-      flex-direction: row;
-      justify-content: space-between;
-    `}
+//   ${props =>
+//     props.half_content &&
+//     css`
+//       flex-direction: row;
+//       justify-content: space-between;
+//     `}
+//   @media (max-width: 520px) {
+//     ${props =>
+//       props.half_content &&
+//       css`
+//         flex-direction: column;
+//         justify-content: space-between;
+//       `}
+//   }
+// `;
+
+export const SliderWrapper = styled.div.attrs(props => ({
+  style: {
+    width: `${props.width}px`,
+    display: props.half_content && "flex",
+    position: props.second_slider && "relative",
+    transform: `translateX(-${props.transform}px)`,
+    transition: `transform ${props.transition}ms`,
+    flexDirection: props.half_content && "row",
+    justifyContent: props.half_content && "space-between",
+  },
+}))`
   @media (max-width: 520px) {
     ${props =>
       props.half_content &&
       css`
-        flex-direction: column;
-        justify-content: space-between;
+        flex-direction: column !important;
+        justify-content: space-between !important;
       `}
   }
 `;

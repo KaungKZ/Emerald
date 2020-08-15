@@ -236,34 +236,6 @@ export default function Product({ product }) {
 
   return (
     <>
-      {/* {all_items ? (
-        <AllItemsWrapper>
-          {products.map(one => {
-            return (
-              <ProductList
-                key={one.node.id}
-                details={one.node}
-                pointerNone={pointerNone}
-              ></ProductList>
-            );
-          })}
-        </AllItemsWrapper>
-      ) : (
-        <ShowcaseProductsWrapper
-          ref={productsRef}
-          className={`${pointerNone ? "swipe-active" : ""}`}
-        >
-          {products.map(one => {
-            return (
-              <ProductList
-                key={one.node.id}
-                details={one.node}
-                pointerNone={pointerNone}
-              ></ProductList>
-            );
-          })}
-        </ShowcaseProductsWrapper>
-      )} */}
       <ShowcaseProductsWrapper
         ref={productsRef}
         className={`${pointerNone ? "swipe-active" : ""}`}

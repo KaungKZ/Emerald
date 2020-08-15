@@ -10,7 +10,7 @@ import PagesNavigator from "../products-page/PagesNavigator";
 const AllItemsWrapper = styled.div`
   /* position: relative; */
   width: 90%;
-  margin: 0 auto;
+  margin: var(--item-margin) auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, 250px);
   justify-content: center;
@@ -19,6 +19,19 @@ const AllItemsWrapper = styled.div`
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fit, 200px);
+  }
+
+  @media (max-width: 560px) {
+    row-gap: calc(var(--item-margin) / 2);
+    column-gap: calc(var(--large-item-margin) / 5);
+    grid-template-columns: repeat(2, 200px);
+  }
+
+  @media (max-width: 440px) {
+    width: 95%;
+    grid-template-columns: repeat(2, 150px);
+    row-gap: 15px;
+    column-gap: 15px;
   }
 `;
 

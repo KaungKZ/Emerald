@@ -41,6 +41,12 @@ const ShowcaseProductImage = styled.div`
       width: 100px !important;
     }
   }
+
+  @media (max-width: 440px) {
+    &::after {
+      background: ${props => props.all_items && "#f4f4f4"};
+    }
+  }
 `;
 
 const ShowcaseProduct = styled.div`
@@ -121,6 +127,15 @@ const ShowcaseProduct = styled.div`
         &:last-child::after {
           width: 50px;
         }
+      `}
+  }
+
+  @media (max-width: 440px) {
+    ${props =>
+      props.all_items &&
+      css`
+        min-width: 150px;
+        border: none;
       `}
   }
 `;
@@ -238,7 +253,7 @@ export default function ProductList({ details, pointerNone, all_items }) {
         state={{ item: details }}
       >
         {details.images.length > 0 ? (
-          <ShowcaseProductImage>
+          <ShowcaseProductImage all_items={all_items}>
             <Img
               fixed={details.images[0].fixed}
               style={{ maxHeight: "150px" }}

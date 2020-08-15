@@ -34,8 +34,8 @@ const EmptyPageTitle = styled.h1`
     content: "";
     position: absolute;
     top: calc(100% + 10px);
-    left: -50%;
-    width: 200%;
+    left: -12.5%;
+    width: 125%;
     height: 2px;
     background: rgba(96, 96, 96, 0.4);
     border-radius: 9px;

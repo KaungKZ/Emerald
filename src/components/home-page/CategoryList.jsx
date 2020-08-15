@@ -76,6 +76,12 @@ const CategoryTitle = styled.div`
       font-size: 12px;
     }
   }
+
+  @media (max-width: 440px) {
+    a {
+      padding: 5px 25px;
+    }
+  }
 `;
 
 export default function CategoryList({ classNames, image }) {

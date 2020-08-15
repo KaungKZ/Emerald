@@ -19,7 +19,7 @@ const Header = styled.header`
         width: 100vw;
         height: 100vh;
         background: rgba(0, 0, 0, 0.25);
-        z-index: 2;
+        z-index: 4;
       }
     }
   }
@@ -240,6 +240,7 @@ const NavMobile = styled.div`
 
 export default function Navbar() {
   const [toggleNav, setToggleNav] = useState(false);
+  const [isBetween600n1024, setIsBetween600n1024] = useState(false);
 
   const navRef = useRef(null);
 
@@ -253,11 +254,37 @@ export default function Navbar() {
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutsideNav);
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResizeNav);
+    }
 
     return () => {
       document.removeEventListener("click", handleClickOutsideNav);
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResizeNav);
+      }
     };
   });
+
+  // console.log(isBetween600n1024);
+
+  function handleResizeNav(e) {
+    if (e.currentTarget.innerWidth < 1024 && e.currentTarget.innerWidth > 600) {
+      setIsBetween600n1024(true);
+    } else {
+      setIsBetween600n1024(false);
+    }
+  }
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth < 1024 && window.innerWidth > 600) {
+        setIsBetween600n1024(true);
+      } else {
+        setIsBetween600n1024(false);
+      }
+    }
+  }, []);
 
   function handleClickOutsideNav(e) {
     if (navRef.current && !navRef.current.contains(e.target)) {
@@ -309,10 +336,14 @@ export default function Navbar() {
             <NavLink to="/products">Electronics</NavLink>
           </NavLi>
           <NavLi>
-            <NavLink to="/products">Kids and Babies</NavLink>
+            <NavLink to="/products">
+              {isBetween600n1024 ? "Kids and .." : "Kids and Babies"}
+            </NavLink>
           </NavLi>
           <NavLi>
-            <NavLink to="/products">Home appliances</NavLink>
+            <NavLink to="/products">
+              {isBetween600n1024 ? "Home app .." : "Home appliances"}
+            </NavLink>
           </NavLi>
           <NavLi>
             <NavLink to="/products">Sport</NavLink>
