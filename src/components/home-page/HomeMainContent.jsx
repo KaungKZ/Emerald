@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Product from "../Layouts/Product";
 import CategoryList from "./CategoryList";
 import { Link, useStaticQuery, graphql } from "gatsby";
@@ -6,6 +6,7 @@ import Img from "gatsby-image";
 import stripeBG from "../../images/home/stripes background.svg";
 import arrowRight from "@iconify/icons-bi/arrow-right";
 import { Icon } from "@iconify/react";
+import { Main_Button, Text_Button } from "../../styles/Link_Button";
 import Slider from "./Slider";
 import {
   HeaderDetailStyles,
@@ -19,6 +20,8 @@ import {
   FeaturedBanner,
 } from "../../styles/FeaturedSection_styles";
 import styled from "styled-components";
+import { Button } from "../../styles/Button";
+// import { useState } from "react";
 
 const Categories = styled.section`
   width: 100%;
@@ -89,6 +92,35 @@ const FeaturedSection = styled.section`
 
 export default function HomeMainContent() {
   const images = useStaticQuery(getImages);
+  const [isSmallSize, setIsSmallSize] = useState();
+  const [seemoreClicked, setSeemoreClicked] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth < 600) {
+        setIsSmallSize(true);
+      } else {
+        setIsSmallSize(false);
+      }
+      window.addEventListener("resize", handleWindowResize);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleWindowResize);
+      }
+    };
+  }, []);
+
+  console.log(seemoreClicked);
+
+  function handleWindowResize() {
+    if (window.innerWidth < 600) {
+      setIsSmallSize(true);
+    } else {
+      setIsSmallSize(false);
+    }
+  }
 
   return (
     <>
@@ -102,14 +134,14 @@ export default function HomeMainContent() {
           <HeaderContent>
             <p className="sub-title">Save up to 30% off for new arrivals !</p>
 
-            <Link to="/products" className="btn-link header-btn-link">
+            <Main_Button to="/products" className="header-btn-link">
               Shop now{" "}
               <Icon
                 icon={arrowRight}
                 style={{ color: "#606060", fontSize: "25px" }}
                 className="arrow-right-icon"
               />
-            </Link>
+            </Main_Button>
 
             <Link to="/products" className="special-offer">
               winter season special offers
@@ -136,30 +168,58 @@ export default function HomeMainContent() {
           <h1>Categories</h1>
         </div>
         <CategoryWrapper>
-          {images.categoryImages.edges.map((one, _) => {
-            return (
-              <CategoryList
-                image={one.node.childImageSharp.fixed}
-                key={one.node.childImageSharp.fixed.src}
-                classNames={one.node.name}
-              ></CategoryList>
-            );
-          })}
+          {isSmallSize
+            ? seemoreClicked
+              ? images.categoryImages.edges.map((one, _) => {
+                  return (
+                    <CategoryList
+                      image={one.node.childImageSharp.fixed}
+                      key={one.node.childImageSharp.fixed.src}
+                      classNames={one.node.name}
+                      isSmallSize={isSmallSize}
+                    ></CategoryList>
+                  );
+                })
+              : images.categoryImages.edges.slice(0, 4).map((one, _) => {
+                  return (
+                    <CategoryList
+                      image={one.node.childImageSharp.fixed}
+                      key={one.node.childImageSharp.fixed.src}
+                      classNames={one.node.name}
+                      isSmallSize={isSmallSize}
+                    ></CategoryList>
+                  );
+                })
+            : images.categoryImages.edges.map((one, _) => {
+                return (
+                  <CategoryList
+                    image={one.node.childImageSharp.fixed}
+                    key={one.node.childImageSharp.fixed.src}
+                    classNames={one.node.name}
+                    isSmallSize={isSmallSize}
+                  ></CategoryList>
+                );
+              })}
         </CategoryWrapper>
+        {isSmallSize && (
+          <Button onClick={() => setSeemoreClicked(() => !seemoreClicked)}>
+            {seemoreClicked ? "show less" : "show more"}
+          </Button>
+        )}
       </Categories>
 
       <ShowcaseProducts>
         <div className="section-title showcase-title">
           <h1>Best Sellers</h1>
 
-          <Link to="/products" className="see-all-link">
+          <Text_Button to="/products">
             See all{" "}
             <Icon
               icon={arrowRight}
               style={{ color: "#606060", fontSize: "25px" }}
               className="see-all-icon arrow-right-icon"
             />
-          </Link>
+          </Text_Button>
         </div>
 
         <Product product="bs"></Product>
@@ -173,14 +233,14 @@ export default function HomeMainContent() {
         <div className="section-title showcase-title">
           <h1>Best deals for today</h1>
 
-          <Link to="/products" className="see-all-link">
+          <Text_Button to="/products">
             See all{" "}
             <Icon
               icon={arrowRight}
               style={{ color: "#606060", fontSize: "25px" }}
               className="see-all-icon arrow-right-icon"
             />
-          </Link>
+          </Text_Button>
         </div>
         <Product product="bd"></Product>
       </ShowcaseProducts>
@@ -191,14 +251,14 @@ export default function HomeMainContent() {
             See what we are doing to fight covid 19
           </h1>
 
-          <Link to="/products" className="btn-link">
+          <Main_Button to="/products">
             Read more{" "}
             <Icon
               icon={arrowRight}
               style={{ color: "#606060", fontSize: "25px" }}
               className="arrow-right-icon"
             />
-          </Link>
+          </Main_Button>
         </FeaturedContent>
 
         <FeaturedBanner>

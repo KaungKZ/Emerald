@@ -84,7 +84,7 @@ const CategoryTitle = styled.div`
   }
 `;
 
-export default function CategoryList({ classNames, image }) {
+export default function CategoryList({ classNames, image, isSmallSize }) {
   classNames = classNames.split(" ")[0];
   return (
     <Category>

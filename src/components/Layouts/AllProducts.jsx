@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useStaticQuery, graphql } from "gatsby";
 
 import ProductList from "./Product_list";
@@ -41,10 +41,21 @@ export default function AllProducts({ product }) {
   const {
     res: { edges },
   } = useStaticQuery(getData);
+  const [products, setProducts] = useState([]);
 
-  const products = edges.filter(one => {
-    return one.node.category.includes(product);
-  });
+  useEffect(() => {
+    setProducts(
+      edges.filter(one => {
+        return one.node.category.includes(product);
+      })
+    );
+  }, [edges, product]);
+
+  // const products = edges.filter(one => {
+  //   return one.node.category.includes(product);
+  // });
+
+  // console.log(products);
 
   if (!products) return null;
   return (

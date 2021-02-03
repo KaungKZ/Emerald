@@ -12,6 +12,7 @@ import {
   WrapperSliderNavigators,
   SliderNavigator,
 } from "../../styles/Slider_styles";
+import { Main_Button } from "../../styles/Link_Button";
 
 export default function Slider() {
   const [windowWidth, setWindowWidth] = useState(null);
@@ -121,14 +122,14 @@ export default function Slider() {
               <h1>Get the supplies for covid 19</h1>
             </SliderTitle>
 
-            <Link to="/products" className="btn-link no-border">
+            <Main_Button to="/products" className="no-border">
               Get supplies{" "}
               <Icon
                 icon={arrowRight}
                 style={{ color: "#606060", fontSize: "25px" }}
                 className="arrow-right-icon"
               />
-            </Link>
+            </Main_Button>
           </SliderContent>
 
           <SliderBanner half_content>
@@ -151,14 +152,14 @@ export default function Slider() {
               <h3>Up to 50% off and free shipping</h3>
             </SliderTitle>
 
-            <Link to="/products" className="btn-link no-border">
+            <Main_Button to="/products" className="no-border">
               Get your thing{" "}
               <Icon
                 icon={arrowRight}
                 style={{ color: "#606060", fontSize: "25px" }}
                 className="arrow-right-icon"
               />
-            </Link>
+            </Main_Button>
           </SliderContent>
 
           <SliderBanner>
@@ -183,14 +184,14 @@ export default function Slider() {
               </h3>
             </SliderTitle>
 
-            <Link to="/products" className="btn-link">
+            <Main_Button to="/products">
               Shop now{" "}
               <Icon
                 icon={arrowRight}
                 style={{ color: "#606060", fontSize: "25px" }}
                 className="arrow-right-icon"
               />
-            </Link>
+            </Main_Button>
           </SliderContent>
 
           <SliderBanner half_content>

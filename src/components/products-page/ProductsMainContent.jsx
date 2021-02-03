@@ -12,6 +12,7 @@ import {
   HeaderQuoteWrapper,
   HeaderBgShape,
 } from "../../styles/AllProducts_header_styles";
+import { Main_Button, Text_Button } from "../../styles/Link_Button";
 // import PagesNavigator from "./PagesNavigator";
 // import arrowRight from "@iconify/icons-bi/arrow-right";
 // import { Icon } from "@iconify/react";
@@ -44,14 +45,14 @@ export default function ProductsMainContent() {
             <h3 className="allProducts-header-subquote">
               save up to 50% off winter season sale
             </h3>
-            <Link to="/products" className="btn-link header-btn-link">
+            <Main_Button to="/products" className="header-btn-link">
               Shop now{" "}
               <Icon
                 icon={arrowRight}
                 style={{ color: "#606060", fontSize: "25px" }}
                 className="arrow-right-icon"
               />
-            </Link>
+            </Main_Button>
           </HeaderQuoteWrapper>
         </HeaderWrapper>
         <HeaderBgShape>
@@ -65,14 +66,14 @@ export default function ProductsMainContent() {
         <div className="section-title">
           <h1>All Products</h1>
 
-          <Link to="/products" className="see-all-link">
+          {/* <Text_Button to="/products" className="see-all-link">
             See all{" "}
             <Icon
               icon={arrowRight}
               style={{ color: "#606060", fontSize: "25px" }}
               className="see-all-icon arrow-right-icon"
             />
-          </Link>
+          </Text_Button> */}
         </div>
         {/* <PagesNavigator></PagesNavigator> */}
         <AllProducts product="ai"></AllProducts>
@@ -83,14 +84,14 @@ export default function ProductsMainContent() {
         <div className="section-title showcase-title">
           <h1>More Like This</h1>
 
-          <Link to="/products" className="see-all-link">
+          <Text_Button to="/products" className="see-all-link">
             See all{" "}
             <Icon
               icon={arrowRight}
               style={{ color: "#606060", fontSize: "25px" }}
               className="see-all-icon arrow-right-icon"
             />
-          </Link>
+          </Text_Button>
         </div>
 
         <Product product="mlt"></Product>

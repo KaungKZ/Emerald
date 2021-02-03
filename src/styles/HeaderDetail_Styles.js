@@ -148,9 +148,9 @@ export const HeaderContent = styled.div`
     .special-offer {
       font-size: 12px;
     }
-    .header-btn-link {
+    /* .header-btn-link {
       padding: 7px 17px;
-    }
+    } */
   }
 `;
 

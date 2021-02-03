@@ -66,7 +66,7 @@ html {
         text-transform: capitalize;
     }
 
-    .see-all-link {
+    /* .see-all-link {
         margin-left: 15px;
         display: flex;
         color: var(--light-text-color);
@@ -85,7 +85,7 @@ html {
             opacity: 1;
         }
 
-    }
+    } */
     @media (max-width: 480px) {
 
         width: 85%;
@@ -93,21 +93,21 @@ html {
         h1 {
             padding: 7px 18px;
         }
-        .see-all-link {
+        /* .see-all-link {
             .see-all-icon {
                 font-size: 18px !important;
                 margin-left: 8px;
             }
        
-    }
+    } */
  }
 
- @media (max-width: 360px) {
+ /* @media (max-width: 360px) {
      width: 90%;
     .see-all-link {
         margin-left: 7px;
     }
- }
+ } */
 
  @media (max-width: 330px) {
     h1 {
@@ -116,54 +116,7 @@ html {
     }
  }
 
- .btn-link {
-    padding: var(--btn-padding);
-    font-family: var(--secondary-font);
-    font-size: var(--btn-text);
-    color: var(--text-color);
-    background: #fff;
-    border: 1px solid rgba(96, 96, 96, 0.6);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    text-transform: capitalize;
-    transition: all 400ms;
 
-  .arrow-right-icon {
-    font-size: 0px !important;
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: all 400ms;
-    }
-    
-
-    &:hover {
-        .arrow-right-icon {
-            transform: translateX(0%);
-            font-size: 25px !important;
-            opacity: 1;
-            margin-left: 10px;
-        }
-    } 
-    
-    
-    @media (max-width: 600px) {
-        .arrow-right-icon {
-            font-size: 18px !important;
-            opacity: 1;
-            transform: translateX(0%);
-            transition: all 0s;
-            margin-left: 10px;
-
-            &:hover {
-                font-size: 18px !important;
-            }
-        }
-    }
-
-
-    }
 
  @media (max-width: 1280px) {
 
@@ -194,6 +147,8 @@ html {
      html {
         --btn-text: 14px;
          --btn-padding: 5px 15px;
+    --section-margin: 90px;
+
      }
  }
 
