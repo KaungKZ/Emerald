@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
 import shoppingBag2Line from "@iconify/icons-ri/shopping-bag-2-line";
@@ -77,11 +77,13 @@ const EmptySubtitle = styled.h3`
   }
 `;
 
-export default function EmptyPage({ empty_cart, children }) {
+export default function EmptyPage({ children }) {
+  const [isActive, setIsActive] = useState(false);
+
   return (
     <EmptyPageStyles>
       <EmptyPageTitle>{children}</EmptyPageTitle>
-      {empty_cart ? (
+      {!isActive ? (
         <>
           <Icon
             icon={shoppingBag2Line}

@@ -21,6 +21,7 @@ import {
 } from "../../styles/FeaturedSection_styles";
 import styled from "styled-components";
 import { Button } from "../../styles/Button";
+import { Section_Title, Section_Title_Text } from "../../styles/Section_Title";
 // import { useState } from "react";
 
 const Categories = styled.section`
@@ -112,7 +113,7 @@ export default function HomeMainContent() {
     };
   }, []);
 
-  console.log(seemoreClicked);
+  // console.log(seemoreClicked);
 
   function handleWindowResize() {
     if (window.innerWidth < 600) {
@@ -164,9 +165,9 @@ export default function HomeMainContent() {
       </HeaderDetailStyles>
 
       <Categories>
-        <div className="section-title">
-          <h1>Categories</h1>
-        </div>
+        <Section_Title>
+          <Section_Title_Text>Categories</Section_Title_Text>
+        </Section_Title>
         <CategoryWrapper>
           {isSmallSize
             ? seemoreClicked
@@ -209,8 +210,8 @@ export default function HomeMainContent() {
       </Categories>
 
       <ShowcaseProducts>
-        <div className="section-title showcase-title">
-          <h1>Best Sellers</h1>
+        <Section_Title className="showcase-title">
+          <Section_Title_Text>Best Sellers</Section_Title_Text>
 
           <Text_Button to="/products">
             See all{" "}
@@ -220,7 +221,7 @@ export default function HomeMainContent() {
               className="see-all-icon arrow-right-icon"
             />
           </Text_Button>
-        </div>
+        </Section_Title>
 
         <Product product="bs"></Product>
       </ShowcaseProducts>
@@ -230,8 +231,8 @@ export default function HomeMainContent() {
       </HomeSlider>
 
       <ShowcaseProducts>
-        <div className="section-title showcase-title">
-          <h1>Best deals for today</h1>
+        <Section_Title className="showcase-title">
+          <Section_Title_Text>Best deals for today</Section_Title_Text>
 
           <Text_Button to="/products">
             See all{" "}
@@ -241,7 +242,7 @@ export default function HomeMainContent() {
               className="see-all-icon arrow-right-icon"
             />
           </Text_Button>
-        </div>
+        </Section_Title>
         <Product product="bd"></Product>
       </ShowcaseProducts>
 

@@ -43,6 +43,7 @@ const ShowcaseProductImage = styled.div`
   }
 
   @media (max-width: 440px) {
+    border-radius: 9px 9px 0 0;
     &::after {
       background: ${props => props.all_items && "#f4f4f4"};
     }
@@ -135,7 +136,10 @@ const ShowcaseProduct = styled.div`
       props.all_items &&
       css`
         min-width: 150px;
-        border: none;
+        /* border: 1px solid rgba(90, 90, 90, 0.2); */
+        border: 1px solid rgba(224, 204, 167, 0.5);
+
+        /* border: none; */
       `}
   }
 `;
@@ -243,6 +247,7 @@ const ShowcaseATW = styled.div`
 `;
 
 export default function ProductList({ details, pointerNone, all_items }) {
+  console.log(details);
   return (
     <ShowcaseProduct
       className={`${pointerNone ? "swipe-active" : ""}`}

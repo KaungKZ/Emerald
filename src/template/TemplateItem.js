@@ -4,9 +4,10 @@ import Layout from "../components/Layouts/Layout";
 import EmptyPage from "../components/Layouts/EmptyPage";
 import Global_styles from "../styles/Global_styles";
 import { Helmet } from "react-helmet";
+import Product_Detail from "../components/Layouts/Product_Detail";
 
 export default function TemplateItem({ data: { res } }) {
-  // console.log(data);
+  // console.log(res);
   return (
     <>
       <Global_styles />
@@ -43,7 +44,8 @@ export default function TemplateItem({ data: { res } }) {
             href={`https://emeraldos.netlify.app/product/${res.id}`}
           />
         </Helmet>
-        <EmptyPage>{res.title}</EmptyPage>
+        {/* <EmptyPage data={res}>{res.title}</EmptyPage> */}
+        <Product_Detail data={res} />
       </Layout>
     </>
   );
@@ -68,7 +70,7 @@ export const query = graphql`
       size
       images {
         fixed(height: 100, width: 100) {
-          src
+          ...GatsbyContentfulFixed
         }
       }
       reviews {

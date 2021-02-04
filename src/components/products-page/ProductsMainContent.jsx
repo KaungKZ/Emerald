@@ -13,6 +13,8 @@ import {
   HeaderBgShape,
 } from "../../styles/AllProducts_header_styles";
 import { Main_Button, Text_Button } from "../../styles/Link_Button";
+import { Section_Title, Section_Title_Text } from "../../styles/Section_Title";
+
 // import PagesNavigator from "./PagesNavigator";
 // import arrowRight from "@iconify/icons-bi/arrow-right";
 // import { Icon } from "@iconify/react";
@@ -63,8 +65,8 @@ export default function ProductsMainContent() {
 
       {/* all products */}
       <AllProductStyles>
-        <div className="section-title">
-          <h1>All Products</h1>
+        <Section_Title>
+          <Section_Title_Text>All Products</Section_Title_Text>
 
           {/* <Text_Button to="/products" className="see-all-link">
             See all{" "}
@@ -74,15 +76,15 @@ export default function ProductsMainContent() {
               className="see-all-icon arrow-right-icon"
             />
           </Text_Button> */}
-        </div>
+        </Section_Title>
         {/* <PagesNavigator></PagesNavigator> */}
         <AllProducts product="ai"></AllProducts>
         {/* <PagesNavigator></PagesNavigator> */}
       </AllProductStyles>
 
       <ShowcaseProducts>
-        <div className="section-title showcase-title">
-          <h1>More Like This</h1>
+        <Section_Title className="showcase-title">
+          <Section_Title_Text>More Like This</Section_Title_Text>
 
           <Text_Button to="/products" className="see-all-link">
             See all{" "}
@@ -92,7 +94,7 @@ export default function ProductsMainContent() {
               className="see-all-icon arrow-right-icon"
             />
           </Text_Button>
-        </div>
+        </Section_Title>
 
         <Product product="mlt"></Product>
       </ShowcaseProducts>
