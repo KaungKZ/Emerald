@@ -10,6 +10,8 @@ html {
     --text-color: #353535;
     --light-text-color: #5a5a5a;
     --body-background-color: #fdfdfd;
+    --grey-color: #e5e5e5;
+    --light-grey-color: #eeeeee;
     --small-margin: 7px;
     --section-margin: 119px;
     --small-section-margin: 64px;

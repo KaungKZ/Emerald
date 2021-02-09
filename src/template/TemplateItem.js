@@ -69,7 +69,7 @@ export const query = graphql`
       gender
       size
       images {
-        fixed(height: 100, width: 100) {
+        fixed(height: 150, width: 150) {
           ...GatsbyContentfulFixed
         }
       }
