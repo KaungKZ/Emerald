@@ -59,6 +59,7 @@ export const query = graphql`
       id
       title
       by
+      type
       price
       oldprice
       description {

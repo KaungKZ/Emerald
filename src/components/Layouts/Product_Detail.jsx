@@ -1,230 +1,80 @@
-import React, { useRef, useState } from "react";
-import styled from "styled-components";
+import React, { useRef, useState, useEffect } from "react";
+// import styled from "styled-components";
 // import { Button } from "../../styles/Button";
 import Img from "gatsby-image";
 import arrowRight from "@iconify/icons-bi/arrow-right";
+// import ProductOptionDialog from "../product-detail-page/ProductOptionDialog";
+// import arrowRight from "@iconify/icons-bi/arrow-right";
+
 import { Icon } from "@iconify/react";
+
+// import threeDotsVertical from "@iconify-icons/bi/three-dots-vertical";
+
 import { Arrow_Button } from "../../styles/Button";
+// import { Icon, InlineIcon } from '@iconify/react';
+// import arrowRight from "@iconify/icons-bi/arrow-right";
+import threeDotsVertical from "@iconify/icons-bi/three-dots-vertical";
+// import dotsThreeVertical from '@iconify-icons/entypo/dots-three-vertical';
+import {
+  Product_Detail_Wrapper,
+  TopSection,
+  ProductImages,
+  ProductBody,
+  ProductContent,
+  ProductOption,
+  ProductHeader,
+  BottomSection,
+  OptionPopupStyles,
+  ProductOptionWrapper,
+} from "../product-detail-page/Product_Detail_Styles";
 // import Input from "../../styles/Input";
-
-const Product_Detail_Wrapper = styled.section`
-  width: 90%;
-  margin: var(--large-item-margin) auto 25px auto;
-`;
-const TopSection = styled.div`
-  width: 100%;
-  display: flex;
-`;
-
-const ProductImages = styled.div`
-  /* width: 100%; */
-  margin-right: 7%;
-
-  display: flex;
-  flex-direction: column;
-
-  .product-image {
-    background: #f2f2f2;
-    margin-bottom: 15px;
-    padding: 7px;
-    /* box-sizing: unset; */
-  }
-  /* .product-image {
-  } */
-`;
-
-const ProductBody = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: -35px;
-`;
-const ProductContent = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  > :not(:last-child) {
-    margin-bottom: 30px;
-  }
-  /* justify-content: space-between; */
-  /* > * {
-  } */
-
-  .product-price {
-    font-weight: 700;
-    color: var(--light-text-color);
-    font-size: 1.5rem;
-    font-family: var(--secondary-font);
-  }
-
-  .product-size,
-  .product-quality {
-    position: relative;
-    display: flex;
-    font-family: var(--secondary-font);
-    display: flex;
-    align-items: center;
-
-    span {
-      margin-right: 10px;
-      color: var(--text-color);
-      font-size: 14px;
-    }
-
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    input[type="number"] {
-      color: var(--text-color);
-      -moz-appearance: textfield;
-      font-family: var(--secondary-font);
-    }
-
-    input {
-      width: 90px;
-      height: 25px;
-      line-height: 1.65;
-      padding: 0;
-      margin: 0;
-      padding-left: 40px;
-      border: 1px solid #eee;
-    }
-
-    input:focus {
-      outline: 0;
-    }
-
-    .quantity-nav {
-      float: left;
-      position: relative;
-      height: 42px;
-    }
-
-    .quantity-button {
-      position: relative;
-      cursor: pointer;
-      border-left: 1px solid #eee;
-      width: 20px;
-      text-align: center;
-      color: #333;
-      font-size: 13px;
-      font-family: "Trebuchet MS", Helvetica, sans-serif !important;
-      line-height: 1.7;
-      -webkit-transform: translateX(-100%);
-      transform: translateX(-100%);
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      -o-user-select: none;
-      user-select: none;
-    }
-
-    .quantity-button.quantity-up {
-      position: absolute;
-      height: 25px;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      border-bottom: 1px solid #eee;
-    }
-
-    .quantity-button.quantity-down {
-      border-right: 1px solid #eee;
-      height: 25px;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      border-bottom: 1px solid #eee;
-      right: 70px;
-    }
-  }
-
-  .product-gender {
-    font-family: var(--secondary-font);
-    display: flex;
-    font-size: 12px;
-
-    span {
-      height: 35px;
-      width: 65px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-right: 10px;
-      border: 1px solid var(--grey-color);
-      /* border: 1px solid #eee; */
-      transition: all 300ms;
-      color: var(--text-color);
-      cursor: pointer;
-
-      &:hover {
-        background: var(--general-color);
-        color: #fff;
-      }
-    }
-
-    .male {
-    }
-  }
-
-  .product-description {
-    max-width: 800px;
-    font-family: var(--primary-font);
-    font-size: 16px;
-    line-height: 25px;
-  }
-
-  .product-buttons {
-    display: flex;
-
-    .product-add-to-cart {
-      margin-right: 20px;
-    }
-  }
-`;
-
-const ProductOption = styled.div``;
-
-const ProductHeader = styled.div`
-  font-family: var(--small-title-font);
-  color: var(--light-text-color);
-  margin-bottom: 20px;
-
-  .product-title {
-    font-size: 1.9rem;
-  }
-
-  .product-by {
-    font-size: 14px;
-    color: var(--primary-color);
-    margin: 15px 0 25px 0;
-
-    span {
-      font-weight: 700;
-      color: var(--light-text-color);
-      text-decoration: underline;
-    }
-  }
-`;
-const BottomSection = styled.div``;
 
 // const ProductBy = styled.div``;
 
 export default function Product_Detail({ data }) {
+  // console.log(data);
   // const numberRef = useRef();
   // const QtyRef = useRef();
-  // const [productSize, setProductSize] = useState("1");
-  // const [productQty, setProductQty] = useState("1");
 
   const [productValues, setProductValues] = useState({
-    productSize: 1,
+    productSize: data.size,
     productQty: 1,
-    productGender: null,
+    productGender: data.gender,
   });
+
+  const [openOptionPopup, setOpenOptionPopup] = useState(false);
+
+  const optionPopupRef = useRef();
+  const optionWrapperRef = useRef();
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  });
+
+  console.log(openOptionPopup);
+
+  const handleClickOutside = e => {
+    if (
+      optionPopupRef.current.contains(e.target) &&
+      optionWrapperRef.current.contains(e.target)
+    ) {
+      console.log(e.target);
+      setOpenOptionPopup(true);
+
+      return;
+    }
+    if (
+      !optionPopupRef.current.contains(e.target) &&
+      !optionWrapperRef.current.contains(e.target)
+    ) {
+      setOpenOptionPopup(false);
+
+      return;
+    }
+  };
+
+  // console.log(data);
 
   function handleOnChange(e) {
     // console.log(e.target.value);
@@ -264,37 +114,6 @@ export default function Product_Detail({ data }) {
     // spinner.find("input").trigger("change");
   }
 
-  // function InputNumber() {
-  //   return (
-  //     <>
-  //       <input
-  //         type="number"
-  //         min="1"
-  //         max="9"
-  //         step="1"
-  //         // value="1
-  //         value={productValues.productSize}
-  //         onChange={handleOnChange}
-  //         ref={numberRef}
-  //       />
-  //       <div class="quantity-nav">
-  //         <div
-  //           className="quantity-button quantity-up"
-  //           onClick={handleProductSizeUp}
-  //         >
-  //           +
-  //         </div>
-  //         <div
-  //           className="quantity-button quantity-down"
-  //           onClick={handleProductSizeDown}
-  //         >
-  //           -
-  //         </div>
-  //       </div>
-  //     </>
-  //   );
-  // }
-
   function handleProductSizeDown(e) {
     // console.log(e.target.parentNode.parentNode.getAttribute("name"));
 
@@ -325,6 +144,20 @@ export default function Product_Detail({ data }) {
     // numberRef.current.dispatchEvent(event);
   }
 
+  function handleChangeProductGenderMale() {
+    setProductValues({
+      ...productValues,
+      productGender: "male",
+    });
+  }
+
+  function handleChangeProductGenderFemale() {
+    setProductValues({
+      ...productValues,
+      productGender: "female",
+    });
+  }
+
   // function handleOnchange ( ) {
 
   // }
@@ -336,10 +169,9 @@ export default function Product_Detail({ data }) {
           {data.images.map(v => {
             // console.log(v);
             return (
-              <div className="product-image">
+              <div className="product-image" key={v.fixed.base64}>
                 <Img
                   fixed={v.fixed}
-                  key={v.fixed.src}
                   style={{ maxHeight: "150px" }}
                   className="product-image"
                 />
@@ -372,43 +204,82 @@ export default function Product_Detail({ data }) {
           <ProductContent>
             <span className="product-price">${data.price}</span>
             <div className="product-size" name="productSize">
-              <span>Size:</span>
+              <span className="detail-title">Size:</span>
+              {productValues.productSize.length > 3 ? (
+                <span className="product-size-description">
+                  {productValues.productSize}
+                </span>
+              ) : (
+                <>
+                  <input
+                    type="number"
+                    min="1"
+                    max="50"
+                    step="1"
+                    // value="1
+                    value={productValues.productSize}
+                    onChange={handleOnChange}
+                    // ref={numberRef}
+                  />
+                  <div className="quantity-nav">
+                    <div
+                      className="quantity-button quantity-up"
+                      onClick={handleProductSizeUp}
+                      onKeyDown={handleProductSizeUp}
+                      role="button"
+                      tabIndex="0"
+                    >
+                      +
+                    </div>
+                    <div
+                      className="quantity-button quantity-down"
+                      role="button"
+                      onClick={handleProductSizeDown}
+                      onKeyDown={handleProductSizeDown}
+                      tabIndex="0"
+                    >
+                      -
+                    </div>
+                  </div>
+                </>
+              )}
               {/* <Input onChange={handleOnChange} /> */}
-              <input
-                type="number"
-                min="1"
-                max="9"
-                step="1"
-                // value="1
-                value={productValues.productSize}
-                onChange={handleOnChange}
-                // ref={numberRef}
-              />
-              <div className="quantity-nav">
-                <div
-                  className="quantity-button quantity-up"
-                  onClick={handleProductSizeUp}
+            </div>
+            {productValues.productGender && (
+              <div className="product-gender">
+                <span
+                  className={`male ${
+                    productValues.productGender === "male" ? "active" : ""
+                  }`}
+                  onClick={handleChangeProductGenderMale}
+                  onKeyDown={handleChangeProductGenderMale}
+                  role="button"
+                  tabIndex="0"
                 >
-                  +
-                </div>
-                <div
-                  className="quantity-button quantity-down"
-                  onClick={handleProductSizeDown}
+                  Male
+                </span>
+                <span
+                  className={`female ${
+                    productValues.productGender === "female" ? "active" : ""
+                  }`}
+                  onClick={handleChangeProductGenderFemale}
+                  onKeyDown={handleChangeProductGenderFemale}
+                  role="button"
+                  tabIndex="0"
                 >
-                  -
-                </div>
+                  Female
+                </span>
               </div>
-            </div>
-            <div className="product-gender">
-              <span className="male">Male</span>
-              <span className="female">Female</span>
-            </div>
+            )}
+
             <div className="product-quality" name="productQty">
-              <span>Quality:</span>
+              <span className="product-quality-title detail-title">
+                Quality:
+              </span>
               <input
                 type="number"
                 min="1"
-                max="9"
+                max="100"
                 step="1"
                 // value="1
                 value={productValues.productQty}
@@ -419,21 +290,28 @@ export default function Product_Detail({ data }) {
                 <div
                   className="quantity-button quantity-up"
                   onClick={handleProductSizeUp}
+                  onKeyDown={handleProductSizeUp}
+                  role="button"
+                  tabIndex="0"
                 >
                   +
                 </div>
                 <div
                   className="quantity-button quantity-down"
                   onClick={handleProductSizeDown}
+                  onKeyDown={handleProductSizeDown}
+                  role="button"
+                  tabIndex="0"
                 >
                   -
                 </div>
               </div>
             </div>
             {/* <div className="product-quality"></div> */}
-            <p className="product-description">
-              {data.description.description}
-            </p>
+            <div className="product-description">
+              <span className="detail-title">Description</span>
+              <p>{data.description.description}</p>
+            </div>
             <div className="product-buttons">
               <Arrow_Button dark className="product-add-to-cart">
                 Add To Cart{" "}
@@ -454,7 +332,42 @@ export default function Product_Detail({ data }) {
             </div>
           </ProductContent>
         </ProductBody>
-        {/* <ProductOption></ProductOption> */}
+        <ProductOptionWrapper>
+          <ProductOption
+            title="Options"
+            onClick={() => {
+              console.log("yes");
+              setOpenOptionPopup(() => !openOptionPopup);
+            }}
+            ref={optionWrapperRef}
+          >
+            <Icon
+              icon={threeDotsVertical}
+              style={{ color: "#606060", fontSize: "25px" }}
+              // className="arrow-right-icon"
+            />
+
+            {/* </> */}
+            {/* )} */}
+          </ProductOption>
+          <OptionPopupStyles
+            className={`${openOptionPopup ? "active" : ""}`}
+            ref={optionPopupRef}
+          >
+            <ul>
+              <li>Report this product</li>
+            </ul>
+          </OptionPopupStyles>
+        </ProductOptionWrapper>
+
+        {/* {openOptionDialog && (
+          <ProductOptionDialog
+            open={openOptionDialog}
+            onClose={() => setOpenOptionDialog(false)}
+          >
+            This is test
+          </ProductOptionDialog>
+        )} */}
       </TopSection>
       <BottomSection></BottomSection>
     </Product_Detail_Wrapper>
