@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  margin-top: 25px;
+  /* margin-top: 25px; */
+  margin: ${props => (props.center ? "25px auto 0 auto" : "25px 0 0 0 ")};
   cursor: pointer;
   padding: var(--btn-padding);
   font-family: var(--secondary-font);
-  font-size: var(--btn-text);
+  font-size: ${props =>
+    props.smallFont ? "var(--normal-text)" : "var(--btn-text)"};
   color: var(--text-color);
   background: #fff;
   border: 1px solid rgba(96, 96, 96, 0.6);

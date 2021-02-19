@@ -247,7 +247,7 @@ const ShowcaseATW = styled.div`
 `;
 
 export default function ProductList({ details, pointerNone, all_items }) {
-  console.log(details);
+  // console.log(details);
   return (
     <ShowcaseProduct
       className={`${pointerNone ? "swipe-active" : ""}`}

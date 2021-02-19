@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const Product_Detail_Wrapper = styled.section`
   width: 90%;
-  margin: var(--large-item-margin) auto 25px auto;
+  margin: 0 auto 25px auto;
 `;
 export const TopSection = styled.div`
   width: 100%;
   display: flex;
   position: relative;
+  margin: var(--large-item-margin) auto;
 `;
 
 export const ProductImages = styled.div`
@@ -20,7 +21,7 @@ export const ProductImages = styled.div`
   .product-image {
     background: #f2f2f2;
     margin-bottom: 15px;
-    padding: 7px;
+    padding: 20px;
     /* box-sizing: unset; */
   }
   /* .product-image {
@@ -231,6 +232,10 @@ export const ProductOption = styled.button`
   transition: background 200ms;
   border-radius: 50px;
 
+  &.active {
+    background: #efefef;
+  }
+
   &:hover {
     background: #efefef;
   }
@@ -262,7 +267,7 @@ export const OptionPopupStyles = styled.div`
   position: absolute;
   top: calc(100% + 8px);
   right: 10px;
-  min-width: 150px;
+  min-width: 130px;
   max-width: 200px;
   background: var(--general-color);
 
@@ -272,7 +277,7 @@ export const OptionPopupStyles = styled.div`
   transition: opacity 200ms ease;
   /* display: none; */
   visibility: hidden;
-  padding: 7px 0px;
+  padding: 5px 0px;
 
   &.active {
     opacity: 1;
@@ -286,7 +291,7 @@ export const OptionPopupStyles = styled.div`
   ul {
     li {
       list-style-type: none;
-      font-size: 14px;
+      font-size: 12px;
       padding: 4px;
       font-family: var(--small-title-font);
       cursor: pointer;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Section_Title = styled.div`
   font-family: var(--secondary-font);
-  width: 80%;
+  width: ${props => (props.fullWidth ? "100%" : "80%")};
   margin: 0 auto var(--item-margin) auto;
   display: flex;
   align-items: center;

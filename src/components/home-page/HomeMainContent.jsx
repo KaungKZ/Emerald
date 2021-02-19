@@ -203,7 +203,10 @@ export default function HomeMainContent() {
               })}
         </CategoryWrapper>
         {isSmallSize && (
-          <Button onClick={() => setSeemoreClicked(() => !seemoreClicked)}>
+          <Button
+            center
+            onClick={() => setSeemoreClicked(() => !seemoreClicked)}
+          >
             {seemoreClicked ? "show less" : "show more"}
           </Button>
         )}
