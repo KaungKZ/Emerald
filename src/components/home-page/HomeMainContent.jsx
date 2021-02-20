@@ -71,8 +71,8 @@ const CategoryWrapper = styled.div`
 `;
 
 export const ShowcaseProducts = styled.section`
-  width: 100%;
   margin-bottom: var(--section-margin);
+  width: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
   position: relative;

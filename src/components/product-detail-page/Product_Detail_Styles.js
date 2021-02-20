@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 export const Product_Detail_Wrapper = styled.section`
-  width: 90%;
-  margin: 0 auto 25px auto;
+  /* width: 90%;
+  margin: 0 auto 25px auto; */
+  width: 100%;
+  margin-bottom: 25px;
 `;
 export const TopSection = styled.div`
-  width: 100%;
+  width: 90%;
   display: flex;
   position: relative;
   margin: var(--large-item-margin) auto;
@@ -327,4 +329,7 @@ export const ProductOptionWrapper = styled.div`
   /* border-radius: 50px; */
 `;
 
-export const BottomSection = styled.div``;
+export const BottomSection = styled.div`
+  width: 90%;
+  margin: 0 auto;
+`;
