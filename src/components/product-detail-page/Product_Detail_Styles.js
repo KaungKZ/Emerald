@@ -247,6 +247,7 @@ export const ProductHeader = styled.div`
   font-family: var(--small-title-font);
   color: var(--light-text-color);
   margin-bottom: 20px;
+  max-width: 90%;
 
   .product-title {
     font-size: 2.2rem;

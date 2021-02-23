@@ -8,7 +8,7 @@ import styled from "styled-components";
 import starFilled from "@iconify/icons-ant-design/star-filled";
 import plusIcon from "@iconify/icons-bi/plus";
 import { Icon } from "@iconify/react";
-import { Button } from "../../styles/Button";
+import { BgButton } from "../../styles/Button";
 import GenerateRandomRatings from "./GenerateRandomRatings";
 import { keyframes } from "styled-components";
 
@@ -453,7 +453,7 @@ export default function ProductDetailBottom({ data }) {
             </ReviewRating>
           </ReviewBox>
           <ReviewAdd>
-            <Button smallFont>Add a review</Button>
+            <BgButton>Add a review</BgButton>
           </ReviewAdd>
         </ReviewSection>
         <CommentSection>

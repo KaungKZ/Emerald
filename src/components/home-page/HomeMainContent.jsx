@@ -20,7 +20,7 @@ import {
   FeaturedBanner,
 } from "../../styles/FeaturedSection_styles";
 import styled from "styled-components";
-import { Button } from "../../styles/Button";
+import { TextButton } from "../../styles/Button";
 import { Section_Title, Section_Title_Text } from "../../styles/Section_Title";
 // import { useState } from "react";
 
@@ -203,12 +203,12 @@ export default function HomeMainContent() {
               })}
         </CategoryWrapper>
         {isSmallSize && (
-          <Button
+          <TextButton
             center
             onClick={() => setSeemoreClicked(() => !seemoreClicked)}
           >
             {seemoreClicked ? "show less" : "show more"}
-          </Button>
+          </TextButton>
         )}
       </Categories>
 

@@ -22,7 +22,10 @@ export default function TemplateItem({ data: { res } }) {
             {res.title}
           </title>
 
-          <meta name="description" content={`${res.description.description}`} />
+          <meta
+            name="description"
+            content={`${res.description ? res.description.description : ""}`}
+          />
           <meta
             name="keywords"
             content="e-commerce, front-end development, gatsby e-commerce"
@@ -32,7 +35,7 @@ export default function TemplateItem({ data: { res } }) {
           <meta property="og:title" content="Emerald" />
           <meta
             property="og:description"
-            content={`${res.description.description}`}
+            content={`${res.description ? res.description.description : ""}`}
           />
           <meta
             property="og:url"

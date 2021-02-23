@@ -259,7 +259,11 @@ export default function ProductDetailTop({
           {/* <div className="product-quality"></div> */}
           <div className="product-description">
             <span className="detail-title">Description</span>
-            <p>{data.description.description}</p>
+            <p>
+              {data.description
+                ? data.description.description
+                : "There is no descriptio for this product"}
+            </p>
           </div>
           <div className="product-buttons">
             <Arrow_Button dark className="product-add-to-cart">
