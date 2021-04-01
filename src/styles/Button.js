@@ -73,7 +73,7 @@ export const Arrow_Button = styled.button`
   &:hover {
     .arrow-right-icon {
       transform: translateX(0%);
-      font-size: 23px !important;
+      font-size: 20px !important;
       opacity: 1;
       margin-left: 10px;
     }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
 import shoppingBag2Line from "@iconify/icons-ri/shopping-bag-2-line";
@@ -79,11 +79,20 @@ const EmptySubtitle = styled.h3`
 
 export default function EmptyPage({ children }) {
   const [isActive, setIsActive] = useState(false);
+  const [showCartDetail, setShowCartDetail] = useState(null);
+
+  useEffect(() => {
+    if (localStorage.getItem("selectedProduct")) {
+      setShowCartDetail(true);
+    } else {
+      setShowCartDetail(false);
+    }
+  }, []);
 
   return (
     <EmptyPageStyles>
       <EmptyPageTitle>{children}</EmptyPageTitle>
-      {!isActive ? (
+      {!isActive && !showCartDetail ? (
         <>
           <Icon
             icon={shoppingBag2Line}
@@ -94,7 +103,8 @@ export default function EmptyPage({ children }) {
         </>
       ) : (
         <>
-          <Icon
+          <h1>Gonna show some products that you chose here !</h1>
+          {/* <Icon
             icon={alarmClockLine}
             style={{ color: "#606060", fontSize: "110px" }}
             className="clock-icon"
@@ -111,7 +121,7 @@ export default function EmptyPage({ children }) {
                 Take a look at what we are doing
               </a>
             }
-          </EmptySubtitle>
+          </EmptySubtitle> */}
         </>
       )}
     </EmptyPageStyles>

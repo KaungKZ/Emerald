@@ -34,6 +34,11 @@ export const ShowcaseArrows = styled(Icon)`
     }
   }
 
+  @media (max-width: 768px) {
+    width: 35px;
+    height: 50px;
+  }
+
   @media (max-width: 600px) {
     display: none;
     pointer-events: none;

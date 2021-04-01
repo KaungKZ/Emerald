@@ -12,7 +12,7 @@ import {
   HeaderQuoteWrapper,
   HeaderBgShape,
 } from "../../styles/AllProducts_header_styles";
-import { Main_Button, Text_Button } from "../../styles/Link_Button";
+import { Main_Button, Arrow_Button } from "../../styles/Link_Button";
 import { Section_Title, Section_Title_Text } from "../../styles/Section_Title";
 
 // import PagesNavigator from "./PagesNavigator";
@@ -68,14 +68,14 @@ export default function ProductsMainContent() {
         <Section_Title>
           <Section_Title_Text>All Products</Section_Title_Text>
 
-          {/* <Text_Button to="/products" className="see-all-link">
+          {/* <Arrow_Button to="/products" className="see-all-link">
             See all{" "}
             <Icon
               icon={arrowRight}
               style={{ color: "#606060", fontSize: "25px" }}
               className="see-all-icon arrow-right-icon"
             />
-          </Text_Button> */}
+          </Arrow_Button> */}
         </Section_Title>
         {/* <PagesNavigator></PagesNavigator> */}
         <AllProducts product="ai"></AllProducts>
@@ -86,14 +86,14 @@ export default function ProductsMainContent() {
         <Section_Title className="showcase-title">
           <Section_Title_Text>More Like This</Section_Title_Text>
 
-          <Text_Button to="/products" className="see-all-link">
+          <Arrow_Button to="/products" className="see-all-link">
             See all{" "}
             <Icon
               icon={arrowRight}
               style={{ color: "#606060", fontSize: "25px" }}
               className="see-all-icon arrow-right-icon"
             />
-          </Text_Button>
+          </Arrow_Button>
         </Section_Title>
 
         <Product product="mlt"></Product>

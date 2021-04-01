@@ -6,7 +6,7 @@ import Img from "gatsby-image";
 import stripeBG from "../../images/home/stripes background.svg";
 import arrowRight from "@iconify/icons-bi/arrow-right";
 import { Icon } from "@iconify/react";
-import { Main_Button, Text_Button } from "../../styles/Link_Button";
+import { Main_Button, Arrow_Button } from "../../styles/Link_Button";
 import Slider from "./Slider";
 import {
   HeaderDetailStyles,
@@ -216,14 +216,14 @@ export default function HomeMainContent() {
         <Section_Title className="showcase-title">
           <Section_Title_Text>Best Sellers</Section_Title_Text>
 
-          <Text_Button to="/products">
+          <Arrow_Button to="/products">
             See all{" "}
             <Icon
               icon={arrowRight}
               style={{ color: "#606060", fontSize: "25px" }}
               className="see-all-icon arrow-right-icon"
             />
-          </Text_Button>
+          </Arrow_Button>
         </Section_Title>
 
         <Product product="bs"></Product>
@@ -237,14 +237,14 @@ export default function HomeMainContent() {
         <Section_Title className="showcase-title">
           <Section_Title_Text>Best deals for today</Section_Title_Text>
 
-          <Text_Button to="/products">
+          <Arrow_Button to="/products">
             See all{" "}
             <Icon
               icon={arrowRight}
               style={{ color: "#606060", fontSize: "25px" }}
               className="see-all-icon arrow-right-icon"
             />
-          </Text_Button>
+          </Arrow_Button>
         </Section_Title>
         <Product product="bd"></Product>
       </ShowcaseProducts>

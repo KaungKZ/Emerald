@@ -23,14 +23,17 @@ export const Section_Title = styled.div`
   } */
 
   @media (max-width: 480px) {
-    width: 85%;
+    width: ${props => (props.fullWidth ? "100%" : "85%")};
 
     /* h1 {
       padding: 7px 18px;
     } */
   }
 
-  @media (max-width: 330px) {
+  @media (max-width: 320px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     /* h1 {
       padding: 7px 10px;
     } */
@@ -53,5 +56,9 @@ export const Section_Title_Text = styled.h1`
 
   @media (max-width: 330px) {
     padding: 7px 10px;
+  }
+
+  @media (max-width: 320px) {
+    margin-bottom: 10px;
   }
 `;

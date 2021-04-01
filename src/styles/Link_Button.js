@@ -57,9 +57,33 @@ export const Main_Button = styled(Link)`
       } */
     }
   }
+
+  @media (max-width: 320px) {
+    font-size: 12px;
+    padding: 5px 10px;
+    .arrow-right-icon {
+      margin-left: 5px;
+    }
+  }
 `;
 
-export const Text_Button = styled(Link)`
+export const Button = styled(Link)`
+  /* margin-left: 15px; */
+  /* display: flex; */
+  font-family: var(--secondary-font);
+  padding: var(--small-btn-padding);
+  font-size: 14px;
+  color: var(--light-text-color);
+  text-decoration: none;
+  text-transform: capitalize;
+  /* font-size: var(--normal-text); */
+  transition: opacity 300ms;
+  opacity: 0.9;
+  /* align-items: center; */
+  border: 1px solid rgba(96, 96, 96, 0.6);
+`;
+
+export const Arrow_Button = styled(Link)`
   margin-left: 15px;
   display: flex;
   color: var(--light-text-color);
@@ -79,17 +103,21 @@ export const Text_Button = styled(Link)`
   }
 
   @media (max-width: 480px) {
-    .see-all-link {
-      .see-all-icon {
-        font-size: 18px !important;
-        margin-left: 8px;
-      }
+    .see-all-icon {
+      font-size: 18px !important;
+      margin-left: 8px;
     }
   }
 
   @media (max-width: 360px) {
+    margin-left: 10px;
     .see-all-link {
       margin-left: 7px;
+    }
+
+    .see-all-icon {
+      /* font-size: 18px !important; */
+      margin-left: 4px;
     }
   }
 `;

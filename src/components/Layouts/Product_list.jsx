@@ -48,6 +48,13 @@ const ShowcaseProductImage = styled.div`
       background: ${props => props.all_items && "#f4f4f4"};
     }
   }
+
+  @media (max-width: 320px) {
+    .gatsby-image-wrapper {
+      height: 80px !important;
+      width: 80px !important;
+    }
+  }
 `;
 
 const ShowcaseProduct = styled.div`
@@ -113,6 +120,17 @@ const ShowcaseProduct = styled.div`
     &:hover {
       box-shadow: none;
     }
+
+    ${props =>
+      !props.all_items &&
+      css`
+        &:not(:last-child) {
+          margin-right: 70px;
+        }
+        &:first-child {
+          margin-left: 50px;
+        }
+      `}
   }
 
   @media (max-width: 600px) {
@@ -141,6 +159,27 @@ const ShowcaseProduct = styled.div`
 
         /* border: none; */
       `}
+  }
+
+  @media (max-width: 360px) {
+    min-width: 180px;
+    ${props =>
+      !props.all_items &&
+      css`
+        &:not(:last-child) {
+          margin-right: 35px;
+        }
+        &:first-child {
+          margin-left: 30px;
+        }
+        &:last-child::after {
+          width: 35px;
+        }
+      `}
+  }
+
+  @media (max-width: 320px) {
+    min-width: 165px;
   }
 `;
 
@@ -212,6 +251,12 @@ const ShowcaseProductDetails = styled.div`
     .item-by,
     .item-rating {
       font-size: 10px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    .item-by {
+      font-size: 8px;
     }
   }
 `;
