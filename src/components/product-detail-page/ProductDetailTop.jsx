@@ -25,9 +25,9 @@ export default function ProductDetailTop({
   const [openOptionPopup, setOpenOptionPopup] = useState(false);
   const [isSmallSize, setIsSmallSize] = useState(false);
   const [readmoreClicked, setReadmoreClicked] = useState(false);
-  const [productAddDialogOpen, setProductAddDialogOpen] = useState(true);
-  const addDialogRef = React.useRef(null);
-  const [productAddDialogRef, setProductAddDialogRef] = useState();
+  const [productAddDialogOpen, setProductAddDialogOpen] = useState(null);
+  // const addDialogRef = React.useRef(null);
+  // const [productAddDialogRef, setProductAddDialogRef] = useState();
   // const [selectedProduct, setSelectedProduct] = useState();
 
   const optionPopupRef = useRef();
@@ -176,10 +176,10 @@ export default function ProductDetailTop({
   return (
     <>
       <TopSection
-        ref={current => {
-          addDialogRef.current = current;
-          setProductAddDialogRef(addDialogRef.current);
-        }}
+      // ref={current => {
+      //   addDialogRef.current = current;
+      //   setProductAddDialogRef(addDialogRef.current);
+      // }}
       >
         <ProductImages>
           {data.images.map(v => {

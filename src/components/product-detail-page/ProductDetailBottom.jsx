@@ -82,6 +82,7 @@ export default function ProductDetailBottom({ data }) {
       if (i <= _rating) {
         finalJSX.push(
           <Icon
+            key={i}
             icon={starFilled}
             style={{ color: "#ffc965", fontSize: "15px" }}
           />
@@ -89,6 +90,7 @@ export default function ProductDetailBottom({ data }) {
       } else {
         finalJSX.push(
           <Icon
+            key={i}
             icon={starFilled}
             style={{ color: "#e2e2e2", fontSize: "15px" }}
           />

@@ -94,16 +94,7 @@ export const Button = styled(Link)`
   color: var(--text-color);
   width: fit-content;
   margin: 0 auto;
-  /* background: var(--general-color); */
 
-  /* .arrow-right-icon {
-    font-size: 0px !important;
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: all 400ms;
-  } */
-
-  /* &:hover { */
   .arrow-right-icon {
     transform: translateX(0%);
     font-size: 20px !important;
@@ -128,25 +119,29 @@ export const Button = styled(Link)`
       width: 100%;
     }
   }
-  /* } */
-
-  /* &:hover {
-    background: var(--general-color);
-    color: #fff;
-  } */
-
-  /* @media (max-width: 768px) {
-    background: var(--general-color);
-    color: #fff;
-
-    &:hover {
-      color: #fff;
-      background: var(--general-color);
-    }
-  } */
 
   @media (max-width: 768px) {
     font-size: 12px;
+
+    .arrow-right-icon {
+      font-size: 18px !important;
+      margin-left: 7px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .arrow-right-icon {
+      /* font-size: 18px !important; */
+      margin-left: 5px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 10px;
+
+    .arrow-right-icon {
+      font-size: 16px !important;
+    }
   }
 `;
 

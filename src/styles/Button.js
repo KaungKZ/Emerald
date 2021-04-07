@@ -65,14 +65,14 @@ export const Arrow_Button = styled.button`
   &.disabled {
     cursor: not-allowed;
     background: ${props => (props.dark ? "rgba(90, 90, 90, 0.55)" : "#fff")};
+    border: none;
 
     &:hover {
       .arrow-right-icon {
         display: none;
-        /* transform: translateX(0%);
-      font-size: 20px !important;
-      opacity: 1;
-      margin-left: 10px; */
+        transform: translateX(-100%);
+        font-size: 0px !important;
+        opacity: 0;
       }
     }
   }
@@ -95,6 +95,17 @@ export const Arrow_Button = styled.button`
   }
 
   @media (max-width: 600px) {
+    &.disabled {
+      &:hover {
+        .arrow-right-icon {
+          display: block;
+          transform: translateX(0%);
+          font-size: 18px !important;
+          opacity: 1;
+          margin-left: 10px;
+        }
+      }
+    }
     .arrow-right-icon {
       font-size: 18px !important;
       opacity: 1;
@@ -102,22 +113,15 @@ export const Arrow_Button = styled.button`
       /* transition: all 0s; */
       margin-left: 10px;
       transition: all 400ms;
+    }
 
-      &:hover {
-        .arrow-right-icon {
-          /* display: none; */
-          transform: translateX(0%);
-          font-size: 18px !important;
-          opacity: 1;
-          margin-left: 10px;
-          /* font-size: 18px !important; */
-          /* transition: all 400ms; */
-        }
-      }
-
-      /* &:hover {
+    &:hover {
+      .arrow-right-icon {
+        transform: translateX(0%);
         font-size: 18px !important;
-      } */
+        opacity: 1;
+        margin-left: 10px;
+      }
     }
   }
 `;

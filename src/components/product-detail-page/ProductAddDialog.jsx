@@ -57,6 +57,11 @@ const WrapperDialog = styled.div`
     /* box-shadow: rgba(224, 204, 167, 0.3) 0px 0px 0px 3px; */
   }
 
+  @media (max-width: 360px) {
+    height: 115px;
+    bottom: calc(0% + 10px);
+  }
+
   /* position: relative; */
 `;
 
@@ -79,6 +84,18 @@ const ItemDialogTitle = styled.div`
   @media (max-width: 600px) {
     h2 {
       font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    h2 {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    h2 {
+      font-size: 13px;
     }
   }
 `;
@@ -105,7 +122,7 @@ const ItemDialogContent = styled.div`
     /* z-index: 11; */
     /* color: var(--light-text-color); */
     z-index: 1;
-    color: #fff;
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     font-size: 12px;
@@ -124,7 +141,7 @@ const ItemDialogContent = styled.div`
       border-radius: 50px;
       width: 100%;
       height: 100%;
-      background: #a9a9a9;
+      background: #fff;
       /* background: #000; */
     }
   }
@@ -165,6 +182,21 @@ const ItemDialogContent = styled.div`
     .item-qty {
       min-width: 20px;
       min-height: 20px;
+      color: var(--text-color);
+      text-decoration: underline;
+      font-size: 12px;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: 360px) {
+    .item-name,
+    .item-qty,
+    .item-price {
+      font-size: 10px;
     }
   }
 `;
