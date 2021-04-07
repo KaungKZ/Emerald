@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 
 export const Main_Button = styled(Link)`
-  padding: var(--btn-padding);
+  padding: 10px 20px;
   font-family: var(--secondary-font);
-  font-size: var(--btn-text);
+  font-size: 16px;
   color: var(--text-color);
   background: #fff;
   border: 1px solid rgba(96, 96, 96, 0.6);
@@ -29,6 +29,11 @@ export const Main_Button = styled(Link)`
       opacity: 1;
       margin-left: 10px;
     }
+  }
+
+  @media (max-width: 800px) {
+    font-size: 14px;
+    padding: 5px 15px;
   }
 
   @media (max-width: 600px) {
@@ -71,16 +76,78 @@ export const Button = styled(Link)`
   /* margin-left: 15px; */
   /* display: flex; */
   font-family: var(--secondary-font);
-  padding: var(--small-btn-padding);
+  /* padding: var(--small-btn-padding); */
   font-size: 14px;
-  color: var(--light-text-color);
+  position: relative;
+  /* color: var(--light-text-color); */
   text-decoration: none;
   text-transform: capitalize;
   /* font-size: var(--normal-text); */
   transition: opacity 300ms;
+  display: flex;
+  align-items: center;
+  position: relative;
   opacity: 0.9;
   /* align-items: center; */
-  border: 1px solid rgba(96, 96, 96, 0.6);
+  /* border: 1px solid rgba(96, 96, 96, 0.6); */
+  transition: all 300ms;
+  color: var(--text-color);
+  width: fit-content;
+  margin: 0 auto;
+  /* background: var(--general-color); */
+
+  /* .arrow-right-icon {
+    font-size: 0px !important;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 400ms;
+  } */
+
+  /* &:hover { */
+  .arrow-right-icon {
+    transform: translateX(0%);
+    font-size: 20px !important;
+    opacity: 1;
+    margin-left: 10px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    background: #606060;
+    width: 25%;
+    height: 1px;
+    border-radius: 9px;
+    top: 100%;
+    left: 0;
+    transition: width 400ms;
+  }
+
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
+  /* } */
+
+  /* &:hover {
+    background: var(--general-color);
+    color: #fff;
+  } */
+
+  /* @media (max-width: 768px) {
+    background: var(--general-color);
+    color: #fff;
+
+    &:hover {
+      color: #fff;
+      background: var(--general-color);
+    }
+  } */
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 export const Arrow_Button = styled(Link)`

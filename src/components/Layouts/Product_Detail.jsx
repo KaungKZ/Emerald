@@ -5,7 +5,7 @@ import styled from "styled-components";
 import ProductDetailTop from "../product-detail-page/ProductDetailTop";
 import ProductDetailBottom from "../product-detail-page/ProductDetailBottom";
 // import dotsThreeVertical from '@iconify-icons/entypo/dots-three-vertical';
-import { Product_Detail_Wrapper } from "../product-detail-page/Product_Detail_Styles";
+import { Product_Detail_Wrapper } from "../../styles/Product_Detail_Styles";
 import { Main_Button, Arrow_Button } from "../../styles/Link_Button";
 import { Section_Title, Section_Title_Text } from "../../styles/Section_Title";
 import { Icon } from "@iconify/react";

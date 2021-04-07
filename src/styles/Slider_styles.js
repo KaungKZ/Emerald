@@ -61,6 +61,8 @@ export const SliderTitle = styled.div`
       color: #fff;
     }
     h3 {
+      font-family: var(--content-font);
+      font-size: 1.1rem;
       opacity: 0.75;
     }
   }
@@ -71,7 +73,9 @@ export const SliderTitle = styled.div`
     }
 
     h3 {
+      font-family: var(--content-font);
       color: var(--light-text-color);
+      font-size: 1.1rem;
     }
   }
 
@@ -94,7 +98,7 @@ export const SliderTitle = styled.div`
     }
 
     h3 {
-      font-size: 14px;
+      font-size: 14px !important;
       margin-bottom: 35px;
     }
   }
@@ -104,12 +108,18 @@ export const SliderTitle = styled.div`
       font-size: 1.7rem;
     }
 
-    h3 {
-      font-size: 12px;
-    }
+    /* h3 {
+      font-size: 12px !important;
+    } */
 
     .hidden-sm {
       display: none;
+    }
+  }
+
+  @media (max-width: 320px) {
+    h3 {
+      font-size: 12px !important;
     }
   }
 `;

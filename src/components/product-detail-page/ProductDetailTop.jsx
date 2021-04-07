@@ -9,7 +9,7 @@ import {
   OptionPopupStyles,
   ProductOptionWrapper,
   SeemoreBtn,
-} from "../product-detail-page/Product_Detail_Styles";
+} from "../../styles/Product_Detail_Styles";
 import Img from "gatsby-image";
 import arrowRight from "@iconify/icons-bi/arrow-right";
 import { Icon } from "@iconify/react";
@@ -25,7 +25,7 @@ export default function ProductDetailTop({
   const [openOptionPopup, setOpenOptionPopup] = useState(false);
   const [isSmallSize, setIsSmallSize] = useState(false);
   const [readmoreClicked, setReadmoreClicked] = useState(false);
-  const [productAddDialogOpen, setProductAddDialogOpen] = useState(false);
+  const [productAddDialogOpen, setProductAddDialogOpen] = useState(true);
   const addDialogRef = React.useRef(null);
   const [productAddDialogRef, setProductAddDialogRef] = useState();
   // const [selectedProduct, setSelectedProduct] = useState();
@@ -289,14 +289,14 @@ export default function ProductDetailTop({
               </div>
             )}
 
-            <div className="product-quality" name="productQty">
-              <span className="product-quality-title detail-title">
-                Quality:
+            <div className="product-quantity" name="productQty">
+              <span className="product-quantity-title detail-title">
+                Quantity:
               </span>
               <input
                 type="number"
                 min="1"
-                max="100"
+                max="99"
                 step="1"
                 // value="1
                 value={productValues.productQty}
@@ -324,7 +324,6 @@ export default function ProductDetailTop({
                 </div>
               </div>
             </div>
-            {/* <div className="product-quality"></div> */}
             <div className="product-description">
               <span className="detail-title">Description</span>
               <p>
@@ -352,8 +351,11 @@ export default function ProductDetailTop({
             <div className="product-buttons">
               <Arrow_Button
                 dark
-                className="product-add-to-cart"
+                className={`product-add-to-cart ${
+                  productAddDialogOpen ? "disabled" : ""
+                }`}
                 onClick={handleAddProduct}
+                disabled={productAddDialogOpen ? true : false}
               >
                 Add To Cart{" "}
                 <Icon
@@ -408,13 +410,14 @@ export default function ProductDetailTop({
     </ProductOptionDialog>
   )} */}
       </TopSection>
-      {productAddDialogOpen && (
-        <ProductAddDialog
-          title={data.title}
-          quantity={productValues.productQty}
-          price={data.price}
-        ></ProductAddDialog>
-      )}
+      {/* {productAddDialogOpen && ( */}
+      <ProductAddDialog
+        title={data.title}
+        quantity={productValues.productQty}
+        price={data.price}
+        productAddDialogOpen={productAddDialogOpen}
+      ></ProductAddDialog>
+      {/* )} */}
     </>
   );
 }

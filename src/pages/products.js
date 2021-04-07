@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import Global_styles from "../styles/Global_styles";
 import Layout from "../components/Layouts/Layout";
 import EmptyPage from "../components/Layouts/EmptyPage";
-import ProductsMainContent from "../components/products-page/ProductsMainContent";
+import ProductsMainContent from "../components/ProductsMainContent";
 
 export default function products() {
   return (

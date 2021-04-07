@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import "./typography.css";
+// import "./test.css";
 
 const Global_styles = createGlobalStyle`
 
@@ -20,6 +21,7 @@ html {
     --primary-font: 'Montserrat', sans-serif;
     --secondary-font: 'Poppins', sans-serif;
     --small-title-font: 'Raleway', sans-serif;
+    --content-font:  'Work Sans', sans-serif;
     --normal-text: 16px;
     --btn-text: 18px;
     --btn-padding: 10px 20px;

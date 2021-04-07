@@ -62,6 +62,21 @@ export const Arrow_Button = styled.button`
   text-transform: capitalize;
   transition: all 400ms;
 
+  &.disabled {
+    cursor: not-allowed;
+    background: ${props => (props.dark ? "rgba(90, 90, 90, 0.55)" : "#fff")};
+
+    &:hover {
+      .arrow-right-icon {
+        display: none;
+        /* transform: translateX(0%);
+      font-size: 20px !important;
+      opacity: 1;
+      margin-left: 10px; */
+      }
+    }
+  }
+
   .arrow-right-icon {
     font-size: 0px !important;
     opacity: 0;

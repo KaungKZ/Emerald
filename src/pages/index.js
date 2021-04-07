@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../components/Layouts/Layout";
 import Global_styles from "../styles/Global_styles";
-import HomeMainContent from "../components/home-page/HomeMainContent.jsx";
+import HomeMainContent from "../components/HomeMainContent.jsx";
 import { Helmet } from "react-helmet";
 import logo from "../images/home/logo.svg";
 

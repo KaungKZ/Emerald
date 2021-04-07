@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   BottomSection,
   //   ReviewBox,
-} from "../product-detail-page/Product_Detail_Styles";
+} from "../../styles/Product_Detail_Styles";
 import { Section_Title, Section_Title_Text } from "../../styles/Section_Title";
 // import styled from "styled-components";
 // import { keyframes } from "styled-components";
@@ -23,7 +23,7 @@ import {
   Comment,
   CommentsWrapper,
   SeemoreComments,
-} from "./Product_Detail_Styles";
+} from "../../styles/Product_Detail_Styles";
 
 export default function ProductDetailBottom({ data }) {
   const [randomRatings, setRandomRatings] = useState({
@@ -286,7 +286,10 @@ export default function ProductDetailBottom({ data }) {
                       {generateCommentStars(v.rating)}
                     </span>
                   </div>
-                  <p className="comment-content">- {v.comment}</p>
+                  <div className="comment-content">
+                    <span>-</span>
+                    <p className="content">{v.comment}</p>
+                  </div>
                   <span className="comment-date">
                     <time dateTime={v.date}>{v.date.replace(/\//gi, "-")}</time>
                   </span>
