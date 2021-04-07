@@ -11,8 +11,8 @@ import {
   SliderContent,
   WrapperSliderNavigators,
   SliderNavigator,
-} from "../../styles/Slider_styles";
-import { Main_Button } from "../../styles/Link_Button";
+} from "../styles/Slider_styles";
+import { Main_Button } from "../styles/Link_Button";
 
 export default function Slider() {
   const [windowWidth, setWindowWidth] = useState(null);

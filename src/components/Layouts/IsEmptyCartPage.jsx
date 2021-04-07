@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Icon } from "@iconify/react";
 import shoppingBag2Line from "@iconify/icons-ri/shopping-bag-2-line";
 import alarmClockLine from "@iconify/icons-clarity/alarm-clock-line";
+import CartDetails from "../cart-pages/CartDetails";
+import WishlistDetails from "../cart-pages/WishlistDetails";
 
 const EmptyPageStyles = styled.div`
   width: 80%;
@@ -77,9 +79,11 @@ const EmptySubtitle = styled.h3`
   }
 `;
 
-export default function EmptyPage({ children }) {
-  const [isActive, setIsActive] = useState(false);
+export default function IsEmptyCartPage({ children }) {
+  // console.log(props);
+  // const [isActive, setIsActive] = useState(false);
   const [showCartDetail, setShowCartDetail] = useState(null);
+  const [showWishlistDetail, setShowWishlistDetail] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("selectedProduct")) {
@@ -92,7 +96,32 @@ export default function EmptyPage({ children }) {
   return (
     <EmptyPageStyles>
       <EmptyPageTitle>{children}</EmptyPageTitle>
-      {!isActive && !showCartDetail ? (
+      {children === "Shopping cart" ? (
+        !showCartDetail ? (
+          <>
+            <Icon
+              icon={shoppingBag2Line}
+              style={{ color: "#606060", fontSize: "110.85014343261719px" }}
+              className="empty-cart-icon"
+            />
+            <EmptySubtitle>There are no items in your cart</EmptySubtitle>
+          </>
+        ) : (
+          <CartDetails></CartDetails>
+        )
+      ) : !showWishlistDetail ? (
+        <>
+          <Icon
+            icon={shoppingBag2Line}
+            style={{ color: "#606060", fontSize: "110.85014343261719px" }}
+            className="empty-cart-icon"
+          />
+          <EmptySubtitle>There are no items in your wishlist</EmptySubtitle>
+        </>
+      ) : (
+        <WishlistDetails></WishlistDetails>
+      )}
+      {/* {children === "Shopping cart" ? (
         <>
           <Icon
             icon={shoppingBag2Line}
@@ -101,29 +130,20 @@ export default function EmptyPage({ children }) {
           />
           <EmptySubtitle>There are no items in your cart</EmptySubtitle>
         </>
+      ) : !showWishlistDetail && !showWishlistDetail ? (
+        <>
+          <Icon
+            icon={shoppingBag2Line}
+            style={{ color: "#606060", fontSize: "110.85014343261719px" }}
+            className="empty-cart-icon"
+          />
+          <EmptySubtitle>There are no items in your wishlist</EmptySubtitle>
+        </>
       ) : (
         <>
-          <h1>Gonna show some products that you chose here !</h1>
-          {/* <Icon
-            icon={alarmClockLine}
-            style={{ color: "#606060", fontSize: "110px" }}
-            className="clock-icon"
-          />
-          <EmptySubtitle>
-            Stay tuned, this page is coming soon !{" "}
-            {
-              <a
-                href="https://github.com/KaungKZ/Emerald"
-                className="github-repo"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Take a look at what we are doing
-              </a>
-            }
-          </EmptySubtitle> */}
+          <CartDetails></CartDetails>
         </>
-      )}
+      )} */}
     </EmptyPageStyles>
   );
 }

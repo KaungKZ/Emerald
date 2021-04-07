@@ -2,8 +2,8 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import Global_styles from "../styles/Global_styles";
 import Layout from "../components/Layouts/Layout";
-import EmptyPage from "../components/Layouts/EmptyPage";
-import ProductsMainContent from "../components/ProductsMainContent";
+import IsEmptyCartPage from "../components/Layouts/IsEmptyCartPage";
+import ProductsMainContent from "../components/all-products-page/ProductsMainContent";
 
 export default function products() {
   return (

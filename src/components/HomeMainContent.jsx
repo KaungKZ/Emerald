@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Product from "./Layouts/Product";
-import CategoryList from "./Layouts/CategoryList";
+import Product from "./Product";
+import CategoryList from "./CategoryList";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
 import stripeBG from "../images/home/stripes background.svg";
 import arrowRight from "@iconify/icons-bi/arrow-right";
 import { Icon } from "@iconify/react";
 import { Main_Button, Arrow_Button } from "../styles/Link_Button";
-import Slider from "./Layouts/Slider";
+import Slider from "./Slider";
 import {
   HeaderDetailStyles,
   HeaderContent,

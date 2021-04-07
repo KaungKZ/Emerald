@@ -1,10 +1,10 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/Layouts/Layout";
-import EmptyPage from "../components/Layouts/EmptyPage";
+import IsEmptyCartPage from "../components/Layouts/IsEmptyCartPage";
 import Global_styles from "../styles/Global_styles";
 import { Helmet } from "react-helmet";
-import Product_Detail from "../components/Layouts/Product_Detail";
+import Product_Detail from "../components/product-detail-page/Product_Detail";
 
 export default function TemplateItem({ data: { res } }) {
   // console.log(res);

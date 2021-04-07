@@ -63,6 +63,10 @@ export default function ProductDetailTop({
     }
   }
 
+  // let isnum = /^\d+$/.test(productValues.productSize);
+
+  // console.log(isnum);
+
   // console.log(openOptionPopup);
 
   const handleClickOutside = e => {
@@ -70,7 +74,7 @@ export default function ProductDetailTop({
       optionPopupRef.current.contains(e.target) &&
       optionWrapperRef.current.contains(e.target)
     ) {
-      console.log(e.target);
+      // console.log(e.target);
       setOpenOptionPopup(true);
 
       return;
@@ -130,15 +134,7 @@ export default function ProductDetailTop({
       var newVal = oldValue + 1;
     }
 
-    // console.log(newVal);
-    // spinner.find("input").val(newVal);
     setProductValues({ ...productValues, [elementName]: newVal });
-
-    // setProductSize(newVal);
-    // numberRef.current.value = newVal;
-
-    // numberRef.current.onChange();
-    // spinner.find("input").trigger("change");
   }
 
   function handleOnChange(e) {
@@ -154,7 +150,7 @@ export default function ProductDetailTop({
     setTimeout(() => {
       setProductAddDialogOpen(false);
     }, 3000);
-    console.log(data);
+    // console.log(data);
     // if (localStorage.getItem("selectedProduct")) {
     //   const storedProducts = JSON.parse(
     //     localStorage.getItem("selectedProduct")
@@ -222,7 +218,7 @@ export default function ProductDetailTop({
             <span className="product-price">${data.price}</span>
             <div className="product-size" name="productSize">
               <span className="detail-title">Size:</span>
-              {productValues.productSize.length > 3 ? (
+              {/^\d+$/.test(productValues.productSize) === false ? (
                 <span className="product-size-description">
                   {productValues.productSize}
                 </span>

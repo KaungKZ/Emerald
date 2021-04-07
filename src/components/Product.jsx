@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useStaticQuery, graphql } from "gatsby";
 
-import ProductList from "./Product_list";
+import ProductList from "./Layouts/Product_list";
 import styled from "styled-components";
-import { ShowcaseArrows } from "../../styles/ShowcaseArrows_styles";
+import { ShowcaseArrows } from "../styles/ShowcaseArrows_styles";
 import chevronLeftFill from "@iconify/icons-eva/chevron-left-fill";
 
 const ShowcaseProductsWrapper = styled.div`

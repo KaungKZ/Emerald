@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import Global_styles from "../styles/Global_styles";
 import Layout from "../components/Layouts/Layout";
-import EmptyPage from "../components/Layouts/EmptyPage";
+import IsEmptyCartPage from "../components/Layouts/IsEmptyCartPage";
 
 export default function wishlist() {
   return (
@@ -41,7 +41,7 @@ export default function wishlist() {
           <meta property="og:locale" content="en_US" />
           <link rel="canonical" href="https://emeraldos.netlify.app/wishlist" />
         </Helmet>
-        <EmptyPage>Wishlist</EmptyPage>
+        <IsEmptyCartPage>Wishlist</IsEmptyCartPage>
       </Layout>
 
       {/* <Button>Click me</Button> */}

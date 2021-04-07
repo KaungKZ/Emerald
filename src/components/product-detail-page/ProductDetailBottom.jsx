@@ -40,7 +40,7 @@ export default function ProductDetailBottom({ data }) {
     const chance = Math.random();
 
     if (chance < 0.85) {
-      console.log("yes");
+      // console.log("yes");
 
       setRandomRatings(r => {
         return {
@@ -281,7 +281,7 @@ export default function ProductDetailBottom({ data }) {
           <CommentsWrapper>
             {data.reviews.reviews.map(v => {
               return (
-                <Comment>
+                <Comment key={v.name}>
                   <div className="comment-title">
                     <h2 className="comment-name">{v.name}</h2>
                     <span className="comment-stars">

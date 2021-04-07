@@ -1,19 +1,19 @@
 import React from "react";
-import AllProducts from "./Layouts/AllProducts";
+import AllProducts from "../Layouts/AllProducts";
 import { Icon } from "@iconify/react";
 import arrowRight from "@iconify/icons-bi/arrow-right";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
-import allProductsBgShape from "../images/all items page/bg shape.svg";
-import { ShowcaseProducts } from "./HomeMainContent";
-import Product from "./Layouts/Product";
+import allProductsBgShape from "../../images/all items page/bg shape.svg";
+import { ShowcaseProducts } from "../HomeMainContent";
+import Product from "../Product";
 import {
   HeaderWrapper,
   HeaderQuoteWrapper,
   HeaderBgShape,
-} from "../styles/AllProducts_header_styles";
-import { Main_Button, Arrow_Button } from "../styles/Link_Button";
-import { Section_Title, Section_Title_Text } from "../styles/Section_Title";
+} from "../../styles/AllProducts_header_styles";
+import { Main_Button, Arrow_Button } from "../../styles/Link_Button";
+import { Section_Title, Section_Title_Text } from "../../styles/Section_Title";
 
 // import PagesNavigator from "./PagesNavigator";
 // import arrowRight from "@iconify/icons-bi/arrow-right";

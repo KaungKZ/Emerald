@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import styled from "styled-components";
 // import { Button } from "../../styles/Button";
 
-import ProductDetailTop from "../product-detail-page/ProductDetailTop";
-import ProductDetailBottom from "../product-detail-page/ProductDetailBottom";
+import ProductDetailTop from "./ProductDetailTop";
+import ProductDetailBottom from "./ProductDetailBottom";
 // import dotsThreeVertical from '@iconify-icons/entypo/dots-three-vertical';
 import { Product_Detail_Wrapper } from "../../styles/Product_Detail_Styles";
 import { Main_Button, Arrow_Button } from "../../styles/Link_Button";
 import { Section_Title, Section_Title_Text } from "../../styles/Section_Title";
 import { Icon } from "@iconify/react";
 import arrowRight from "@iconify/icons-bi/arrow-right";
-import Product from "../Layouts/Product";
+import Product from "../Product";
 
 const SimilarItemsWrapper = styled.div`
   width: 100%;
