@@ -216,6 +216,7 @@ export default function ProductAddDialog({
   price,
   productAddDialogOpen,
 }) {
+  // console.log(productAddDialogOpen);
   return (
     <Portal>
       {/* <Wrapper> */}

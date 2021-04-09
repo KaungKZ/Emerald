@@ -25,7 +25,8 @@ export default function ProductDetailTop({
   const [openOptionPopup, setOpenOptionPopup] = useState(false);
   const [isSmallSize, setIsSmallSize] = useState(false);
   const [readmoreClicked, setReadmoreClicked] = useState(false);
-  const [productAddDialogOpen, setProductAddDialogOpen] = useState(null);
+  const [productAddDialogOpen, setProductAddDialogOpen] = useState(false);
+  // const [hoverActive, setHoverActive] = useState();
   // const addDialogRef = React.useRef(null);
   // const [productAddDialogRef, setProductAddDialogRef] = useState();
   // const [selectedProduct, setSelectedProduct] = useState();
@@ -118,6 +119,7 @@ export default function ProductDetailTop({
     setProductValues({ ...productValues, [elementName]: newVal });
   }
 
+  // console.log(hoverActive);
   function handleProductSizeUp(e) {
     // console.log(numberRef.current.min);
 
@@ -146,28 +148,12 @@ export default function ProductDetailTop({
 
   function handleAddProduct(e) {
     // setSelectedProduct(data);
+    // setHoverActive(undefined);
     setProductAddDialogOpen(true);
+
     setTimeout(() => {
       setProductAddDialogOpen(false);
     }, 3000);
-    // console.log(data);
-    // if (localStorage.getItem("selectedProduct")) {
-    //   const storedProducts = JSON.parse(
-    //     localStorage.getItem("selectedProduct")
-    //   );
-    //   if (storedProducts.some(v => v.id === data.id)) {
-    //     alert("This item is already exist in cart");
-
-    //     return;
-    //   }
-
-    //   localStorage.setItem(
-    //     "selectedProduct",
-    //     JSON.stringify([...storedProducts, data])
-    //   );
-    // } else {
-    //   localStorage.setItem("selectedProduct", JSON.stringify([data]));
-    // }
   }
   return (
     <>
@@ -412,6 +398,7 @@ export default function ProductDetailTop({
         quantity={productValues.productQty}
         price={data.price}
         productAddDialogOpen={productAddDialogOpen}
+        // setHoverActive={setHoverActive}
       ></ProductAddDialog>
       {/* )} */}
     </>
