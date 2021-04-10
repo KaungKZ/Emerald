@@ -84,10 +84,12 @@ export default function IsEmptyCartPage({ children }) {
   // const [isActive, setIsActive] = useState(false);
   const [showCartDetail, setShowCartDetail] = useState(null);
   const [showWishlistDetail, setShowWishlistDetail] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState();
 
   useEffect(() => {
     if (localStorage.getItem("selectedProduct")) {
       setShowCartDetail(true);
+      setSelectedProducts(localStorage.getItem("selectedProduct"));
     } else {
       setShowCartDetail(false);
     }
@@ -107,7 +109,7 @@ export default function IsEmptyCartPage({ children }) {
             <EmptySubtitle>There are no items in your cart</EmptySubtitle>
           </>
         ) : (
-          <CartDetails></CartDetails>
+          <CartDetails selectedProducts={selectedProducts}></CartDetails>
         )
       ) : !showWishlistDetail ? (
         <>
@@ -121,29 +123,6 @@ export default function IsEmptyCartPage({ children }) {
       ) : (
         <WishlistDetails></WishlistDetails>
       )}
-      {/* {children === "Shopping cart" ? (
-        <>
-          <Icon
-            icon={shoppingBag2Line}
-            style={{ color: "#606060", fontSize: "110.85014343261719px" }}
-            className="empty-cart-icon"
-          />
-          <EmptySubtitle>There are no items in your cart</EmptySubtitle>
-        </>
-      ) : !showWishlistDetail && !showWishlistDetail ? (
-        <>
-          <Icon
-            icon={shoppingBag2Line}
-            style={{ color: "#606060", fontSize: "110.85014343261719px" }}
-            className="empty-cart-icon"
-          />
-          <EmptySubtitle>There are no items in your wishlist</EmptySubtitle>
-        </>
-      ) : (
-        <>
-          <CartDetails></CartDetails>
-        </>
-      )} */}
     </EmptyPageStyles>
   );
 }

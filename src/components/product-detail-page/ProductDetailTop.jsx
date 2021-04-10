@@ -56,6 +56,20 @@ export default function ProductDetailTop({
     };
   }, []);
 
+  useEffect(() => {
+    let timer;
+    if (productAddDialogOpen) {
+      timer = setTimeout(() => {
+        setProductAddDialogOpen(false);
+      }, 3000);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+
+    // return () => null;
+  }, [productAddDialogOpen]);
+
   function handleWindowResize() {
     if (window.innerWidth < 1025) {
       setIsSmallSize(true);
@@ -149,12 +163,28 @@ export default function ProductDetailTop({
   function handleAddProduct(e) {
     // setSelectedProduct(data);
     // setHoverActive(undefined);
-    setProductAddDialogOpen(true);
+    if (localStorage.getItem("selectedProduct")) {
+      const storedProducts = JSON.parse(
+        localStorage.getItem("selectedProduct")
+      );
+      if (storedProducts.some(v => v.id === data.id)) {
+        alert("This item is already exist in cart");
+        setProductAddDialogOpen(false);
 
-    setTimeout(() => {
-      setProductAddDialogOpen(false);
-    }, 3000);
+        return;
+      }
+      setProductAddDialogOpen(true);
+
+      localStorage.setItem(
+        "selectedProduct",
+        JSON.stringify([...storedProducts, data])
+      );
+    } else {
+      setProductAddDialogOpen(true);
+      localStorage.setItem("selectedProduct", JSON.stringify([data]));
+    }
   }
+
   return (
     <>
       <TopSection
