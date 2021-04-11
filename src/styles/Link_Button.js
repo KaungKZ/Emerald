@@ -25,7 +25,7 @@ export const Main_Button = styled(Link)`
   &:hover {
     .arrow-right-icon {
       transform: translateX(0%);
-      font-size: 25px !important;
+      font-size: 23px !important;
       opacity: 1;
       margin-left: 10px;
     }

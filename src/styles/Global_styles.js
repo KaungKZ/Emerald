@@ -1,5 +1,9 @@
 import { createGlobalStyle } from "styled-components";
-import "./typography.css";
+// import "./typography.css";
+import "../fonts/raleway-webfont/raleway.css";
+import "../fonts/worksans-webfont/worksans.css";
+import "../fonts/poppins-webfont/poppins.css";
+import "../fonts/montserrat-webfont/montserrat.css";
 // import "./test.css";
 
 const Global_styles = createGlobalStyle`
