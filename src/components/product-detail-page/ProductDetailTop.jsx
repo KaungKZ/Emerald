@@ -26,6 +26,7 @@ export default function ProductDetailTop({
   const [isSmallSize, setIsSmallSize] = useState(false);
   const [readmoreClicked, setReadmoreClicked] = useState(false);
   const [productAddDialogOpen, setProductAddDialogOpen] = useState(false);
+  // const [selectedProducts, setSelectedProducts] = useState(data);
   // const [hoverActive, setHoverActive] = useState();
   // const addDialogRef = React.useRef(null);
   // const [productAddDialogRef, setProductAddDialogRef] = useState();
@@ -174,14 +175,23 @@ export default function ProductDetailTop({
         return;
       }
       setProductAddDialogOpen(true);
+      let _data = {
+        ...data,
+        ...productValues,
+      };
 
       localStorage.setItem(
         "selectedProduct",
-        JSON.stringify([...storedProducts, data])
+        JSON.stringify([...storedProducts, _data])
       );
     } else {
       setProductAddDialogOpen(true);
-      localStorage.setItem("selectedProduct", JSON.stringify([data]));
+
+      let _data = {
+        ...data,
+        ...productValues,
+      };
+      localStorage.setItem("selectedProduct", JSON.stringify([_data]));
     }
   }
 
