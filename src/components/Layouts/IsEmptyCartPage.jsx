@@ -7,8 +7,10 @@ import CartDetails from "../cart-pages/CartDetails";
 import WishlistDetails from "../cart-pages/WishlistDetails";
 
 const EmptyPageStyles = styled.div`
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
+  /* margin: 0 auto; */
+  margin: ${props => (props.showCartDetail ? "50px auto" : "0 auto")};
+  min-height: ${props => (props.showCartDetail ? "initial" : "70vh")};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +18,7 @@ const EmptyPageStyles = styled.div`
   justify-content: space-around;
   font-family: var(--small-title-font);
   color: var(--text-color);
-  min-height: 70vh;
+  /* min-height: 70vh; */
 
   svg {
     transform: rotate(-20deg);
@@ -27,10 +29,17 @@ const EmptyPageStyles = styled.div`
   }
 `;
 
-const EmptyPageTitle = styled.h1`
-  font-size: 2rem;
+const EmptyPageTitle = styled.div`
+  width: auto;
+  margin: ${props => (props.showCartDetail ? "0 auto 65px auto" : "0 auto")};
+  /* margin: 0 auto; */
+
   position: relative;
-  text-transform: capitalize;
+  .title {
+    text-transform: capitalize;
+
+    font-size: 2rem;
+  }
 
   &::after {
     content: "";
@@ -96,8 +105,10 @@ export default function IsEmptyCartPage({ children }) {
   }, []);
 
   return (
-    <EmptyPageStyles>
-      <EmptyPageTitle>{children}</EmptyPageTitle>
+    <EmptyPageStyles showCartDetail={showCartDetail ? true : false}>
+      <EmptyPageTitle showCartDetail={showCartDetail ? true : false}>
+        <h1 className="title">{children}</h1>
+      </EmptyPageTitle>
       {children === "Shopping cart" ? (
         !showCartDetail ? (
           <>

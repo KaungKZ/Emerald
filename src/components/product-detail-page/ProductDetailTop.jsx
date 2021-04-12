@@ -57,6 +57,8 @@ export default function ProductDetailTop({
     };
   }, []);
 
+  // console.log(data);
+
   useEffect(() => {
     let timer;
     if (productAddDialogOpen) {
