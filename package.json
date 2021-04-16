@@ -35,7 +35,9 @@
     "@iconify/icons-ant-design": "^1.0.8",
     "@iconify/icons-bi": "^1.0.6",
     "@iconify/icons-clarity": "^1.0.0",
+    "@iconify/icons-emojione-monotone": "^1.1.0",
     "@iconify/icons-eva": "^1.0.0",
+    "@iconify/icons-fa-solid": "^1.1.1",
     "@iconify/icons-heroicons-outline": "^1.0.1",
     "@iconify/icons-ri": "^1.0.1",
     "@iconify/react": "^1.1.3"

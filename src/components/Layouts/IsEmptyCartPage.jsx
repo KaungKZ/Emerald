@@ -6,11 +6,13 @@ import alarmClockLine from "@iconify/icons-clarity/alarm-clock-line";
 import CartDetails from "../cart-pages/CartDetails";
 import WishlistDetails from "../cart-pages/WishlistDetails";
 
-const EmptyPageStyles = styled.div`
+const PageStyles = styled.div`
   width: 100%;
   /* margin: 0 auto; */
-  margin: ${props => (props.showCartDetail ? "50px auto" : "0 auto")};
-  min-height: ${props => (props.showCartDetail ? "initial" : "70vh")};
+  margin: ${props =>
+    props.showCartDetail || props.showWishlistDetail ? "50px auto" : "0 auto"};
+  min-height: ${props =>
+    props.showCartDetail || props.showWishlistDetail ? "initial" : "70vh"};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,10 +20,13 @@ const EmptyPageStyles = styled.div`
   justify-content: space-around;
   font-family: var(--small-title-font);
   color: var(--text-color);
+
+  .empty-cart-icon {
+    transform: rotate(-20deg);
+  }
   /* min-height: 70vh; */
 
   svg {
-    transform: rotate(-20deg);
   }
 
   @media (max-width: 768px) {
@@ -29,7 +34,7 @@ const EmptyPageStyles = styled.div`
   }
 `;
 
-const EmptyPageTitle = styled.div`
+const PageTitle = styled.div`
   width: auto;
   margin: ${props => (props.showCartDetail ? "0 auto 65px auto" : "0 auto")};
   /* margin: 0 auto; */
@@ -70,7 +75,7 @@ const EmptyPageTitle = styled.div`
   }
 `;
 
-const EmptySubtitle = styled.h3`
+const Subtitle = styled.h3`
   font-size: 1.2rem;
   font-weight: 400;
   text-align: center;
@@ -88,27 +93,46 @@ const EmptySubtitle = styled.h3`
   }
 `;
 
+const SubtitleWrapper = styled.div``;
+
 export default function IsEmptyCartPage({ children }) {
   // console.log(props);
   // const [isActive, setIsActive] = useState(false);
   const [showCartDetail, setShowCartDetail] = useState(null);
-  const [showWishlistDetail, setShowWishlistDetail] = useState(false);
+  const [showWishlistDetail, setShowWishlistDetail] = useState(null);
   const [selectedProducts, setSelectedProducts] = useState();
 
+  console.log(showCartDetail, showWishlistDetail);
+
   useEffect(() => {
-    if (localStorage.getItem("selectedProduct")) {
-      setShowCartDetail(true);
-      setSelectedProducts(localStorage.getItem("selectedProduct"));
+    if (children === "Shopping cart") {
+      if (localStorage.getItem("selectedProduct")) {
+        setShowCartDetail(true);
+        setSelectedProducts(localStorage.getItem("selectedProduct"));
+      } else {
+        setShowCartDetail(false);
+      }
     } else {
-      setShowCartDetail(false);
+      if (localStorage.getItem("wishlistProducts")) {
+        setShowWishlistDetail(true);
+        setSelectedProducts(localStorage.getItem("wishlistProducts"));
+      } else {
+        setShowWishlistDetail(false);
+      }
     }
   }, []);
 
   return (
-    <EmptyPageStyles showCartDetail={showCartDetail ? true : false}>
-      <EmptyPageTitle showCartDetail={showCartDetail ? true : false}>
+    <PageStyles
+      showCartDetail={showCartDetail ? true : false}
+      showWishlistDetail={showWishlistDetail ? true : false}
+    >
+      <PageTitle
+        showCartDetail={showCartDetail ? true : false}
+        showWishlistDetail={showWishlistDetail ? true : false}
+      >
         <h1 className="title">{children}</h1>
-      </EmptyPageTitle>
+      </PageTitle>
       {children === "Shopping cart" ? (
         !showCartDetail ? (
           <>
@@ -117,7 +141,9 @@ export default function IsEmptyCartPage({ children }) {
               style={{ color: "#606060", fontSize: "110.85014343261719px" }}
               className="empty-cart-icon"
             />
-            <EmptySubtitle>There are no items in your cart</EmptySubtitle>
+            <SubtitleWrapper>
+              <Subtitle>There are no items in your cart</Subtitle>
+            </SubtitleWrapper>
           </>
         ) : (
           <CartDetails selectedProducts={selectedProducts}></CartDetails>
@@ -129,11 +155,13 @@ export default function IsEmptyCartPage({ children }) {
             style={{ color: "#606060", fontSize: "110.85014343261719px" }}
             className="empty-cart-icon"
           />
-          <EmptySubtitle>There are no items in your wishlist</EmptySubtitle>
+          <SubtitleWrapper>
+            <Subtitle>There are no items in your wishlist</Subtitle>
+          </SubtitleWrapper>
         </>
       ) : (
         <WishlistDetails></WishlistDetails>
       )}
-    </EmptyPageStyles>
+    </PageStyles>
   );
 }
