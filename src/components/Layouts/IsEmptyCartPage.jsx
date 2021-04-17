@@ -42,7 +42,7 @@ const PageTitle = styled.div`
   position: relative;
   .title {
     text-transform: capitalize;
-
+    font-weight: 500;
     font-size: 2rem;
   }
 
@@ -102,7 +102,7 @@ export default function IsEmptyCartPage({ children }) {
   const [showWishlistDetail, setShowWishlistDetail] = useState(null);
   const [selectedProducts, setSelectedProducts] = useState();
 
-  console.log(showCartDetail, showWishlistDetail);
+  // console.log(showCartDetail, showWishlistDetail);
 
   useEffect(() => {
     if (children === "Shopping cart") {

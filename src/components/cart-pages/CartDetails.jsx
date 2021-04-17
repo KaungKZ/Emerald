@@ -13,8 +13,9 @@ import maleIcon from "@iconify/icons-fa-solid/male";
 const Table = styled.div`
   width: 100%;
   display: table;
+  border-spacing: 0px 10px;
 
-  #resp-table-header {
+  /* #resp-table-header {
     display: table-header-group;
     background-color: gray;
     font-weight: bold;
@@ -26,9 +27,9 @@ const Table = styled.div`
       text-align: justify;
       border-bottom: 1px solid black;
     }
-  }
+  } */
 
-  #resp-table-body {
+  /* #resp-table-body {
     display: table-row-group;
 
     .resp-table-row {
@@ -38,48 +39,113 @@ const Table = styled.div`
         display: table-cell;
       }
     }
+  } */
+`;
+
+const TableHeader = styled.div`
+  display: table-header-group;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 16px;
+  opacity: 0.55;
+  font-family: var(--small-title-font);
+  color: var(--text-color);
+
+  .table-header-cell {
+    display: table-cell;
+    padding: 15px 20px;
+    text-align: center;
+
+    &:first-child {
+      padding: 15px 20px 15px 5%;
+    }
+
+    &:last-child {
+      padding: 15px 5% 15px 20px;
+    }
+
+    /* &:not(:first-child) {
+      text-align: center;
+    } */
+    /* border-bottom: 1px solid black; */
   }
 `;
 
-const CartNavigators = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
-  margin: 0 auto;
+const TableBody = styled.div`
+  display: table-row-group;
+
+  /* .resp-table-row {
+    display: table-row;
+
+    .table-body-cell {
+      display: table-cell;
+    }
+  } */
 `;
 
-const CartWrapper = styled.div`
-  width: 100%;
-`;
+const TableCell = styled.div`
+  display: table-cell;
+  vertical-align: middle;
+  padding: 20px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.035);
+  border-top: 1px solid rgba(0, 0, 0, 0.035);
 
-const CartItems = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+  .item-price {
+    font-family: var(--secondary-font);
+    color: var(--text-color);
+  }
 
-const CartItemWrapper = styled.div`
-  width: 100%;
-  background: #f5f5f5;
-  border-bottom: 1px solid rgba(96, 96, 96, 0.1);
-  min-height: 150px;
-  height: 1px;
-  &:not(:last-child) {
-    margin-bottom: 15px;
+  &:not(:first-child) {
+    text-align: center;
   }
 
   &:first-child {
-    border-top: 1px solid rgba(96, 96, 96, 0.1);
+    padding: 20px 10px 20px 5%;
+  }
+
+  &:last-child {
+    padding: 20px 5% 20px 10px;
   }
 `;
+// const CartNavigators = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   width: 90%;
+//   margin: 0 auto;
+// `;
 
-const CartItem = styled.div`
-  width: 90%;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
+// const CartWrapper = styled.div`
+//   width: 100%;
+// `;
+
+// const CartItems = styled.div`
+//   display: flex;
+//   flex-direction: column;
+// `;
+
+// const CartItemWrapper = styled.div`
+//   width: 100%;
+//   background: #f5f5f5;
+//   border-bottom: 1px solid rgba(96, 96, 96, 0.1);
+//   min-height: 150px;
+//   height: 1px;
+//   &:not(:last-child) {
+//     margin-bottom: 15px;
+//   }
+
+//   &:first-child {
+//     border-top: 1px solid rgba(96, 96, 96, 0.1);
+//   }
+// `;
+
+// const CartItem = styled.div`
+//   width: 90%;
+//   height: 100%;
+//   margin: 0 auto;
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// `;
 
 const CancelIcon = styled.div``;
 
@@ -88,9 +154,14 @@ const IconWrapper = styled.button`
   border: none;
   background: none;
   cursor: pointer;
-  /* svg {
-    transform: rotate(0deg) !important;
-  } */
+
+  svg {
+    color: rgba(202, 11, 0, 0.45) !important;
+    transform: color 400ms;
+    &:hover {
+      color: rgba(202, 11, 0, 1) !important;
+    }
+  }
 `;
 
 const ItemDetailsWrapper = styled.div`
@@ -107,6 +178,19 @@ const ItemDetailsWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 10px;
+
+    .item-name {
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: capitalize;
+      color: var(--text-color);
+    }
+    .item-size {
+      font-family: var(--content-font);
+      font-size: 14px;
+      color: rgba(90, 90, 90, 0.65);
+    }
 
     & > div:not(:last-child) {
       margin-bottom: 7px;
@@ -114,9 +198,15 @@ const ItemDetailsWrapper = styled.div`
   }
 `;
 
-const ItemAmount = styled.div``;
+const TableRow = styled.div`
+  display: table-row;
+  background: #f9f9f9;
+  height: 150px;
+`;
 
-const ItemQuantity = styled.div``;
+// const ItemAmount = styled.div``;
+
+// const ItemQuantity = styled.div``;
 
 export default function CartDetails({ selectedProducts }) {
   // console.log(JSON.parse(selectedProducts));
@@ -148,18 +238,18 @@ export default function CartDetails({ selectedProducts }) {
   return (
     <>
       <Table id="res-table">
-        <div id="resp-table-header">
+        <TableHeader id="resp-table-header">
           <div class="table-header-cell">Items</div>
-          <div class="table-header-cell">Items</div>
-          <div class="table-header-cell">Items</div>
-          <div class="table-header-cell">Items</div>
-        </div>
-        <div id="resp-table-body">
+          <div class="table-header-cell">Amount</div>
+          <div class="table-header-cell">Price</div>
+          <div class="table-header-cell">Remove</div>
+        </TableHeader>
+        <TableBody id="resp-table-body">
           {cartItems.map(item => {
             return (
-              <div class="resp-table-row">
-                <div class="table-body-cell">
-                  <div className="item-detail-wrapper">
+              <TableRow>
+                <TableCell>
+                  <ItemDetailsWrapper>
                     <div className="item-image">
                       <Img
                         fixed={item.images[0].fixed}
@@ -186,24 +276,28 @@ export default function CartDetails({ selectedProducts }) {
                         </div>
                       )}
                     </div>
-                  </div>
-                </div>
-                <div class="table-body-cell">{item.productQty}</div>
-                <div className="table-body-cell">{item.price}</div>
-                <div className="table-body-cell">
+                  </ItemDetailsWrapper>
+                </TableCell>
+                <TableCell>
+                  <div className="item-amount">{item.productQty}</div>
+                </TableCell>
+                <TableCell>
+                  <div className="item-price">${item.price}</div>
+                </TableCell>
+                <TableCell>
                   <CancelIcon>
                     <IconWrapper>
                       <Icon
                         icon={crossMarkButton}
-                        style={{ color: "#606060", fontSize: "25px" }}
+                        style={{ color: "#ca0b00", fontSize: "20px" }}
                       />
                     </IconWrapper>
                   </CancelIcon>
-                </div>
-              </div>
+                </TableCell>
+              </TableRow>
             );
           })}
-        </div>
+        </TableBody>
         {/* <CartWrapper> */}
         {/* <CartNavigators>
             <span>Items</span>
