@@ -6,6 +6,9 @@ import crossMarkButton from "@iconify/icons-emojione-monotone/cross-mark-button"
 // import { Icon, InlineIcon } from '@iconify/react';
 import femaleIcon from "@iconify/icons-fa-solid/female";
 import maleIcon from "@iconify/icons-fa-solid/male";
+import { Arrow_Button } from "../../styles/Button";
+import arrowRight from "@iconify/icons-bi/arrow-right";
+
 // import IconButton from "@material-ui/core/IconButton";
 
 // import cart from "../../pages/cart";
@@ -73,14 +76,6 @@ const TableHeader = styled.div`
 
 const TableBody = styled.div`
   display: table-row-group;
-
-  /* .resp-table-row {
-    display: table-row;
-
-    .table-body-cell {
-      display: table-cell;
-    }
-  } */
 `;
 
 const TableCell = styled.div`
@@ -93,6 +88,7 @@ const TableCell = styled.div`
   .item-price {
     font-family: var(--secondary-font);
     color: var(--text-color);
+    font-size: 14px;
   }
 
   &:not(:first-child) {
@@ -107,45 +103,6 @@ const TableCell = styled.div`
     padding: 20px 5% 20px 10px;
   }
 `;
-// const CartNavigators = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   width: 90%;
-//   margin: 0 auto;
-// `;
-
-// const CartWrapper = styled.div`
-//   width: 100%;
-// `;
-
-// const CartItems = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
-
-// const CartItemWrapper = styled.div`
-//   width: 100%;
-//   background: #f5f5f5;
-//   border-bottom: 1px solid rgba(96, 96, 96, 0.1);
-//   min-height: 150px;
-//   height: 1px;
-//   &:not(:last-child) {
-//     margin-bottom: 15px;
-//   }
-
-//   &:first-child {
-//     border-top: 1px solid rgba(96, 96, 96, 0.1);
-//   }
-// `;
-
-// const CartItem = styled.div`
-//   width: 90%;
-//   height: 100%;
-//   margin: 0 auto;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-// `;
 
 const CancelIcon = styled.div``;
 
@@ -189,7 +146,7 @@ const ItemDetailsWrapper = styled.div`
     .item-size {
       font-family: var(--content-font);
       font-size: 14px;
-      color: rgba(90, 90, 90, 0.65);
+      color: rgba(90, 90, 90, 0.75);
     }
 
     & > div:not(:last-child) {
@@ -203,10 +160,39 @@ const TableRow = styled.div`
   background: #f9f9f9;
   height: 150px;
 `;
+const TotalPriceWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 7px;
+  min-height: 150px;
+  align-items: center;
+`;
+const AdditionalFees = styled.div`
+  font-size: 14px;
+  font-family: var(--secondary-font);
+  color: rgba(90, 90, 90, 0.75);
 
-// const ItemAmount = styled.div``;
+  .shipping-price {
+    font-weight: 500;
+    color: rgba(90, 90, 90, 0.85);
+  }
+`;
 
-// const ItemQuantity = styled.div``;
+const TotalPrice = styled.div`
+  font-family: var(--secondary-font);
+  color: rgba(53, 53, 53, 0.75);
+  font-weight: 500;
+
+  font-size: 1.35rem;
+  .total-price {
+    font-weight: 700;
+    color: rgba(53, 53, 53, 0.85);
+  }
+`;
+
+const CheckoutBtn = styled.div``;
 
 export default function CartDetails({ selectedProducts }) {
   // console.log(JSON.parse(selectedProducts));
@@ -362,6 +348,29 @@ export default function CartDetails({ selectedProducts }) {
           </CartItems> */}
         {/* </CartWrapper> */}
       </Table>
+      <TotalPriceWrapper>
+        <AdditionalFees>
+          Shipping: <span className="shipping-price">$7.99</span>
+        </AdditionalFees>
+        <TotalPrice>
+          Total: $<span className="total-price"></span>
+        </TotalPrice>
+        <CheckoutBtn>
+          <Arrow_Button
+            dark
+            large
+
+            // onClick={handleAddProduct}
+          >
+            Check Out{" "}
+            <Icon
+              icon={arrowRight}
+              style={{ color: "#606060", fontSize: "25px" }}
+              className="arrow-right-icon"
+            />
+          </Arrow_Button>
+        </CheckoutBtn>
+      </TotalPriceWrapper>
     </>
   );
 }

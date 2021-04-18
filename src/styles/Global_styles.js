@@ -29,6 +29,7 @@ html {
     --normal-text: 16px;
     --btn-text: 18px;
     --btn-padding: 10px 20px;
+    --large-btn-padding: 10px 40px;
     --small-btn-padding: 5px 15px;
     --section-title-font-size: 1.8rem;
 }

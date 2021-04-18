@@ -47,7 +47,8 @@ export const BgButton = styled.button`
 `;
 
 export const Arrow_Button = styled.button`
-  padding: var(--btn-padding);
+  padding: ${props =>
+    props.large ? "var(--large-btn-padding)" : "var(--btn-padding)"};
   font-family: var(--secondary-font);
   font-size: var(--normal-text);
   color: ${props => (props.dark ? "#fff" : "#353535")};
