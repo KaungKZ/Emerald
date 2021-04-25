@@ -16,6 +16,7 @@ import { Icon } from "@iconify/react";
 import { Arrow_Button } from "../../styles/Button";
 import threeDotsVertical from "@iconify/icons-bi/three-dots-vertical";
 import ProductAddDialog from "./ProductAddDialog";
+import WarningDialog from "../Layouts/WarningDialog";
 
 export default function ProductDetailTop({
   productValues,
@@ -26,6 +27,8 @@ export default function ProductDetailTop({
   const [isSmallSize, setIsSmallSize] = useState(false);
   const [readmoreClicked, setReadmoreClicked] = useState(false);
   const [productAddDialogOpen, setProductAddDialogOpen] = useState(false);
+
+  const [showAlreadyExisted, setShowAlreadyExisted] = useState();
   // const [selectedProducts, setSelectedProducts] = useState(data);
   // const [hoverActive, setHoverActive] = useState();
   // const addDialogRef = React.useRef(null);
@@ -171,7 +174,11 @@ export default function ProductDetailTop({
         localStorage.getItem("selectedProduct")
       );
       if (storedProducts.some(v => v.id === data.id)) {
-        alert("This item is already exist in cart");
+        setShowAlreadyExisted(true);
+        setTimeout(() => {
+          setShowAlreadyExisted(false);
+        }, 2000);
+        // alert("This item is already exist in cart");
         setProductAddDialogOpen(false);
 
         return;
@@ -442,6 +449,10 @@ export default function ProductDetailTop({
         productAddDialogOpen={productAddDialogOpen}
         // setHoverActive={setHoverActive}
       ></ProductAddDialog>
+      <WarningDialog
+        showAlreadyExisted={showAlreadyExisted}
+        title="This item is already existed in your cart !"
+      ></WarningDialog>
       {/* )} */}
     </>
   );

@@ -734,6 +734,7 @@ export const Comment = styled.div`
   .comment-content {
     display: flex;
     color: var(--text-color);
+    align-items: center;
     font-size: 14px;
 
     span {
