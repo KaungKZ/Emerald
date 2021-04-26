@@ -191,9 +191,9 @@ const TableCell = styled.div`
   }
 `;
 
-const CancelIcon = styled.div``;
+const IconWrapper = styled.div``;
 
-const IconWrapper = styled.button`
+const CancelIcon = styled.button`
   outline: none;
   border: none;
   background: none;
@@ -284,7 +284,7 @@ const TotalPrice = styled.div`
 const CheckoutBtn = styled.div``;
 
 export default function CartDetails({ selectedProducts }) {
-  // console.log(JSON.parse(selectedProducts));
+  console.log(JSON.parse(selectedProducts));
   const [cartItems, setCartItems] = useState(
     JSON.parse(selectedProducts).reduce((acc, cur) => {
       const obj = {};
@@ -358,7 +358,7 @@ export default function CartDetails({ selectedProducts }) {
     setCartItems(clone);
   }
 
-  console.log(cartItems);
+  // console.log(cartItems);
 
   function calculateTotalPrice() {
     // console.log(cartItems);
@@ -382,19 +382,16 @@ export default function CartDetails({ selectedProducts }) {
     clone[selectedRow].productQty = input;
 
     setCartItems(clone);
-    // console.log(e.target.value);
-    // console.log(e.target.value);
+  }
 
-    // setCartItems(prev => {
-    //   return [
-    //     ...cartItems,
-    //     {
-    //       ...prev,
-    //       productQty: e.target.value,
-    //     },
-    //   ];
-    // });
-    // console.log("yes");
+  function handleRemoveItem(v) {
+    // cartItems.splice(index, 1);
+    const _cartItems = cartItems.filter(item => item.id !== v.id);
+    setCartItems(_cartItems);
+    localStorage.setItem("selectedProduct", JSON.stringify(_cartItems));
+
+    // localStorage.removeItem('selectedProduct')
+    // setCartItems(cartItems.filter(item => item.id !== v.id));
   }
 
   // console.log(calculateTotalPrice());
@@ -491,14 +488,14 @@ export default function CartDetails({ selectedProducts }) {
                   </div>
                 </TableCell>
                 <TableCell>
-                  <CancelIcon>
-                    <IconWrapper>
+                  <IconWrapper>
+                    <CancelIcon onClick={() => handleRemoveItem(item)}>
                       <Icon
                         icon={crossMarkButton}
                         style={{ color: "#ca0b00", fontSize: "20px" }}
                       />
-                    </IconWrapper>
-                  </CancelIcon>
+                    </CancelIcon>
+                  </IconWrapper>
                 </TableCell>
               </TableRow>
             );
@@ -510,7 +507,7 @@ export default function CartDetails({ selectedProducts }) {
           Shipping: <span className="shipping-price">$7.99</span>
         </AdditionalFees>
         <TotalPrice>
-          Total: $<span className="total-price">{calculateTotalPrice()}</span>
+          Total: <span className="total-price">${calculateTotalPrice()}</span>
         </TotalPrice>
         <CheckoutBtn>
           <Arrow_Button

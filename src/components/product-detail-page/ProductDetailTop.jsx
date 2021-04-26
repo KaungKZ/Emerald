@@ -112,14 +112,14 @@ export default function ProductDetailTop({
   function handleChangeProductGenderMale() {
     setProductValues({
       ...productValues,
-      productGender: "male",
+      gender: "male",
     });
   }
 
   function handleChangeProductGenderFemale() {
     setProductValues({
       ...productValues,
-      productGender: "female",
+      gender: "female",
     });
   }
 
@@ -162,7 +162,7 @@ export default function ProductDetailTop({
   function handleOnChange(e) {
     // console.log(e.target.value);
 
-    setProductValues({ ...productValues, productSize: e.target.value });
+    setProductValues({ ...productValues, size: e.target.value });
     // console.log("yes");
   }
 
@@ -184,10 +184,14 @@ export default function ProductDetailTop({
         return;
       }
       setProductAddDialogOpen(true);
+      // console.log(productValues);
+      // console.log(data);
       let _data = {
         ...data,
         ...productValues,
       };
+
+      // console.log(data);
 
       localStorage.setItem(
         "selectedProduct",
@@ -253,9 +257,9 @@ export default function ProductDetailTop({
             <span className="product-price">${data.price}</span>
             <div className="product-size" name="productSize">
               <span className="detail-title">Size:</span>
-              {/^\d+$/.test(productValues.productSize) === false ? (
+              {/^\d+$/.test(productValues.size) === false ? (
                 <span className="product-size-description">
-                  {productValues.productSize}
+                  {productValues.size}
                 </span>
               ) : (
                 <>
@@ -265,7 +269,7 @@ export default function ProductDetailTop({
                     max="50"
                     step="1"
                     // value="1
-                    value={productValues.productSize}
+                    value={productValues.size}
                     onChange={handleOnChange}
                     // ref={numberRef}
                   />
@@ -293,11 +297,11 @@ export default function ProductDetailTop({
               )}
               {/* <Input onChange={handleOnChange} /> */}
             </div>
-            {productValues.productGender && (
+            {productValues.gender && (
               <div className="product-gender">
                 <span
                   className={`male ${
-                    productValues.productGender === "male" ? "active" : ""
+                    productValues.gender === "male" ? "active" : ""
                   }`}
                   onClick={handleChangeProductGenderMale}
                   onKeyDown={handleChangeProductGenderMale}
@@ -308,7 +312,7 @@ export default function ProductDetailTop({
                 </span>
                 <span
                   className={`female ${
-                    productValues.productGender === "female" ? "active" : ""
+                    productValues.gender === "female" ? "active" : ""
                   }`}
                   onClick={handleChangeProductGenderFemale}
                   onKeyDown={handleChangeProductGenderFemale}

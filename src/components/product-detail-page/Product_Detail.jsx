@@ -29,9 +29,9 @@ export default function Product_Detail({ data }) {
   // const QtyRef = useRef();
 
   const [productValues, setProductValues] = useState({
-    productSize: data.size,
+    size: data.size,
     productQty: 1,
-    productGender: data.gender,
+    gender: data.gender,
   });
 
   // console.log(data);
