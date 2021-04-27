@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
 import shoppingBag2Line from "@iconify/icons-ri/shopping-bag-2-line";
 import alarmClockLine from "@iconify/icons-clarity/alarm-clock-line";
 import CartDetails from "../cart-pages/CartDetails";
 import WishlistDetails from "../cart-pages/WishlistDetails";
+import { ThemeContext } from "../context/ThemeContext";
 
 const PageStyles = styled.div`
   width: 100%;
@@ -101,16 +102,22 @@ export default function IsEmptyCartPage({ children }) {
   const [showCartDetail, setShowCartDetail] = useState(null);
   const [showWishlistDetail, setShowWishlistDetail] = useState(null);
   const [selectedProducts, setSelectedProducts] = useState();
+  const { isStorageChanged, setIsStorageChanged } = useContext(ThemeContext);
 
   // console.log(showCartDetail, showWishlistDetail);
 
   useEffect(() => {
     if (children === "Shopping cart") {
-      if (localStorage.getItem("selectedProduct")) {
+      const cartItems = JSON.parse(localStorage.getItem("selectedProduct"));
+
+      console.log(cartItems.length);
+      if (!cartItems || cartItems.length === 0) {
+        setShowCartDetail(false);
+        console.log("nop");
+      } else {
+        console.log("show");
         setShowCartDetail(true);
         setSelectedProducts(localStorage.getItem("selectedProduct"));
-      } else {
-        setShowCartDetail(false);
       }
     } else {
       if (localStorage.getItem("wishlistProducts")) {
@@ -120,7 +127,7 @@ export default function IsEmptyCartPage({ children }) {
         setShowWishlistDetail(false);
       }
     }
-  }, []);
+  }, [isStorageChanged]);
 
   return (
     <PageStyles

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import {
   TopSection,
   ProductImages,
@@ -17,6 +17,7 @@ import { Arrow_Button } from "../../styles/Button";
 import threeDotsVertical from "@iconify/icons-bi/three-dots-vertical";
 import ProductAddDialog from "./ProductAddDialog";
 import WarningDialog from "../Layouts/WarningDialog";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function ProductDetailTop({
   productValues,
@@ -29,6 +30,12 @@ export default function ProductDetailTop({
   const [productAddDialogOpen, setProductAddDialogOpen] = useState(false);
 
   const [showAlreadyExisted, setShowAlreadyExisted] = useState();
+  const { isStorageChanged, setIsStorageChanged } = useContext(ThemeContext);
+
+  // const {isStorageChanged, setIsStorageChanged} = contextValues;
+
+  // console.log(isStorageChanged);
+
   // const [selectedProducts, setSelectedProducts] = useState(data);
   // const [hoverActive, setHoverActive] = useState();
   // const addDialogRef = React.useRef(null);
@@ -191,12 +198,25 @@ export default function ProductDetailTop({
         ...productValues,
       };
 
-      // console.log(data);
+      // var originalSetItem = localStorage.setItem;
+
+      // localStorage.setItem = function (key, value) {
+      //   var event = new Event("itemInserted");
+
+      //   event.value = value; // Optional..
+      //   event.key = key; // Optional..
+
+      //   document.dispatchEvent(event);
+
+      //   originalSetItem.apply(this, arguments);
+      // };
 
       localStorage.setItem(
         "selectedProduct",
         JSON.stringify([...storedProducts, _data])
       );
+
+      setIsStorageChanged(() => !isStorageChanged);
     } else {
       setProductAddDialogOpen(true);
 
@@ -204,7 +224,27 @@ export default function ProductDetailTop({
         ...data,
         ...productValues,
       };
+
+      // var originalSetItem = localStorage.setItem;
+
+      // localStorage.setItem = function (key, value) {
+      //   var event = new Event("itemInserted");
+
+      //   event.value = value; // Optional..
+      //   event.key = key; // Optional..
+
+      //   document.dispatchEvent(event);
+
+      //   originalSetItem.apply(this, arguments);
+      // };
+
       localStorage.setItem("selectedProduct", JSON.stringify([_data]));
+
+      setIsStorageChanged(() => !isStorageChanged);
+
+      // document.addEventListener("itemInserted", localStorageSetHandler, false);
+
+      // localStorage.setItem('foo', 'bar'); // Pops an alert
     }
   }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { Icon } from "@iconify/react";
 import heartOutlined from "@iconify/icons-ant-design/heart-outlined";
 import cart2Icon from "@iconify/icons-bi/cart2";
@@ -6,6 +6,7 @@ import { Link } from "gatsby";
 import menuAlt3 from "@iconify/icons-heroicons-outline/menu-alt-3";
 import windowCloseLine from "@iconify/icons-clarity/window-close-line";
 import styled from "styled-components";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Header = styled.header`
   @media (max-width: 600px) {
@@ -71,6 +72,29 @@ const NavWrapperCarts = styled.div`
 
   .hidden-lg {
     display: none;
+  }
+
+  .cart {
+    position: relative;
+
+    .active-cart-items-length {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      width: 17px;
+      height: 17px;
+      background: rgba(202, 11, 0, 0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50px;
+
+      .length {
+        font-family: var(--content-font);
+        color: #fff;
+        font-size: 14px;
+      }
+    }
   }
 
   @media (max-width: 600px) {
@@ -241,6 +265,8 @@ const NavMobile = styled.div`
 export default function Navbar() {
   const [toggleNav, setToggleNav] = useState(false);
   const [isBetween600n1024, setIsBetween600n1024] = useState(false);
+  const [activeItemsLength, setActiveItemsLength] = useState(0);
+  const { isStorageChanged, setIsStorageChanged } = useContext(ThemeContext);
 
   const navRef = useRef(null);
 
@@ -251,6 +277,38 @@ export default function Navbar() {
       document.body.style.overflow = "unset";
     }
   }, [toggleNav]);
+
+  useEffect(() => {
+    const storedProducts = JSON.parse(localStorage.getItem("selectedProduct"));
+    if (storedProducts) {
+      // console.log(storedProducts);
+      setActiveItemsLength(storedProducts.length);
+    } else {
+      setActiveItemsLength(0);
+    }
+    // function handleLocalStorageChange() {
+    //   console.log("xi");
+    //   const storedProducts = JSON.parse(
+    //     localStorage.getItem("selectedProduct")
+    //   );
+    //   console.log(storedProducts);
+    //   if (storedProducts) {
+    //     setActiveItemsLength(storedProducts.length);
+    //   } else {
+    //     setActiveItemsLength(0);
+    //   }
+    // }
+    // document.addEventListener("itemInserted", handleLocalStorageChange, false);
+    // return () => {
+    //   document.removeEventListener(
+    //     "itemInserted",
+    //     handleLocalStorageChange,
+    //     false
+    //   );
+    // };
+  }, [isStorageChanged]);
+
+  // console.log(activeItemsLength);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutsideNav);
@@ -313,6 +371,11 @@ export default function Navbar() {
                 style={{ color: "#606060", fontSize: "30px" }}
               />
               <span className="hidden-lg">Shopping cart</span>
+              {activeItemsLength === 0 || !activeItemsLength ? null : (
+                <span className="active-cart-items-length">
+                  <span className="length">{activeItemsLength}</span>
+                </span>
+              )}
             </Link>
             <Icon
               icon={windowCloseLine}

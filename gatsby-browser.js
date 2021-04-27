@@ -1,6 +1,6 @@
-// import React from "react";
-// import ContextIcons from "./src/context/ContextIcons";
-// export const wrapRootElement = ({ element }) => (
-//   <ContextIcons>{element}</ContextIcons>
-// );
-// import "./src/styles/typography.css";
+import React from "react";
+import ThemeProvider from "./src/components/context/ThemeContext";
+
+export const wrapRootElement = ({ element }) => (
+  <ThemeProvider>{element}</ThemeProvider>
+);

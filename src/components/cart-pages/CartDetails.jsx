@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import Img from "gatsby-image";
 import { Icon, InlineIcon } from "@iconify/react";
@@ -8,6 +8,7 @@ import femaleIcon from "@iconify/icons-fa-solid/female";
 import maleIcon from "@iconify/icons-fa-solid/male";
 import { Arrow_Button } from "../../styles/Button";
 import arrowRight from "@iconify/icons-bi/arrow-right";
+import { ThemeContext } from "../context/ThemeContext";
 
 // import IconButton from "@material-ui/core/IconButton";
 
@@ -284,7 +285,7 @@ const TotalPrice = styled.div`
 const CheckoutBtn = styled.div``;
 
 export default function CartDetails({ selectedProducts }) {
-  console.log(JSON.parse(selectedProducts));
+  // console.log(JSON.parse(selectedProducts));
   const [cartItems, setCartItems] = useState(
     JSON.parse(selectedProducts).reduce((acc, cur) => {
       const obj = {};
@@ -304,6 +305,8 @@ export default function CartDetails({ selectedProducts }) {
       return Object.keys(obj).length > 0 ? acc.concat(obj) : acc;
     }, [])
   );
+  const { isStorageChanged, setIsStorageChanged } = useContext(ThemeContext);
+
   // const [selectedQtyRowId, setSelectedQtyRowId] = useState();
   // const selectedQtyRow = cartItems.find(item => item.id === selectedQtyRowId)
 
@@ -389,6 +392,7 @@ export default function CartDetails({ selectedProducts }) {
     const _cartItems = cartItems.filter(item => item.id !== v.id);
     setCartItems(_cartItems);
     localStorage.setItem("selectedProduct", JSON.stringify(_cartItems));
+    setIsStorageChanged(() => !isStorageChanged);
 
     // localStorage.removeItem('selectedProduct')
     // setCartItems(cartItems.filter(item => item.id !== v.id));
