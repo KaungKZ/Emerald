@@ -5,7 +5,7 @@ import React, { useEffect, useState, useContext } from "react";
 //   toggleDark: () => {},
 // };
 
-export const ThemeContext = React.createContext();
+export const ContextValues = React.createContext();
 
 // Getting dark mode information from OS!
 // You need macOS Mojave + Safari Technology Preview Release 68 to test this currently.
@@ -41,14 +41,14 @@ export default function ThemeProvider(props) {
   //   render() {
 
   return (
-    <ThemeContext.Provider
+    <ContextValues.Provider
       value={{
         isStorageChanged: isStorageChanged,
         setIsStorageChanged: setIsStorageChanged,
       }}
     >
       {children}
-    </ThemeContext.Provider>
+    </ContextValues.Provider>
   );
   //   }
 }

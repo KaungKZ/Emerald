@@ -5,7 +5,7 @@ import shoppingBag2Line from "@iconify/icons-ri/shopping-bag-2-line";
 import alarmClockLine from "@iconify/icons-clarity/alarm-clock-line";
 import CartDetails from "../cart-pages/CartDetails";
 import WishlistDetails from "../cart-pages/WishlistDetails";
-import { ThemeContext } from "../context/ThemeContext";
+import { ContextValues } from "../context/ContextSetup";
 
 const PageStyles = styled.div`
   width: 100%;
@@ -59,6 +59,9 @@ const PageTitle = styled.div`
   }
 
   @media (max-width: 768px) {
+    .title {
+      font-size: 1.8rem;
+    }
     &::after {
       left: -25%;
       width: 150%;
@@ -66,7 +69,9 @@ const PageTitle = styled.div`
   }
 
   @media (max-width: 480px) {
-    font-size: 1.7rem;
+    .title {
+      font-size: 1.7rem;
+    }
   }
   @media (max-width: 400px) {
     &::after {
@@ -102,7 +107,8 @@ export default function IsEmptyCartPage({ children }) {
   const [showCartDetail, setShowCartDetail] = useState(null);
   const [showWishlistDetail, setShowWishlistDetail] = useState(null);
   const [selectedProducts, setSelectedProducts] = useState();
-  const { isStorageChanged, setIsStorageChanged } = useContext(ThemeContext);
+  const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
+  const [isLoading, setIsLoading] = useState(true);
 
   // console.log(showCartDetail, showWishlistDetail);
 
@@ -110,15 +116,18 @@ export default function IsEmptyCartPage({ children }) {
     if (children === "Shopping cart") {
       const cartItems = JSON.parse(localStorage.getItem("selectedProduct"));
 
-      console.log(cartItems.length);
+      // console.log(cartItems.length);
       if (!cartItems || cartItems.length === 0) {
         setShowCartDetail(false);
-        console.log("nop");
+        // console.log("nop");
       } else {
-        console.log("show");
+        // console.log("show");
         setShowCartDetail(true);
         setSelectedProducts(localStorage.getItem("selectedProduct"));
       }
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 600);
     } else {
       if (localStorage.getItem("wishlistProducts")) {
         setShowWishlistDetail(true);
@@ -126,6 +135,9 @@ export default function IsEmptyCartPage({ children }) {
       } else {
         setShowWishlistDetail(false);
       }
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 600);
     }
   }, [isStorageChanged]);
 
@@ -140,7 +152,9 @@ export default function IsEmptyCartPage({ children }) {
       >
         <h1 className="title">{children}</h1>
       </PageTitle>
-      {children === "Shopping cart" ? (
+      {isLoading ? (
+        <div className="loading-text">Loading ..</div>
+      ) : children === "Shopping cart" ? (
         !showCartDetail ? (
           <>
             <Icon

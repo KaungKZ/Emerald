@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import Img from "gatsby-image";
 import { Icon, InlineIcon } from "@iconify/react";
@@ -8,7 +8,8 @@ import femaleIcon from "@iconify/icons-fa-solid/female";
 import maleIcon from "@iconify/icons-fa-solid/male";
 import { Arrow_Button } from "../../styles/Button";
 import arrowRight from "@iconify/icons-bi/arrow-right";
-import { ThemeContext } from "../context/ThemeContext";
+import { ContextValues } from "../context/ContextSetup";
+import { Link } from "gatsby";
 
 // import IconButton from "@material-ui/core/IconButton";
 
@@ -131,6 +132,53 @@ const ProductQuantity = styled.div`
     border-bottom: 1px solid #eee;
     right: 70px;
   }
+
+  @media (max-width: 1024px) {
+    input {
+      width: 70px;
+      padding-left: 32px;
+    }
+
+    input[type="number"] {
+      font-size: 12px;
+    }
+
+    .quantity-button.quantity-down {
+      right: 50px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    input {
+      width: 60px;
+      padding-left: 27px;
+      height: 20px;
+    }
+
+    input[type="number"] {
+      font-size: 10px;
+    }
+
+    .quantity-nav {
+      height: 40px;
+    }
+
+    .quantity-button.quantity-down,
+    .quantity-button.quantity-up {
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .quantity-button.quantity-down {
+      right: 40px;
+    }
+  }
+`;
+
+const ItemLink = styled(Link)`
+  text-decoration-color: #000;
 `;
 
 const TableHeader = styled.div`
@@ -154,16 +202,59 @@ const TableHeader = styled.div`
     &:last-child {
       padding: 15px 5% 15px 20px;
     }
+  }
 
-    /* &:not(:first-child) {
-      text-align: center;
-    } */
-    /* border-bottom: 1px solid black; */
+  @media (max-width: 1024px) {
+    font-size: 14px;
+    &:first-child {
+      padding: 15px 20px 15px 35px;
+    }
+
+    &:last-child {
+      padding: 15px 35px 15px 20px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    font-size: 12px;
   }
 `;
 
 const TableBody = styled.div`
   display: table-row-group;
+`;
+
+const TableFooter = styled.div`
+  display: table-footer-group;
+`;
+
+const RemoveAllWrapper = styled.div`
+  /* display: table-cell; */
+  /* padding: 10px; */
+  /* text-align: center; */
+  width: 100%;
+  padding: 20px 5% 20px 20px;
+  text-align: right;
+
+  &.remove-btn {
+    /* padding: 15px 5% 15px 20px; */
+  }
+
+  @media (max-width: 1024px) {
+    padding: 20px 35px 20px 20px;
+    &.remove-btn {
+      /* padding: 15px 35px 15px 20px; */
+    }
+  }
+`;
+
+const RemoveAllBtn = styled.button`
+  outline: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--content-font);
+  text-decoration: underline;
 `;
 
 const TableCell = styled.div`
@@ -190,6 +281,21 @@ const TableCell = styled.div`
   &:last-child {
     padding: 20px 5% 20px 10px;
   }
+
+  @media (max-width: 1024px) {
+    &:first-child {
+      padding: 20px 10px 20px 35px;
+    }
+
+    &:last-child {
+      padding: 20px 35px 20px 10px;
+    }
+
+    .item-price {
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
 `;
 
 const IconWrapper = styled.div``;
@@ -199,13 +305,30 @@ const CancelIcon = styled.button`
   border: none;
   background: none;
   cursor: pointer;
-
-  svg {
+  color: var(--text-color);
+  font-family: var(--content-font);
+  font-size: 1rem;
+  text-decoration: underline;
+  opacity: 0.75;
+  transition: opacity 300ms;
+  /* svg {
     color: rgba(202, 11, 0, 0.45) !important;
     transform: color 400ms;
     &:hover {
       color: rgba(202, 11, 0, 1) !important;
     }
+  } */
+
+  &:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 12px;
   }
 `;
 
@@ -230,23 +353,66 @@ const ItemDetailsWrapper = styled.div`
       font-weight: 700;
       text-transform: capitalize;
       color: var(--text-color);
+      margin-bottom: 4px;
     }
     .item-size {
       font-family: var(--content-font);
       font-size: 14px;
+      /* font-weight: 500; */
       color: rgba(90, 90, 90, 0.75);
+      /* color: var(--primary-color); */
     }
 
     & > div:not(:last-child) {
       margin-bottom: 7px;
     }
   }
+
+  @media (max-width: 1024px) {
+    .item-image {
+      .gatsby-image-wrapper {
+        max-height: 70px !important;
+        max-width: 100px !important;
+        /* img {
+        object-fit: contain !important;
+      } */
+      }
+    }
+
+    .item-details {
+      .item-name {
+        font-size: 16px;
+      }
+      .item-size {
+        font-size: 14px;
+      }
+
+      .item-gender {
+        svg {
+          font-size: 18px !important;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .item-image {
+      .gatsby-image-wrapper {
+        max-height: 60px !important;
+        max-width: 80px !important;
+      }
+    }
+  }
 `;
 
 const TableRow = styled.div`
   display: table-row;
-  background: #f9f9f9;
-  height: 150px;
+  background: #f8f8f8;
+
+  height: 135px;
+  @media (max-width: 1024px) {
+    height: 125px;
+  }
 `;
 const TotalPriceWrapper = styled.div`
   width: 100%;
@@ -266,6 +432,13 @@ const AdditionalFees = styled.div`
     font-weight: 500;
     color: rgba(90, 90, 90, 0.85);
   }
+
+  @media (max-width: 1024px) {
+    font-size: 12px;
+    .shipping-price {
+      font-size: 14px;
+    }
+  }
 `;
 
 const TotalPrice = styled.div`
@@ -279,6 +452,18 @@ const TotalPrice = styled.div`
     font-size: 1.35rem;
     font-weight: 700;
     color: rgba(53, 53, 53, 0.85);
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+
+    .total-price {
+      font-size: 1.25rem;
+    }
   }
 `;
 
@@ -305,13 +490,15 @@ export default function CartDetails({ selectedProducts }) {
       return Object.keys(obj).length > 0 ? acc.concat(obj) : acc;
     }, [])
   );
-  const { isStorageChanged, setIsStorageChanged } = useContext(ThemeContext);
+  const [isSmallSize, setIsSmallSize] = useState("");
+
+  const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
 
   // const [selectedQtyRowId, setSelectedQtyRowId] = useState();
   // const selectedQtyRow = cartItems.find(item => item.id === selectedQtyRowId)
 
   function handleProductSizeDown(e, item) {
-    const elementName = e.target.parentNode.parentNode.getAttribute("name");
+    // const elementName = e.target.parentNode.parentNode.getAttribute("name");
 
     const input = e.target.parentNode.parentNode.querySelector("input");
 
@@ -329,6 +516,35 @@ export default function CartDetails({ selectedProducts }) {
 
     clone[selectedRow].productQty = newVal;
     setCartItems(clone);
+  }
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth < 601) {
+        setIsSmallSize("s");
+      } else if (window.innerWidth < 1025) {
+        setIsSmallSize("m");
+      } else {
+        setIsSmallSize("l");
+      }
+      window.addEventListener("resize", handleWindowResize);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleWindowResize);
+      }
+    };
+  }, []);
+
+  function handleWindowResize() {
+    if (window.innerWidth < 601) {
+      setIsSmallSize("s");
+    } else if (window.innerWidth < 1025) {
+      setIsSmallSize("m");
+    } else {
+      setIsSmallSize("l");
+    }
   }
 
   function handleProductSizeUp(e, item) {
@@ -407,6 +623,8 @@ export default function CartDetails({ selectedProducts }) {
   // const valuesToFind = ["id", "title"];
 
   // console.log(cartItems);
+
+  console.log(isSmallSize);
   return (
     <>
       <Table id="res-table">
@@ -414,10 +632,13 @@ export default function CartDetails({ selectedProducts }) {
           <div className="table-header-cell">Items</div>
           <div className="table-header-cell">Amount</div>
           <div className="table-header-cell">Price</div>
-          <div className="table-header-cell">Remove</div>
+          <div className="table-header-cell">
+            {isSmallSize === "s" ? "" : "Remove"}
+          </div>
         </TableHeader>
         <TableBody id="resp-table-body">
           {cartItems.map(item => {
+            console.log(item);
             return (
               <TableRow>
                 <TableCell>
@@ -430,7 +651,22 @@ export default function CartDetails({ selectedProducts }) {
                       />
                     </div>
                     <div className="item-details">
-                      <div className="item-name">{item.title}</div>
+                      <ItemLink to={`/product/${item.id}`}>
+                        <div className="item-name">
+                          {isSmallSize === "s"
+                            ? item.title.length > 20
+                              ? item.title.substring(0, 20).concat(" ...")
+                              : item.title
+                            : isSmallSize === "m"
+                            ? item.title.length > 30
+                              ? item.title.substring(0, 30).concat(" ...")
+                              : item.title
+                            : item.title.length > 50
+                            ? item.title.substring(0, 50).concat(" ...")
+                            : item.title}
+                        </div>
+                      </ItemLink>
+
                       <div className="item-size">{item.size}</div>
                       {item.gender && (
                         <div className="item-gender">
@@ -494,10 +730,14 @@ export default function CartDetails({ selectedProducts }) {
                 <TableCell>
                   <IconWrapper>
                     <CancelIcon onClick={() => handleRemoveItem(item)}>
-                      <Icon
-                        icon={crossMarkButton}
-                        style={{ color: "#ca0b00", fontSize: "20px" }}
-                      />
+                      {isSmallSize === "s" ? (
+                        <Icon
+                          icon={crossMarkButton}
+                          style={{ color: "#ca0b00", fontSize: "20px" }}
+                        />
+                      ) : (
+                        "Remove"
+                      )}
                     </CancelIcon>
                   </IconWrapper>
                 </TableCell>
@@ -505,7 +745,21 @@ export default function CartDetails({ selectedProducts }) {
             );
           })}
         </TableBody>
+        {/* <TableFooter>
+          <FooterCell>
+          </FooterCell>
+          <FooterCell>
+          </FooterCell>
+          <FooterCell>
+          </FooterCell>
+          <FooterCell className="remove-btn">
+            <RemoveAllBtn>Remove all items</RemoveAllBtn>
+          </FooterCell>
+        </TableFooter> */}
       </Table>
+      <RemoveAllWrapper className="remove-btn">
+        <RemoveAllBtn>Remove all items</RemoveAllBtn>
+      </RemoveAllWrapper>
       <TotalPriceWrapper>
         <AdditionalFees>
           Shipping: <span className="shipping-price">$7.99</span>

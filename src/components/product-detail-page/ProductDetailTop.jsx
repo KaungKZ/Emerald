@@ -17,7 +17,7 @@ import { Arrow_Button } from "../../styles/Button";
 import threeDotsVertical from "@iconify/icons-bi/three-dots-vertical";
 import ProductAddDialog from "./ProductAddDialog";
 import WarningDialog from "../Layouts/WarningDialog";
-import { ThemeContext } from "../context/ThemeContext";
+import { ContextValues } from "../context/ContextSetup";
 
 export default function ProductDetailTop({
   productValues,
@@ -30,7 +30,7 @@ export default function ProductDetailTop({
   const [productAddDialogOpen, setProductAddDialogOpen] = useState(false);
 
   const [showAlreadyExisted, setShowAlreadyExisted] = useState();
-  const { isStorageChanged, setIsStorageChanged } = useContext(ThemeContext);
+  const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
 
   // const {isStorageChanged, setIsStorageChanged} = contextValues;
 

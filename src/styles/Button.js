@@ -50,7 +50,8 @@ export const Arrow_Button = styled.button`
   padding: ${props =>
     props.large ? "var(--large-btn-padding)" : "var(--btn-padding)"};
   font-family: var(--secondary-font);
-  font-size: var(--normal-text);
+  /* font-size: var(--normal-text); */
+  font-size: 1rem;
   color: ${props => (props.dark ? "#fff" : "#353535")};
   background: ${props => (props.dark ? "#5a5a5a" : "#fff")};
   outline: none;
@@ -95,7 +96,7 @@ export const Arrow_Button = styled.button`
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 1024px) {
     &.disabled {
       &:hover {
         .arrow-right-icon {
@@ -124,5 +125,9 @@ export const Arrow_Button = styled.button`
         margin-left: 10px;
       }
     }
+  }
+
+  @media (max-width: 600px) {
+    font-size: 14px;
   }
 `;

@@ -29,7 +29,7 @@ html {
     --normal-text: 16px;
     --btn-text: 18px;
     --btn-padding: 10px 20px;
-    --large-btn-padding: 10px 40px;
+    --large-btn-padding: 10px 55px;
     --small-btn-padding: 5px 15px;
     --section-title-font-size: 1.8rem;
 }
@@ -109,7 +109,6 @@ html {
 
      html {
         --btn-padding: 7px 20px;
-        --normal-text: 14px;
         --header-title: 2.3rem;
      }
 
@@ -118,6 +117,8 @@ html {
  @media (max-width: 768px) {
 
      html {
+        --normal-text: 14px;
+
         --section-title-font-size: 1.5rem;
      }
      
@@ -139,13 +140,13 @@ html {
  }
  @media (max-width: 480px) {
      html {
-        --normal-text: 12px;
         --btn-padding: 7px 15px;
      }
  }
 
  @media (max-width: 400px) {
      html {
+        --normal-text: 12px;
         --section-title-font-size: 1.1rem;
      }
  }

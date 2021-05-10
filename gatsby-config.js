@@ -25,5 +25,11 @@ module.exports = {
         accessToken: process.env.ACCESS_TOKEN,
       },
     },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/Layouts/Layout.jsx`),
+      },
+    },
   ],
 };

@@ -6,7 +6,7 @@ import { Link } from "gatsby";
 import menuAlt3 from "@iconify/icons-heroicons-outline/menu-alt-3";
 import windowCloseLine from "@iconify/icons-clarity/window-close-line";
 import styled from "styled-components";
-import { ThemeContext } from "../context/ThemeContext";
+import { ContextValues } from "../context/ContextSetup";
 
 const Header = styled.header`
   @media (max-width: 600px) {
@@ -79,13 +79,15 @@ const NavWrapperCarts = styled.div`
 
     .active-cart-items-length {
       position: absolute;
-      top: -5px;
+      top: -3px;
       right: -5px;
       width: 17px;
       height: 17px;
-      background: rgba(202, 11, 0, 0.85);
+      background: rgba(202, 11, 0, 0.95);
       display: flex;
       justify-content: center;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+        rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
       align-items: center;
       border-radius: 50px;
 
@@ -93,6 +95,7 @@ const NavWrapperCarts = styled.div`
         font-family: var(--content-font);
         color: #fff;
         font-size: 14px;
+        font-weight: 500;
       }
     }
   }
@@ -264,9 +267,9 @@ const NavMobile = styled.div`
 
 export default function Navbar() {
   const [toggleNav, setToggleNav] = useState(false);
-  const [isBetween600n1024, setIsBetween600n1024] = useState(false);
+  const [isBetween600n1024, setIsBetween600n1024] = useState();
   const [activeItemsLength, setActiveItemsLength] = useState(0);
-  const { isStorageChanged, setIsStorageChanged } = useContext(ThemeContext);
+  const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
 
   const navRef = useRef(null);
 
@@ -286,26 +289,6 @@ export default function Navbar() {
     } else {
       setActiveItemsLength(0);
     }
-    // function handleLocalStorageChange() {
-    //   console.log("xi");
-    //   const storedProducts = JSON.parse(
-    //     localStorage.getItem("selectedProduct")
-    //   );
-    //   console.log(storedProducts);
-    //   if (storedProducts) {
-    //     setActiveItemsLength(storedProducts.length);
-    //   } else {
-    //     setActiveItemsLength(0);
-    //   }
-    // }
-    // document.addEventListener("itemInserted", handleLocalStorageChange, false);
-    // return () => {
-    //   document.removeEventListener(
-    //     "itemInserted",
-    //     handleLocalStorageChange,
-    //     false
-    //   );
-    // };
   }, [isStorageChanged]);
 
   // console.log(activeItemsLength);
@@ -324,7 +307,7 @@ export default function Navbar() {
     };
   });
 
-  // console.log(isBetween600n1024);
+  console.log(isBetween600n1024);
 
   function handleResizeNav(e) {
     if (e.currentTarget.innerWidth < 1024 && e.currentTarget.innerWidth > 600) {
