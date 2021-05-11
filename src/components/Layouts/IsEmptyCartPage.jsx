@@ -33,6 +33,13 @@ const PageStyles = styled.div`
   @media (max-width: 768px) {
     justify-content: space-evenly;
   }
+
+  @media (max-width: 480px) {
+    margin: ${props =>
+      props.showCartDetail || props.showWishlistDetail
+        ? "30px auto"
+        : "0 auto"};
+  }
 `;
 
 const PageTitle = styled.div`

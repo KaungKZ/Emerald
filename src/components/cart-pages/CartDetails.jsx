@@ -2,8 +2,10 @@ import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import Img from "gatsby-image";
 import { Icon, InlineIcon } from "@iconify/react";
-import crossMarkButton from "@iconify/icons-emojione-monotone/cross-mark-button";
+// import crossMarkButton from "@iconify/icons-emojione-monotone/cross-mark-button";
+// import crossIcon from "@iconify/icons-akar-icons/cross";
 // import { Icon, InlineIcon } from '@iconify/react';
+import removeIcon from "@iconify/icons-dashicons/remove";
 import femaleIcon from "@iconify/icons-fa-solid/female";
 import maleIcon from "@iconify/icons-fa-solid/male";
 import { Arrow_Button } from "../../styles/Button";
@@ -20,31 +22,9 @@ const Table = styled.div`
   display: table;
   border-spacing: 0px 10px;
 
-  /* #resp-table-header {
-    display: table-header-group;
-    background-color: gray;
-    font-weight: bold;
-    font-size: 25px;
-
-    .table-header-cell {
-      display: table-cell;
-      padding: 10px;
-      text-align: justify;
-      border-bottom: 1px solid black;
-    }
-  } */
-
-  /* #resp-table-body {
-    display: table-row-group;
-
-    .resp-table-row {
-      display: table-row;
-
-      .table-body-cell {
-        display: table-cell;
-      }
-    }
-  } */
+  @media (max-width: 480px) {
+    text-align: center;
+  }
 `;
 
 const ProductQuantity = styled.div`
@@ -195,28 +175,36 @@ const TableHeader = styled.div`
     padding: 15px 20px;
     text-align: center;
 
-    &:first-child {
+    /* &:first-child {
       padding: 15px 20px 15px 5%;
     }
 
     &:last-child {
       padding: 15px 5% 15px 20px;
-    }
+    } */
   }
 
   @media (max-width: 1024px) {
     font-size: 14px;
-    &:first-child {
+    /* &:first-child {
       padding: 15px 20px 15px 35px;
     }
 
     &:last-child {
       padding: 15px 35px 15px 20px;
-    }
+    } */
   }
 
   @media (max-width: 600px) {
     font-size: 12px;
+
+    /* &:first-child {
+      padding: 10px 15px 10px 25px;
+    }
+
+    &:last-child {
+      padding: 10px 25px 10px 15px;
+    } */
   }
 `;
 
@@ -242,9 +230,10 @@ const RemoveAllWrapper = styled.div`
 
   @media (max-width: 1024px) {
     padding: 20px 35px 20px 20px;
-    &.remove-btn {
-      /* padding: 15px 35px 15px 20px; */
-    }
+  }
+
+  @media (max-width: 600px) {
+    padding: 15px 25px 15px 15px;
   }
 `;
 
@@ -296,9 +285,48 @@ const TableCell = styled.div`
       font-weight: 500;
     }
   }
+
+  @media (max-width: 600px) {
+    &:first-child {
+      padding: 15px 10px 15px 25px;
+      max-width: 200px;
+    }
+
+    &:last-child {
+      padding: 15px 25px 15px 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &:first-child {
+      padding: 15px 10px 15px 15px;
+      max-width: 150px;
+    }
+
+    &:last-child {
+      padding: 15px 15px 15px 10px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    &:first-child {
+      padding: 15px 10px 15px 5px;
+      max-width: 125px;
+    }
+
+    &:last-child {
+      padding: 15px 20px 15px 10px;
+    }
+  }
 `;
 
-const IconWrapper = styled.div``;
+const IconWrapper = styled.div`
+  @media (max-width: 600px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
 
 const CancelIcon = styled.button`
   outline: none;
@@ -311,13 +339,14 @@ const CancelIcon = styled.button`
   text-decoration: underline;
   opacity: 0.75;
   transition: opacity 300ms;
-  /* svg {
-    color: rgba(202, 11, 0, 0.45) !important;
+
+  svg {
+    color: rgba(202, 11, 0, 0.75) !important;
     transform: color 400ms;
-    &:hover {
+    /* &:hover {
       color: rgba(202, 11, 0, 1) !important;
-    }
-  } */
+    } */
+  }
 
   &:hover {
     opacity: 1;
@@ -329,6 +358,12 @@ const CancelIcon = styled.button`
 
   @media (max-width: 768px) {
     font-size: 12px;
+  }
+
+  @media (max-width: 600px) {
+    svg {
+      margin-top: 2px;
+    }
   }
 `;
 
@@ -403,6 +438,59 @@ const ItemDetailsWrapper = styled.div`
       }
     }
   }
+
+  @media (max-width: 600px) {
+    .item-image {
+      .gatsby-image-wrapper {
+        max-height: 55px !important;
+        max-width: 70px !important;
+      }
+    }
+
+    .item-details {
+      margin-left: 7px;
+
+      .item-name {
+        font-size: 14px;
+      }
+
+      .item-size {
+        font-size: 12px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+
+    .item-details {
+      margin: 7px 0 0 10px;
+
+      .item-name {
+        margin-bottom: 7px;
+      }
+    }
+
+    /* .item-image {
+      display: flex;
+      justify-content: center;
+    } */
+  }
+
+  @media (max-width: 420px) {
+    .item-image {
+      .gatsby-image-wrapper {
+        max-height: 50px !important;
+        max-width: 60px !important;
+      }
+    }
+
+    /* .item-details {
+      .item-name {
+        font-size: 12px;
+      }
+    } */
+  }
 `;
 
 const TableRow = styled.div`
@@ -413,6 +501,14 @@ const TableRow = styled.div`
   @media (max-width: 1024px) {
     height: 125px;
   }
+
+  @media (max-width: 600px) {
+    height: 110px;
+  }
+
+  @media (max-width: 480px) {
+    height: 150px;
+  }
 `;
 const TotalPriceWrapper = styled.div`
   width: 100%;
@@ -422,6 +518,10 @@ const TotalPriceWrapper = styled.div`
   padding: 7px;
   min-height: 150px;
   align-items: center;
+
+  @media (max-width: 480px) {
+    margin-top: 15px;
+  }
 `;
 const AdditionalFees = styled.div`
   font-size: 14px;
@@ -463,6 +563,14 @@ const TotalPrice = styled.div`
 
     .total-price {
       font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+
+    .total-price {
+      font-size: 1.1rem;
     }
   }
 `;
@@ -624,7 +732,7 @@ export default function CartDetails({ selectedProducts }) {
 
   // console.log(cartItems);
 
-  console.log(isSmallSize);
+  // console.log(isSmallSize);
   return (
     <>
       <Table id="res-table">
@@ -638,7 +746,7 @@ export default function CartDetails({ selectedProducts }) {
         </TableHeader>
         <TableBody id="resp-table-body">
           {cartItems.map(item => {
-            console.log(item);
+            // console.log(item);
             return (
               <TableRow>
                 <TableCell>
@@ -731,10 +839,7 @@ export default function CartDetails({ selectedProducts }) {
                   <IconWrapper>
                     <CancelIcon onClick={() => handleRemoveItem(item)}>
                       {isSmallSize === "s" ? (
-                        <Icon
-                          icon={crossMarkButton}
-                          style={{ color: "#ca0b00", fontSize: "20px" }}
-                        />
+                        <Icon icon={removeIcon} style={{ fontSize: "16px" }} />
                       ) : (
                         "Remove"
                       )}
