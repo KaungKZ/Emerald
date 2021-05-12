@@ -307,7 +307,7 @@ export default function Navbar() {
     };
   });
 
-  console.log(isBetween600n1024);
+  // console.log(isBetween600n1024);
 
   function handleResizeNav(e) {
     if (e.currentTarget.innerWidth < 1024 && e.currentTarget.innerWidth > 600) {

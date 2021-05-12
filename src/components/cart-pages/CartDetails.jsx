@@ -20,6 +20,7 @@ import { Link } from "gatsby";
 const Table = styled.div`
   width: 100%;
   display: table;
+  /* table-layout: fixed; */
   border-spacing: 0px 10px;
 
   @media (max-width: 480px) {
@@ -158,7 +159,15 @@ const ProductQuantity = styled.div`
 `;
 
 const ItemLink = styled(Link)`
-  text-decoration-color: #000;
+  text-decoration-color: var(--text-color);
+
+  &:hover {
+    text-decoration-color: var(--primary-color);
+
+    .item-name {
+      color: var(--primary-color) !important;
+    }
+  }
 `;
 
 const TableHeader = styled.div`
@@ -175,36 +184,49 @@ const TableHeader = styled.div`
     padding: 15px 20px;
     text-align: center;
 
-    /* &:first-child {
-      padding: 15px 20px 15px 5%;
+    &:first-child {
+      padding: 15px 20px 15px 50px;
     }
 
     &:last-child {
-      padding: 15px 5% 15px 20px;
-    } */
+      padding: 15px 50px 15px 20px;
+      /* min-width: 150px; */
+    }
+  }
+
+  @media (max-width: 1280px) {
+    &:last-child {
+      padding: 15px 75px 15px 20px;
+    }
   }
 
   @media (max-width: 1024px) {
     font-size: 14px;
-    /* &:first-child {
+    &:first-child {
       padding: 15px 20px 15px 35px;
     }
 
     &:last-child {
       padding: 15px 35px 15px 20px;
-    } */
+    }
   }
 
   @media (max-width: 600px) {
     font-size: 12px;
 
-    /* &:first-child {
+    &:first-child {
       padding: 10px 15px 10px 25px;
     }
 
     &:last-child {
       padding: 10px 25px 10px 15px;
-    } */
+    }
+  }
+
+  @media (max-width: 280px) {
+    .table-header-cell:nth-child(2) {
+      display: none;
+    }
   }
 `;
 
@@ -264,11 +286,19 @@ const TableCell = styled.div`
   }
 
   &:first-child {
-    padding: 20px 10px 20px 5%;
+    padding: 20px 10px 20px 50px;
   }
 
   &:last-child {
-    padding: 20px 5% 20px 10px;
+    padding: 20px 50px 20px 10px;
+    /* width: fit-content; */
+    /* min-width: 150px; */
+  }
+
+  @media (max-width: 1280px) {
+    &:last-child {
+      padding: 20px 75px 20px 10px;
+    }
   }
 
   @media (max-width: 1024px) {
@@ -318,9 +348,23 @@ const TableCell = styled.div`
       padding: 15px 20px 15px 10px;
     }
   }
+
+  @media (max-width: 360px) {
+    &:first-child {
+      max-width: 115px;
+    }
+  }
+
+  @media (max-width: 280px) {
+    &:nth-child(2) {
+      display: none;
+    }
+  }
 `;
 
 const IconWrapper = styled.div`
+  /* width: fit-content; */
+  display: inline-block;
   @media (max-width: 600px) {
     display: flex;
     justify-content: center;
@@ -348,9 +392,9 @@ const CancelIcon = styled.button`
     } */
   }
 
-  &:hover {
+  /* &:hover {
     opacity: 1;
-  }
+  } */
 
   @media (max-width: 1024px) {
     font-size: 14px;
@@ -539,6 +583,12 @@ const AdditionalFees = styled.div`
       font-size: 14px;
     }
   }
+
+  @media (max-width: 420px) {
+    .shipping-price {
+      font-size: 12px;
+    }
+  }
 `;
 
 const TotalPrice = styled.div`
@@ -578,7 +628,7 @@ const TotalPrice = styled.div`
 const CheckoutBtn = styled.div``;
 
 export default function CartDetails({ selectedProducts }) {
-  // console.log(JSON.parse(selectedProducts));
+  console.log(JSON.parse(selectedProducts));
   const [cartItems, setCartItems] = useState(
     JSON.parse(selectedProducts).reduce((acc, cur) => {
       const obj = {};
@@ -722,6 +772,12 @@ export default function CartDetails({ selectedProducts }) {
     // setCartItems(cartItems.filter(item => item.id !== v.id));
   }
 
+  function handleRemoveAllItems() {
+    setCartItems([]);
+    localStorage.setItem("selectedProduct", JSON.stringify([]));
+    setIsStorageChanged(() => !isStorageChanged);
+  }
+
   // console.log(calculateTotalPrice());
 
   // console.log(cartItems);
@@ -748,7 +804,7 @@ export default function CartDetails({ selectedProducts }) {
           {cartItems.map(item => {
             // console.log(item);
             return (
-              <TableRow>
+              <TableRow key={item.id}>
                 <TableCell>
                   <ItemDetailsWrapper>
                     <div className="item-image">
@@ -838,6 +894,8 @@ export default function CartDetails({ selectedProducts }) {
                 <TableCell>
                   <IconWrapper>
                     <CancelIcon onClick={() => handleRemoveItem(item)}>
+                      {/* <Icon icon={removeIcon} style={{ fontSize: "16px" }} /> */}
+                      {/* Remove */}
                       {isSmallSize === "s" ? (
                         <Icon icon={removeIcon} style={{ fontSize: "16px" }} />
                       ) : (
@@ -863,7 +921,9 @@ export default function CartDetails({ selectedProducts }) {
         </TableFooter> */}
       </Table>
       <RemoveAllWrapper className="remove-btn">
-        <RemoveAllBtn>Remove all items</RemoveAllBtn>
+        <RemoveAllBtn onClick={handleRemoveAllItems}>
+          Remove all items
+        </RemoveAllBtn>
       </RemoveAllWrapper>
       <TotalPriceWrapper>
         <AdditionalFees>

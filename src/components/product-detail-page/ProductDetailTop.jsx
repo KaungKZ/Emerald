@@ -198,18 +198,7 @@ export default function ProductDetailTop({
         ...productValues,
       };
 
-      // var originalSetItem = localStorage.setItem;
-
-      // localStorage.setItem = function (key, value) {
-      //   var event = new Event("itemInserted");
-
-      //   event.value = value; // Optional..
-      //   event.key = key; // Optional..
-
-      //   document.dispatchEvent(event);
-
-      //   originalSetItem.apply(this, arguments);
-      // };
+      console.log([...storedProducts, _data]);
 
       localStorage.setItem(
         "selectedProduct",
@@ -224,6 +213,8 @@ export default function ProductDetailTop({
         ...data,
         ...productValues,
       };
+
+      console.log(_data);
 
       // var originalSetItem = localStorage.setItem;
 

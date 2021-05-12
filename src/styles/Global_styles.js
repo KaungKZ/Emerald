@@ -147,8 +147,17 @@ html {
 
  @media (max-width: 400px) {
      html {
+        --large-btn-padding: 10px 40px;
+
         --normal-text: 12px;
         --section-title-font-size: 1.1rem;
+     }
+ }
+
+ @media (max-width: 320px) {
+     html {
+
+        --large-btn-padding: 8px 35px;
      }
  }
 `;
