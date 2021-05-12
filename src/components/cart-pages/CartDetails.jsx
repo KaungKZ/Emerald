@@ -12,6 +12,7 @@ import { Arrow_Button } from "../../styles/Button";
 import arrowRight from "@iconify/icons-bi/arrow-right";
 import { ContextValues } from "../context/ContextSetup";
 import { Link } from "gatsby";
+import ProductDeleteAllDialog from "../Dialogs/ProductDeleteAllDialog";
 
 // import IconButton from "@material-ui/core/IconButton";
 
@@ -628,7 +629,7 @@ const TotalPrice = styled.div`
 const CheckoutBtn = styled.div``;
 
 export default function CartDetails({ selectedProducts }) {
-  console.log(JSON.parse(selectedProducts));
+  // console.log(JSON.parse(selectedProducts));
   const [cartItems, setCartItems] = useState(
     JSON.parse(selectedProducts).reduce((acc, cur) => {
       const obj = {};
@@ -649,6 +650,7 @@ export default function CartDetails({ selectedProducts }) {
     }, [])
   );
   const [isSmallSize, setIsSmallSize] = useState("");
+  const [deleteAllDialogOpen, setDeleteAllDialogOpen] = useState(true);
 
   const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
 
@@ -773,9 +775,10 @@ export default function CartDetails({ selectedProducts }) {
   }
 
   function handleRemoveAllItems() {
-    setCartItems([]);
-    localStorage.setItem("selectedProduct", JSON.stringify([]));
-    setIsStorageChanged(() => !isStorageChanged);
+    setDeleteAllDialogOpen(true);
+    // setCartItems([]);
+    // localStorage.setItem("selectedProduct", JSON.stringify([]));
+    // setIsStorageChanged(() => !isStorageChanged);
   }
 
   // console.log(calculateTotalPrice());
@@ -948,6 +951,13 @@ export default function CartDetails({ selectedProducts }) {
           </Arrow_Button>
         </CheckoutBtn>
       </TotalPriceWrapper>
+      <ProductDeleteAllDialog
+        setCartItems={setCartItems}
+        setIsStorageChanged={setIsStorageChanged}
+        isStorageChanged={isStorageChanged}
+        deleteAllDialogOpen={deleteAllDialogOpen}
+        setDeleteAllDialogOpen={setDeleteAllDialogOpen}
+      ></ProductDeleteAllDialog>
     </>
   );
 }

@@ -15,8 +15,8 @@ import arrowRight from "@iconify/icons-bi/arrow-right";
 import { Icon } from "@iconify/react";
 import { Arrow_Button } from "../../styles/Button";
 import threeDotsVertical from "@iconify/icons-bi/three-dots-vertical";
-import ProductAddDialog from "./ProductAddDialog";
-import WarningDialog from "../Layouts/WarningDialog";
+import ProductAddDialog from "../Dialogs/ProductAddDialog";
+import WarningDialog from "../Dialogs/WarningDialog";
 import { ContextValues } from "../context/ContextSetup";
 
 export default function ProductDetailTop({
