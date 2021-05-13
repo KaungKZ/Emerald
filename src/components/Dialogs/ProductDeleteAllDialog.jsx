@@ -1,39 +1,88 @@
-import React from "react";
-import { Portal } from "react-portal";
-import styled from "styled-components";
-import { TextButton } from "../../styles/Button";
+import React, { useEffect, useRef } from "react";
 
-const WrapperDialog = styled.div`
-  position: fixed;
-  /* bottom: calc(0% + 20px); */
-  left: 50%;
-  top: 50%;
-  min-width: 450px;
-  transform: translate(-50%, -50%);
-  /* max-width: 40%; */
-  height: 175px;
-  background: #fff;
-  border-radius: 7px;
-  border: 1px solid rgba(96, 96, 96, 0.35);
-  padding: 20px 0;
+import styled from "styled-components";
+// import { TextButton } from "../../styles/Button";
+import { BgButton } from "../../styles/Button";
+import { Icon } from "@iconify/react";
+import closeFill from "@iconify/icons-eva/close-fill";
+import ActionsDialog from "./ActionsDialog";
+
+const DialogTitle = styled.div`
+  /* width: 80%; */
+  /* margin: auto; */
+  border-radius: 7px 7px 0 0;
+  width: 100%;
+  /* background: var(--primary-light); */
+  padding: 10px 0 10px 0;
+  /* margin-top: 20px; */
+
+  .title {
+    width: 80%;
+    margin: 0 auto;
+    font-family: var(--small-title-font);
+    font-size: 1.25rem;
+    color: var(--light-text-color);
+    text-align: center;
+  }
+`;
+const DialogContent = styled.div``;
+
+const WrapperDialogCloseBtn = styled.div`
+  position: absolute;
+  top: -15px;
+  right: -15px;
+
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  background: var(--general-color);
+  border-radius: 25px;
+  transform: scale(0.9);
+
+  transition: all 300ms;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-  /* transform: translateY(150%); */
-  transition: all 300ms;
-  opacity: 0;
 
-  &.active {
-    opacity: 1;
+  &:hover {
+    transform: scale(1);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+      rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   }
 `;
 
-const DialogTitle = styled.div``;
-const DialogContent = styled.div``;
+const DialogCloseBtn = styled.button`
+  /* cursor: pointer; */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-const ActionButtons = styled.div``;
+  /* .icon {
+    transform: rotate(0deg);
+    transition: transform 250ms ease-in-out;
+  }
+
+  &:hover {
+    .icon {
+      transform: rotate(90deg);
+    }
+  } */
+`;
+
+const ActionButtons = styled.div`
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+`;
 
 export default function ProductDeleteAllDialog(props) {
   const {
@@ -43,21 +92,96 @@ export default function ProductDeleteAllDialog(props) {
     deleteAllDialogOpen,
     setDeleteAllDialogOpen,
   } = props;
+  const wrapperRef = useRef(null);
 
-  console.log(deleteAllDialogOpen);
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutsideNav);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutsideNav);
+    };
+  });
+
+  useEffect(() => {
+    if (deleteAllDialogOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [deleteAllDialogOpen]);
+
+  function handleClickOutsideNav(e) {
+    if (
+      deleteAllDialogOpen &&
+      wrapperRef.current &&
+      !wrapperRef.current.contains(e.target)
+    ) {
+      setDeleteAllDialogOpen(false);
+    }
+  }
+
+  function handleClickCloseBtn() {
+    setDeleteAllDialogOpen(false);
+  }
+
+  function handleClickCancel() {
+    setDeleteAllDialogOpen(false);
+  }
+
+  function handleClickConfirm() {
+    setCartItems([]);
+    localStorage.setItem("selectedProduct", JSON.stringify([]));
+    setIsStorageChanged(() => !isStorageChanged);
+    setDeleteAllDialogOpen(false);
+  }
+
+  function handleClickCloseBtn() {
+    setDeleteAllDialogOpen(false);
+  }
+
+  // console.log(deleteAllDialogOpen);
   return (
-    <Portal>
-      <WrapperDialog className={deleteAllDialogOpen ? "active" : ""}>
+    <>
+      <ActionsDialog
+        dialogOpen={deleteAllDialogOpen}
+        setDialogOpen={setDeleteAllDialogOpen}
+      >
         <DialogTitle>
-          Are you sure you want to remove all items from cart ?
+          <h2 className="title">
+            Are you sure you want to remove all items from cart ?
+          </h2>
         </DialogTitle>
         <DialogContent>
           <ActionButtons>
-            <TextButton>Yes</TextButton>
-            <TextButton>No</TextButton>
+            <BgButton
+              small
+              style={{ marginRight: "20px" }}
+              onClick={handleClickConfirm}
+            >
+              Yes
+            </BgButton>
+            <BgButton small onClick={handleClickCancel}>
+              No
+            </BgButton>
           </ActionButtons>
         </DialogContent>
-      </WrapperDialog>
-    </Portal>
+        <WrapperDialogCloseBtn>
+          <DialogCloseBtn onClick={handleClickCloseBtn}>
+            <Icon
+              icon={closeFill}
+              className="icon"
+              style={{ color: "#fff", fontSize: "28px" }}
+            />
+          </DialogCloseBtn>
+        </WrapperDialogCloseBtn>
+      </ActionsDialog>
+      {/* <Portal>
+      <WrapperOverlay className={deleteAllDialogOpen ? "active" : ""}>
+        <WrapperDialog ref={wrapperRef}>
+
+        </WrapperDialog>
+      </WrapperOverlay>
+    </Portal> */}
+    </>
   );
 }

@@ -600,7 +600,9 @@ export const ReviewRating = styled.div`
   justify-content: space-evenly;
 `;
 
-export const ReviewAdd = styled.div``;
+export const ReviewAdd = styled.div`
+  margin-top: 20px;
+`;
 export const ReviewInfo = styled.div`
   display: flex;
   align-items: center;

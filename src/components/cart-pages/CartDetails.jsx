@@ -13,6 +13,7 @@ import arrowRight from "@iconify/icons-bi/arrow-right";
 import { ContextValues } from "../context/ContextSetup";
 import { Link } from "gatsby";
 import ProductDeleteAllDialog from "../Dialogs/ProductDeleteAllDialog";
+import PurchaseDialog from "../Dialogs/PurchaseDialog";
 
 // import IconButton from "@material-ui/core/IconButton";
 
@@ -650,12 +651,33 @@ export default function CartDetails({ selectedProducts }) {
     }, [])
   );
   const [isSmallSize, setIsSmallSize] = useState("");
-  const [deleteAllDialogOpen, setDeleteAllDialogOpen] = useState(true);
+  const [deleteAllDialogOpen, setDeleteAllDialogOpen] = useState();
+  const [purchaseDialogOpen, setPurchaseDialogOpen] = useState(true);
+  // const [shippingFees] = useState(7.99);
 
   const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
 
   // const [selectedQtyRowId, setSelectedQtyRowId] = useState();
   // const selectedQtyRow = cartItems.find(item => item.id === selectedQtyRowId)
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth < 601) {
+        setIsSmallSize("s");
+      } else if (window.innerWidth < 1025) {
+        setIsSmallSize("m");
+      } else {
+        setIsSmallSize("l");
+      }
+      window.addEventListener("resize", handleWindowResize);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleWindowResize);
+      }
+    };
+  }, []);
 
   function handleProductSizeDown(e, item) {
     // const elementName = e.target.parentNode.parentNode.getAttribute("name");
@@ -678,24 +700,9 @@ export default function CartDetails({ selectedProducts }) {
     setCartItems(clone);
   }
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (window.innerWidth < 601) {
-        setIsSmallSize("s");
-      } else if (window.innerWidth < 1025) {
-        setIsSmallSize("m");
-      } else {
-        setIsSmallSize("l");
-      }
-      window.addEventListener("resize", handleWindowResize);
-    }
-
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("resize", handleWindowResize);
-      }
-    };
-  }, []);
+  function handleCheckout() {
+    setPurchaseDialogOpen(true);
+  }
 
   function handleWindowResize() {
     if (window.innerWidth < 601) {
@@ -740,11 +747,13 @@ export default function CartDetails({ selectedProducts }) {
   // console.log(cartItems);
 
   function calculateTotalPrice() {
-    // console.log(cartItems);
     return cartItems
-      .reduce((acc, cur) => {
-        return cur.price * cur.productQty + acc;
-      }, 0)
+      .reduce(
+        (acc, cur) => {
+          return cur.price * cur.productQty + acc;
+        },
+        7.99 // // // shipping fees
+      )
       .toFixed(2);
   }
 
@@ -936,12 +945,7 @@ export default function CartDetails({ selectedProducts }) {
           Total: <span className="total-price">${calculateTotalPrice()}</span>
         </TotalPrice>
         <CheckoutBtn>
-          <Arrow_Button
-            dark
-            large
-
-            // onClick={handleAddProduct}
-          >
+          <Arrow_Button dark large onClick={handleCheckout}>
             Check Out{" "}
             <Icon
               icon={arrowRight}
@@ -951,6 +955,7 @@ export default function CartDetails({ selectedProducts }) {
           </Arrow_Button>
         </CheckoutBtn>
       </TotalPriceWrapper>
+      {/* {deleteAllDialogOpen && ( */}
       <ProductDeleteAllDialog
         setCartItems={setCartItems}
         setIsStorageChanged={setIsStorageChanged}
@@ -958,6 +963,14 @@ export default function CartDetails({ selectedProducts }) {
         deleteAllDialogOpen={deleteAllDialogOpen}
         setDeleteAllDialogOpen={setDeleteAllDialogOpen}
       ></ProductDeleteAllDialog>
+      <PurchaseDialog
+        setCartItems={setCartItems}
+        setIsStorageChanged={setIsStorageChanged}
+        isStorageChanged={isStorageChanged}
+        purchaseDialogOpen={purchaseDialogOpen}
+        setPurchaseDialogOpen={setPurchaseDialogOpen}
+      ></PurchaseDialog>
+      {/* )} */}
     </>
   );
 }

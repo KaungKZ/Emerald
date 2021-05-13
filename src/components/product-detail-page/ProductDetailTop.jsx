@@ -133,6 +133,8 @@ export default function ProductDetailTop({
   function handleProductSizeDown(e) {
     const elementName = e.target.parentNode.parentNode.getAttribute("name");
 
+    // console.log(elementName);
+
     const input = e.target.parentNode.parentNode.querySelector("input");
 
     let minValue = input.min;
@@ -148,6 +150,7 @@ export default function ProductDetailTop({
 
   // console.log(hoverActive);
   function handleProductSizeUp(e) {
+    // console.log(e);
     // console.log(numberRef.current.min);
 
     const elementName = e.target.parentNode.parentNode.getAttribute("name");
@@ -163,12 +166,16 @@ export default function ProductDetailTop({
       var newVal = oldValue + 1;
     }
 
+    // console.log(newVal);
+
     setProductValues({ ...productValues, [elementName]: newVal });
   }
 
+  console.log(productValues);
+
   function handleOnChange(e) {
     // console.log(e.target.value);
-
+    // console.log(e);
     setProductValues({ ...productValues, size: e.target.value });
     // console.log("yes");
   }
@@ -286,7 +293,7 @@ export default function ProductDetailTop({
           </ProductHeader>
           <ProductContent>
             <span className="product-price">${data.price}</span>
-            <div className="product-size" name="productSize">
+            <div className="product-size" name="size">
               <span className="detail-title">Size:</span>
               {/^\d+$/.test(productValues.size) === false ? (
                 <span className="product-size-description">

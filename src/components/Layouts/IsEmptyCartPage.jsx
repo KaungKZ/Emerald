@@ -108,6 +108,15 @@ const Subtitle = styled.h3`
 
 const SubtitleWrapper = styled.div``;
 
+const LoadingText = styled.div`
+  .title {
+    font-family: var(--content-font);
+    font-size: 1.3rem;
+    color: var(--light-text-color);
+    font-weight: 500;
+  }
+`;
+
 export default function IsEmptyCartPage({ children }) {
   // console.log(props);
   // const [isActive, setIsActive] = useState(false);
@@ -160,7 +169,9 @@ export default function IsEmptyCartPage({ children }) {
         <h1 className="title">{children}</h1>
       </PageTitle>
       {isLoading ? (
-        <div className="loading-text">Loading ..</div>
+        <LoadingText>
+          <h2 className="title">Loading ..</h2>
+        </LoadingText>
       ) : children === "Shopping cart" ? (
         !showCartDetail ? (
           <>

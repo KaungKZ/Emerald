@@ -29,7 +29,7 @@ export default function Product_Detail({ data }) {
   // const QtyRef = useRef();
 
   const [productValues, setProductValues] = useState({
-    size: data.size,
+    size: parseInt(data.size),
     productQty: 1,
     gender: data.gender,
   });

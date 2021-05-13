@@ -24,14 +24,16 @@ export const TextButton = styled.button`
 
 export const BgButton = styled.button`
   /* margin-top: 25px; */
-  margin: 25px 0 0 0;
+  /* margin: 25px 0 0 0; */
   cursor: pointer;
-  padding: var(--btn-padding);
+  padding: ${props => (props.small ? "3px 40px" : "var(--btn-padding)")};
   font-family: var(--secondary-font);
   font-size: var(--normal-text);
-  color: var(--text-color);
-  background: #fff;
-  border: 1px solid rgba(96, 96, 96, 0.6);
+  /* color: var(--text-color); */
+  background: ${props => (props.bg ? "var(--general-color)" : "#fff")};
+  color: ${props => (props.bg ? "#fff" : "var(--text-color)")};
+  border: ${props =>
+    props.no_border ? "none" : "1px solid rgba(96, 96, 96, 0.6)"};
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -39,12 +41,37 @@ export const BgButton = styled.button`
   text-transform: capitalize;
   outline: none;
   transition: all 400ms;
+  height: ${props => (props.small ? "35px" : "unset")};
 
   &:hover {
     background: var(--general-color);
     color: #fff;
   }
 `;
+
+// export const BgButton = styled.button`
+//   /* margin-top: 25px; */
+//   margin: 25px 0 0 0;
+//   cursor: pointer;
+//   padding: var(--btn-padding);
+//   font-family: var(--secondary-font);
+//   font-size: var(--normal-text);
+//   color: var(--text-color);
+//   background: #fff;
+//   border: 1px solid rgba(96, 96, 96, 0.6);
+//   text-decoration: none;
+//   display: flex;
+//   align-items: center;
+//   width: fit-content;
+//   text-transform: capitalize;
+//   outline: none;
+//   transition: all 400ms;
+
+//   &:hover {
+//     background: var(--general-color);
+//     color: #fff;
+//   }
+// `;
 
 export const Arrow_Button = styled.button`
   padding: ${props =>
