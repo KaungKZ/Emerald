@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet";
 import Product_Detail from "../components/product-detail-page/Product_Detail";
 
 export default function TemplateItem({ data: { res } }) {
+  if (!res) return null;
   // console.log(res);
   return (
     <>
