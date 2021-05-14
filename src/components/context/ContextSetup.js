@@ -5,7 +5,7 @@ import React, { useEffect, useState, useContext } from "react";
 //   toggleDark: () => {},
 // };
 
-export const ContextValues = React.createContext();
+export const ContextValues = React.createContext("");
 
 // Getting dark mode information from OS!
 // You need macOS Mojave + Safari Technology Preview Release 68 to test this currently.
