@@ -1,1 +1,113 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Raleway:wght@400;700&display=swap');
+/* @import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"); */
+
+@font-face {
+  font-family: "Raleway";
+  src: local("Raleway"), local("Raleway"),
+    url(../fonts/raleway/Raleway-Regular.woff2) format("woff2"),
+    url(../fonts/raleway/Raleway-Regular.woff) format("woff"),
+    url(../fonts/raleway/Raleway-Regular.eot),
+    url(../fonts/raleway/Raleway-Regular.eot?#iefix) format("embedded-opentype"),
+    url(../fonts/raleway/Raleway-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: local("Raleway"), local("Raleway"),
+    url(../fonts/raleway/Raleway-Bold.woff2) format("woff2"),
+    url(../fonts/raleway/Raleway-Bold.woff) format("woff"),
+    url(../fonts/raleway/Raleway-Bold.eot),
+    url(../fonts/raleway/Raleway-Bold.eot?#iefix) format("embedded-opentype"),
+    url(../fonts/raleway/Raleway-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: local("Poppins"), local("Poppins"),
+    url(../fonts/Poppins/Poppins-Regular.woff2) format("woff2"),
+    url(../fonts/Poppins/Poppins-Regular.woff) format("woff"),
+    url(../fonts/Poppins/Poppins-Regular.eot),
+    url(../fonts/Poppins/Poppins-Regular.eot?#iefix) format("embedded-opentype"),
+    url(../fonts/Poppins/Poppins-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: local("Poppins"), local("Poppins"),
+    url(../fonts/Poppins/Poppins-Bold.woff2) format("woff2"),
+    url(../fonts/Poppins/Poppins-Bold.woff) format("woff"),
+    url(../fonts/Poppins/Poppins-Bold.eot),
+    url(../fonts/Poppins/Poppins-Bold.eot?#iefix) format("embedded-opentype"),
+    url(../fonts/Poppins/Poppins-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"), local("Montserrat"),
+    url(../fonts/Montserrat/Montserrat-Regular.woff2) format("woff2"),
+    url(../fonts/Montserrat/Montserrat-Regular.woff) format("woff"),
+    url(../fonts/Montserrat/Montserrat-Regular.eot),
+    url(../fonts/Montserrat/Montserrat-Regular.eot?#iefix)
+      format("embedded-opentype"),
+    url(../fonts/Montserrat/Montserrat-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"), local("Montserrat"),
+    url(../fonts/Montserrat/Montserrat-Bold.woff2) format("woff2"),
+    url(../fonts/Montserrat/Montserrat-Bold.woff) format("woff"),
+    url(../fonts/Montserrat/Montserrat-Bold.eot),
+    url(../fonts/Montserrat/Montserrat-Bold.eot?#iefix)
+      format("embedded-opentype"),
+    url(../fonts/Montserrat/Montserrat-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: local("Work Sans"), local("Work Sans"),
+    url(../fonts/Work-Sans/WorkSans-Regular.woff2) format("woff2"),
+    url(../fonts/Work-Sans/WorkSans-Regular.woff) format("woff"),
+    url(../fonts/Work-Sans/WorkSans-Regular.eot),
+    url(../fonts/Work-Sans/WorkSans-Regular.eot?#iefix)
+      format("embedded-opentype"),
+    url(../fonts/Work-Sans/WorkSans-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: local("Work Sans"), local("Work Sans"),
+    url(../fonts/Work-Sans/WorkSans-Medium.woff2) format("woff2"),
+    url(../fonts/Work-Sans/WorkSans-Medium.woff) format("woff"),
+    url(../fonts/Work-Sans/WorkSans-Medium.eot),
+    url(../fonts/Work-Sans/WorkSans-Medium.eot?#iefix)
+      format("embedded-opentype"),
+    url(../fonts/Work-Sans/WorkSans-Medium.ttf) format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: local("Work Sans"), local("Work Sans"),
+    url(../fonts/Work-Sans/WorkSans-Bold.woff2) format("woff2"),
+    url(../fonts/Work-Sans/WorkSans-Bold.woff) format("woff"),
+    url(../fonts/Work-Sans/WorkSans-Bold.eot),
+    url(../fonts/Work-Sans/WorkSans-Bold.eot?#iefix) format("embedded-opentype"),
+    url(../fonts/Work-Sans/WorkSans-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}

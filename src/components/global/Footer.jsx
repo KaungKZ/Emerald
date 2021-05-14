@@ -149,6 +149,7 @@ const FooterDeveloper = styled.div`
   opacity: 0.8;
 
   .github-link {
+    font-weight: 700;
     color: var(--light-text-color);
   }
 

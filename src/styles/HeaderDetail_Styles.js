@@ -45,6 +45,8 @@ export const HeaderTitle = styled.div`
   color: var(--light-text-color);
   text-align: right;
   font-family: var(--primary-font);
+  /* font-family: var(--content-font); */
+
   font-weight: 700;
   text-transform: capitalize;
   position: relative;
@@ -113,10 +115,13 @@ export const HeaderContent = styled.div`
   font-family: var(--secondary-font);
 
   .sub-title {
+    font-family: var(--content-font);
     color: var(--light-text-color);
     text-transform: capitalize;
     font-size: var(--normal-text);
     text-align: center;
+    font-size: 18px;
+    /* font-weight: 500; */
   }
 
   .header-btn-link {
@@ -132,11 +137,24 @@ export const HeaderContent = styled.div`
     text-transform: capitalize;
   }
 
-  @media (max-width: 904px) {
+  /* @media (max-width: 1024px) {
+  } */
+
+  @media (max-width: 1024px) {
     margin-bottom: 30px;
+
+    .sub-title {
+      font-size: 16px;
+    }
 
     .header-btn-link {
       margin-bottom: auto;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .sub-title {
+      font-size: 14px;
     }
   }
 
@@ -144,9 +162,19 @@ export const HeaderContent = styled.div`
     margin-bottom: 10px;
   }
 
+  @media (max-width: 676px) {
+    .sub-title {
+      font-size: 12px;
+    }
+  }
+
   @media (max-width: 600px) {
     .special-offer {
       font-size: 12px;
+    }
+
+    .sub-title {
+      font-size: 14px;
     }
     /* .header-btn-link {
       padding: 7px 17px;

@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby";
 
 import ProductList from "./Product_list";
 import styled from "styled-components";
-import PagesNavigator from "../products-page/PagesNavigator";
+import PagesNavigator from "../../PagesNavigator";
 // import { ShowcaseArrows } from "../../styles/ShowcaseArrows_styles";
 // import chevronLeftFill from "@iconify/icons-eva/chevron-left-fill";
 

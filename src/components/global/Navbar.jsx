@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { Icon } from "@iconify/react";
 import heartOutlined from "@iconify/icons-ant-design/heart-outlined";
 import cart2Icon from "@iconify/icons-bi/cart2";
@@ -6,6 +6,7 @@ import { Link } from "gatsby";
 import menuAlt3 from "@iconify/icons-heroicons-outline/menu-alt-3";
 import windowCloseLine from "@iconify/icons-clarity/window-close-line";
 import styled from "styled-components";
+import { ContextValues } from "../context/ContextSetup";
 
 const Header = styled.header`
   @media (max-width: 600px) {
@@ -73,6 +74,33 @@ const NavWrapperCarts = styled.div`
     display: none;
   }
 
+  .cart {
+    position: relative;
+
+    .active-cart-items-length,
+    .active-cart-items-length-hidden-lg {
+      position: absolute;
+      top: -3px;
+      right: -5px;
+      width: 17px;
+      height: 17px;
+      background: rgba(202, 11, 0, 0.95);
+      display: flex;
+      justify-content: center;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+        rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+      align-items: center;
+      border-radius: 50px;
+
+      .length {
+        font-family: var(--content-font);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+  }
+
   @media (max-width: 600px) {
     padding: 4rem 1rem 1rem 1rem;
     position: absolute;
@@ -88,6 +116,17 @@ const NavWrapperCarts = styled.div`
     box-shadow: -4px 0px 4px -4px rgba(0, 0, 0, 0.25);
     transform: translateX(100%);
     transition: transform 0ms ease-out;
+
+    .cart {
+      .active-cart-items-length {
+        display: none;
+      }
+      .active-cart-items-length-hidden-lg {
+        top: 50%;
+        right: -25px;
+        transform: translateY(-50%);
+      }
+    }
 
     a svg {
       margin-right: var(--small-margin);
@@ -107,6 +146,7 @@ const NavWrapperCarts = styled.div`
       color: var(--light-text-color);
       font-size: 14px;
       letter-spacing: 1px;
+      position: relative;
     }
 
     .hidden-closed-nav {
@@ -136,6 +176,16 @@ const NavWrapperCarts = styled.div`
 
   @media (max-width: 425px) {
     width: 70%;
+  }
+
+  @media (max-width: 320px) {
+    width: 80%;
+  }
+
+  @media (max-width: 300px) {
+    .cart .active-cart-items-length-hidden-lg {
+      right: -20px;
+    }
   }
 `;
 
@@ -177,6 +227,10 @@ const NavUl = styled.ul`
 
   @media (max-width: 425px) {
     width: 70%;
+  }
+
+  @media (max-width: 320px) {
+    width: 80%;
   }
 `;
 
@@ -240,7 +294,9 @@ const NavMobile = styled.div`
 
 export default function Navbar() {
   const [toggleNav, setToggleNav] = useState(false);
-  const [isBetween600n1024, setIsBetween600n1024] = useState(false);
+  const [isBetween600n1024, setIsBetween600n1024] = useState();
+  const [activeItemsLength, setActiveItemsLength] = useState(0);
+  const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
 
   const navRef = useRef(null);
 
@@ -251,6 +307,18 @@ export default function Navbar() {
       document.body.style.overflow = "unset";
     }
   }, [toggleNav]);
+
+  useEffect(() => {
+    const storedProducts = JSON.parse(localStorage.getItem("selectedProduct"));
+    if (storedProducts) {
+      // console.log(storedProducts);
+      setActiveItemsLength(storedProducts.length);
+    } else {
+      setActiveItemsLength(0);
+    }
+  }, [isStorageChanged]);
+
+  // console.log(activeItemsLength);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutsideNav);
@@ -312,7 +380,19 @@ export default function Navbar() {
                 icon={cart2Icon}
                 style={{ color: "#606060", fontSize: "30px" }}
               />
-              <span className="hidden-lg">Shopping cart</span>
+              <span className="hidden-lg">
+                Shopping cart{" "}
+                {activeItemsLength === 0 || !activeItemsLength ? null : (
+                  <span className="active-cart-items-length-hidden-lg">
+                    <span className="length">{activeItemsLength}</span>
+                  </span>
+                )}
+              </span>
+              {activeItemsLength === 0 || !activeItemsLength ? null : (
+                <span className="active-cart-items-length">
+                  <span className="length">{activeItemsLength}</span>
+                </span>
+              )}
             </Link>
             <Icon
               icon={windowCloseLine}

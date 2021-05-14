@@ -83,4 +83,11 @@ export const FeaturedContent = styled.div`
       line-height: 40px !important;
     }
   }
+
+  @media (max-width: 320px) {
+    .featured-title {
+      font-size: 1.4rem;
+      line-height: 30px !important;
+    }
+  }
 `;
