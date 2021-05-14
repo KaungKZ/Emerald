@@ -14,6 +14,7 @@ import { ContextValues } from "../context/ContextSetup";
 import { Link } from "gatsby";
 import ProductDeleteAllDialog from "../Dialogs/ProductDeleteAllDialog";
 import PurchaseDialog from "../Dialogs/PurchaseDialog";
+import ArrowButton from "../Layouts/ArrowButton";
 
 // import IconButton from "@material-ui/core/IconButton";
 
@@ -945,14 +946,17 @@ export default function CartDetails({ selectedProducts }) {
           Total: <span className="total-price">${calculateTotalPrice()}</span>
         </TotalPrice>
         <CheckoutBtn>
-          <Arrow_Button dark large onClick={handleCheckout}>
+          <ArrowButton dark large onClick={handleCheckout}>
+            Check Out{" "}
+          </ArrowButton>
+          {/* <Arrow_Button dark large onClick={handleCheckout}>
             Check Out{" "}
             <Icon
               icon={arrowRight}
               style={{ color: "#606060", fontSize: "25px" }}
               className="arrow-right-icon"
             />
-          </Arrow_Button>
+          </Arrow_Button> */}
         </CheckoutBtn>
       </TotalPriceWrapper>
       {/* {deleteAllDialogOpen && ( */}

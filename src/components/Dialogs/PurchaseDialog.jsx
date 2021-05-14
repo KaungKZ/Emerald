@@ -3,6 +3,9 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import purchaseIcon from "../../images/shopping cart/check.svg";
 import purchaseIcon2 from "../../images/shopping cart/shopping-bag.svg";
+import { uniqueNamesGenerator, Config, names } from "unique-names-generator";
+import { Arrow_Button } from "../../styles/Button";
+
 // import { TextButton } from "../../styles/Button";
 
 import ActionsDialog from "./ActionsDialog";
@@ -63,6 +66,12 @@ const WrapperIcon = styled.div`
 `;
 
 const PurchaseIconSvg = styled.svg``;
+
+const InformationTitle = styled.div``;
+
+const Information = styled.div``;
+
+const ActionButtons = styled.div``;
 
 function PurchaseIconComponent() {
   return (
@@ -171,16 +180,25 @@ export default function PurchaseDialog(props) {
           {/* <img src={purchaseIcon} /> */}
           <h2 className="title">Thank you for purchasing !</h2>
         </DialogTitle>
-        <DialogContent></DialogContent>
-        {/* <WrapperDialogCloseBtn>
-          <DialogCloseBtn onClick={handleClickCloseBtn}>
-            <Icon
-              icon={closeFill}
-              className="icon"
-              style={{ color: "#fff", fontSize: "28px" }}
-            />
-          </DialogCloseBtn>
-        </WrapperDialogCloseBtn> */}
+        <DialogContent>
+          <InformationTitle>
+            <h3>Information</h3>
+          </InformationTitle>
+          <Information>
+            <span className="title">
+              Buyer Name:{" "}
+              <span className="buyer">
+                {uniqueNamesGenerator({ dictionaries: [names] })}
+              </span>
+            </span>
+            <span className="title">
+              Tracking Number: <span className="buyer">Tester</span>
+            </span>
+          </Information>
+        </DialogContent>
+        <ActionButtons>
+          <Arrow_Button>Keep Shopping</Arrow_Button>
+        </ActionButtons>
       </ActionsDialog>
       {/* <Portal>
       <WrapperOverlay className={deleteAllDialogOpen ? "active" : ""}>
