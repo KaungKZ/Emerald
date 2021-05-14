@@ -43,6 +43,10 @@ const ShowcaseProductsWrapper = styled.div`
       background: rgba(53, 53, 53, 0.9);
     }
   }
+
+  @media (max-width: 380px) {
+    padding: 30px 0 27px 0;
+  }
 `;
 
 export default function Product({ product }) {

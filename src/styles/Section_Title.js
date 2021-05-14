@@ -28,16 +28,20 @@ export const Section_Title = styled.div`
     /* h1 {
       padding: 7px 18px;
     } */
+
+    &.b-d-f-t {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
   }
 
-  @media (max-width: 320px) {
+  /* @media (max-width: 380px) {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    /* h1 {
-      padding: 7px 10px;
-    } */
-  }
+
+  } */
 `;
 
 export const Section_Title_Text = styled.h1`
@@ -59,6 +63,6 @@ export const Section_Title_Text = styled.h1`
   }
 
   @media (max-width: 320px) {
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
   }
 `;

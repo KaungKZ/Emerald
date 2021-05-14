@@ -45,6 +45,15 @@ const WrapperDialog = styled.div`
   justify-content: space-between;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+
+  @media (max-width: 600px) {
+    width: 80%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px 20px;
+    min-height: 150px;
+  }
   /* transform: translateY(150%); */
 `;
 

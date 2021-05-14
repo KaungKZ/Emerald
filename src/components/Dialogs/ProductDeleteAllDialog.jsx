@@ -24,6 +24,24 @@ const DialogTitle = styled.div`
     color: var(--light-text-color);
     text-align: center;
   }
+
+  @media (max-width: 768px) {
+    .title {
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .title {
+      width: 90%;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .title {
+      font-size: 1rem;
+    }
+  }
 `;
 const DialogContent = styled.div``;
 
@@ -92,15 +110,15 @@ export default function ProductDeleteAllDialog(props) {
     deleteAllDialogOpen,
     setDeleteAllDialogOpen,
   } = props;
-  const wrapperRef = useRef(null);
+  // const wrapperRef = useRef(null);
 
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutsideNav);
+  // useEffect(() => {
+  //   document.addEventListener("click", handleClickOutsideNav);
 
-    return () => {
-      document.removeEventListener("click", handleClickOutsideNav);
-    };
-  });
+  //   return () => {
+  //     document.removeEventListener("click", handleClickOutsideNav);
+  //   };
+  // });
 
   useEffect(() => {
     if (deleteAllDialogOpen) {
@@ -110,15 +128,15 @@ export default function ProductDeleteAllDialog(props) {
     }
   }, [deleteAllDialogOpen]);
 
-  function handleClickOutsideNav(e) {
-    if (
-      deleteAllDialogOpen &&
-      wrapperRef.current &&
-      !wrapperRef.current.contains(e.target)
-    ) {
-      setDeleteAllDialogOpen(false);
-    }
-  }
+  // function handleClickOutsideNav(e) {
+  //   if (
+  //     deleteAllDialogOpen &&
+  //     wrapperRef.current &&
+  //     !wrapperRef.current.contains(e.target)
+  //   ) {
+  //     setDeleteAllDialogOpen(false);
+  //   }
+  // }
 
   function handleClickCloseBtn() {
     setDeleteAllDialogOpen(false);
@@ -155,7 +173,7 @@ export default function ProductDeleteAllDialog(props) {
           <ActionButtons>
             <BgButton
               small
-              style={{ marginRight: "20px" }}
+              // style={{ marginRight: "20px" }}
               onClick={handleClickConfirm}
             >
               Yes

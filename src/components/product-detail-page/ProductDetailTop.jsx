@@ -79,8 +79,6 @@ export default function ProductDetailTop({
     return () => {
       clearTimeout(timer);
     };
-
-    // return () => null;
   }, [productAddDialogOpen]);
 
   function handleWindowResize() {
@@ -171,7 +169,7 @@ export default function ProductDetailTop({
     setProductValues({ ...productValues, [elementName]: newVal });
   }
 
-  console.log(productValues);
+  // console.log(productValues);
 
   function handleOnChange(e) {
     // console.log(e.target.value);
@@ -205,7 +203,7 @@ export default function ProductDetailTop({
         ...productValues,
       };
 
-      console.log([...storedProducts, _data]);
+      // console.log([...storedProducts, _data]);
 
       localStorage.setItem(
         "selectedProduct",
@@ -221,7 +219,7 @@ export default function ProductDetailTop({
         ...productValues,
       };
 
-      console.log(_data);
+      // console.log(_data);
 
       // var originalSetItem = localStorage.setItem;
 
@@ -307,7 +305,7 @@ export default function ProductDetailTop({
                     max="50"
                     step="1"
                     // value="1
-                    value={productValues.size}
+                    value={parseInt(productValues.size)}
                     onChange={handleOnChange}
                     // ref={numberRef}
                   />

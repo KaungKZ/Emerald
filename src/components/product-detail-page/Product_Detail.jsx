@@ -29,7 +29,7 @@ export default function Product_Detail({ data }) {
   // const QtyRef = useRef();
 
   const [productValues, setProductValues] = useState({
-    size: parseInt(data.size),
+    size: data.size,
     productQty: 1,
     gender: data.gender,
   });
@@ -56,7 +56,7 @@ export default function Product_Detail({ data }) {
         <Section_Title className="showcase-title">
           <Section_Title_Text>Similar Items</Section_Title_Text>
 
-          <Arrow_Button to="/products" className="see-all-link">
+          <Arrow_Button to="/products" className="see-all-link" sub>
             See all{" "}
             <Icon
               icon={arrowRight}

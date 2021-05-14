@@ -13,8 +13,6 @@ import arrowRight from "@iconify/icons-bi/arrow-right";
 import { ContextValues } from "../context/ContextSetup";
 import { Link } from "gatsby";
 import ProductDeleteAllDialog from "../Dialogs/ProductDeleteAllDialog";
-import PurchaseDialog from "../Dialogs/PurchaseDialog";
-import ArrowButton from "../Layouts/ArrowButton";
 
 // import IconButton from "@material-ui/core/IconButton";
 
@@ -630,7 +628,10 @@ const TotalPrice = styled.div`
 
 const CheckoutBtn = styled.div``;
 
-export default function CartDetails({ selectedProducts }) {
+export default function CartDetails({
+  selectedProducts,
+  setPurchaseDialogOpen,
+}) {
   // console.log(JSON.parse(selectedProducts));
   const [cartItems, setCartItems] = useState(
     JSON.parse(selectedProducts).reduce((acc, cur) => {
@@ -653,7 +654,7 @@ export default function CartDetails({ selectedProducts }) {
   );
   const [isSmallSize, setIsSmallSize] = useState("");
   const [deleteAllDialogOpen, setDeleteAllDialogOpen] = useState();
-  const [purchaseDialogOpen, setPurchaseDialogOpen] = useState(true);
+  // const [purchaseDialogOpen, setPurchaseDialogOpen] = useState();
   // const [shippingFees] = useState(7.99);
 
   const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
@@ -702,8 +703,13 @@ export default function CartDetails({ selectedProducts }) {
   }
 
   function handleCheckout() {
+    setCartItems([]);
+    localStorage.setItem("selectedProduct", JSON.stringify([]));
+    setIsStorageChanged(() => !isStorageChanged);
     setPurchaseDialogOpen(true);
   }
+
+  // console.log(purchaseDialogOpen);
 
   function handleWindowResize() {
     if (window.innerWidth < 601) {
@@ -946,17 +952,14 @@ export default function CartDetails({ selectedProducts }) {
           Total: <span className="total-price">${calculateTotalPrice()}</span>
         </TotalPrice>
         <CheckoutBtn>
-          <ArrowButton dark large onClick={handleCheckout}>
-            Check Out{" "}
-          </ArrowButton>
-          {/* <Arrow_Button dark large onClick={handleCheckout}>
+          <Arrow_Button dark large onClick={handleCheckout}>
             Check Out{" "}
             <Icon
               icon={arrowRight}
               style={{ color: "#606060", fontSize: "25px" }}
               className="arrow-right-icon"
             />
-          </Arrow_Button> */}
+          </Arrow_Button>
         </CheckoutBtn>
       </TotalPriceWrapper>
       {/* {deleteAllDialogOpen && ( */}
@@ -967,13 +970,7 @@ export default function CartDetails({ selectedProducts }) {
         deleteAllDialogOpen={deleteAllDialogOpen}
         setDeleteAllDialogOpen={setDeleteAllDialogOpen}
       ></ProductDeleteAllDialog>
-      <PurchaseDialog
-        setCartItems={setCartItems}
-        setIsStorageChanged={setIsStorageChanged}
-        isStorageChanged={isStorageChanged}
-        purchaseDialogOpen={purchaseDialogOpen}
-        setPurchaseDialogOpen={setPurchaseDialogOpen}
-      ></PurchaseDialog>
+
       {/* )} */}
     </>
   );

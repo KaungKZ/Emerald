@@ -4,11 +4,43 @@ import styled from "styled-components";
 import purchaseIcon from "../../images/shopping cart/check.svg";
 import purchaseIcon2 from "../../images/shopping cart/shopping-bag.svg";
 import { uniqueNamesGenerator, Config, names } from "unique-names-generator";
-import { Arrow_Button } from "../../styles/Button";
+import { TextButton } from "../../styles/Button";
+import { Arrow_Button } from "../../styles/Link_Button";
+import arrowRight from "@iconify/icons-bi/arrow-right";
+import { Icon } from "@iconify/react";
+
+// import { Arrow_Button } from "../../styles/Button";
 
 // import { TextButton } from "../../styles/Button";
 
 import ActionsDialog from "./ActionsDialog";
+
+const TestD = styled(ActionsDialog)`
+  @media (max-width: 600px) {
+    width: 80%;
+  }
+`;
+
+const Line = styled.div`
+  position: absolute;
+
+  width: 100%;
+  background: #ffefd0;
+  height: 10px;
+  z-index: -1;
+
+  &.top {
+    top: 0;
+    border-radius: 8px 8px 0 0;
+    left: 0;
+  }
+
+  &.bottom {
+    border-radius: 0 0 8px 8px;
+    bottom: 0;
+    left: 0;
+  }
+`;
 
 const DialogTitle = styled.div`
   /* width: 80%; */
@@ -25,11 +57,18 @@ const DialogTitle = styled.div`
     margin: 0 auto;
     font-family: var(--small-title-font);
     font-size: 1.25rem;
-    color: var(--light-text-color);
+    color: var(--text-color);
+    text-transform: capitalize;
     text-align: center;
   }
 `;
-const DialogContent = styled.div``;
+const DialogContent = styled.div`
+  min-width: 400px;
+
+  @media (max-width: 600px) {
+    min-width: 80%;
+  }
+`;
 
 const DialogCloseBtn = styled.button`
   /* cursor: pointer; */
@@ -45,17 +84,6 @@ const DialogCloseBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* .icon {
-    transform: rotate(0deg);
-    transition: transform 250ms ease-in-out;
-  }
-
-  &:hover {
-    .icon {
-      transform: rotate(90deg);
-    }
-  } */
 `;
 
 const WrapperIcon = styled.div`
@@ -67,11 +95,46 @@ const WrapperIcon = styled.div`
 
 const PurchaseIconSvg = styled.svg``;
 
-const InformationTitle = styled.div``;
+const InformationTitle = styled.div`
+  margin: 20px 0 20px 0;
+  .title {
+    font-family: var(--small-title-font);
+    color: var(--text-color);
+    text-decoration: underline;
+    font-size: 14px;
+  }
+`;
 
-const Information = styled.div``;
+const Information = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  .title {
+    font-family: var(--content-font);
+    color: var(--light-text-color);
 
-const ActionButtons = styled.div``;
+    &:last-child {
+      margin-top: 10px;
+    }
+
+    .buyer {
+      color: var(--text-color);
+      font-weight: 700;
+    }
+
+    .tracking-number {
+      color: var(--text-color);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+  }
+`;
+
+const ActionButtons = styled.div`
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-around;
+`;
 
 function PurchaseIconComponent() {
   return (
@@ -110,24 +173,18 @@ function PurchaseIconComponent() {
 }
 
 export default function PurchaseDialog(props) {
-  const {
-    setCartItems,
-    setIsStorageChanged,
-    isStorageChanged,
-    purchaseDialogOpen,
-    setPurchaseDialogOpen,
-  } = props;
+  const { purchaseDialogOpen, setPurchaseDialogOpen } = props;
 
   //   console.log("xi");
-  const wrapperRef = useRef(null);
+  // const wrapperRef = useRef(null);
 
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutsideNav);
+  // useEffect(() => {
+  //   document.addEventListener("click", handleClickOutsideNav);
 
-    return () => {
-      document.removeEventListener("click", handleClickOutsideNav);
-    };
-  });
+  //   return () => {
+  //     document.removeEventListener("click", handleClickOutsideNav);
+  //   };
+  // });
 
   useEffect(() => {
     if (purchaseDialogOpen) {
@@ -137,14 +194,26 @@ export default function PurchaseDialog(props) {
     }
   }, [purchaseDialogOpen]);
 
-  function handleClickOutsideNav(e) {
-    if (
-      purchaseDialogOpen &&
-      wrapperRef.current &&
-      !wrapperRef.current.contains(e.target)
-    ) {
-      setPurchaseDialogOpen(false);
-    }
+  // console.log(purchaseDialogOpen);
+
+  // function handleClickOutsideNav(e) {
+  //   console.log(e);
+  //   if (
+  //     purchaseDialogOpen &&
+  //     wrapperRef.current &&
+  //     !wrapperRef.current.contains(e.target)
+  //   ) {
+  //     console.log("yes");
+
+  //   }
+  // }
+
+  function handleCloseDialog() {
+    // setCartItems([]);
+
+    // localStorage.setItem("selectedProduct", JSON.stringify([]));
+    // setIsStorageChanged(() => !isStorageChanged);
+    setPurchaseDialogOpen(false);
   }
 
   //   function handleClickCloseBtn() {
@@ -169,7 +238,7 @@ export default function PurchaseDialog(props) {
   // console.log(deleteAllDialogOpen);
   return (
     <>
-      <ActionsDialog
+      <TestD
         dialogOpen={purchaseDialogOpen}
         setDialogOpen={setPurchaseDialogOpen}
       >
@@ -182,24 +251,38 @@ export default function PurchaseDialog(props) {
         </DialogTitle>
         <DialogContent>
           <InformationTitle>
-            <h3>Information</h3>
+            <h3 className="title">Information</h3>
           </InformationTitle>
           <Information>
             <span className="title">
-              Buyer Name:{" "}
+              Buyer Name : {""}
               <span className="buyer">
                 {uniqueNamesGenerator({ dictionaries: [names] })}
               </span>
             </span>
             <span className="title">
-              Tracking Number: <span className="buyer">Tester</span>
+              Tracking Number : <span className="tracking-number">Tester</span>
             </span>
           </Information>
+          <ActionButtons>
+            <div className="close-btn">
+              <TextButton onClick={handleCloseDialog}>Close</TextButton>
+            </div>
+            <div className="keep-shopping-btn">
+              <Arrow_Button to="/products" main underline>
+                Keep Shopping{" "}
+                <Icon
+                  icon={arrowRight}
+                  style={{ color: "#606060", fontSize: "25px" }}
+                  className="arrow-right-icon"
+                />
+              </Arrow_Button>
+            </div>
+          </ActionButtons>
         </DialogContent>
-        <ActionButtons>
-          <Arrow_Button>Keep Shopping</Arrow_Button>
-        </ActionButtons>
-      </ActionsDialog>
+        <Line className="top"></Line>
+        <Line className="bottom"></Line>
+      </TestD>
       {/* <Portal>
       <WrapperOverlay className={deleteAllDialogOpen ? "active" : ""}>
         <WrapperDialog ref={wrapperRef}>

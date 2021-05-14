@@ -2,11 +2,12 @@ import styled from "styled-components";
 
 export const TextButton = styled.button`
   /* margin-top: 25px; */
-  margin: 25px auto 0 auto;
+  /* margin: 25px auto 0 auto; */
   cursor: pointer;
-  padding: var(--btn-padding);
+  margin: 8px;
+  padding: var(--sm-btn-padding);
   font-family: var(--secondary-font);
-  font-size: var(--btn-text);
+  font-size: ${props => (props.large ? "var(--btn-text)" : "16px")};
   color: var(--text-color);
   /* background: #fff; */
   background: transparent;
@@ -20,11 +21,15 @@ export const TextButton = styled.button`
   text-transform: capitalize;
   outline: none;
   transition: all 400ms;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const BgButton = styled.button`
   /* margin-top: 25px; */
   /* margin: 25px 0 0 0; */
+  margin: 8px;
   cursor: pointer;
   padding: ${props => (props.small ? "3px 40px" : "var(--btn-padding)")};
   font-family: var(--secondary-font);
@@ -46,6 +51,14 @@ export const BgButton = styled.button`
   &:hover {
     background: var(--general-color);
     color: #fff;
+  }
+
+  @media (max-width: 480px) {
+    padding: ${props => (props.small ? "2px 30px" : "var(--btn-padding)")};
+  }
+
+  @media (max-width: 420px) {
+    height: ${props => (props.small ? "30px" : "unset")};
   }
 `;
 
@@ -74,6 +87,7 @@ export const BgButton = styled.button`
 // `;
 
 export const Arrow_Button = styled.button`
+  margin: 8px;
   padding: ${props =>
     props.large ? "var(--large-btn-padding)" : "var(--btn-padding)"};
   font-family: var(--secondary-font);
@@ -83,7 +97,8 @@ export const Arrow_Button = styled.button`
   background: ${props => (props.dark ? "#5a5a5a" : "#fff")};
   outline: none;
   cursor: pointer;
-  border: 1px solid rgba(96, 96, 96, 0.6);
+  border: ${props =>
+    props.no_border ? "none" : "1px solid rgba(96, 96, 96, 0.6)"};
   text-decoration: none;
   display: flex;
   align-items: center;

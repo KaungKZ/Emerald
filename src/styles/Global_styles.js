@@ -29,6 +29,7 @@ html {
     --normal-text: 16px;
     --btn-text: 18px;
     --btn-padding: 10px 20px;
+    --sm-btn-padding: 6px 8px;
     --large-btn-padding: 10px 55px;
     --small-btn-padding: 5px 15px;
     --section-title-font-size: 1.8rem;
@@ -127,7 +128,7 @@ html {
  @media (max-width: 600px) {
      html {
         --btn-text: 14px;
-         --btn-padding: 5px 15px;
+         --btn-padding: 7px 15px;
     --section-margin: 90px;
 
      }
@@ -141,7 +142,7 @@ html {
  @media (max-width: 480px) {
      html {
         --large-btn-padding: 10px 45px;
-        --btn-padding: 7px 15px;
+        /* --btn-padding: 7px 15px; */
      }
  }
 

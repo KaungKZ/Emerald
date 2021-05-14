@@ -91,6 +91,14 @@ const FeaturedSection = styled.section`
   position: relative;
 `;
 
+const ButtonWrapper = styled.div`
+  width: 100%;
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export default function HomeMainContent() {
   const images = useStaticQuery(getImages);
   const [isSmallSize, setIsSmallSize] = useState();
@@ -203,12 +211,14 @@ export default function HomeMainContent() {
               })}
         </CategoryWrapper>
         {isSmallSize && (
-          <TextButton
-            center
-            onClick={() => setSeemoreClicked(() => !seemoreClicked)}
-          >
-            {seemoreClicked ? "show less" : "show more"}
-          </TextButton>
+          <ButtonWrapper>
+            <TextButton
+              large
+              onClick={() => setSeemoreClicked(() => !seemoreClicked)}
+            >
+              {seemoreClicked ? "show less" : "show more"}
+            </TextButton>
+          </ButtonWrapper>
         )}
       </Categories>
 
@@ -216,7 +226,7 @@ export default function HomeMainContent() {
         <Section_Title className="showcase-title">
           <Section_Title_Text>Best Sellers</Section_Title_Text>
 
-          <Arrow_Button to="/products">
+          <Arrow_Button to="/products" sub>
             See all{" "}
             <Icon
               icon={arrowRight}
@@ -234,10 +244,10 @@ export default function HomeMainContent() {
       </HomeSlider>
 
       <ShowcaseProducts>
-        <Section_Title className="showcase-title">
+        <Section_Title className="showcase-title b-d-f-t">
           <Section_Title_Text>Best deals for today</Section_Title_Text>
 
-          <Arrow_Button to="/products">
+          <Arrow_Button to="/products" sub>
             See all{" "}
             <Icon
               icon={arrowRight}

@@ -77,7 +77,8 @@ const NavWrapperCarts = styled.div`
   .cart {
     position: relative;
 
-    .active-cart-items-length {
+    .active-cart-items-length,
+    .active-cart-items-length-hidden-lg {
       position: absolute;
       top: -3px;
       right: -5px;
@@ -116,6 +117,17 @@ const NavWrapperCarts = styled.div`
     transform: translateX(100%);
     transition: transform 0ms ease-out;
 
+    .cart {
+      .active-cart-items-length {
+        display: none;
+      }
+      .active-cart-items-length-hidden-lg {
+        top: 50%;
+        right: -25px;
+        transform: translateY(-50%);
+      }
+    }
+
     a svg {
       margin-right: var(--small-margin);
       font-size: 20px !important;
@@ -134,6 +146,7 @@ const NavWrapperCarts = styled.div`
       color: var(--light-text-color);
       font-size: 14px;
       letter-spacing: 1px;
+      position: relative;
     }
 
     .hidden-closed-nav {
@@ -163,6 +176,16 @@ const NavWrapperCarts = styled.div`
 
   @media (max-width: 425px) {
     width: 70%;
+  }
+
+  @media (max-width: 320px) {
+    width: 80%;
+  }
+
+  @media (max-width: 300px) {
+    .cart .active-cart-items-length-hidden-lg {
+      right: -20px;
+    }
   }
 `;
 
@@ -204,6 +227,10 @@ const NavUl = styled.ul`
 
   @media (max-width: 425px) {
     width: 70%;
+  }
+
+  @media (max-width: 320px) {
+    width: 80%;
   }
 `;
 
@@ -353,7 +380,14 @@ export default function Navbar() {
                 icon={cart2Icon}
                 style={{ color: "#606060", fontSize: "30px" }}
               />
-              <span className="hidden-lg">Shopping cart</span>
+              <span className="hidden-lg">
+                Shopping cart{" "}
+                {activeItemsLength === 0 || !activeItemsLength ? null : (
+                  <span className="active-cart-items-length-hidden-lg">
+                    <span className="length">{activeItemsLength}</span>
+                  </span>
+                )}
+              </span>
               {activeItemsLength === 0 || !activeItemsLength ? null : (
                 <span className="active-cart-items-length">
                   <span className="length">{activeItemsLength}</span>

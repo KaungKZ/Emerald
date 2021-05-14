@@ -86,7 +86,7 @@ export default function ProductsMainContent() {
         <Section_Title className="showcase-title">
           <Section_Title_Text>More Like This</Section_Title_Text>
 
-          <Arrow_Button to="/products" className="see-all-link">
+          <Arrow_Button to="/products" className="see-all-link" sub>
             See all{" "}
             <Icon
               icon={arrowRight}

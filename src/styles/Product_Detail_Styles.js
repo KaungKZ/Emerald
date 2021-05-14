@@ -347,9 +347,9 @@ export const ProductContent = styled.div`
   .product-buttons {
     display: flex;
 
-    .product-add-to-cart {
+    /* .product-add-to-cart {
       margin-right: 20px;
-    }
+    } */
   }
 
   @media (max-width: 1024px) {

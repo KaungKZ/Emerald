@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 
 export const Main_Button = styled(Link)`
-  padding: 10px 20px;
+  padding: var(--btn-padding);
+  margin: 8px;
+
   font-family: var(--secondary-font);
   font-size: 16px;
   color: var(--text-color);
@@ -75,6 +77,8 @@ export const Main_Button = styled(Link)`
 export const Button = styled(Link)`
   /* margin-left: 15px; */
   /* display: flex; */
+  margin: ${props => (props.no_margin ? "0px" : "8px")};
+  padding: var(--sm-btn-padding);
   font-family: var(--secondary-font);
   /* padding: var(--small-btn-padding); */
   font-size: 14px;
@@ -93,7 +97,7 @@ export const Button = styled(Link)`
   transition: all 300ms;
   color: var(--text-color);
   width: fit-content;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 
   .arrow-right-icon {
     transform: translateX(0%);
@@ -146,18 +150,26 @@ export const Button = styled(Link)`
 `;
 
 export const Arrow_Button = styled(Link)`
-  margin-left: 15px;
+  margin: 8px;
+
+  padding: var(--sm-btn-padding);
   display: flex;
-  color: var(--light-text-color);
-  text-decoration: none;
+  color: ${props =>
+    props.sub ? "var(--light-text-color)" : "var(--text-color)"};
+  text-decoration: ${props => (props.underline ? "underline" : "none")};
   text-transform: capitalize;
   font-size: var(--normal-text);
   transition: opacity 300ms;
-  opacity: 0.9;
+  opacity: ${props => (props.main ? "1" : "0.9")};
+  font-family: var(--secondary-font);
   align-items: center;
 
   .see-all-icon {
     margin-left: 10px;
+  }
+
+  .arrow-right-icon {
+    margin-left: 5px;
   }
 
   &:hover {
@@ -169,10 +181,15 @@ export const Arrow_Button = styled(Link)`
       font-size: 18px !important;
       margin-left: 8px;
     }
+
+    .arrow-right-icon {
+      margin-left: 3px;
+      font-size: 20px !important;
+    }
   }
 
   @media (max-width: 360px) {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     .see-all-link {
       margin-left: 7px;
     }

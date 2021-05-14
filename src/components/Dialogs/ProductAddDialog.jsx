@@ -102,6 +102,7 @@ const ItemDialogTitle = styled.div`
 
 const ItemDialogContent = styled.div`
   width: 100%;
+  margin-top: 10px;
   background: var(--primary-light);
   display: flex;
   justify-content: space-around;
@@ -203,7 +204,9 @@ const ItemDialogContent = styled.div`
 
 const ItemDialogButton = styled.div`
   width: 100%;
-  text-align: center;
+  /* text-align: center; */
+  display: flex;
+  justify-content: center;
 `;
 
 const ItemDialogCloseBtn = styled.div`
@@ -232,7 +235,7 @@ export default function ProductAddDialog({
           <div className="item-price">${price}</div>
         </ItemDialogContent>
         <ItemDialogButton>
-          <Button to="/cart">
+          <Button to="/cart" no_margin={true}>
             View Cart{" "}
             <Icon
               icon={arrowRight}

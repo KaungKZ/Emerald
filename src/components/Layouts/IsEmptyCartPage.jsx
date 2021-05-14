@@ -6,6 +6,7 @@ import alarmClockLine from "@iconify/icons-clarity/alarm-clock-line";
 import CartDetails from "../cart-pages/CartDetails";
 import WishlistDetails from "../cart-pages/WishlistDetails";
 import { ContextValues } from "../context/ContextSetup";
+import PurchaseDialog from "../Dialogs/PurchaseDialog";
 
 const PageStyles = styled.div`
   width: 100%;
@@ -123,7 +124,9 @@ export default function IsEmptyCartPage({ children }) {
   const [showCartDetail, setShowCartDetail] = useState(null);
   const [showWishlistDetail, setShowWishlistDetail] = useState(null);
   const [selectedProducts, setSelectedProducts] = useState();
-  const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
+  const { isStorageChanged } = useContext(ContextValues);
+  const [purchaseDialogOpen, setPurchaseDialogOpen] = useState();
+
   const [isLoading, setIsLoading] = useState(true);
 
   // console.log(showCartDetail, showWishlistDetail);
@@ -185,7 +188,10 @@ export default function IsEmptyCartPage({ children }) {
             </SubtitleWrapper>
           </>
         ) : (
-          <CartDetails selectedProducts={selectedProducts}></CartDetails>
+          <CartDetails
+            selectedProducts={selectedProducts}
+            setPurchaseDialogOpen={setPurchaseDialogOpen}
+          ></CartDetails>
         )
       ) : !showWishlistDetail ? (
         <>
@@ -201,6 +207,13 @@ export default function IsEmptyCartPage({ children }) {
       ) : (
         <WishlistDetails></WishlistDetails>
       )}
+      <PurchaseDialog
+        // setCartItems={setCartItems}
+        // setIsStorageChanged={setIsStorageChanged}
+        // isStorageChanged={isStorageChanged}
+        purchaseDialogOpen={purchaseDialogOpen}
+        setPurchaseDialogOpen={setPurchaseDialogOpen}
+      ></PurchaseDialog>
     </PageStyles>
   );
 }
