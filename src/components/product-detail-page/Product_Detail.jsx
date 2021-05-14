@@ -33,6 +33,7 @@ export default function Product_Detail({ data }) {
     productQty: 1,
     gender: data.gender,
   });
+  if (!data) return null;
 
   // console.log(data);
 
