@@ -850,7 +850,19 @@ export default function CartDetails({
                         </div>
                       </ItemLink>
 
-                      <div className="item-size">{item.size}</div>
+                      <div className="item-size">
+                        {isSmallSize === "s"
+                          ? item.size.length > 20
+                            ? item.size.substring(0, 20).concat(" ...")
+                            : item.size
+                          : isSmallSize === "m"
+                          ? item.size.length > 30
+                            ? item.size.substring(0, 30).concat(" ...")
+                            : item.size
+                          : item.size.length > 50
+                          ? item.size.substring(0, 50).concat(" ...")
+                          : item.size}
+                      </div>
                       {item.gender && (
                         <div className="item-gender">
                           {item.gender === "female" ? (

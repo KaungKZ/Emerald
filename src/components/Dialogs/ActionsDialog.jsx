@@ -54,6 +54,16 @@ const WrapperDialog = styled.div`
     padding: 10px 20px;
     min-height: 150px;
   }
+
+  @media (max-width: 360px) {
+    max-width: 90%;
+    width: 90%;
+    padding: 10px 17px;
+  }
+
+  @media (max-width: 320px) {
+    padding: 10px 14px;
+  }
   /* transform: translateY(150%); */
 `;
 

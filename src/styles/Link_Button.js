@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 
 export const Main_Button = styled(Link)`
   padding: var(--btn-padding);
-  margin: 8px;
+  margin: var(--btn-margin);
 
   font-family: var(--secondary-font);
   font-size: 16px;
@@ -77,7 +77,7 @@ export const Main_Button = styled(Link)`
 export const Button = styled(Link)`
   /* margin-left: 15px; */
   /* display: flex; */
-  margin: ${props => (props.no_margin ? "0px" : "8px")};
+  margin: ${props => (props.no_margin ? "0px" : "var(--btn-margin)")};
   padding: var(--sm-btn-padding);
   font-family: var(--secondary-font);
   /* padding: var(--small-btn-padding); */
@@ -150,7 +150,7 @@ export const Button = styled(Link)`
 `;
 
 export const Arrow_Button = styled(Link)`
-  margin: 8px;
+  margin: var(--btn-margin);
 
   padding: var(--sm-btn-padding);
   display: flex;

@@ -83,6 +83,11 @@ const DialogCloseBtn = styled.button`
   justify-content: center;
   align-items: center;
 
+  @media (max-width: 360px) {
+    width: 35px;
+    height: 35px;
+  }
+
   /* .icon {
     transform: rotate(0deg);
     transition: transform 250ms ease-in-out;
