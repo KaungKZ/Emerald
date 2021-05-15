@@ -32,6 +32,7 @@ html {
     --sm-btn-padding: 6px 8px;
     --large-btn-padding: 10px 55px;
     --small-btn-padding: 5px 15px;
+    --btn-margin: 8px;
     --section-title-font-size: 1.8rem;
 }
  * {
@@ -149,10 +150,16 @@ html {
  @media (max-width: 400px) {
      html {
         --large-btn-padding: 10px 40px;
-
-        --normal-text: 12px;
+        --btn-margin: 5px;
         --section-title-font-size: 1.1rem;
      }
+ }
+
+ @media (max-width: 360px) {
+html {
+        --normal-text: 12px;
+
+}
  }
 
  @media (max-width: 320px) {

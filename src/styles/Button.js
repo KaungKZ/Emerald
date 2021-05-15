@@ -4,7 +4,7 @@ export const TextButton = styled.button`
   /* margin-top: 25px; */
   /* margin: 25px auto 0 auto; */
   cursor: pointer;
-  margin: 8px;
+  margin: var(--btn-margin);
   padding: var(--sm-btn-padding);
   font-family: var(--secondary-font);
   font-size: ${props => (props.large ? "var(--btn-text)" : "16px")};
@@ -24,12 +24,16 @@ export const TextButton = styled.button`
   @media (max-width: 768px) {
     font-size: 14px;
   }
+
+  @media (max-width: 360px) {
+    font-size: 12px;
+  }
 `;
 
 export const BgButton = styled.button`
   /* margin-top: 25px; */
   /* margin: 25px 0 0 0; */
-  margin: 8px;
+  margin: var(--btn-margin);
   cursor: pointer;
   padding: ${props => (props.small ? "3px 40px" : "var(--btn-padding)")};
   font-family: var(--secondary-font);
@@ -87,7 +91,7 @@ export const BgButton = styled.button`
 // `;
 
 export const Arrow_Button = styled.button`
-  margin: 8px;
+  margin: var(--btn-margin);
   padding: ${props =>
     props.large ? "var(--large-btn-padding)" : "var(--btn-padding)"};
   font-family: var(--secondary-font);

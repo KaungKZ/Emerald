@@ -61,6 +61,22 @@ const DialogTitle = styled.div`
     text-transform: capitalize;
     text-align: center;
   }
+
+  @media (max-width: 480px) {
+    .title {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .title {
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (max-width: 320px) {
+    margin-top: 40px;
+  }
 `;
 const DialogContent = styled.div`
   min-width: 400px;
@@ -70,22 +86,6 @@ const DialogContent = styled.div`
   }
 `;
 
-const DialogCloseBtn = styled.button`
-  /* cursor: pointer; */
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  outline: none;
-  border: none;
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const WrapperIcon = styled.div`
   position: absolute;
   top: -60px;
@@ -93,7 +93,12 @@ const WrapperIcon = styled.div`
   transform: translateX(-50%);
 `;
 
-const PurchaseIconSvg = styled.svg``;
+const PurchaseIconSvg = styled.svg`
+  @media (max-width: 320px) {
+    width: 100px;
+    height: 100px;
+  }
+`;
 
 const InformationTitle = styled.div`
   margin: 20px 0 20px 0;
@@ -102,6 +107,16 @@ const InformationTitle = styled.div`
     color: var(--text-color);
     text-decoration: underline;
     font-size: 14px;
+  }
+
+  @media (max-width: 420px) {
+    .title {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    margin: 15px 0 20px 0;
   }
 `;
 
@@ -123,9 +138,16 @@ const Information = styled.div`
     }
 
     .tracking-number {
+      cursor: pointer;
       color: var(--text-color);
       font-weight: 700;
       text-decoration: underline;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .title {
+      font-size: 14px;
     }
   }
 `;
@@ -216,26 +238,10 @@ export default function PurchaseDialog(props) {
     setPurchaseDialogOpen(false);
   }
 
-  //   function handleClickCloseBtn() {
-  //     setDeleteAllDialogOpen(false);
-  //   }
-
-  //   function handleClickCancel() {
-  //     setDeleteAllDialogOpen(false);
-  //   }
-
-  //   function handleClickConfirm() {
-  //     setCartItems([]);
-  //     localStorage.setItem("selectedProduct", JSON.stringify([]));
-  //     setIsStorageChanged(() => !isStorageChanged);
-  //     setDeleteAllDialogOpen(false);
-  //   }
-
-  //   function handleClickCloseBtn() {
-  //     setDeleteAllDialogOpen(false);
-  //   }
-
-  // console.log(deleteAllDialogOpen);
+  function randomIntFromInterval(min, max) {
+    // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
   return (
     <>
       <TestD
@@ -261,7 +267,10 @@ export default function PurchaseDialog(props) {
               </span>
             </span>
             <span className="title">
-              Tracking Number : <span className="tracking-number">Tester</span>
+              Tracking Number :{" "}
+              <span className="tracking-number">
+                {randomIntFromInterval(1000000, 9999999)}
+              </span>
             </span>
           </Information>
           <ActionButtons>
