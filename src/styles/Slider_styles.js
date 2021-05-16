@@ -6,31 +6,6 @@ export const Sliders = styled.div`
   width: ${props => props.width * 3}px;
 `;
 
-// export const SliderWrapper = styled.div`
-//   width: ${props => props.width}px;
-//   display: ${props => props.half_content && "flex"};
-//   position: ${props => props.second_slider && "relative"};
-//   ${props => css`
-//     transform: translateX(-${props.transform}px);
-//     transition: transform ${props.transition}ms;
-//   `}
-
-//   ${props =>
-//     props.half_content &&
-//     css`
-//       flex-direction: row;
-//       justify-content: space-between;
-//     `}
-//   @media (max-width: 520px) {
-//     ${props =>
-//       props.half_content &&
-//       css`
-//         flex-direction: column;
-//         justify-content: space-between;
-//       `}
-//   }
-// `;
-
 export const SliderWrapper = styled.div.attrs(props => ({
   style: {
     width: `${props.width}px`,
@@ -107,10 +82,6 @@ export const SliderTitle = styled.div`
     h1 {
       font-size: 1.7rem;
     }
-
-    /* h3 {
-      font-size: 12px !important;
-    } */
 
     .hidden-sm {
       display: none;

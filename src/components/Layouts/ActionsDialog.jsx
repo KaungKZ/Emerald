@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Portal } from "react-portal";
 import styled from "styled-components";
+import { CSSTransition } from "react-transition-group";
 
 const WrapperOverlay = styled.div`
   position: fixed;
@@ -13,33 +14,43 @@ const WrapperOverlay = styled.div`
   align-items: center;
   background: rgba(0, 0, 0, 0.15);
   z-index: 98;
-  transition: all 300ms;
-  opacity: 0;
-  visibility: hidden;
+  /* transition: all 300ms; */
 
-  &.active {
+  &.dialog-enter {
+    opacity: 0;
+    visibility: hidden;
+  }
+  &.dialog-enter-active {
+    transition: all 300ms;
+    opacity: 1;
+    visibility: visible;
+    /* transform: translateY(0); */
+  }
+  &.dialog-exit {
     opacity: 1;
     visibility: visible;
   }
+  &.dialog-exit-active {
+    transition: all 300ms;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* &.active {
+    opacity: 1;
+    visibility: visible;
+  } */
 `;
 
 const WrapperDialog = styled.div`
-  /* position: fixed; */
   position: relative;
   z-index: 99;
-  /* bottom: calc(0% + 20px); */
-  /* left: 50%; */
-  /* top: 50%; */
   max-width: 80%;
-  /* transform: translate(-50%, -50%); */
-  /* max-width: 40%; */
   min-height: 175px;
-  /* background: #fcf9f2; */
   background: #fdfdfd;
   border-radius: 7px;
   border: 1px solid rgba(96, 96, 96, 0.35);
   padding: 20px;
-  /* background: var(--primary-light); */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -64,11 +75,9 @@ const WrapperDialog = styled.div`
   @media (max-width: 320px) {
     padding: 10px 14px;
   }
-  /* transform: translateY(150%); */
 `;
 
 export default function ActionsDialog({ children, dialogOpen, setDialogOpen }) {
-  //   const { deleteAllDialogOpen, setDeleteAllDialogOpen } = props;
   const wrapperRef = useRef(null);
 
   useEffect(() => {
@@ -97,23 +106,18 @@ export default function ActionsDialog({ children, dialogOpen, setDialogOpen }) {
     }
   }
 
-  //   function handleClickCancel() {
-  //     setDeleteAllDialogOpen(false);
-  //   }
-
-  //   function handleClickConfirm() {
-  //     setCartItems([]);
-  //     localStorage.setItem("selectedProduct", JSON.stringify([]));
-  //     setIsStorageChanged(() => !isStorageChanged);
-  //     setDeleteAllDialogOpen(false);
-  //   }
-
-  // console.log(deleteAllDialogOpen);
   return (
-    <Portal>
-      <WrapperOverlay className={dialogOpen ? "active" : ""}>
-        <WrapperDialog ref={wrapperRef}>{children}</WrapperDialog>
-      </WrapperOverlay>
-    </Portal>
+    <CSSTransition
+      in={dialogOpen}
+      timeout={300}
+      classNames="dialog"
+      unmountOnExit
+    >
+      <Portal>
+        <WrapperOverlay>
+          <WrapperDialog ref={wrapperRef}>{children}</WrapperDialog>
+        </WrapperOverlay>
+      </Portal>
+    </CSSTransition>
   );
 }

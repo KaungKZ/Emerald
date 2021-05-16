@@ -43,25 +43,18 @@ export const Main_Button = styled(Link)`
       font-size: 18px !important;
       opacity: 1;
       transform: translateX(0%);
-      /* transition: all 0s; */
+
       margin-left: 10px;
       transition: all 400ms;
 
       &:hover {
         .arrow-right-icon {
-          /* display: none; */
           transform: translateX(0%);
           font-size: 18px !important;
           opacity: 1;
           margin-left: 10px;
-          /* font-size: 18px !important; */
-          /* transition: all 400ms; */
         }
       }
-
-      /* &:hover {
-        font-size: 18px !important;
-      } */
     }
   }
 
@@ -75,29 +68,21 @@ export const Main_Button = styled(Link)`
 `;
 
 export const Button = styled(Link)`
-  /* margin-left: 15px; */
-  /* display: flex; */
-  margin: ${props => (props.no_margin ? "0px" : "var(--btn-margin)")};
+  margin: ${props => (props.$no_margin ? "0px" : "var(--btn-margin)")};
   padding: var(--sm-btn-padding);
   font-family: var(--secondary-font);
-  /* padding: var(--small-btn-padding); */
   font-size: 14px;
   position: relative;
-  /* color: var(--light-text-color); */
   text-decoration: none;
   text-transform: capitalize;
-  /* font-size: var(--normal-text); */
   transition: opacity 300ms;
   display: flex;
   align-items: center;
   position: relative;
   opacity: 0.9;
-  /* align-items: center; */
-  /* border: 1px solid rgba(96, 96, 96, 0.6); */
   transition: all 300ms;
   color: var(--text-color);
   width: fit-content;
-  /* margin: 0 auto; */
 
   .arrow-right-icon {
     transform: translateX(0%);
@@ -135,7 +120,6 @@ export const Button = styled(Link)`
 
   @media (max-width: 480px) {
     .arrow-right-icon {
-      /* font-size: 18px !important; */
       margin-left: 5px;
     }
   }
@@ -151,16 +135,15 @@ export const Button = styled(Link)`
 
 export const Arrow_Button = styled(Link)`
   margin: var(--btn-margin);
-
   padding: var(--sm-btn-padding);
   display: flex;
   color: ${props =>
-    props.sub ? "var(--light-text-color)" : "var(--text-color)"};
+    props.$sub ? "var(--light-text-color)" : "var(--text-color)"};
   text-decoration: ${props => (props.underline ? "underline" : "none")};
   text-transform: capitalize;
   font-size: var(--normal-text);
   transition: opacity 300ms;
-  opacity: ${props => (props.main ? "1" : "0.9")};
+  opacity: ${props => (props.$sub ? "0.9" : "1")};
   font-family: var(--secondary-font);
   align-items: center;
 
@@ -189,13 +172,11 @@ export const Arrow_Button = styled(Link)`
   }
 
   @media (max-width: 360px) {
-    /* margin-left: 10px; */
     .see-all-link {
       margin-left: 7px;
     }
 
     .see-all-icon {
-      /* font-size: 18px !important; */
       margin-left: 4px;
     }
   }

@@ -1,5 +1,4 @@
 import React from "react";
-// import Layout from "../components/Layouts/Layout";
 import Global_styles from "../styles/Global_styles";
 import HomeMainContent from "../components/HomeMainContent.jsx";
 import { Helmet } from "react-helmet";
@@ -9,7 +8,7 @@ export default function index() {
   return (
     <>
       <Global_styles />
-      {/* <Layout> */}
+
       <Helmet>
         <meta charSet="utf-8" />
         <meta
@@ -41,7 +40,6 @@ export default function index() {
         <link rel="canonical" href="https://emeraldos.netlify.app/" />
       </Helmet>
       <HomeMainContent></HomeMainContent>
-      {/* </Layout> */}
     </>
   );
 }

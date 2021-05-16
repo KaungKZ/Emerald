@@ -22,7 +22,6 @@ import {
 import styled from "styled-components";
 import { TextButton } from "../styles/Button";
 import { Section_Title, Section_Title_Text } from "../styles/Section_Title";
-// import { useState } from "react";
 
 const Categories = styled.section`
   width: 100%;
@@ -44,7 +43,6 @@ const CategoryWrapper = styled.div`
   }
 
   @media (max-width: 600px) {
-    /* display: none; */
     grid-column-gap: 20px;
     grid-row-gap: 20px;
   }
@@ -120,8 +118,6 @@ export default function HomeMainContent() {
       }
     };
   }, []);
-
-  // console.log(seemoreClicked);
 
   function handleWindowResize() {
     if (window.innerWidth < 600) {
@@ -226,7 +222,7 @@ export default function HomeMainContent() {
         <Section_Title className="showcase-title">
           <Section_Title_Text>Best Sellers</Section_Title_Text>
 
-          <Arrow_Button to="/products" sub>
+          <Arrow_Button to="/products" $sub>
             See all{" "}
             <Icon
               icon={arrowRight}
@@ -247,7 +243,7 @@ export default function HomeMainContent() {
         <Section_Title className="showcase-title b-d-f-t">
           <Section_Title_Text>Best deals for today</Section_Title_Text>
 
-          <Arrow_Button to="/products" sub>
+          <Arrow_Button to="/products" $sub>
             See all{" "}
             <Icon
               icon={arrowRight}

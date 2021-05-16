@@ -1,25 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 
 import styled from "styled-components";
-import purchaseIcon from "../../images/shopping cart/check.svg";
-import purchaseIcon2 from "../../images/shopping cart/shopping-bag.svg";
-import { uniqueNamesGenerator, Config, names } from "unique-names-generator";
+import { uniqueNamesGenerator, names } from "unique-names-generator";
 import { TextButton } from "../../styles/Button";
 import { Arrow_Button } from "../../styles/Link_Button";
 import arrowRight from "@iconify/icons-bi/arrow-right";
 import { Icon } from "@iconify/react";
-
-// import { Arrow_Button } from "../../styles/Button";
-
-// import { TextButton } from "../../styles/Button";
-
-import ActionsDialog from "./ActionsDialog";
-
-const TestD = styled(ActionsDialog)`
-  @media (max-width: 600px) {
-    width: 80%;
-  }
-`;
+import ActionsDialog from "../Layouts/ActionsDialog";
 
 const Line = styled.div`
   position: absolute;
@@ -43,14 +30,10 @@ const Line = styled.div`
 `;
 
 const DialogTitle = styled.div`
-  /* width: 80%; */
-  /* margin: auto; */
   border-radius: 7px 7px 0 0;
   width: 100%;
-  /* background: var(--primary-light); */
   padding: 10px 0 10px 0;
   margin-top: 50px;
-  /* margin-top: 20px; */
 
   .title {
     width: 80%;
@@ -197,17 +180,6 @@ function PurchaseIconComponent() {
 export default function PurchaseDialog(props) {
   const { purchaseDialogOpen, setPurchaseDialogOpen } = props;
 
-  //   console.log("xi");
-  // const wrapperRef = useRef(null);
-
-  // useEffect(() => {
-  //   document.addEventListener("click", handleClickOutsideNav);
-
-  //   return () => {
-  //     document.removeEventListener("click", handleClickOutsideNav);
-  //   };
-  // });
-
   useEffect(() => {
     if (purchaseDialogOpen) {
       document.body.style.overflow = "hidden";
@@ -216,25 +188,7 @@ export default function PurchaseDialog(props) {
     }
   }, [purchaseDialogOpen]);
 
-  // console.log(purchaseDialogOpen);
-
-  // function handleClickOutsideNav(e) {
-  //   console.log(e);
-  //   if (
-  //     purchaseDialogOpen &&
-  //     wrapperRef.current &&
-  //     !wrapperRef.current.contains(e.target)
-  //   ) {
-  //     console.log("yes");
-
-  //   }
-  // }
-
   function handleCloseDialog() {
-    // setCartItems([]);
-
-    // localStorage.setItem("selectedProduct", JSON.stringify([]));
-    // setIsStorageChanged(() => !isStorageChanged);
     setPurchaseDialogOpen(false);
   }
 
@@ -244,7 +198,7 @@ export default function PurchaseDialog(props) {
   }
   return (
     <>
-      <TestD
+      <ActionsDialog
         dialogOpen={purchaseDialogOpen}
         setDialogOpen={setPurchaseDialogOpen}
       >
@@ -252,7 +206,6 @@ export default function PurchaseDialog(props) {
           <PurchaseIconComponent></PurchaseIconComponent>
         </WrapperIcon>
         <DialogTitle>
-          {/* <img src={purchaseIcon} /> */}
           <h2 className="title">Thank you for purchasing !</h2>
         </DialogTitle>
         <DialogContent>
@@ -291,14 +244,7 @@ export default function PurchaseDialog(props) {
         </DialogContent>
         <Line className="top"></Line>
         <Line className="bottom"></Line>
-      </TestD>
-      {/* <Portal>
-      <WrapperOverlay className={deleteAllDialogOpen ? "active" : ""}>
-        <WrapperDialog ref={wrapperRef}>
-
-        </WrapperDialog>
-      </WrapperOverlay>
-    </Portal> */}
+      </ActionsDialog>
     </>
   );
 }

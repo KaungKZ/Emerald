@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {
-  BottomSection,
-  //   ReviewBox,
-} from "../../styles/Product_Detail_Styles";
+import { BottomSection } from "../../styles/ProductDetail_Styles";
 import { Section_Title, Section_Title_Text } from "../../styles/Section_Title";
-// import styled from "styled-components";
-// import { keyframes } from "styled-components";
 import starFilled from "@iconify/icons-ant-design/star-filled";
 import plusIcon from "@iconify/icons-bi/plus";
 import { Icon } from "@iconify/react";
@@ -23,7 +18,7 @@ import {
   Comment,
   CommentsWrapper,
   SeemoreComments,
-} from "../../styles/Product_Detail_Styles";
+} from "../../styles/ProductDetail_Styles";
 
 export default function ProductDetailBottom({ data }) {
   const [randomRatings, setRandomRatings] = useState({
@@ -34,14 +29,10 @@ export default function ProductDetailBottom({ data }) {
     oneStar: "",
   });
 
-  // console.log(data);
-
   useEffect(() => {
     const chance = Math.random();
 
     if (chance < 0.85) {
-      // console.log("yes");
-
       setRandomRatings(r => {
         return {
           ...r,
@@ -52,11 +43,6 @@ export default function ProductDetailBottom({ data }) {
           oneStar: GenerateRandomRatings(data.ratingAmount, 2).oneStar,
         };
       });
-      // setRandomRatings({
-      //   ...randomRatings,
-      //   // Math.floor((number1 / number2) * 100)
-      //  v
-      // });
     } else {
       setRandomRatings(r => {
         return {
@@ -69,16 +55,13 @@ export default function ProductDetailBottom({ data }) {
         };
       });
     }
-  }, []);
+  }, [data.ratingAmount]);
 
   function generateCommentStars(rating) {
-    // console.log(data.rating);
-
     const _rating = Math.floor(rating);
     let finalJSX = [];
 
     for (let i = 1; i < 6; i++) {
-      // console.log(i);
       if (i <= _rating) {
         finalJSX.push(
           <Icon
@@ -98,23 +81,8 @@ export default function ProductDetailBottom({ data }) {
       }
     }
 
-    // console.log(finalJSX);
-
-    //     <Icon
-    //     icon={starFilled}
-    //     style={{ color: "#ffc965", fontSize: "15px" }}
-    //   />
-
-    //   <Icon
-    //   icon={starFilled}
-    //   style={{ color: "#e2e2e2", fontSize: "15px" }}
-    // />
     return finalJSX;
   }
-
-  // useEffect(() => {
-  //   generateCommentStars();
-  // }, []);
 
   return (
     <BottomSection>
@@ -264,13 +232,6 @@ export default function ProductDetailBottom({ data }) {
                   <span style={{ width: `${randomRatings.oneStar}` }}></span>
                 </div>
               </ReviewInfo>
-              {/* {data.reviews.reviews.map(v => {
-                  return (
-                      <div>
-
-                      </div>
-                  )
-              })} */}
             </ReviewRating>
           </ReviewBox>
           <ReviewAdd>

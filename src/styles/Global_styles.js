@@ -143,7 +143,6 @@ html {
  @media (max-width: 480px) {
      html {
         --large-btn-padding: 10px 45px;
-        /* --btn-padding: 7px 15px; */
      }
  }
 

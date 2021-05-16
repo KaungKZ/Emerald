@@ -1,7 +1,4 @@
 import React from "react";
-
-// import Layout from "../components/Layouts/Layout";
-// import CartItems from "../components/cart-page/CartItems";
 import Global_styles from "../styles/Global_styles";
 import { Helmet } from "react-helmet";
 import IsEmptyCartPage from "../components/Layouts/IsEmptyCartPage";
@@ -10,7 +7,6 @@ export default function cart() {
   return (
     <>
       <Global_styles />
-      {/* <Layout> */}
       <Helmet>
         <meta charSet="utf-8" />
         <meta
@@ -41,11 +37,6 @@ export default function cart() {
         <link rel="canonical" href="https://emeraldos.netlify.app/cart" />
       </Helmet>
       <IsEmptyCartPage>Shopping cart</IsEmptyCartPage>
-
-      {/* <MainContent></MainContent> */}
-      {/* </Layout> */}
-
-      {/* <Button>Click me</Button> */}
     </>
   );
 }

@@ -1,16 +1,12 @@
 import styled from "styled-components";
-import { keyframes } from "styled-components";
 
 export const Product_Detail_Wrapper = styled.section`
-  /* width: 90%;
-  margin: 0 auto 25px auto; */
   width: 100%;
   margin-bottom: 25px;
 `;
 export const TopSection = styled.div`
   width: 90%;
   display: flex;
-  /* position: relative; */
   margin: var(--large-item-margin) auto;
 
   @media (max-width: 768px) {
@@ -66,7 +62,6 @@ export const ProductHeader = styled.div`
 `;
 
 export const ProductImages = styled.div`
-  /* width: 100%; */
   margin-right: 7%;
 
   display: flex;
@@ -76,13 +71,10 @@ export const ProductImages = styled.div`
     background: #ffefd0; // f2f2f2 previous
     margin-bottom: 15px;
     padding: 20px;
-    /* box-sizing: unset; */
   }
 
   @media (max-width: 768px) {
     margin-right: 0%;
-
-    /* flex-direction: column; */
     display: grid;
     grid-column-gap: 10px;
     grid-template-areas:
@@ -106,22 +98,7 @@ export const ProductImages = styled.div`
       justify-content: center;
       margin: 0 auto 15px auto;
       width: 100%;
-      /* border-radius: 4px; */
-      /* box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; */
-      /* background: transparent; */
-      /* background: #ffefd0; */
-
-      .gatsby-image-wrapper {
-        /* width: 155px !important;
-        height: 130px !important; */
-        /* border: none !important; */
-        /* box-shadow: none !important; */
-      }
     }
-
-    /* .product-image:last-child {
-        grid-area: photo3;
-      } */
   }
 
   @media (max-width: 480px) {
@@ -146,10 +123,6 @@ export const ProductImages = styled.div`
         width: 120px !important;
         height: 120px !important;
         max-height: 120px !important;
-
-        /* picture img {
-          object-fit: contain !important;
-        } */
       }
     }
   }
@@ -158,8 +131,6 @@ export const ProductImages = styled.div`
     display: flex;
     flex-direction: column;
   }
-  /* .product-image {
-  } */
 `;
 
 export const ProductBody = styled.div`
@@ -183,7 +154,6 @@ export const ProductContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* max-width: 90%; */
 
   .detail-title {
     font-weight: 700;
@@ -195,9 +165,6 @@ export const ProductContent = styled.div`
   > :not(:last-child) {
     margin-bottom: 30px;
   }
-  /* justify-content: space-between; */
-  /* > * {
-  } */
 
   .product-price {
     font-weight: 700;
@@ -219,12 +186,6 @@ export const ProductContent = styled.div`
     font-family: var(--secondary-font);
     display: flex;
     align-items: center;
-
-    /* span {
-      margin-right: 10px;
-      color: var(--text-color);
-      font-size: 14px;
-    } */
 
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button {
@@ -312,7 +273,6 @@ export const ProductContent = styled.div`
       align-items: center;
       margin-right: 10px;
       border: 1px solid var(--grey-color);
-      /* border: 1px solid #eee; */
       transition: all 300ms;
       color: var(--text-color);
       cursor: pointer;
@@ -332,7 +292,6 @@ export const ProductContent = styled.div`
   .product-description {
     max-width: 800px;
     font-family: var(--secondary-font);
-    /* font-family: var(--secondary-font); */
 
     p {
       font-family: var(--content-font);
@@ -346,10 +305,6 @@ export const ProductContent = styled.div`
 
   .product-buttons {
     display: flex;
-
-    /* .product-add-to-cart {
-      margin-right: 20px;
-    } */
   }
 
   @media (max-width: 1024px) {
@@ -366,7 +321,6 @@ export const ProductContent = styled.div`
 
   @media (max-width: 600px) {
     .product-description p {
-      /* text-align: justify; */
       font-size: 14px;
     }
 
@@ -376,10 +330,6 @@ export const ProductContent = styled.div`
   }
 
   @media (max-width: 480px) {
-    /* .product-description p {
-      font-size: 14px;
-    } */
-
     .product-size .product-size-description {
       font-size: 12px;
     }
@@ -409,8 +359,6 @@ export const ProductContent = styled.div`
 
 export const SeemoreBtn = styled.span`
   color: rgba(53, 53, 53, 0.7);
-  /* color: rgba(53, 53, 53, 1); */
-  /* text-decoration: underline; */
   font-size: 14px;
   font-weight: 700;
   margin-left: 10px;
@@ -433,16 +381,6 @@ export const ProductOptionWrapper = styled.div`
   justify-content: center;
   align-items: center;
   right: 0;
-  /* cursor: pointer; */
-  /* outline: none; */
-  /* background: transparent; */
-  /* border: none; */
-  /* transition: background 200ms; */
-  /* border-radius: 50px; */
-
-  /* @media (max-width: 768px) {
-    top: 425px;
-  } */
 `;
 
 export const ProductOption = styled.button`
@@ -468,37 +406,25 @@ export const ProductOption = styled.button`
   &:hover {
     background: #efefef;
   }
-
-  /* @media (max-width: 768px) {
-    top: 400px;
-  } */
 `;
 
 export const OptionPopupStyles = styled.div`
   position: absolute;
   top: calc(100% + 8px);
-  /* top: 408px; */
   right: 10px;
   min-width: 130px;
   max-width: 200px;
   background: var(--general-color);
-
   border-radius: 4px;
-  /* color: #fff; */
   opacity: 0;
   transition: opacity 200ms ease;
-  /* display: none; */
   visibility: hidden;
   padding: 5px 0px;
 
   &.active {
     opacity: 1;
     visibility: visible;
-    /* transition: opacity 200ms ease-in; */
-    /* display: block; */
   }
-  /* width: fit-content; */
-  /* max-width: 150px; */
 
   ul {
     li {
@@ -516,7 +442,6 @@ export const OptionPopupStyles = styled.div`
       &:hover {
         color: rgba(255, 255, 255, 1);
         background: rgba(255, 255, 255, 0.095);
-        /* border-radius: 4px; */
       }
     }
   }
@@ -621,11 +546,8 @@ export const ReviewInfo = styled.div`
     height: 5px; /* Can be anything */
     position: relative;
     min-width: 150px;
-    /* margin: 60px 0 20px 0; Just for demo spacing */
     background: #434343;
     border-radius: 25px;
-    /* padding: 7px; */
-    /* box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.2); */
 
     span {
       display: block;
@@ -636,7 +558,6 @@ export const ReviewInfo = styled.div`
       border-bottom-left-radius: 20px;
       position: relative;
       overflow: hidden;
-      /* background-image: linear-gradient(#f1a165, #f36d0a); */
       background: #fff;
 
       &::after {
@@ -696,9 +617,6 @@ export const Comment = styled.div`
   min-width: 250px;
   min-height: 150px;
   background: #fff;
-
-  /* box-shadow: rgba(255, 201, 10, 0.2) 0px 0px 0px 1px inset,
-    rgba(255, 201, 101, 0.9) 0px 0px 0px 1px; */
   box-shadow: rgba(229, 229, 229, 0.2) 0px 0px 0px 1px inset,
     rgba(229, 229, 229, 0.9) 0px 0px 0px 1px;
   padding: 25px;
@@ -721,7 +639,6 @@ export const Comment = styled.div`
       margin-right: 10px;
       font-family: var(--small-title-font);
       color: var(--text-color);
-      /* font-weight: 400; */
     }
 
     .comment-stars {
@@ -785,14 +702,6 @@ export const Comment = styled.div`
   }
 `;
 
-// const rotateAnimation = keyframes`
-//   from {
-//     transform: rotate(0deg);
-//   }
-
-//   to {
-//   }
-// `;
 export const SeemoreComments = styled.div`
   display: flex;
   align-items: center;
@@ -800,11 +709,9 @@ export const SeemoreComments = styled.div`
   font-family: var(--secondary-font);
   color: var(--text-color);
   cursor: pointer;
-  /* background:  */
   padding: 4px 15px;
   margin: 0 auto;
   width: fit-content;
-  /* transition: background 300ms; */
 
   svg {
     transform: rotate(0deg);
@@ -813,9 +720,7 @@ export const SeemoreComments = styled.div`
 
   &.hovered {
     border-radius: 3px;
-    /* background: rgba(53, 53, 53, 1); */
-    /* background: #ececec; */
-    /* color: #fff; */
+
     svg {
       transform: rotate(90deg);
     }

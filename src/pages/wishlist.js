@@ -1,14 +1,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import Global_styles from "../styles/Global_styles";
-// import Layout from "../components/Layouts/Layout";
 import IsEmptyCartPage from "../components/Layouts/IsEmptyCartPage";
 
 export default function wishlist() {
   return (
     <>
       <Global_styles />
-      {/* <Layout> */}
       <Helmet>
         <meta charSet="utf-8" />
         <meta
@@ -42,9 +40,6 @@ export default function wishlist() {
         <link rel="canonical" href="https://emeraldos.netlify.app/wishlist" />
       </Helmet>
       <IsEmptyCartPage>Wishlist</IsEmptyCartPage>
-      {/* </Layout> */}
-
-      {/* <Button>Click me</Button> */}
     </>
   );
 }

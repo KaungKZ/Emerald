@@ -6,11 +6,7 @@ const DialogWrapper = styled.div`
   position: fixed;
   top: 30px;
   left: 50%;
-  /* transform: translateX(-50%); */
-  /* min-width: 450px; */
-  /* max-width: 40%; */
-  /* height: 175px; */
-  /* background: #fff; */
+
   border-radius: 7px;
   border: 1px solid rgba(96, 96, 96, 0.35);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -62,8 +58,6 @@ const DialogWrapper = styled.div`
     min-width: 95%;
   }
 `;
-
-const DialogContent = styled.div``;
 
 const DialogTitle = styled.div`
   font-family: var(--small-title-font);

@@ -296,7 +296,7 @@ export default function Navbar() {
   const [toggleNav, setToggleNav] = useState(false);
   const [isBetween600n1024, setIsBetween600n1024] = useState();
   const [activeItemsLength, setActiveItemsLength] = useState(0);
-  const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
+  const { isStorageChanged } = useContext(ContextValues);
 
   const navRef = useRef(null);
 
@@ -311,14 +311,11 @@ export default function Navbar() {
   useEffect(() => {
     const storedProducts = JSON.parse(localStorage.getItem("selectedProduct"));
     if (storedProducts) {
-      // console.log(storedProducts);
       setActiveItemsLength(storedProducts.length);
     } else {
       setActiveItemsLength(0);
     }
   }, [isStorageChanged]);
-
-  // console.log(activeItemsLength);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutsideNav);
@@ -333,8 +330,6 @@ export default function Navbar() {
       }
     };
   });
-
-  // console.log(isBetween600n1024);
 
   function handleResizeNav(e) {
     if (e.currentTarget.innerWidth < 1024 && e.currentTarget.innerWidth > 600) {

@@ -1,8 +1,4 @@
-// import React from "react";
-
 export default function GenerateRandomRatings(total, ratingMultiply) {
-  //   total;
-  //   if (chance < 0.85) {
   return {
     fiveStar:
       (

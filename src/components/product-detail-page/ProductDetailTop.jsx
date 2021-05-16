@@ -9,7 +9,7 @@ import {
   OptionPopupStyles,
   ProductOptionWrapper,
   SeemoreBtn,
-} from "../../styles/Product_Detail_Styles";
+} from "../../styles/ProductDetail_Styles";
 import Img from "gatsby-image";
 import arrowRight from "@iconify/icons-bi/arrow-right";
 import { Icon } from "@iconify/react";
@@ -24,6 +24,7 @@ export default function ProductDetailTop({
   setProductValues,
   data,
 }) {
+  // console.log(data)
   const [openOptionPopup, setOpenOptionPopup] = useState(false);
   const [isSmallSize, setIsSmallSize] = useState(false);
   const [readmoreClicked, setReadmoreClicked] = useState(false);
@@ -31,16 +32,6 @@ export default function ProductDetailTop({
 
   const [showAlreadyExisted, setShowAlreadyExisted] = useState();
   const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
-
-  // const {isStorageChanged, setIsStorageChanged} = contextValues;
-
-  // console.log(isStorageChanged);
-
-  // const [selectedProducts, setSelectedProducts] = useState(data);
-  // const [hoverActive, setHoverActive] = useState();
-  // const addDialogRef = React.useRef(null);
-  // const [productAddDialogRef, setProductAddDialogRef] = useState();
-  // const [selectedProduct, setSelectedProduct] = useState();
 
   const optionPopupRef = useRef();
   const optionWrapperRef = useRef();
@@ -67,14 +58,12 @@ export default function ProductDetailTop({
     };
   }, []);
 
-  // console.log(data);
-
   useEffect(() => {
     let timer;
     if (productAddDialogOpen) {
       timer = setTimeout(() => {
         setProductAddDialogOpen(false);
-      }, 3000);
+      }, 5000);
     }
     return () => {
       clearTimeout(timer);
@@ -89,18 +78,11 @@ export default function ProductDetailTop({
     }
   }
 
-  // let isnum = /^\d+$/.test(productValues.productSize);
-
-  // console.log(isnum);
-
-  // console.log(openOptionPopup);
-
   const handleClickOutside = e => {
     if (
       optionPopupRef.current.contains(e.target) &&
       optionWrapperRef.current.contains(e.target)
     ) {
-      // console.log(e.target);
       setOpenOptionPopup(true);
 
       return;
@@ -131,8 +113,6 @@ export default function ProductDetailTop({
   function handleProductSizeDown(e) {
     const elementName = e.target.parentNode.parentNode.getAttribute("name");
 
-    // console.log(elementName);
-
     const input = e.target.parentNode.parentNode.querySelector("input");
 
     let minValue = input.min;
@@ -140,28 +120,23 @@ export default function ProductDetailTop({
     if (oldValue <= minValue) {
       var newVal = oldValue;
     } else {
-      var newVal = oldValue - 1;
+      newVal = oldValue - 1;
     }
 
     setProductValues({ ...productValues, [elementName]: newVal });
   }
 
-  // console.log(hoverActive);
   function handleProductSizeUp(e) {
-    // console.log(e);
-    // console.log(numberRef.current.min);
-
     const elementName = e.target.parentNode.parentNode.getAttribute("name");
 
     const input = e.target.parentNode.parentNode.querySelector("input");
 
-    // console.log(e.target.parentNode.parentNode.querySelector("input").value);
     let maxValue = input.max;
     var oldValue = parseFloat(input.value);
     if (oldValue >= maxValue) {
       var newVal = oldValue;
     } else {
-      var newVal = oldValue + 1;
+      newVal = oldValue + 1;
     }
 
     // console.log(newVal);
@@ -169,18 +144,11 @@ export default function ProductDetailTop({
     setProductValues({ ...productValues, [elementName]: newVal });
   }
 
-  // console.log(productValues);
-
   function handleOnChange(e) {
-    // console.log(e.target.value);
-    // console.log(e);
     setProductValues({ ...productValues, size: e.target.value });
-    // console.log("yes");
   }
 
   function handleAddProduct(e) {
-    // setSelectedProduct(data);
-    // setHoverActive(undefined);
     if (localStorage.getItem("selectedProduct")) {
       const storedProducts = JSON.parse(
         localStorage.getItem("selectedProduct")
@@ -190,14 +158,13 @@ export default function ProductDetailTop({
         setTimeout(() => {
           setShowAlreadyExisted(false);
         }, 2000);
-        // alert("This item is already exist in cart");
+
         setProductAddDialogOpen(false);
 
         return;
       }
       setProductAddDialogOpen(true);
-      // console.log(productValues);
-      // console.log(data);
+
       let _data = {
         ...data,
         ...productValues,
@@ -219,43 +186,17 @@ export default function ProductDetailTop({
         ...productValues,
       };
 
-      // console.log(_data);
-
-      // var originalSetItem = localStorage.setItem;
-
-      // localStorage.setItem = function (key, value) {
-      //   var event = new Event("itemInserted");
-
-      //   event.value = value; // Optional..
-      //   event.key = key; // Optional..
-
-      //   document.dispatchEvent(event);
-
-      //   originalSetItem.apply(this, arguments);
-      // };
-
       localStorage.setItem("selectedProduct", JSON.stringify([_data]));
 
       setIsStorageChanged(() => !isStorageChanged);
-
-      // document.addEventListener("itemInserted", localStorageSetHandler, false);
-
-      // localStorage.setItem('foo', 'bar'); // Pops an alert
     }
   }
 
   return (
     <>
-      <TopSection
-      // ref={current => {
-      //   addDialogRef.current = current;
-      //   setProductAddDialogRef(addDialogRef.current);
-      // }}
-      >
+      <TopSection>
         <ProductImages>
           {data.images.map(v => {
-            // console.log(v);
-            // console.log(v);
             return (
               <div className="product-image" key={v.fixed.src}>
                 <Img
@@ -455,11 +396,7 @@ export default function ProductDetailTop({
               <Icon
                 icon={threeDotsVertical}
                 style={{ color: "#606060", fontSize: "25px" }}
-                // className="arrow-right-icon"
               />
-
-              {/* </> */}
-              {/* )} */}
             </ProductOption>
             <OptionPopupStyles
               className={`${openOptionPopup ? "active" : ""}`}
@@ -471,29 +408,18 @@ export default function ProductDetailTop({
             </OptionPopupStyles>
           </ProductOptionWrapper>
         </ProductBody>
-
-        {/* {openOptionDialog && (
-    <ProductOptionDialog
-      open={openOptionDialog}
-      onClose={() => setOpenOptionDialog(false)}
-    >
-      This is test
-    </ProductOptionDialog>
-  )} */}
       </TopSection>
-      {/* {productAddDialogOpen && ( */}
       <ProductAddDialog
         title={data.title}
         quantity={productValues.productQty}
         price={data.price}
         productAddDialogOpen={productAddDialogOpen}
-        // setHoverActive={setHoverActive}
+        setProductAddDialogOpen={setProductAddDialogOpen}
       ></ProductAddDialog>
       <WarningDialog
         showAlreadyExisted={showAlreadyExisted}
         title="This item is already existed in your cart !"
       ></WarningDialog>
-      {/* )} */}
     </>
   );
 }
