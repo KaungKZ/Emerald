@@ -9,7 +9,7 @@ const WrapperDialog = styled.div`
   right: 20px;
   min-width: 450px;
   max-width: 40%;
-  height: 175px;
+  min-height: 175px;
   background: #fff;
   border-radius: 7px;
   border: 1px solid rgba(96, 96, 96, 0.35);
@@ -37,12 +37,6 @@ const WrapperDialog = styled.div`
     transition: all 300ms;
     transform: translateY(100%);
   }
-
-  /* &.active {
-    transform: translateY(0%);
-    opacity: 1;
-  } */
-
   @media (max-width: 1024px) {
     min-width: 425px;
   }
@@ -73,18 +67,131 @@ const WrapperDialog = styled.div`
   }
 `;
 
-export default function InfoDialog({ children, dialogOpen, setDialogOpen }) {
+export const DialogTitle = styled.h2`
+  color: var(--text-color);
+  font-family: var(--small-title-font);
+  font-size: 1.2rem;
+
+  @media (max-width: 1024px) {
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 320px) {
+    font-size: 13px;
+  }
+`;
+
+export const DialogContent = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .item-name {
+    font-family: var(--small-title-font);
+    text-transform: capitalize;
+    font-weight: 700;
+  }
+
+  .item-qty {
+    font-family: var(--secondary-font);
+    position: relative;
+    font-weight: 700;
+
+    z-index: 1;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    align-items: center;
+    min-width: 28px;
+    min-height: 28px;
+
+    &::before {
+      content: "";
+      z-index: -1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 50px;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+    }
+  }
+
+  .item-price {
+    font-family: var(--secondary-font);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  @media (max-width: 1024px) {
+    .item-name {
+      font-size: 14px;
+    }
+
+    .item-qty {
+      min-width: 25px;
+      min-height: 25px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .item-name {
+      font-size: 12px;
+    }
+
+    .item-qty {
+      font-size: 10px;
+    }
+
+    .item-price {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .item-qty {
+      min-width: 20px;
+      min-height: 20px;
+      color: var(--text-color);
+      text-decoration: underline;
+      font-size: 12px;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: 360px) {
+    .item-name,
+    .item-qty,
+    .item-price {
+      font-size: 10px;
+    }
+  }
+`;
+
+export default function InfoDialog({ children, dialogOpen, className }) {
   // const wrapperRef = useRef(null);
 
   return (
     <CSSTransition
       in={dialogOpen}
       timeout={300}
-      classNames="dialog"
+      classNames="dialog dialog"
       unmountOnExit
     >
       <Portal>
-        <WrapperDialog>{children}</WrapperDialog>
+        <WrapperDialog className={className}>{children}</WrapperDialog>
       </Portal>
     </CSSTransition>
   );

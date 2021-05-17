@@ -63,7 +63,7 @@ export default function ProductDetailTop({
     if (productAddDialogOpen) {
       timer = setTimeout(() => {
         setProductAddDialogOpen(false);
-      }, 5000);
+      }, 500000);
     }
     return () => {
       clearTimeout(timer);

@@ -301,12 +301,14 @@ export default function ProductList({ details, pointerNone, all_items }) {
   const [showAlreadyExisted, setShowAlreadyExisted] = useState();
   const [wishlishDialogOpen, setWishlistDialogOpen] = useState();
 
+  // console.log(details);
+
   useEffect(() => {
     let timer;
     if (wishlishDialogOpen) {
       timer = setTimeout(() => {
         setWishlistDialogOpen(false);
-      }, 3000);
+      }, 500000);
     }
     return () => {
       clearTimeout(timer);
@@ -422,6 +424,8 @@ export default function ProductList({ details, pointerNone, all_items }) {
       <ProductWishlistDialog
         wishlishDialogOpen={wishlishDialogOpen}
         setWishlistDialogOpen={setWishlistDialogOpen}
+        title={details.title}
+        price={details.price}
       ></ProductWishlistDialog>
     </>
   );

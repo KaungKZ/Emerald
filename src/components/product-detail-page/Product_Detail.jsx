@@ -35,7 +35,7 @@ export default function Product_Detail({ data }) {
         <Section_Title className="showcase-title">
           <Section_Title_Text>Similar Items</Section_Title_Text>
 
-          <Arrow_Button to="/products" className="see-all-link" sub>
+          <Arrow_Button to="/products" className="see-all-link" $sub>
             See all{" "}
             <Icon
               icon={arrowRight}
