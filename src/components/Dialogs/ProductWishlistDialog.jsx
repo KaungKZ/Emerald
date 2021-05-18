@@ -8,6 +8,21 @@ import { Button } from "../../styles/Link_Button";
 
 const Dialog = styled(InfoDialog)`
   min-height: 155px;
+  padding: 15px 0;
+
+  @media (max-width: 768px) {
+    min-height: 140px;
+  }
+  @media (max-width: 600px) {
+    min-width: 350px;
+    height: 135px;
+    min-height: initial;
+    padding: 15px 0;
+  }
+
+  @media (max-width: 480px) {
+    min-width: 90%;
+  }
 `;
 
 const WrapperDialogTitle = styled.div`
@@ -26,6 +41,15 @@ const WrapperDialogContent = styled.div`
   .item-name,
   .item-qty {
     font-size: 14px;
+  }
+
+  @media (max-width: 600px) {
+    margin-top: 10px;
+
+    .item-name,
+    .item-qty {
+      font-size: 12px;
+    }
   }
 
   @media (max-width: 480px) {
@@ -61,8 +85,8 @@ export default function ProductWishlistDialog({
           </div>
           <div className="item-price">${price}</div>
         </DialogContent>
+        {/* <DialogContent></DialogContent> */}
       </WrapperDialogContent>
-      <DialogContent></DialogContent>
       <ItemDialogButton>
         <Button to="/cart" $no_margin>
           View Wishlist{" "}

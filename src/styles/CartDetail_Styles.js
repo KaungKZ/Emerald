@@ -198,7 +198,7 @@ export const TableHeader = styled.div`
     }
   }
 
-  @media (max-width: 280px) {
+  @media (max-width: 320px) {
     .table-header-cell:nth-child(2) {
       display: none;
     }
@@ -317,7 +317,7 @@ export const TableCell = styled.div`
     }
   }
 
-  @media (max-width: 280px) {
+  @media (max-width: 320px) {
     &:nth-child(2) {
       display: none;
     }

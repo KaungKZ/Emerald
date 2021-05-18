@@ -111,6 +111,7 @@ export const Button = styled(Link)`
 
   @media (max-width: 768px) {
     font-size: 12px;
+    margin: ${props => (props.$no_margin ? "3px" : "var(--btn-margin)")};
 
     .arrow-right-icon {
       font-size: 18px !important;
@@ -125,11 +126,15 @@ export const Button = styled(Link)`
   }
 
   @media (max-width: 480px) {
-    font-size: 10px;
+    font-size: 12px;
 
     .arrow-right-icon {
       font-size: 16px !important;
     }
+  }
+
+  @media (max-width: 320px) {
+    font-size: 10px;
   }
 `;
 

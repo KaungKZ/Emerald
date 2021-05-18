@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { CSSTransition } from "react-transition-group";
 
 const WrapperDialog = styled.div`
+  z-index: 3;
   position: fixed;
   bottom: calc(0% + 20px);
   right: 20px;
@@ -48,6 +49,8 @@ const WrapperDialog = styled.div`
   @media (max-width: 600px) {
     min-width: 375px;
     height: 150px;
+    min-height: initial;
+    /* min-height: 150px; */
     padding: 17px 0;
   }
 
@@ -146,14 +149,17 @@ export const DialogContent = styled.div`
   @media (max-width: 600px) {
     .item-name {
       font-size: 12px;
+      font-weight: 500;
     }
 
     .item-qty {
       font-size: 10px;
+      font-weight: 500;
     }
 
     .item-price {
       font-size: 12px;
+      font-weight: 500;
     }
   }
 

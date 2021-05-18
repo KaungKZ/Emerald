@@ -131,6 +131,8 @@ html {
         --btn-text: 14px;
          --btn-padding: 7px 15px;
     --section-margin: 90px;
+    --sm-btn-padding: 4px 6px;
+
 
      }
  }

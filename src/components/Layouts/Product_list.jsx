@@ -308,7 +308,7 @@ export default function ProductList({ details, pointerNone, all_items }) {
     if (wishlishDialogOpen) {
       timer = setTimeout(() => {
         setWishlistDialogOpen(false);
-      }, 500000);
+      }, 2000);
     }
     return () => {
       clearTimeout(timer);
