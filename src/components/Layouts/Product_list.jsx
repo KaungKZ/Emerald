@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "gatsby";
 import Img from "gatsby-image";
 import { Icon } from "@iconify/react";
@@ -6,6 +6,8 @@ import heartOutlined from "@iconify/icons-ant-design/heart-outlined";
 import styled, { css } from "styled-components";
 import starFilled from "@iconify/icons-ant-design/star-filled";
 import ProductWishlistDialog from "../Dialogs/ProductWishlistDialog";
+import Snackbar from "./Snackbar";
+import { ContextValues } from "../context/ContextSetup";
 
 const ShowcaseProductImage = styled.div`
   padding: 10px 7px;
@@ -300,8 +302,9 @@ const AddtoWishlistIcon = styled.button`
 export default function ProductList({ details, pointerNone, all_items }) {
   const [showAlreadyExisted, setShowAlreadyExisted] = useState();
   const [wishlishDialogOpen, setWishlistDialogOpen] = useState();
+  const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
 
-  // console.log(details);
+  // console.log(all_items);
 
   useEffect(() => {
     let timer;
@@ -323,6 +326,7 @@ export default function ProductList({ details, pointerNone, all_items }) {
         localStorage.getItem("wishlistProducts")
       );
       if (storedProducts.some(v => v.id === details.id)) {
+        console.log("exist");
         setShowAlreadyExisted(true);
         setTimeout(() => {
           setShowAlreadyExisted(false);
@@ -339,12 +343,14 @@ export default function ProductList({ details, pointerNone, all_items }) {
         ...details,
       };
 
-      // localStorage.setItem(
-      //   "wishlistProducts",
-      //   JSON.stringify([...storedProducts, _data])
-      // );
+      console.log(_data);
 
-      // setIsStorageChanged(() => !isStorageChanged);
+      localStorage.setItem(
+        "wishlistProducts",
+        JSON.stringify([...storedProducts, _data])
+      );
+
+      setIsStorageChanged(() => !isStorageChanged);
     } else {
       setWishlistDialogOpen(true);
 
@@ -353,9 +359,9 @@ export default function ProductList({ details, pointerNone, all_items }) {
         ...details,
       };
 
-      // localStorage.setItem("wishlistProducts", JSON.stringify([_data]));
+      localStorage.setItem("wishlistProducts", JSON.stringify([_data]));
 
-      // setIsStorageChanged(() => !isStorageChanged);
+      setIsStorageChanged(() => !isStorageChanged);
     }
   }
 
@@ -427,6 +433,10 @@ export default function ProductList({ details, pointerNone, all_items }) {
         title={details.title}
         price={details.price}
       ></ProductWishlistDialog>
+      <Snackbar
+        title="This item is already existed in your wishlist !"
+        dialogOpen={showAlreadyExisted}
+      ></Snackbar>
     </>
   );
 }

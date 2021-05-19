@@ -16,8 +16,10 @@ import { Icon } from "@iconify/react";
 import { Arrow_Button } from "../../styles/Button";
 import threeDotsVertical from "@iconify/icons-bi/three-dots-vertical";
 import ProductAddDialog from "../Dialogs/ProductAddDialog";
-import WarningDialog from "../Dialogs/WarningDialog";
+import ProductWishlistDialog from "../Dialogs/ProductWishlistDialog";
+// import WarningDialog from "../Dialogs/WarningDialog";
 import { ContextValues } from "../context/ContextSetup";
+import Snackbar from "../Layouts/Snackbar";
 
 export default function ProductDetailTop({
   productValues,
@@ -27,10 +29,20 @@ export default function ProductDetailTop({
   // console.log(data)
   const [openOptionPopup, setOpenOptionPopup] = useState(false);
   const [isSmallSize, setIsSmallSize] = useState(false);
-  const [readmoreClicked, setReadmoreClicked] = useState(false);
-  const [productAddDialogOpen, setProductAddDialogOpen] = useState(false);
 
-  const [showAlreadyExisted, setShowAlreadyExisted] = useState();
+  const [readmoreClicked, setReadmoreClicked] = useState(false);
+  const [addDialogOpen, setAddDialogOpen] = useState({
+    cart: false,
+    wishlist: false,
+  });
+
+  // const [productAddDialogOpen, setProductAddDialogOpen] = useState(false);
+  // const [productWishlistDialogOpen,setProductWishlistDialogOpen ] = useState(false);
+
+  const [showAlreadyExisted, setShowAlreadyExisted] = useState({
+    cart: null,
+    wishlist: null,
+  });
   const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
 
   const optionPopupRef = useRef();
@@ -60,15 +72,19 @@ export default function ProductDetailTop({
 
   useEffect(() => {
     let timer;
-    if (productAddDialogOpen) {
+    if (addDialogOpen.cart) {
       timer = setTimeout(() => {
-        setProductAddDialogOpen(false);
-      }, 500000);
+        setAddDialogOpen({ ...addDialogOpen, cart: false });
+      }, 3000);
+    } else if (addDialogOpen.wishlist) {
+      timer = setTimeout(() => {
+        setAddDialogOpen({ ...addDialogOpen, wishlist: false });
+      }, 2000);
     }
     return () => {
       clearTimeout(timer);
     };
-  }, [productAddDialogOpen]);
+  }, [addDialogOpen]);
 
   function handleWindowResize() {
     if (window.innerWidth < 1025) {
@@ -154,16 +170,17 @@ export default function ProductDetailTop({
         localStorage.getItem("selectedProduct")
       );
       if (storedProducts.some(v => v.id === data.id)) {
-        setShowAlreadyExisted(true);
+        setShowAlreadyExisted({ ...showAlreadyExisted, cart: true });
         setTimeout(() => {
-          setShowAlreadyExisted(false);
+          setShowAlreadyExisted({ ...showAlreadyExisted, cart: false });
         }, 2000);
 
-        setProductAddDialogOpen(false);
+        setAddDialogOpen({ ...addDialogOpen, cart: false });
 
         return;
       }
-      setProductAddDialogOpen(true);
+      setAddDialogOpen({ ...addDialogOpen, cart: true });
+      // setProductAddDialogOpen(true);
 
       let _data = {
         ...data,
@@ -179,7 +196,7 @@ export default function ProductDetailTop({
 
       setIsStorageChanged(() => !isStorageChanged);
     } else {
-      setProductAddDialogOpen(true);
+      setAddDialogOpen({ ...addDialogOpen, cart: true });
 
       let _data = {
         ...data,
@@ -191,6 +208,56 @@ export default function ProductDetailTop({
       setIsStorageChanged(() => !isStorageChanged);
     }
   }
+
+  function handleAddWishlist() {
+    if (localStorage.getItem("wishlistProducts")) {
+      const storedProducts = JSON.parse(
+        localStorage.getItem("wishlistProducts")
+      );
+      if (storedProducts.some(v => v.id === data.id)) {
+        console.log("exist");
+        setShowAlreadyExisted({ ...showAlreadyExisted, wishlist: true });
+        setTimeout(() => {
+          setShowAlreadyExisted({ ...showAlreadyExisted, wishlist: false });
+          // setShowAlreadyExisted(false);
+        }, 2000);
+
+        setAddDialogOpen({ ...addDialogOpen, wishlist: false });
+
+        // setWishlistDialogOpen(false);
+
+        return;
+      }
+      setAddDialogOpen({ ...addDialogOpen, wishlist: true });
+      // setWishlistDialogOpen(true);
+
+      let _data = {
+        ...data,
+      };
+      // console.log(data);
+
+      localStorage.setItem(
+        "wishlistProducts",
+        JSON.stringify([...storedProducts, _data])
+      );
+
+      setIsStorageChanged(() => !isStorageChanged);
+    } else {
+      setAddDialogOpen({ ...addDialogOpen, wishlist: true });
+
+      let _data = {
+        ...data,
+      };
+
+      // console.log(data);
+
+      localStorage.setItem("wishlistProducts", JSON.stringify([_data]));
+
+      setIsStorageChanged(() => !isStorageChanged);
+    }
+  }
+
+  console.log(data);
 
   return (
     <>
@@ -364,10 +431,10 @@ export default function ProductDetailTop({
               <Arrow_Button
                 dark
                 className={`product-add-to-cart ${
-                  productAddDialogOpen ? "disabled" : ""
+                  addDialogOpen.cart ? "disabled" : ""
                 }`}
                 onClick={handleAddProduct}
-                disabled={productAddDialogOpen ? true : false}
+                disabled={addDialogOpen.cart ? true : false}
               >
                 Add To Cart{" "}
                 <Icon
@@ -376,7 +443,13 @@ export default function ProductDetailTop({
                   className="arrow-right-icon"
                 />
               </Arrow_Button>
-              <Arrow_Button className="product-add-to-wishlist">
+              <Arrow_Button
+                className={`product-add-to-wishlist ${
+                  addDialogOpen.wishlist ? "disabled" : ""
+                }`}
+                onClick={handleAddWishlist}
+                disabled={addDialogOpen.wishlist ? true : false}
+              >
                 Add To Wishlist{" "}
                 <Icon
                   icon={arrowRight}
@@ -413,13 +486,29 @@ export default function ProductDetailTop({
         title={data.title}
         quantity={productValues.productQty}
         price={data.price}
-        productAddDialogOpen={productAddDialogOpen}
-        setProductAddDialogOpen={setProductAddDialogOpen}
+        addDialogOpen={addDialogOpen.cart}
       ></ProductAddDialog>
-      <WarningDialog
-        showAlreadyExisted={showAlreadyExisted}
-        title="This item is already existed in your cart !"
-      ></WarningDialog>
+      <ProductWishlistDialog
+        wishlishDialogOpen={addDialogOpen.wishlist}
+        title={data.title}
+        price={data.price}
+      ></ProductWishlistDialog>
+      <Snackbar
+        title={`${
+          showAlreadyExisted.cart
+            ? "This item is already existed in your cart !"
+            : showAlreadyExisted.wishlist
+            ? "This item is already existed in your wishlist !"
+            : ""
+        }`}
+        dialogOpen={
+          showAlreadyExisted.cart
+            ? showAlreadyExisted.cart
+            : showAlreadyExisted.wishlist
+            ? showAlreadyExisted.wishlist
+            : null
+        }
+      ></Snackbar>
     </>
   );
 }

@@ -65,16 +65,12 @@ const ItemDialogButton = styled.div`
 
 export default function ProductWishlistDialog({
   wishlishDialogOpen,
-  setWishlistDialogOpen,
   title,
   price,
 }) {
   // if (!wishlishDialogOpen) return null;
   return (
-    <Dialog
-      dialogOpen={wishlishDialogOpen}
-      setDialogOpen={setWishlistDialogOpen}
-    >
+    <Dialog dialogOpen={wishlishDialogOpen}>
       <WrapperDialogTitle>
         <DialogTitle>You just add an item to the wishlist !</DialogTitle>
       </WrapperDialogTitle>

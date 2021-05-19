@@ -39,15 +39,15 @@ export default function ProductAddDialog({
   title,
   quantity,
   price,
-  productAddDialogOpen,
-  setProductAddDialogOpen,
+  addDialogOpen,
+  setAddDialogOpen,
 }) {
   // if (!productAddDialogOpen) return null;
 
   return (
     <InfoDialog
-      dialogOpen={productAddDialogOpen}
-      setDialogOpen={setProductAddDialogOpen}
+      dialogOpen={addDialogOpen}
+      // setDialogOpen={setAddDialogOpen}
     >
       <WrapperDialogTitle>
         <DialogTitle>You just add an item to the cart !</DialogTitle>

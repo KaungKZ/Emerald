@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { Portal } from "react-portal";
+// import styled from "styled-components";
+import { CSSTransition } from "react-transition-group";
 
 const WrapperDialog = styled.div`
   position: fixed;
   top: 30px;
   left: 50%;
-
   border-radius: 7px;
   border: 1px solid rgba(96, 96, 96, 0.35);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -14,29 +16,29 @@ const WrapperDialog = styled.div`
   min-height: 50px;
   display: flex;
   justify-content: center;
-  background: var(--general-color);
   align-items: center;
-  transition: all 300ms;
-  transform: translate(-50%, -150%);
-  opacity: 0;
+  transform: translate(-50%, 0%);
+  /* transition: all 300ms; */
+  /* opacity: 0; */
+  background: var(--general-color);
 
-  &.dialog-enter {
+  &.snackbar-enter {
     visibility: hidden;
-    transform: translateY(100%);
+    transform: translate(-50%, -150%);
   }
-  &.dialog-enter-active {
+  &.snackbar-enter-active {
     visibility: visible;
     transition: all 300ms;
-    transform: translateY(0);
+    transform: translate(-50%, 0%);
   }
-  &.dialog-exit {
+  &.snackbar-exit {
     visibility: visible;
-    transform: translateY(0);
+    transform: translate(-50%, 0%);
   }
-  &.dialog-exit-active {
+  &.snackbar-exit-active {
     visibility: hidden;
     transition: all 300ms;
-    transform: translateY(100%);
+    transform: translate(-50%, -150%);
   }
   /* &.active {
     transform: translate(-50%, 0%);
@@ -96,7 +98,7 @@ const DialogTitle = styled.div`
   }
 `;
 
-export default function Snackbar({ children, dialogOpen }) {
+export default function Snackbar({ title, dialogOpen }) {
   return (
     <CSSTransition
       in={dialogOpen}
@@ -106,8 +108,7 @@ export default function Snackbar({ children, dialogOpen }) {
     >
       <Portal>
         <WrapperDialog>
-          {children}
-          {/* <DialogTitle>{children}</DialogTitle> */}
+          <DialogTitle>{title}</DialogTitle>
         </WrapperDialog>
       </Portal>
     </CSSTransition>

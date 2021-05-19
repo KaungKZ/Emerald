@@ -7,6 +7,8 @@ import CartDetails from "../cart-pages/CartDetails";
 import WishlistDetails from "../cart-pages/WishlistDetails";
 import { ContextValues } from "../context/ContextSetup";
 import PurchaseDialog from "../Dialogs/PurchaseDialog";
+// import { Icon, InlineIcon } from '@iconify/react';
+import clipboardHeart from "@iconify/icons-vaadin/clipboard-heart";
 
 const PageStyles = styled.div`
   width: 100%;
@@ -203,7 +205,7 @@ export default function IsEmptyCartPage({ children }) {
       ) : !showWishlistDetail ? (
         <>
           <Icon
-            icon={shoppingBag2Line}
+            icon={clipboardHeart}
             style={{ color: "#606060", fontSize: "110.85014343261719px" }}
             className="empty-cart-icon"
           />
