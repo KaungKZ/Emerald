@@ -7,7 +7,7 @@ import maleIcon from "@iconify/icons-fa-solid/male";
 import { Arrow_Button } from "../../styles/Button";
 import arrowRight from "@iconify/icons-bi/arrow-right";
 import { ContextValues } from "../context/ContextSetup";
-import ProductDeleteAllDialog from "../Dialogs/ProductDeleteAllDialog";
+import ProductDeleteAllDialog from "../Dialogs/DeleteAllDialog";
 import {
   Table,
   ProductQuantity,
@@ -32,7 +32,7 @@ export default function CartDetails({
   setPurchaseDialogOpen,
 }) {
   const [cartItems, setCartItems] = useState(
-    JSON.parse(selectedProducts).reduce((acc, cur) => {
+    selectedProducts.reduce((acc, cur) => {
       const obj = {};
       for (const value of [
         "id",
@@ -168,8 +168,8 @@ export default function CartDetails({
 
   return (
     <>
-      <Table id="res-table">
-        <TableHeader id="resp-table-header">
+      <Table>
+        <TableHeader>
           <div className="table-header-cell">Items</div>
           <div className="table-header-cell">Amount</div>
           <div className="table-header-cell">Price</div>
@@ -177,8 +177,9 @@ export default function CartDetails({
             {isSmallSize === "s" ? "" : "Remove"}
           </div>
         </TableHeader>
-        <TableBody id="resp-table-body">
+        <TableBody>
           {cartItems.map(item => {
+            console.log(item);
             return (
               <TableRow key={item.id}>
                 <TableCell>
@@ -315,11 +316,12 @@ export default function CartDetails({
         </CheckoutBtn>
       </TotalPriceWrapper>
       <ProductDeleteAllDialog
-        setCartItems={setCartItems}
+        setItems={setCartItems}
         setIsStorageChanged={setIsStorageChanged}
         isStorageChanged={isStorageChanged}
         deleteAllDialogOpen={deleteAllDialogOpen}
         setDeleteAllDialogOpen={setDeleteAllDialogOpen}
+        navigator="cart"
       ></ProductDeleteAllDialog>
     </>
   );

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "gatsby";
 
 export const Table = styled.div`
@@ -155,10 +155,17 @@ export const TableHeader = styled.div`
   font-family: var(--small-title-font);
   color: var(--text-color);
 
+  ${props =>
+    props.$wishlist &&
+    css`
+      text-decoration: underline;
+    `}
+
   .table-header-cell {
     display: table-cell;
     padding: 15px 20px;
     text-align: center;
+    /* text-decoration: ${props => (props.$wishlist ? "underline" : "none")}; */
 
     &:first-child {
       padding: 15px 20px 15px 50px;
@@ -199,9 +206,28 @@ export const TableHeader = styled.div`
   }
 
   @media (max-width: 320px) {
-    .table-header-cell:nth-child(2) {
+
+
+    
+
+    
+    
+    /* .table-header-cell:nth-child(2) {
       display: none;
-    }
+    } */
+
+    ${props =>
+      props.$wishlist
+        ? css`
+            .table-header-cell:nth-child(2) {
+              display: table-cell;
+            }
+          `
+        : css`
+            .table-header-cell:nth-child(2) {
+              display: none;
+            }
+          `}
   }
 `;
 
@@ -236,8 +262,12 @@ export const TableCell = styled.div`
   display: table-cell;
   vertical-align: middle;
   padding: 20px 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.045);
-  border-top: 1px solid rgba(0, 0, 0, 0.045);
+  border-bottom: ${props =>
+    props.$wishlist
+      ? "1px solid rgba(0,0,0,0.15)"
+      : "1px solid rgba(0, 0, 0, 0.045)"};
+  border-top: ${props =>
+    props.$wishlist ? "none" : "1px solid rgba(0, 0, 0, 0.045)"};
 
   .item-price {
     font-family: var(--secondary-font);
@@ -318,9 +348,22 @@ export const TableCell = styled.div`
   }
 
   @media (max-width: 320px) {
-    &:nth-child(2) {
+    /* &:nth-child(2) {
       display: none;
-    }
+    } */
+
+    ${props =>
+      props.$wishlist
+        ? css`
+            &:nth-child(2) {
+              display: table-cell;
+            }
+          `
+        : css`
+            &:nth-child(2) {
+              display: none;
+            }
+          `}
   }
 `;
 
@@ -477,7 +520,15 @@ export const ItemDetailsWrapper = styled.div`
 
 export const TableRow = styled.div`
   display: table-row;
-  background: #f8f8f8;
+  background: ${props =>
+    props.$wishlist ? "var(--body-background-color)" : "#f8f8f8"};
+
+  /* &:first-child {
+    border-top: ${props =>
+      props.$wishlist
+        ? "1px solid rgba(224, 204, 167, 0.05)"
+        : "none"} !important;
+  } */
 
   height: 135px;
   @media (max-width: 1024px) {

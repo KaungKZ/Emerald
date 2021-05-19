@@ -149,18 +149,28 @@ export default function IsEmptyCartPage({ children }) {
         setShowCartDetail(false);
       } else {
         setShowCartDetail(true);
-        setSelectedProducts(localStorage.getItem("selectedProduct"));
+        setSelectedProducts(cartItems);
       }
       setTimeout(() => {
         setIsLoading(false);
       }, 600);
     } else {
-      if (localStorage.getItem("wishlistProducts")) {
-        setShowWishlistDetail(true);
-        setSelectedProducts(localStorage.getItem("wishlistProducts"));
-      } else {
+      const wishlistItems = JSON.parse(
+        localStorage.getItem("wishlistProducts")
+      );
+
+      if (!wishlistItems || wishlistItems.length === 0) {
         setShowWishlistDetail(false);
+      } else {
+        setShowWishlistDetail(true);
+        setSelectedProducts(wishlistItems);
       }
+      //   setSelectedProducts(localStorage.getItem("wishlistProducts"));
+      // if (localStorage.getItem("wishlistProducts")) {
+      //   setShowWishlistDetail(true);
+      // } else {
+      //   setShowWishlistDetail(false);
+      // }
       setTimeout(() => {
         setIsLoading(false);
       }, 600);
@@ -214,7 +224,10 @@ export default function IsEmptyCartPage({ children }) {
           </SubtitleWrapper>
         </>
       ) : (
-        <WishlistDetails></WishlistDetails>
+        <WishlistDetails
+          selectedProducts={selectedProducts}
+          setPurchaseDialogOpen={setPurchaseDialogOpen}
+        ></WishlistDetails>
       )}
       <PurchaseDialog
         purchaseDialogOpen={purchaseDialogOpen}

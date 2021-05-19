@@ -90,13 +90,14 @@ const ActionButtons = styled.div`
   justify-content: center;
 `;
 
-export default function ProductDeleteAllDialog(props) {
+export default function DeleteAllDialog(props) {
   const {
-    setCartItems,
+    setItems,
     setIsStorageChanged,
     isStorageChanged,
     deleteAllDialogOpen,
     setDeleteAllDialogOpen,
+    navigator,
   } = props;
 
   useEffect(() => {
@@ -112,8 +113,12 @@ export default function ProductDeleteAllDialog(props) {
   }
 
   function handleClickConfirm() {
-    setCartItems([]);
-    localStorage.setItem("selectedProduct", JSON.stringify([]));
+    setItems([]);
+    if (navigator === "cart") {
+      localStorage.setItem("selectedProduct", JSON.stringify([]));
+    } else {
+      localStorage.setItem("wishlistProducts", JSON.stringify([]));
+    }
     setIsStorageChanged(() => !isStorageChanged);
     setDeleteAllDialogOpen(false);
   }
@@ -130,7 +135,8 @@ export default function ProductDeleteAllDialog(props) {
       >
         <DialogTitle>
           <h2 className="title">
-            Are you sure you want to remove all items from cart ?
+            Are you sure you want to remove all items from{" "}
+            {navigator === "cart" ? "cart" : "wishlist"} ?
           </h2>
         </DialogTitle>
         <DialogContent>
