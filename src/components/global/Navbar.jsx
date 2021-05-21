@@ -147,7 +147,7 @@ const NavWrapperCarts = styled.div`
       }
     }
 
-    &::before {
+    &.active-length::before {
       content: "";
       position: absolute;
       top: -7px;
@@ -473,7 +473,14 @@ export default function Navbar() {
                 Emerald
               </Link>
               <NavWrapperCarts className={`${toggleNav && "open"}`}>
-                <Link to="/wishlist" className="wishlist">
+                <Link
+                  to="/wishlist"
+                  className={`wishlist ${
+                    wishlistItemsLength !== 0 && wishlistItemsLength
+                      ? "active-length"
+                      : ""
+                  }`}
+                >
                   <Icon
                     icon={heartOutlined}
                     style={{ color: "#606060", fontSize: "30px" }}
@@ -507,7 +514,14 @@ export default function Navbar() {
                     </span>
                   )}
                 </Link>
-                <Link to="/cart" className="cart">
+                <Link
+                  to="/cart"
+                  className={`cart ${
+                    cartItemsLength !== 0 && cartItemsLength
+                      ? "active-length"
+                      : ""
+                  }`}
+                >
                   <Icon
                     icon={cart2Icon}
                     style={{ color: "#606060", fontSize: "30px" }}
