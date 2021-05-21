@@ -179,7 +179,6 @@ export default function CartDetails({
         </TableHeader>
         <TableBody>
           {cartItems.map(item => {
-            console.log(item);
             return (
               <TableRow key={item.id}>
                 <TableCell>

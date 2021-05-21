@@ -40,8 +40,8 @@ export default function ProductDetailTop({
   // const [productWishlistDialogOpen,setProductWishlistDialogOpen ] = useState(false);
 
   const [showAlreadyExisted, setShowAlreadyExisted] = useState({
-    cart: null,
-    wishlist: null,
+    cart: false,
+    wishlist: false,
   });
   const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
 
@@ -85,6 +85,21 @@ export default function ProductDetailTop({
       clearTimeout(timer);
     };
   }, [addDialogOpen]);
+
+  useEffect(() => {
+    let timer;
+    if (showAlreadyExisted.cart) {
+      timer = setTimeout(() => {
+        setShowAlreadyExisted({ ...showAlreadyExisted, cart: false });
+      }, 2000);
+    } else if (showAlreadyExisted.wishlist) {
+      timer = setTimeout(() => {
+        setShowAlreadyExisted({ ...showAlreadyExisted, wishlist: false });
+      }, 2000);
+    }
+
+    return () => clearTimeout(timer);
+  }, [showAlreadyExisted]);
 
   function handleWindowResize() {
     if (window.innerWidth < 1025) {
@@ -170,11 +185,8 @@ export default function ProductDetailTop({
         localStorage.getItem("selectedProduct")
       );
       if (storedProducts.some(v => v.id === data.id)) {
+        console.log("EXISTED");
         setShowAlreadyExisted({ ...showAlreadyExisted, cart: true });
-        setTimeout(() => {
-          setShowAlreadyExisted({ ...showAlreadyExisted, cart: false });
-        }, 2000);
-
         setAddDialogOpen({ ...addDialogOpen, cart: false });
 
         return;
@@ -217,10 +229,6 @@ export default function ProductDetailTop({
       if (storedProducts.some(v => v.id === data.id)) {
         console.log("exist");
         setShowAlreadyExisted({ ...showAlreadyExisted, wishlist: true });
-        setTimeout(() => {
-          setShowAlreadyExisted({ ...showAlreadyExisted, wishlist: false });
-          // setShowAlreadyExisted(false);
-        }, 2000);
 
         setAddDialogOpen({ ...addDialogOpen, wishlist: false });
 
@@ -257,7 +265,7 @@ export default function ProductDetailTop({
     }
   }
 
-  console.log(data);
+  console.log(showAlreadyExisted);
 
   return (
     <>
@@ -288,7 +296,7 @@ export default function ProductDetailTop({
             {/* <ProductTitle>hello fri</ProductTitle> */}
             <p className="product-by">
               By :{" "}
-              <span>
+              <span className="product-seller">
                 {data.by
                   .toLowerCase()
                   .split(" ")
@@ -494,13 +502,7 @@ export default function ProductDetailTop({
         price={data.price}
       ></ProductWishlistDialog>
       <Snackbar
-        title={`${
-          showAlreadyExisted.cart
-            ? "This item is already existed in your cart !"
-            : showAlreadyExisted.wishlist
-            ? "This item is already existed in your wishlist !"
-            : ""
-        }`}
+        title="You have already added this item !"
         dialogOpen={
           showAlreadyExisted.cart
             ? showAlreadyExisted.cart

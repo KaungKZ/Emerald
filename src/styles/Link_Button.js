@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "gatsby";
 
 export const Main_Button = styled(Link)`
@@ -7,31 +7,48 @@ export const Main_Button = styled(Link)`
 
   font-family: var(--secondary-font);
   font-size: 16px;
-  color: var(--text-color);
-  background: #fff;
+  /* color: var(--text-color); */
+  background: ${props => (props.$bg ? "var(--general-color)" : "#fff")};
+  color: ${props => (props.$bg ? "#fff" : "var(--text-color)")};
   border: 1px solid rgba(96, 96, 96, 0.6);
   text-decoration: none;
   display: flex;
   align-items: center;
   width: fit-content;
   text-transform: capitalize;
-  transition: all 400ms;
 
-  .arrow-right-icon {
-    font-size: 0px !important;
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: all 400ms;
-  }
+  ${props =>
+    props.$no_animation
+      ? css`
+          /* transition: box-shadow 300ms; */
 
-  &:hover {
-    .arrow-right-icon {
-      transform: translateX(0%);
-      font-size: 23px !important;
-      opacity: 1;
-      margin-left: 10px;
-    }
-  }
+          .arrow-right-icon {
+            font-size: 23px !important;
+            opacity: 1;
+            transform: translateX(0%);
+            margin-left: 10px;
+          }
+
+          &:hover {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+          }
+        `
+      : css`
+          .arrow-right-icon {
+            font-size: 0px !important;
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: all 400ms;
+          }
+          &:hover {
+            .arrow-right-icon {
+              transform: translateX(0%);
+              font-size: 23px !important;
+              opacity: 1;
+              margin-left: 10px;
+            }
+          }
+        `}
 
   @media (max-width: 800px) {
     font-size: 14px;

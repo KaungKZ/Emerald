@@ -125,7 +125,7 @@ export const HeaderContent = styled.div`
   }
 
   .header-btn-link {
-    transition: padding 400ms;
+    transition: all 400ms;
     margin-top: auto;
     margin-bottom: var(--item-margin);
   }

@@ -139,11 +139,16 @@ export default function HomeMainContent() {
           <HeaderContent>
             <p className="sub-title">Save up to 30% off for new arrivals !</p>
 
-            <Main_Button to="/products" className="header-btn-link">
+            <Main_Button
+              to="/products"
+              className="header-btn-link"
+              $bg
+              $no_animation
+            >
               Shop now{" "}
               <Icon
                 icon={arrowRight}
-                style={{ color: "#606060", fontSize: "25px" }}
+                style={{ color: "#fff", fontSize: "25px" }}
                 className="arrow-right-icon"
               />
             </Main_Button>

@@ -35,10 +35,11 @@ export const ProductHeader = styled.div`
     color: var(--primary-color);
     margin: 15px 0 25px 0;
 
-    span {
+    .product-seller {
       font-weight: 700;
       color: var(--light-text-color);
       text-decoration: underline;
+      cursor: pointer;
     }
   }
 

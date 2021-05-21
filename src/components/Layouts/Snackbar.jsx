@@ -17,28 +17,30 @@ const WrapperDialog = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translate(-50%, 0%);
+  /* transform: translate(-50%, -100%); */
+
   /* transition: all 300ms; */
   /* opacity: 0; */
   background: var(--general-color);
 
   &.snackbar-enter {
-    visibility: hidden;
-    transform: translate(-50%, -150%);
+    /* visibility: hidden; */
+    transform: translate(-50%, -100%);
   }
-  &.snackbar-enter-active {
-    visibility: visible;
-    transition: all 300ms;
-    transform: translate(-50%, 0%);
+  &.snackbar-enter-active,
+  &.snackbar-enter-done {
+    transition: transform 300ms;
+
+    transform: translate(-50%, calc(0% + 75px));
   }
   &.snackbar-exit {
-    visibility: visible;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, calc(0% + 75px));
   }
   &.snackbar-exit-active {
-    visibility: hidden;
-    transition: all 300ms;
-    transform: translate(-50%, -150%);
+    /* visibility: hidden; */
+
+    transition: transform 300ms;
+    transform: translate(-50%, -100%);
   }
   /* &.active {
     transform: translate(-50%, 0%);
@@ -57,6 +59,14 @@ const WrapperDialog = styled.div`
 
   @media (max-width: 600px) {
     min-width: 300px;
+
+    &.snackbar-enter-active,
+    &.snackbar-enter-done {
+      transform: translate(-50%, calc(0% + 60px));
+    }
+    &.snackbar-exit {
+      transform: translate(-50%, calc(0% + 60px));
+    }
   }
 
   @media (max-width: 480px) {
@@ -99,6 +109,7 @@ const DialogTitle = styled.div`
 `;
 
 export default function Snackbar({ title, dialogOpen }) {
+  console.log(dialogOpen);
   return (
     <CSSTransition
       in={dialogOpen}
