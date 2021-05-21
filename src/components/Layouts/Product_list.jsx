@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "gatsby";
 import Img from "gatsby-image";
 import { Icon } from "@iconify/react";
 import heartOutlined from "@iconify/icons-ant-design/heart-outlined";
 import styled, { css } from "styled-components";
 import starFilled from "@iconify/icons-ant-design/star-filled";
+import ProductWishlistDialog from "../Dialogs/ProductWishlistDialog";
+import Snackbar from "./Snackbar";
+import { ContextValues } from "../context/ContextSetup";
 
 const ShowcaseProductImage = styled.div`
   padding: 10px 7px;
@@ -68,14 +71,6 @@ const ShowcaseProduct = styled.div`
   &.swipe-active {
     pointer-events: none;
   }
-
-  /* &:not(:last-child) {
-    margin-right: var(--large-item-margin);
-  }
-
-  &:first-child {
-    margin-left: 75px;
-  } */
 
   ${props =>
     !props.all_items &&
@@ -154,10 +149,7 @@ const ShowcaseProduct = styled.div`
       props.all_items &&
       css`
         min-width: 150px;
-        /* border: 1px solid rgba(90, 90, 90, 0.2); */
         border: 1px solid rgba(224, 204, 167, 0.5);
-
-        /* border: none; */
       `}
   }
 
@@ -265,6 +257,22 @@ const ShowcaseATW = styled.div`
   position: absolute;
   top: 87%;
   right: 10%;
+
+  @media (max-width: 768px) {
+    top: 83%;
+    width: 28px;
+    height: 28px;
+  }
+`;
+
+const AddtoWishlistIcon = styled.button`
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: rgba(255, 239, 208, 0.8);
   border-radius: 25px;
   width: 30px;
@@ -292,63 +300,143 @@ const ShowcaseATW = styled.div`
 `;
 
 export default function ProductList({ details, pointerNone, all_items }) {
-  // console.log(details);
+  const [showAlreadyExisted, setShowAlreadyExisted] = useState();
+  const [wishlishDialogOpen, setWishlistDialogOpen] = useState();
+  const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
+
+  // console.log(all_items);
+
+  useEffect(() => {
+    let timer;
+    if (wishlishDialogOpen) {
+      timer = setTimeout(() => {
+        setWishlistDialogOpen(false);
+      }, 2000);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [wishlishDialogOpen]);
+
+  // console.log(wishlishDialogOpen);
+
+  function handleAddtoWishlist() {
+    if (localStorage.getItem("wishlistProducts")) {
+      const storedProducts = JSON.parse(
+        localStorage.getItem("wishlistProducts")
+      );
+      if (storedProducts.some(v => v.id === details.id)) {
+        console.log("exist");
+        setShowAlreadyExisted(true);
+        setTimeout(() => {
+          setShowAlreadyExisted(false);
+        }, 2000);
+
+        setWishlistDialogOpen(false);
+
+        return;
+      }
+      setWishlistDialogOpen(true);
+
+      let _data = {
+        ...all_items,
+        ...details,
+      };
+
+      console.log(_data);
+
+      localStorage.setItem(
+        "wishlistProducts",
+        JSON.stringify([...storedProducts, _data])
+      );
+
+      setIsStorageChanged(() => !isStorageChanged);
+    } else {
+      setWishlistDialogOpen(true);
+
+      let _data = {
+        ...all_items,
+        ...details,
+      };
+
+      localStorage.setItem("wishlistProducts", JSON.stringify([_data]));
+
+      setIsStorageChanged(() => !isStorageChanged);
+    }
+  }
+
+  // console.log(wishlishDialogOpen);
   return (
-    <ShowcaseProduct
-      className={`${pointerNone ? "swipe-active" : ""}`}
-      all_items={all_items}
-    >
-      <ShowcaseProductLink
-        to={`/product/${details.id}`}
-        state={{ item: details }}
+    <>
+      <ShowcaseProduct
+        className={`${pointerNone ? "swipe-active" : ""}`}
+        all_items={all_items}
       >
-        {details.images.length > 0 ? (
-          <ShowcaseProductImage all_items={all_items}>
-            <Img
-              fixed={details.images[0].fixed}
-              style={{ maxHeight: "150px" }}
-            />
-          </ShowcaseProductImage>
-        ) : (
-          <div className="no-image-for-item">
-            there is not image for this item
-          </div>
-        )}
+        <ShowcaseProductLink
+          to={`/product/${details.id}`}
+          state={{ item: details }}
+        >
+          {details.images.length > 0 ? (
+            <ShowcaseProductImage all_items={all_items}>
+              <Img
+                fixed={details.images[0].fixed}
+                style={{ maxHeight: "150px" }}
+              />
+            </ShowcaseProductImage>
+          ) : (
+            <div className="no-image-for-item">
+              there is not image for this item
+            </div>
+          )}
 
-        <ShowcaseProductDetails>
-          <h3 className="item-title">
-            {details.title.length > 20
-              ? details.title.substring(0, 20).concat(" ...")
-              : details.title}
-          </h3>
-          <span className="item-by">
-            By<span>{details.by}</span>
-          </span>
-          <span className="item-rating">
-            <Icon
-              icon={starFilled}
-              className="rating-icon"
-              style={{ color: "#e0cca7", fontSize: "17px" }}
-            />
-            <span>
-              {details.rating} (
-              {details.ratingAmount.toString().substring(0, 3) +
-                " " +
-                details.ratingAmount.toString().substring(3)}
-              )
+          <ShowcaseProductDetails>
+            <h3 className="item-title">
+              {details.title.length > 20
+                ? details.title.substring(0, 20).concat(" ...")
+                : details.title}
+            </h3>
+            <span className="item-by">
+              By<span>{details.by}</span>
             </span>
-          </span>
-          <span className="item-price">${details.price}</span>
-        </ShowcaseProductDetails>
-      </ShowcaseProductLink>
+            <span className="item-rating">
+              <Icon
+                icon={starFilled}
+                className="rating-icon"
+                style={{ color: "#e0cca7", fontSize: "17px" }}
+              />
+              <span>
+                {details.rating} (
+                {details.ratingAmount.toString().substring(0, 3) +
+                  " " +
+                  details.ratingAmount.toString().substring(3)}
+                )
+              </span>
+            </span>
+            <span className="item-price">${details.price}</span>
+          </ShowcaseProductDetails>
+        </ShowcaseProductLink>
 
-      <ShowcaseATW>
-        <Icon
-          icon={heartOutlined}
-          style={{ color: "#606060", fontSize: "15px" }}
-          className="add-to-wishlist-icon"
-        />
-      </ShowcaseATW>
-    </ShowcaseProduct>
+        <ShowcaseATW>
+          <AddtoWishlistIcon onClick={handleAddtoWishlist}>
+            <Icon
+              icon={heartOutlined}
+              style={{ color: "#606060", fontSize: "15px" }}
+              className="add-to-wishlist-icon"
+            />
+          </AddtoWishlistIcon>
+        </ShowcaseATW>
+      </ShowcaseProduct>
+
+      <ProductWishlistDialog
+        wishlishDialogOpen={wishlishDialogOpen}
+        setWishlistDialogOpen={setWishlistDialogOpen}
+        title={details.title}
+        price={details.price}
+      ></ProductWishlistDialog>
+      <Snackbar
+        title="This item is already existed in your wishlist !"
+        dialogOpen={showAlreadyExisted}
+      ></Snackbar>
+    </>
   );
 }

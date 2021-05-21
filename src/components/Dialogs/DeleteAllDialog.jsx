@@ -1,20 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 
 import styled from "styled-components";
-// import { TextButton } from "../../styles/Button";
 import { BgButton } from "../../styles/Button";
 import { Icon } from "@iconify/react";
 import closeFill from "@iconify/icons-eva/close-fill";
-import ActionsDialog from "./ActionsDialog";
+import ActionsDialog from "../Layouts/ActionsDialog";
 
 const DialogTitle = styled.div`
-  /* width: 80%; */
-  /* margin: auto; */
   border-radius: 7px 7px 0 0;
   width: 100%;
-  /* background: var(--primary-light); */
   padding: 10px 0 10px 0;
-  /* margin-top: 20px; */
 
   .title {
     width: 80%;
@@ -69,7 +64,6 @@ const WrapperDialogCloseBtn = styled.div`
 `;
 
 const DialogCloseBtn = styled.button`
-  /* cursor: pointer; */
   width: 40px;
   height: 40px;
   display: flex;
@@ -87,17 +81,6 @@ const DialogCloseBtn = styled.button`
     width: 35px;
     height: 35px;
   }
-
-  /* .icon {
-    transform: rotate(0deg);
-    transition: transform 250ms ease-in-out;
-  }
-
-  &:hover {
-    .icon {
-      transform: rotate(90deg);
-    }
-  } */
 `;
 
 const ActionButtons = styled.div`
@@ -107,23 +90,15 @@ const ActionButtons = styled.div`
   justify-content: center;
 `;
 
-export default function ProductDeleteAllDialog(props) {
+export default function DeleteAllDialog(props) {
   const {
-    setCartItems,
+    setItems,
     setIsStorageChanged,
     isStorageChanged,
     deleteAllDialogOpen,
     setDeleteAllDialogOpen,
+    navigator,
   } = props;
-  // const wrapperRef = useRef(null);
-
-  // useEffect(() => {
-  //   document.addEventListener("click", handleClickOutsideNav);
-
-  //   return () => {
-  //     document.removeEventListener("click", handleClickOutsideNav);
-  //   };
-  // });
 
   useEffect(() => {
     if (deleteAllDialogOpen) {
@@ -133,27 +108,17 @@ export default function ProductDeleteAllDialog(props) {
     }
   }, [deleteAllDialogOpen]);
 
-  // function handleClickOutsideNav(e) {
-  //   if (
-  //     deleteAllDialogOpen &&
-  //     wrapperRef.current &&
-  //     !wrapperRef.current.contains(e.target)
-  //   ) {
-  //     setDeleteAllDialogOpen(false);
-  //   }
-  // }
-
-  function handleClickCloseBtn() {
-    setDeleteAllDialogOpen(false);
-  }
-
   function handleClickCancel() {
     setDeleteAllDialogOpen(false);
   }
 
   function handleClickConfirm() {
-    setCartItems([]);
-    localStorage.setItem("selectedProduct", JSON.stringify([]));
+    setItems([]);
+    if (navigator === "cart") {
+      localStorage.setItem("selectedProduct", JSON.stringify([]));
+    } else {
+      localStorage.setItem("wishlistProducts", JSON.stringify([]));
+    }
     setIsStorageChanged(() => !isStorageChanged);
     setDeleteAllDialogOpen(false);
   }
@@ -162,7 +127,6 @@ export default function ProductDeleteAllDialog(props) {
     setDeleteAllDialogOpen(false);
   }
 
-  // console.log(deleteAllDialogOpen);
   return (
     <>
       <ActionsDialog
@@ -171,16 +135,13 @@ export default function ProductDeleteAllDialog(props) {
       >
         <DialogTitle>
           <h2 className="title">
-            Are you sure you want to remove all items from cart ?
+            Are you sure you want to remove all items from{" "}
+            {navigator === "cart" ? "cart" : "wishlist"} ?
           </h2>
         </DialogTitle>
         <DialogContent>
           <ActionButtons>
-            <BgButton
-              small
-              // style={{ marginRight: "20px" }}
-              onClick={handleClickConfirm}
-            >
+            <BgButton small onClick={handleClickConfirm}>
               Yes
             </BgButton>
             <BgButton small onClick={handleClickCancel}>
@@ -198,13 +159,6 @@ export default function ProductDeleteAllDialog(props) {
           </DialogCloseBtn>
         </WrapperDialogCloseBtn>
       </ActionsDialog>
-      {/* <Portal>
-      <WrapperOverlay className={deleteAllDialogOpen ? "active" : ""}>
-        <WrapperDialog ref={wrapperRef}>
-
-        </WrapperDialog>
-      </WrapperOverlay>
-    </Portal> */}
     </>
   );
 }

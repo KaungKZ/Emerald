@@ -1,11 +1,29 @@
 import React from "react";
+import InfoDialog from "../Layouts/InfoDialog";
 import styled from "styled-components";
-
-import { Button } from "../../styles/Link_Button";
 import { Icon } from "@iconify/react";
 import arrowRight from "@iconify/icons-bi/arrow-right";
-import InfoDialog from "../Layouts/InfoDialog";
 import { DialogTitle, DialogContent } from "../Layouts/InfoDialog";
+import { Button } from "../../styles/Link_Button";
+
+const Dialog = styled(InfoDialog)`
+  min-height: 155px;
+  padding: 15px 0;
+
+  @media (max-width: 768px) {
+    min-height: 140px;
+  }
+  @media (max-width: 600px) {
+    min-width: 350px;
+    height: 135px;
+    min-height: initial;
+    padding: 15px 0;
+  }
+
+  @media (max-width: 480px) {
+    min-width: 90%;
+  }
+`;
 
 const WrapperDialogTitle = styled.div`
   text-align: center;
@@ -15,10 +33,24 @@ const WrapperDialogTitle = styled.div`
 
 const WrapperDialogContent = styled.div`
   width: 100%;
-  margin-top: 10px;
+  margin-top: 13px;
   background: var(--primary-light);
   padding: 5px;
   color: var(--text-color);
+
+  .item-name,
+  .item-qty {
+    font-size: 14px;
+  }
+
+  @media (max-width: 600px) {
+    margin-top: 10px;
+
+    .item-name,
+    .item-qty {
+      font-size: 12px;
+    }
+  }
 
   @media (max-width: 480px) {
     padding: 3px;
@@ -31,40 +63,29 @@ const ItemDialogButton = styled.div`
   justify-content: center;
 `;
 
-// const ItemDialogCloseBtn = styled.div`
-//   position: absolute;
-// `;
-
-export default function ProductAddDialog({
+export default function ProductWishlistDialog({
+  wishlishDialogOpen,
   title,
-  quantity,
   price,
-  addDialogOpen,
-  setAddDialogOpen,
 }) {
-  // if (!productAddDialogOpen) return null;
-
+  // if (!wishlishDialogOpen) return null;
   return (
-    <InfoDialog
-      dialogOpen={addDialogOpen}
-      // setDialogOpen={setAddDialogOpen}
-    >
+    <Dialog dialogOpen={wishlishDialogOpen}>
       <WrapperDialogTitle>
-        <DialogTitle>You just add an item to the cart !</DialogTitle>
+        <DialogTitle>You just add an item to the wishlist !</DialogTitle>
       </WrapperDialogTitle>
       <WrapperDialogContent>
         <DialogContent>
           <div className="item-name">
-            {title.length > 10 ? title.substring(0, 13).concat(" ...") : title}
+            {title.length > 20 ? title.substring(0, 20).concat(" ...") : title}
           </div>
-          <div className="item-qty">{quantity}x</div>
           <div className="item-price">${price}</div>
         </DialogContent>
+        {/* <DialogContent></DialogContent> */}
       </WrapperDialogContent>
-
       <ItemDialogButton>
         <Button to="/cart" $no_margin>
-          View Cart{" "}
+          View Wishlist{" "}
           <Icon
             icon={arrowRight}
             style={{ color: "#606060", fontSize: "25px" }}
@@ -72,7 +93,6 @@ export default function ProductAddDialog({
           />
         </Button>
       </ItemDialogButton>
-      {/* <ItemDialogCloseBtn></ItemDialogCloseBtn> */}
-    </InfoDialog>
+    </Dialog>
   );
 }

@@ -4,11 +4,8 @@ import { useStaticQuery, graphql } from "gatsby";
 import ProductList from "./Product_list";
 import styled from "styled-components";
 import PagesNavigator from "../../PagesNavigator";
-// import { ShowcaseArrows } from "../../styles/ShowcaseArrows_styles";
-// import chevronLeftFill from "@iconify/icons-eva/chevron-left-fill";
 
 const AllItemsWrapper = styled.div`
-  /* position: relative; */
   width: 90%;
   margin: var(--item-margin) auto;
   display: grid;
@@ -35,8 +32,6 @@ const AllItemsWrapper = styled.div`
   }
 `;
 
-// const PagesNavigator = styled.div``;
-
 export default function AllProducts({ product }) {
   const {
     res: { edges },
@@ -51,16 +46,9 @@ export default function AllProducts({ product }) {
     );
   }, [edges, product]);
 
-  // const products = edges.filter(one => {
-  //   return one.node.category.includes(product);
-  // });
-
-  // console.log(products);
-
   if (!products) return null;
   return (
     <>
-      {/* might need a wrapper for navigator and allitems  */}
       <PagesNavigator></PagesNavigator>
       <AllItemsWrapper>
         {products.map(one => {

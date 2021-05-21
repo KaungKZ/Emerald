@@ -1,15 +1,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import Global_styles from "../styles/Global_styles";
-// import Layout from "../components/Layouts/Layout";
-import IsEmptyCartPage from "../components/Layouts/IsEmptyCartPage";
 import ProductsMainContent from "../components/all-products-page/ProductsMainContent";
 
 export default function products() {
   return (
     <>
       <Global_styles />
-      {/* <Layout> */}
       <Helmet>
         <meta charSet="utf-8" />
         <meta
@@ -44,7 +41,6 @@ export default function products() {
       </Helmet>
 
       <ProductsMainContent></ProductsMainContent>
-      {/* </Layout> */}
     </>
   );
 }

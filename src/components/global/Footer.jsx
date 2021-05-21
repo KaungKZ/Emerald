@@ -125,6 +125,12 @@ const FooterLinkList = styled.ul`
         }
       `}
   }
+
+  @media (max-width: 420px) {
+    grid-template-columns: 1fr;
+    place-items: center;
+    row-gap: 15px;
+  }
 `;
 
 const FooterSection = styled.div`
@@ -176,6 +182,10 @@ const FooterDeveloper = styled.div`
     top: 95%;
     transform: translate(-50%, -95%);
   }
+
+  @media (max-width: 420px) {
+    top: 97%;
+  }
 `;
 
 const FooterCopyright = styled.div`
@@ -212,6 +222,10 @@ const FooterCopyright = styled.div`
   @media (max-width: 480px) {
     top: 88%;
     transform: translate(-50%, -88%);
+  }
+
+  @media (max-width: 420px) {
+    top: 91%;
   }
 `;
 

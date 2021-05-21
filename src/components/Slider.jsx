@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
 import arrowRight from "@iconify/icons-bi/arrow-right";
 import { Icon } from "@iconify/react";

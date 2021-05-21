@@ -2,19 +2,28 @@ import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
 import shoppingBag2Line from "@iconify/icons-ri/shopping-bag-2-line";
-import alarmClockLine from "@iconify/icons-clarity/alarm-clock-line";
+// import alarmClockLine from "@iconify/icons-clarity/alarm-clock-line";
 import CartDetails from "../cart-pages/CartDetails";
 import WishlistDetails from "../cart-pages/WishlistDetails";
 import { ContextValues } from "../context/ContextSetup";
 import PurchaseDialog from "../Dialogs/PurchaseDialog";
+// import { Icon, InlineIcon } from '@iconify/react';
+import clipboardHeart from "@iconify/icons-vaadin/clipboard-heart";
 
 const PageStyles = styled.div`
   width: 100%;
-  /* margin: 0 auto; */
   margin: ${props =>
-    props.showCartDetail || props.showWishlistDetail ? "50px auto" : "0 auto"};
+    props.$loading
+      ? "50px auto"
+      : props.showCartDetail || props.showWishlistDetail
+      ? "50px auto"
+      : "0 auto"};
   min-height: ${props =>
-    props.showCartDetail || props.showWishlistDetail ? "initial" : "70vh"};
+    props.$loading
+      ? "initial"
+      : props.showCartDetail || props.showWishlistDetail
+      ? "initial"
+      : "70vh"};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,7 +35,6 @@ const PageStyles = styled.div`
   .empty-cart-icon {
     transform: rotate(-20deg);
   }
-  /* min-height: 70vh; */
 
   svg {
   }
@@ -37,7 +45,9 @@ const PageStyles = styled.div`
 
   @media (max-width: 480px) {
     margin: ${props =>
-      props.showCartDetail || props.showWishlistDetail
+      props.$loading
+        ? "30px auto"
+        : props.showCartDetail || props.showWishlistDetail
         ? "30px auto"
         : "0 auto"};
   }
@@ -45,8 +55,12 @@ const PageStyles = styled.div`
 
 const PageTitle = styled.div`
   width: auto;
-  margin: ${props => (props.showCartDetail ? "0 auto 65px auto" : "0 auto")};
-  /* margin: 0 auto; */
+  margin: ${props =>
+    props.$loading
+      ? "0 auto 65px auto"
+      : props.showCartDetail || props.showWishlistDetail
+      ? "0 auto 65px auto"
+      : "0 auto"};
 
   position: relative;
   .title {
@@ -119,8 +133,6 @@ const LoadingText = styled.div`
 `;
 
 export default function IsEmptyCartPage({ children }) {
-  // console.log(props);
-  // const [isActive, setIsActive] = useState(false);
   const [showCartDetail, setShowCartDetail] = useState(null);
   const [showWishlistDetail, setShowWishlistDetail] = useState(null);
   const [selectedProducts, setSelectedProducts] = useState();
@@ -129,45 +141,52 @@ export default function IsEmptyCartPage({ children }) {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  // console.log(showCartDetail, showWishlistDetail);
-
   useEffect(() => {
     if (children === "Shopping cart") {
       const cartItems = JSON.parse(localStorage.getItem("selectedProduct"));
 
-      // console.log(cartItems.length);
       if (!cartItems || cartItems.length === 0) {
         setShowCartDetail(false);
-        // console.log("nop");
       } else {
-        // console.log("show");
         setShowCartDetail(true);
-        setSelectedProducts(localStorage.getItem("selectedProduct"));
+        setSelectedProducts(cartItems);
       }
       setTimeout(() => {
         setIsLoading(false);
       }, 600);
     } else {
-      if (localStorage.getItem("wishlistProducts")) {
-        setShowWishlistDetail(true);
-        setSelectedProducts(localStorage.getItem("wishlistProducts"));
-      } else {
+      const wishlistItems = JSON.parse(
+        localStorage.getItem("wishlistProducts")
+      );
+
+      if (!wishlistItems || wishlistItems.length === 0) {
         setShowWishlistDetail(false);
+      } else {
+        setShowWishlistDetail(true);
+        setSelectedProducts(wishlistItems);
       }
+      //   setSelectedProducts(localStorage.getItem("wishlistProducts"));
+      // if (localStorage.getItem("wishlistProducts")) {
+      //   setShowWishlistDetail(true);
+      // } else {
+      //   setShowWishlistDetail(false);
+      // }
       setTimeout(() => {
         setIsLoading(false);
       }, 600);
     }
-  }, [isStorageChanged]);
+  }, [isStorageChanged, children]);
 
   return (
     <PageStyles
       showCartDetail={showCartDetail ? true : false}
       showWishlistDetail={showWishlistDetail ? true : false}
+      $loading={isLoading}
     >
       <PageTitle
         showCartDetail={showCartDetail ? true : false}
         showWishlistDetail={showWishlistDetail ? true : false}
+        $loading={isLoading}
       >
         <h1 className="title">{children}</h1>
       </PageTitle>
@@ -196,7 +215,7 @@ export default function IsEmptyCartPage({ children }) {
       ) : !showWishlistDetail ? (
         <>
           <Icon
-            icon={shoppingBag2Line}
+            icon={clipboardHeart}
             style={{ color: "#606060", fontSize: "110.85014343261719px" }}
             className="empty-cart-icon"
           />
@@ -205,12 +224,12 @@ export default function IsEmptyCartPage({ children }) {
           </SubtitleWrapper>
         </>
       ) : (
-        <WishlistDetails></WishlistDetails>
+        <WishlistDetails
+          selectedProducts={selectedProducts}
+          setPurchaseDialogOpen={setPurchaseDialogOpen}
+        ></WishlistDetails>
       )}
       <PurchaseDialog
-        // setCartItems={setCartItems}
-        // setIsStorageChanged={setIsStorageChanged}
-        // isStorageChanged={isStorageChanged}
         purchaseDialogOpen={purchaseDialogOpen}
         setPurchaseDialogOpen={setPurchaseDialogOpen}
       ></PurchaseDialog>

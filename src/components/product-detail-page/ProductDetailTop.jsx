@@ -9,38 +9,41 @@ import {
   OptionPopupStyles,
   ProductOptionWrapper,
   SeemoreBtn,
-} from "../../styles/Product_Detail_Styles";
+} from "../../styles/ProductDetail_Styles";
 import Img from "gatsby-image";
 import arrowRight from "@iconify/icons-bi/arrow-right";
 import { Icon } from "@iconify/react";
 import { Arrow_Button } from "../../styles/Button";
 import threeDotsVertical from "@iconify/icons-bi/three-dots-vertical";
 import ProductAddDialog from "../Dialogs/ProductAddDialog";
-import WarningDialog from "../Dialogs/WarningDialog";
+import ProductWishlistDialog from "../Dialogs/ProductWishlistDialog";
+// import WarningDialog from "../Dialogs/WarningDialog";
 import { ContextValues } from "../context/ContextSetup";
+import Snackbar from "../Layouts/Snackbar";
 
 export default function ProductDetailTop({
   productValues,
   setProductValues,
   data,
 }) {
+  // console.log(data)
   const [openOptionPopup, setOpenOptionPopup] = useState(false);
   const [isSmallSize, setIsSmallSize] = useState(false);
+
   const [readmoreClicked, setReadmoreClicked] = useState(false);
-  const [productAddDialogOpen, setProductAddDialogOpen] = useState(false);
+  const [addDialogOpen, setAddDialogOpen] = useState({
+    cart: false,
+    wishlist: false,
+  });
 
-  const [showAlreadyExisted, setShowAlreadyExisted] = useState();
+  // const [productAddDialogOpen, setProductAddDialogOpen] = useState(false);
+  // const [productWishlistDialogOpen,setProductWishlistDialogOpen ] = useState(false);
+
+  const [showAlreadyExisted, setShowAlreadyExisted] = useState({
+    cart: false,
+    wishlist: false,
+  });
   const { isStorageChanged, setIsStorageChanged } = useContext(ContextValues);
-
-  // const {isStorageChanged, setIsStorageChanged} = contextValues;
-
-  // console.log(isStorageChanged);
-
-  // const [selectedProducts, setSelectedProducts] = useState(data);
-  // const [hoverActive, setHoverActive] = useState();
-  // const addDialogRef = React.useRef(null);
-  // const [productAddDialogRef, setProductAddDialogRef] = useState();
-  // const [selectedProduct, setSelectedProduct] = useState();
 
   const optionPopupRef = useRef();
   const optionWrapperRef = useRef();
@@ -67,19 +70,36 @@ export default function ProductDetailTop({
     };
   }, []);
 
-  // console.log(data);
-
   useEffect(() => {
     let timer;
-    if (productAddDialogOpen) {
+    if (addDialogOpen.cart) {
       timer = setTimeout(() => {
-        setProductAddDialogOpen(false);
+        setAddDialogOpen({ ...addDialogOpen, cart: false });
       }, 3000);
+    } else if (addDialogOpen.wishlist) {
+      timer = setTimeout(() => {
+        setAddDialogOpen({ ...addDialogOpen, wishlist: false });
+      }, 2000);
     }
     return () => {
       clearTimeout(timer);
     };
-  }, [productAddDialogOpen]);
+  }, [addDialogOpen]);
+
+  useEffect(() => {
+    let timer;
+    if (showAlreadyExisted.cart) {
+      timer = setTimeout(() => {
+        setShowAlreadyExisted({ ...showAlreadyExisted, cart: false });
+      }, 2000);
+    } else if (showAlreadyExisted.wishlist) {
+      timer = setTimeout(() => {
+        setShowAlreadyExisted({ ...showAlreadyExisted, wishlist: false });
+      }, 2000);
+    }
+
+    return () => clearTimeout(timer);
+  }, [showAlreadyExisted]);
 
   function handleWindowResize() {
     if (window.innerWidth < 1025) {
@@ -89,18 +109,11 @@ export default function ProductDetailTop({
     }
   }
 
-  // let isnum = /^\d+$/.test(productValues.productSize);
-
-  // console.log(isnum);
-
-  // console.log(openOptionPopup);
-
   const handleClickOutside = e => {
     if (
       optionPopupRef.current.contains(e.target) &&
       optionWrapperRef.current.contains(e.target)
     ) {
-      // console.log(e.target);
       setOpenOptionPopup(true);
 
       return;
@@ -131,8 +144,6 @@ export default function ProductDetailTop({
   function handleProductSizeDown(e) {
     const elementName = e.target.parentNode.parentNode.getAttribute("name");
 
-    // console.log(elementName);
-
     const input = e.target.parentNode.parentNode.querySelector("input");
 
     let minValue = input.min;
@@ -140,28 +151,23 @@ export default function ProductDetailTop({
     if (oldValue <= minValue) {
       var newVal = oldValue;
     } else {
-      var newVal = oldValue - 1;
+      newVal = oldValue - 1;
     }
 
     setProductValues({ ...productValues, [elementName]: newVal });
   }
 
-  // console.log(hoverActive);
   function handleProductSizeUp(e) {
-    // console.log(e);
-    // console.log(numberRef.current.min);
-
     const elementName = e.target.parentNode.parentNode.getAttribute("name");
 
     const input = e.target.parentNode.parentNode.querySelector("input");
 
-    // console.log(e.target.parentNode.parentNode.querySelector("input").value);
     let maxValue = input.max;
     var oldValue = parseFloat(input.value);
     if (oldValue >= maxValue) {
       var newVal = oldValue;
     } else {
-      var newVal = oldValue + 1;
+      newVal = oldValue + 1;
     }
 
     // console.log(newVal);
@@ -169,35 +175,25 @@ export default function ProductDetailTop({
     setProductValues({ ...productValues, [elementName]: newVal });
   }
 
-  // console.log(productValues);
-
   function handleOnChange(e) {
-    // console.log(e.target.value);
-    // console.log(e);
     setProductValues({ ...productValues, size: e.target.value });
-    // console.log("yes");
   }
 
   function handleAddProduct(e) {
-    // setSelectedProduct(data);
-    // setHoverActive(undefined);
     if (localStorage.getItem("selectedProduct")) {
       const storedProducts = JSON.parse(
         localStorage.getItem("selectedProduct")
       );
       if (storedProducts.some(v => v.id === data.id)) {
-        setShowAlreadyExisted(true);
-        setTimeout(() => {
-          setShowAlreadyExisted(false);
-        }, 2000);
-        // alert("This item is already exist in cart");
-        setProductAddDialogOpen(false);
+        console.log("EXISTED");
+        setShowAlreadyExisted({ ...showAlreadyExisted, cart: true });
+        setAddDialogOpen({ ...addDialogOpen, cart: false });
 
         return;
       }
-      setProductAddDialogOpen(true);
-      // console.log(productValues);
-      // console.log(data);
+      setAddDialogOpen({ ...addDialogOpen, cart: true });
+      // setProductAddDialogOpen(true);
+
       let _data = {
         ...data,
         ...productValues,
@@ -212,50 +208,70 @@ export default function ProductDetailTop({
 
       setIsStorageChanged(() => !isStorageChanged);
     } else {
-      setProductAddDialogOpen(true);
+      setAddDialogOpen({ ...addDialogOpen, cart: true });
 
       let _data = {
         ...data,
         ...productValues,
       };
 
-      // console.log(_data);
-
-      // var originalSetItem = localStorage.setItem;
-
-      // localStorage.setItem = function (key, value) {
-      //   var event = new Event("itemInserted");
-
-      //   event.value = value; // Optional..
-      //   event.key = key; // Optional..
-
-      //   document.dispatchEvent(event);
-
-      //   originalSetItem.apply(this, arguments);
-      // };
-
       localStorage.setItem("selectedProduct", JSON.stringify([_data]));
 
       setIsStorageChanged(() => !isStorageChanged);
-
-      // document.addEventListener("itemInserted", localStorageSetHandler, false);
-
-      // localStorage.setItem('foo', 'bar'); // Pops an alert
     }
   }
 
+  function handleAddWishlist() {
+    if (localStorage.getItem("wishlistProducts")) {
+      const storedProducts = JSON.parse(
+        localStorage.getItem("wishlistProducts")
+      );
+      if (storedProducts.some(v => v.id === data.id)) {
+        console.log("exist");
+        setShowAlreadyExisted({ ...showAlreadyExisted, wishlist: true });
+
+        setAddDialogOpen({ ...addDialogOpen, wishlist: false });
+
+        // setWishlistDialogOpen(false);
+
+        return;
+      }
+      setAddDialogOpen({ ...addDialogOpen, wishlist: true });
+      // setWishlistDialogOpen(true);
+
+      let _data = {
+        ...data,
+      };
+      // console.log(data);
+
+      localStorage.setItem(
+        "wishlistProducts",
+        JSON.stringify([...storedProducts, _data])
+      );
+
+      setIsStorageChanged(() => !isStorageChanged);
+    } else {
+      setAddDialogOpen({ ...addDialogOpen, wishlist: true });
+
+      let _data = {
+        ...data,
+      };
+
+      // console.log(data);
+
+      localStorage.setItem("wishlistProducts", JSON.stringify([_data]));
+
+      setIsStorageChanged(() => !isStorageChanged);
+    }
+  }
+
+  console.log(showAlreadyExisted);
+
   return (
     <>
-      <TopSection
-      // ref={current => {
-      //   addDialogRef.current = current;
-      //   setProductAddDialogRef(addDialogRef.current);
-      // }}
-      >
+      <TopSection>
         <ProductImages>
           {data.images.map(v => {
-            // console.log(v);
-            // console.log(v);
             return (
               <div className="product-image" key={v.fixed.src}>
                 <Img
@@ -280,7 +296,7 @@ export default function ProductDetailTop({
             {/* <ProductTitle>hello fri</ProductTitle> */}
             <p className="product-by">
               By :{" "}
-              <span>
+              <span className="product-seller">
                 {data.by
                   .toLowerCase()
                   .split(" ")
@@ -423,10 +439,10 @@ export default function ProductDetailTop({
               <Arrow_Button
                 dark
                 className={`product-add-to-cart ${
-                  productAddDialogOpen ? "disabled" : ""
+                  addDialogOpen.cart ? "disabled" : ""
                 }`}
                 onClick={handleAddProduct}
-                disabled={productAddDialogOpen ? true : false}
+                disabled={addDialogOpen.cart ? true : false}
               >
                 Add To Cart{" "}
                 <Icon
@@ -435,7 +451,13 @@ export default function ProductDetailTop({
                   className="arrow-right-icon"
                 />
               </Arrow_Button>
-              <Arrow_Button className="product-add-to-wishlist">
+              <Arrow_Button
+                className={`product-add-to-wishlist ${
+                  addDialogOpen.wishlist ? "disabled" : ""
+                }`}
+                onClick={handleAddWishlist}
+                disabled={addDialogOpen.wishlist ? true : false}
+              >
                 Add To Wishlist{" "}
                 <Icon
                   icon={arrowRight}
@@ -455,11 +477,7 @@ export default function ProductDetailTop({
               <Icon
                 icon={threeDotsVertical}
                 style={{ color: "#606060", fontSize: "25px" }}
-                // className="arrow-right-icon"
               />
-
-              {/* </> */}
-              {/* )} */}
             </ProductOption>
             <OptionPopupStyles
               className={`${openOptionPopup ? "active" : ""}`}
@@ -471,29 +489,28 @@ export default function ProductDetailTop({
             </OptionPopupStyles>
           </ProductOptionWrapper>
         </ProductBody>
-
-        {/* {openOptionDialog && (
-    <ProductOptionDialog
-      open={openOptionDialog}
-      onClose={() => setOpenOptionDialog(false)}
-    >
-      This is test
-    </ProductOptionDialog>
-  )} */}
       </TopSection>
-      {/* {productAddDialogOpen && ( */}
       <ProductAddDialog
         title={data.title}
         quantity={productValues.productQty}
         price={data.price}
-        productAddDialogOpen={productAddDialogOpen}
-        // setHoverActive={setHoverActive}
+        addDialogOpen={addDialogOpen.cart}
       ></ProductAddDialog>
-      <WarningDialog
-        showAlreadyExisted={showAlreadyExisted}
-        title="This item is already existed in your cart !"
-      ></WarningDialog>
-      {/* )} */}
+      <ProductWishlistDialog
+        wishlishDialogOpen={addDialogOpen.wishlist}
+        title={data.title}
+        price={data.price}
+      ></ProductWishlistDialog>
+      <Snackbar
+        title="You have already added this item !"
+        dialogOpen={
+          showAlreadyExisted.cart
+            ? showAlreadyExisted.cart
+            : showAlreadyExisted.wishlist
+            ? showAlreadyExisted.wishlist
+            : null
+        }
+      ></Snackbar>
     </>
   );
 }

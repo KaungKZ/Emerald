@@ -1,0 +1,107 @@
+Date : 2021-05-20 18:54:58
+Directory : c:\Users\User\Desktop\Emerald\src
+Total : 59 files,  7432 codes, 173 comments, 1029 blanks, all 8634 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| JavaScript React |         24 |      4,586 |         67 |        543 |      5,196 |
+| JavaScript       |         19 |      2,498 |        101 |        439 |      3,038 |
+| CSS              |          5 |        295 |          5 |         38 |        338 |
+| XML              |         11 |         53 |          0 |          9 |         62 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                      | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                         |         59 |      7,432 |        173 |      1,029 |      8,634 |
+| components                                                                                |         25 |      4,564 |         67 |        540 |      5,171 |
+| components\Dialogs                                                                        |          4 |        517 |          7 |         70 |        594 |
+| components\Layouts                                                                        |          7 |      1,062 |         26 |        146 |      1,234 |
+| components\all-products-page                                                              |          1 |         87 |          0 |         11 |         98 |
+| components\cart-pages                                                                     |          2 |        444 |          2 |         38 |        484 |
+| components\context                                                                        |          1 |         16 |          0 |          5 |         21 |
+| components\global                                                                         |          2 |        812 |          4 |         85 |        901 |
+| components\product-detail-page                                                            |          4 |        800 |         16 |         64 |        880 |
+| fonts                                                                                     |          4 |        192 |          4 |         28 |        224 |
+| fonts\montserrat-webfont                                                                  |          1 |         48 |          1 |          7 |         56 |
+| fonts\poppins-webfont                                                                     |          1 |         48 |          1 |          7 |         56 |
+| fonts\raleway-webfont                                                                     |          1 |         48 |          1 |          7 |         56 |
+| fonts\worksans-webfont                                                                    |          1 |         48 |          1 |          7 |         56 |
+| images                                                                                    |         11 |         53 |          0 |          9 |         62 |
+| images\all items page                                                                     |          1 |          3 |          0 |          1 |          4 |
+| images\home                                                                               |          6 |         35 |          0 |          6 |         41 |
+| images\home\social medias                                                                 |          4 |         19 |          0 |          4 |         23 |
+| images\shopping cart                                                                      |          4 |         15 |          0 |          2 |         17 |
+| pages                                                                                     |          5 |        172 |          0 |         16 |        188 |
+| styles                                                                                    |         12 |      2,300 |        101 |        422 |      2,823 |
+| template                                                                                  |          1 |         79 |          1 |          5 |         85 |
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                                                  | language         | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| c:\Users\User\Desktop\Emerald\src\PagesNavigator.jsx                                      | JavaScript React |         72 |          0 |          9 |         81 |
+| c:\Users\User\Desktop\Emerald\src\components\CategoryList.jsx                             | JavaScript React |         85 |          0 |         11 |         96 |
+| c:\Users\User\Desktop\Emerald\src\components\Dialogs\DeleteAllDialog.jsx                  | JavaScript React |        145 |          0 |         20 |        165 |
+| c:\Users\User\Desktop\Emerald\src\components\Dialogs\ProductAddDialog.jsx                 | JavaScript React |         64 |          5 |         10 |         79 |
+| c:\Users\User\Desktop\Emerald\src\components\Dialogs\ProductWishlistDialog.jsx            | JavaScript React |         86 |          1 |         12 |         99 |
+| c:\Users\User\Desktop\Emerald\src\components\Dialogs\PurchaseDialog.jsx                   | JavaScript React |        222 |          1 |         28 |        251 |
+| c:\Users\User\Desktop\Emerald\src\components\HomeMainContent.jsx                          | JavaScript React |        290 |          1 |         37 |        328 |
+| c:\Users\User\Desktop\Emerald\src\components\Layouts\ActionsDialog.jsx                    | JavaScript React |        103 |          6 |         15 |        124 |
+| c:\Users\User\Desktop\Emerald\src\components\Layouts\AllProducts.jsx                      | JavaScript React |         83 |          0 |          9 |         92 |
+| c:\Users\User\Desktop\Emerald\src\components\Layouts\InfoDialog.jsx                       | JavaScript React |        177 |          2 |         26 |        205 |
+| c:\Users\User\Desktop\Emerald\src\components\Layouts\IsEmptyCartPage.jsx                  | JavaScript React |        208 |          8 |         23 |        239 |
+| c:\Users\User\Desktop\Emerald\src\components\Layouts\Layout.jsx                           | JavaScript React |         12 |          0 |          2 |         14 |
+| c:\Users\User\Desktop\Emerald\src\components\Layouts\Product_list.jsx                     | JavaScript React |        384 |          3 |         56 |        443 |
+| c:\Users\User\Desktop\Emerald\src\components\Layouts\Snackbar.jsx                         | JavaScript React |         95 |          7 |         15 |        117 |
+| c:\Users\User\Desktop\Emerald\src\components\Product.jsx                                  | JavaScript React |        244 |          7 |         47 |        298 |
+| c:\Users\User\Desktop\Emerald\src\components\Slider.jsx                                   | JavaScript React |        207 |          4 |         26 |        237 |
+| c:\Users\User\Desktop\Emerald\src\components\all-products-page\ProductsMainContent.jsx    | JavaScript React |         87 |          0 |         11 |         98 |
+| c:\Users\User\Desktop\Emerald\src\components\cart-pages\CartDetails.jsx                   | JavaScript React |        302 |          0 |         27 |        329 |
+| c:\Users\User\Desktop\Emerald\src\components\cart-pages\WishlistDetails.jsx               | JavaScript React |        142 |          2 |         11 |        155 |
+| c:\Users\User\Desktop\Emerald\src\components\context\ContextSetup.js                      | JavaScript       |         16 |          0 |          5 |         21 |
+| c:\Users\User\Desktop\Emerald\src\components\global\Footer.jsx                            | JavaScript React |        356 |          0 |         33 |        389 |
+| c:\Users\User\Desktop\Emerald\src\components\global\Navbar.jsx                            | JavaScript React |        456 |          4 |         52 |        512 |
+| c:\Users\User\Desktop\Emerald\src\components\product-detail-page\GenerateRandomRatings.js | JavaScript       |         34 |          0 |          1 |         35 |
+| c:\Users\User\Desktop\Emerald\src\components\product-detail-page\ProductDetailBottom.jsx  | JavaScript React |        270 |          0 |          8 |        278 |
+| c:\Users\User\Desktop\Emerald\src\components\product-detail-page\ProductDetailTop.jsx     | JavaScript React |        449 |         16 |         50 |        515 |
+| c:\Users\User\Desktop\Emerald\src\components\product-detail-page\Product_Detail.jsx       | JavaScript React |         47 |          0 |          5 |         52 |
+| c:\Users\User\Desktop\Emerald\src\fonts\montserrat-webfont\montserrat.css                 | CSS              |         48 |          1 |          7 |         56 |
+| c:\Users\User\Desktop\Emerald\src\fonts\poppins-webfont\poppins.css                       | CSS              |         48 |          1 |          7 |         56 |
+| c:\Users\User\Desktop\Emerald\src\fonts\raleway-webfont\raleway.css                       | CSS              |         48 |          1 |          7 |         56 |
+| c:\Users\User\Desktop\Emerald\src\fonts\worksans-webfont\worksans.css                     | CSS              |         48 |          1 |          7 |         56 |
+| c:\Users\User\Desktop\Emerald\src\images\all items page\bg shape.svg                      | XML              |          3 |          0 |          1 |          4 |
+| c:\Users\User\Desktop\Emerald\src\images\home\logo.svg                                    | XML              |          3 |          0 |          1 |          4 |
+| c:\Users\User\Desktop\Emerald\src\images\home\social medias\facebook.svg                  | XML              |         10 |          0 |          1 |         11 |
+| c:\Users\User\Desktop\Emerald\src\images\home\social medias\instagram.svg                 | XML              |          3 |          0 |          1 |          4 |
+| c:\Users\User\Desktop\Emerald\src\images\home\social medias\twitter.svg                   | XML              |          3 |          0 |          1 |          4 |
+| c:\Users\User\Desktop\Emerald\src\images\home\social medias\youtube.svg                   | XML              |          3 |          0 |          1 |          4 |
+| c:\Users\User\Desktop\Emerald\src\images\home\stripes background.svg                      | XML              |         13 |          0 |          1 |         14 |
+| c:\Users\User\Desktop\Emerald\src\images\shopping cart\check.svg                          | XML              |          1 |          0 |          0 |          1 |
+| c:\Users\User\Desktop\Emerald\src\images\shopping cart\female icon.svg                    | XML              |          3 |          0 |          1 |          4 |
+| c:\Users\User\Desktop\Emerald\src\images\shopping cart\male icon.svg                      | XML              |         10 |          0 |          1 |         11 |
+| c:\Users\User\Desktop\Emerald\src\images\shopping cart\shopping-bag.svg                   | XML              |          1 |          0 |          0 |          1 |
+| c:\Users\User\Desktop\Emerald\src\pages\404.js                                            | JavaScript       |          4 |          0 |          2 |          6 |
+| c:\Users\User\Desktop\Emerald\src\pages\cart.js                                           | JavaScript       |         40 |          0 |          3 |         43 |
+| c:\Users\User\Desktop\Emerald\src\pages\index.js                                          | JavaScript       |         42 |          0 |          4 |         46 |
+| c:\Users\User\Desktop\Emerald\src\pages\products.js                                       | JavaScript       |         43 |          0 |          4 |         47 |
+| c:\Users\User\Desktop\Emerald\src\pages\wishlist.js                                       | JavaScript       |         43 |          0 |          3 |         46 |
+| c:\Users\User\Desktop\Emerald\src\styles\AllProductsHeader_Styles.js                      | JavaScript       |        130 |          3 |         23 |        156 |
+| c:\Users\User\Desktop\Emerald\src\styles\Button.js                                        | JavaScript       |        131 |         32 |         17 |        180 |
+| c:\Users\User\Desktop\Emerald\src\styles\CartDetail_Styles.js                             | JavaScript       |        499 |         13 |        104 |        616 |
+| c:\Users\User\Desktop\Emerald\src\styles\FeaturedSection_Styles.js                        | JavaScript       |         80 |          0 |         14 |         94 |
+| c:\Users\User\Desktop\Emerald\src\styles\Global_Styles.js                                 | JavaScript       |        102 |         45 |         28 |        175 |
+| c:\Users\User\Desktop\Emerald\src\styles\HeaderDetail_Styles.js                           | JavaScript       |        226 |          7 |         45 |        278 |
+| c:\Users\User\Desktop\Emerald\src\styles\Link_Button.js                                   | JavaScript       |        161 |          0 |         28 |        189 |
+| c:\Users\User\Desktop\Emerald\src\styles\ProductDetail_Styles.js                          | JavaScript       |        623 |          0 |        110 |        733 |
+| c:\Users\User\Desktop\Emerald\src\styles\Section_Title.js                                 | JavaScript       |         35 |          0 |          8 |         43 |
+| c:\Users\User\Desktop\Emerald\src\styles\ShowcaseArrows_Styles.js                         | JavaScript       |         39 |          0 |          8 |         47 |
+| c:\Users\User\Desktop\Emerald\src\styles\Slider_Styles.js                                 | JavaScript       |        171 |          0 |         27 |        198 |
+| c:\Users\User\Desktop\Emerald\src\styles\typography.css                                   | CSS              |        103 |          1 |         10 |        114 |
+| c:\Users\User\Desktop\Emerald\src\template\TemplateItem.js                                | JavaScript       |         79 |          1 |          5 |         85 |
+| Total                                                                                     |                  |      7,432 |        173 |      1,029 |      8,634 |
++-------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+

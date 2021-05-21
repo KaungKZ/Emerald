@@ -1,0 +1,61 @@
+"filename", "language", "JavaScript React", "JavaScript", "XML", "CSS", "comment", "blank", "total"
+"c:\Users\User\Desktop\Emerald\src\PagesNavigator.jsx", "JavaScript React", 72, 0, 0, 0, 0, 9, 81
+"c:\Users\User\Desktop\Emerald\src\components\CategoryList.jsx", "JavaScript React", 85, 0, 0, 0, 0, 11, 96
+"c:\Users\User\Desktop\Emerald\src\components\Dialogs\DeleteAllDialog.jsx", "JavaScript React", 145, 0, 0, 0, 0, 20, 165
+"c:\Users\User\Desktop\Emerald\src\components\Dialogs\ProductAddDialog.jsx", "JavaScript React", 64, 0, 0, 0, 5, 10, 79
+"c:\Users\User\Desktop\Emerald\src\components\Dialogs\ProductWishlistDialog.jsx", "JavaScript React", 86, 0, 0, 0, 1, 12, 99
+"c:\Users\User\Desktop\Emerald\src\components\Dialogs\PurchaseDialog.jsx", "JavaScript React", 222, 0, 0, 0, 1, 28, 251
+"c:\Users\User\Desktop\Emerald\src\components\HomeMainContent.jsx", "JavaScript React", 290, 0, 0, 0, 1, 37, 328
+"c:\Users\User\Desktop\Emerald\src\components\Layouts\ActionsDialog.jsx", "JavaScript React", 103, 0, 0, 0, 6, 15, 124
+"c:\Users\User\Desktop\Emerald\src\components\Layouts\AllProducts.jsx", "JavaScript React", 83, 0, 0, 0, 0, 9, 92
+"c:\Users\User\Desktop\Emerald\src\components\Layouts\InfoDialog.jsx", "JavaScript React", 177, 0, 0, 0, 2, 26, 205
+"c:\Users\User\Desktop\Emerald\src\components\Layouts\IsEmptyCartPage.jsx", "JavaScript React", 208, 0, 0, 0, 8, 23, 239
+"c:\Users\User\Desktop\Emerald\src\components\Layouts\Layout.jsx", "JavaScript React", 12, 0, 0, 0, 0, 2, 14
+"c:\Users\User\Desktop\Emerald\src\components\Layouts\Product_list.jsx", "JavaScript React", 384, 0, 0, 0, 3, 56, 443
+"c:\Users\User\Desktop\Emerald\src\components\Layouts\Snackbar.jsx", "JavaScript React", 95, 0, 0, 0, 7, 15, 117
+"c:\Users\User\Desktop\Emerald\src\components\Product.jsx", "JavaScript React", 244, 0, 0, 0, 7, 47, 298
+"c:\Users\User\Desktop\Emerald\src\components\Slider.jsx", "JavaScript React", 207, 0, 0, 0, 4, 26, 237
+"c:\Users\User\Desktop\Emerald\src\components\all-products-page\ProductsMainContent.jsx", "JavaScript React", 87, 0, 0, 0, 0, 11, 98
+"c:\Users\User\Desktop\Emerald\src\components\cart-pages\CartDetails.jsx", "JavaScript React", 302, 0, 0, 0, 0, 27, 329
+"c:\Users\User\Desktop\Emerald\src\components\cart-pages\WishlistDetails.jsx", "JavaScript React", 142, 0, 0, 0, 2, 11, 155
+"c:\Users\User\Desktop\Emerald\src\components\context\ContextSetup.js", "JavaScript", 0, 16, 0, 0, 0, 5, 21
+"c:\Users\User\Desktop\Emerald\src\components\global\Footer.jsx", "JavaScript React", 356, 0, 0, 0, 0, 33, 389
+"c:\Users\User\Desktop\Emerald\src\components\global\Navbar.jsx", "JavaScript React", 456, 0, 0, 0, 4, 52, 512
+"c:\Users\User\Desktop\Emerald\src\components\product-detail-page\GenerateRandomRatings.js", "JavaScript", 0, 34, 0, 0, 0, 1, 35
+"c:\Users\User\Desktop\Emerald\src\components\product-detail-page\ProductDetailBottom.jsx", "JavaScript React", 270, 0, 0, 0, 0, 8, 278
+"c:\Users\User\Desktop\Emerald\src\components\product-detail-page\ProductDetailTop.jsx", "JavaScript React", 449, 0, 0, 0, 16, 50, 515
+"c:\Users\User\Desktop\Emerald\src\components\product-detail-page\Product_Detail.jsx", "JavaScript React", 47, 0, 0, 0, 0, 5, 52
+"c:\Users\User\Desktop\Emerald\src\fonts\montserrat-webfont\montserrat.css", "CSS", 0, 0, 0, 48, 1, 7, 56
+"c:\Users\User\Desktop\Emerald\src\fonts\poppins-webfont\poppins.css", "CSS", 0, 0, 0, 48, 1, 7, 56
+"c:\Users\User\Desktop\Emerald\src\fonts\raleway-webfont\raleway.css", "CSS", 0, 0, 0, 48, 1, 7, 56
+"c:\Users\User\Desktop\Emerald\src\fonts\worksans-webfont\worksans.css", "CSS", 0, 0, 0, 48, 1, 7, 56
+"c:\Users\User\Desktop\Emerald\src\images\all items page\bg shape.svg", "XML", 0, 0, 3, 0, 0, 1, 4
+"c:\Users\User\Desktop\Emerald\src\images\home\logo.svg", "XML", 0, 0, 3, 0, 0, 1, 4
+"c:\Users\User\Desktop\Emerald\src\images\home\social medias\facebook.svg", "XML", 0, 0, 10, 0, 0, 1, 11
+"c:\Users\User\Desktop\Emerald\src\images\home\social medias\instagram.svg", "XML", 0, 0, 3, 0, 0, 1, 4
+"c:\Users\User\Desktop\Emerald\src\images\home\social medias\twitter.svg", "XML", 0, 0, 3, 0, 0, 1, 4
+"c:\Users\User\Desktop\Emerald\src\images\home\social medias\youtube.svg", "XML", 0, 0, 3, 0, 0, 1, 4
+"c:\Users\User\Desktop\Emerald\src\images\home\stripes background.svg", "XML", 0, 0, 13, 0, 0, 1, 14
+"c:\Users\User\Desktop\Emerald\src\images\shopping cart\check.svg", "XML", 0, 0, 1, 0, 0, 0, 1
+"c:\Users\User\Desktop\Emerald\src\images\shopping cart\female icon.svg", "XML", 0, 0, 3, 0, 0, 1, 4
+"c:\Users\User\Desktop\Emerald\src\images\shopping cart\male icon.svg", "XML", 0, 0, 10, 0, 0, 1, 11
+"c:\Users\User\Desktop\Emerald\src\images\shopping cart\shopping-bag.svg", "XML", 0, 0, 1, 0, 0, 0, 1
+"c:\Users\User\Desktop\Emerald\src\pages\404.js", "JavaScript", 0, 4, 0, 0, 0, 2, 6
+"c:\Users\User\Desktop\Emerald\src\pages\cart.js", "JavaScript", 0, 40, 0, 0, 0, 3, 43
+"c:\Users\User\Desktop\Emerald\src\pages\index.js", "JavaScript", 0, 42, 0, 0, 0, 4, 46
+"c:\Users\User\Desktop\Emerald\src\pages\products.js", "JavaScript", 0, 43, 0, 0, 0, 4, 47
+"c:\Users\User\Desktop\Emerald\src\pages\wishlist.js", "JavaScript", 0, 43, 0, 0, 0, 3, 46
+"c:\Users\User\Desktop\Emerald\src\styles\AllProductsHeader_Styles.js", "JavaScript", 0, 130, 0, 0, 3, 23, 156
+"c:\Users\User\Desktop\Emerald\src\styles\Button.js", "JavaScript", 0, 131, 0, 0, 32, 17, 180
+"c:\Users\User\Desktop\Emerald\src\styles\CartDetail_Styles.js", "JavaScript", 0, 499, 0, 0, 13, 104, 616
+"c:\Users\User\Desktop\Emerald\src\styles\FeaturedSection_Styles.js", "JavaScript", 0, 80, 0, 0, 0, 14, 94
+"c:\Users\User\Desktop\Emerald\src\styles\Global_Styles.js", "JavaScript", 0, 102, 0, 0, 45, 28, 175
+"c:\Users\User\Desktop\Emerald\src\styles\HeaderDetail_Styles.js", "JavaScript", 0, 226, 0, 0, 7, 45, 278
+"c:\Users\User\Desktop\Emerald\src\styles\Link_Button.js", "JavaScript", 0, 161, 0, 0, 0, 28, 189
+"c:\Users\User\Desktop\Emerald\src\styles\ProductDetail_Styles.js", "JavaScript", 0, 623, 0, 0, 0, 110, 733
+"c:\Users\User\Desktop\Emerald\src\styles\Section_Title.js", "JavaScript", 0, 35, 0, 0, 0, 8, 43
+"c:\Users\User\Desktop\Emerald\src\styles\ShowcaseArrows_Styles.js", "JavaScript", 0, 39, 0, 0, 0, 8, 47
+"c:\Users\User\Desktop\Emerald\src\styles\Slider_Styles.js", "JavaScript", 0, 171, 0, 0, 0, 27, 198
+"c:\Users\User\Desktop\Emerald\src\styles\typography.css", "CSS", 0, 0, 0, 103, 1, 10, 114
+"c:\Users\User\Desktop\Emerald\src\template\TemplateItem.js", "JavaScript", 0, 79, 0, 0, 1, 5, 85
+"Total", "-", 4586, 2498, 53, 295, 173, 1029, 8634
