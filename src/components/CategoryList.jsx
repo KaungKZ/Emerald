@@ -82,6 +82,18 @@ const CategoryTitle = styled.div`
       padding: 5px 25px;
     }
   }
+
+  @media (max-width: 360px) {
+    a {
+      padding: 5px 20px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    a {
+      padding: 5px 15px;
+    }
+  }
 `;
 
 export default function CategoryList({ classNames, image, isSmallSize }) {

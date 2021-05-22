@@ -158,6 +158,8 @@ html {
 
  @media (max-width: 360px) {
 html {
+    --section-margin: 70px;
+
         --normal-text: 12px;
 
 }

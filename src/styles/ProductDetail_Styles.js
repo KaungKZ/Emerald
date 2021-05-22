@@ -338,12 +338,15 @@ export const ProductContent = styled.div`
 
   @media (max-width: 400px) {
     .product-description p {
-      font-size: 12px;
+      /* font-size: 12px; */
       line-height: 25px;
     }
   }
 
   @media (max-width: 360px) {
+    /* .product-description p {
+      line-height: 20px;
+    } */
     .product-buttons {
       display: flex;
       flex-direction: column;
@@ -354,6 +357,13 @@ export const ProductContent = styled.div`
         margin-right: 0px;
         margin-bottom: 20px;
       }
+    }
+  }
+
+  @media (max-width: 320px) {
+    .product-description p {
+      font-size: 12px;
+      /* line-height: 25px; */
     }
   }
 `;

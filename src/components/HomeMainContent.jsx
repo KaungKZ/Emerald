@@ -59,12 +59,23 @@ const CategoryWrapper = styled.div`
   }
 
   @media (max-width: 420px) {
-    grid-template-columns: repeat(auto-fit, 150px);
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    width: calc(100% - 30px);
+    grid-column-gap: 15px;
   }
 
   @media (max-width: 360px) {
-    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: calc(100% - 20px);
+    grid-row-gap: 10px;
+
     grid-column-gap: 10px;
+  }
+
+  @media (max-width: 320px) {
+    width: calc(100% - 10px);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
   }
 `;
 

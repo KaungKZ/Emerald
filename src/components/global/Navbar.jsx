@@ -364,6 +364,7 @@ const NavMobile = styled.div`
     display: block;
     margin-right: 10%;
     z-index: 99;
+    margin-top: 5px;
 
     &.open {
       display: none;
