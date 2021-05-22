@@ -9,6 +9,14 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-react-helmet`,
     {
+      resolve: "gatsby-plugin-nprogress",
+      options: {
+        showSpinner: false,
+        trickle: false,
+        minimum: 0.2,
+      },
+    },
+    {
       resolve: `gatsby-plugin-sharp`,
       options: {
         // Defaults used for gatsbyImageData and StaticImage
