@@ -84,7 +84,7 @@ export default function ProductWishlistDialog({
         {/* <DialogContent></DialogContent> */}
       </WrapperDialogContent>
       <ItemDialogButton>
-        <Button to="/cart" $no_margin>
+        <Button to="/wishlist" $no_margin>
           View Wishlist{" "}
           <Icon
             icon={arrowRight}
