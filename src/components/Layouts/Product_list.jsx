@@ -58,6 +58,13 @@ const ShowcaseProductImage = styled.div`
       width: 80px !important;
     }
   }
+
+  @media (max-width: 260px) {
+    .gatsby-image-wrapper {
+      height: 70px !important;
+      width: 70px !important;
+    }
+  }
 `;
 
 const ShowcaseProduct = styled.div`
@@ -144,20 +151,55 @@ const ShowcaseProduct = styled.div`
       `}
   }
 
-  @media (max-width: 440px) {
+  @media (max-width: 480px) {
+    ${props =>
+      !props.all_items &&
+      css`
+        &:not(:last-child) {
+          margin-right: 50px;
+        }
+        &:first-child {
+          margin-left: 40px;
+        }
+        &:last-child::after {
+          width: 40px;
+        }
+      `}
+
     ${props =>
       props.all_items &&
       css`
-        min-width: 150px;
-        border: 1px solid rgba(224, 204, 167, 0.5);
+        &:focus,
+        &:focus-within {
+          border: 2px solid var(--primary-color);
+        }
+      `}
+  }
+
+  @media (max-width: 440px) {
+    min-height: 250px;
+
+    ${props =>
+      !props.all_items &&
+      css`
+        min-width: 175px;
+      `}
+
+    ${props =>
+      props.all_items &&
+      css`
+        min-width: initial;
+        border: none;
+        border-radius: none;
       `}
   }
 
   @media (max-width: 360px) {
-    min-width: 180px;
     ${props =>
       !props.all_items &&
       css`
+        min-width: 150px;
+        /* min-width: initial; */
         &:not(:last-child) {
           margin-right: 35px;
         }
@@ -171,7 +213,12 @@ const ShowcaseProduct = styled.div`
   }
 
   @media (max-width: 320px) {
-    min-width: 165px;
+    ${props =>
+      props.all_items &&
+      css`
+        min-width: 165px;
+        min-width: initial;
+      `}
   }
 `;
 
@@ -243,6 +290,12 @@ const ShowcaseProductDetails = styled.div`
     .item-by,
     .item-rating {
       font-size: 10px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .item-title {
+      font-size: 13px !important;
     }
   }
 

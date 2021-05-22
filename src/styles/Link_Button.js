@@ -78,6 +78,10 @@ export const Main_Button = styled(Link)`
   @media (max-width: 320px) {
     font-size: 12px;
     padding: 5px 10px;
+
+    &.header-btn-link {
+      padding: 7px 10px;
+    }
     .arrow-right-icon {
       margin-left: 5px;
     }

@@ -132,8 +132,10 @@ export default function HomeMainContent() {
       <HeaderDetailStyles>
         <HeaderDetails>
           <HeaderTitle>
-            <h1>A place for your</h1>
-            <h1 className="hidden-lg">Needs</h1>
+            <h1>
+              A place for your<span className="hidden-lg">Needs</span>
+            </h1>
+            {/* <h1 className="hidden-lg">Needs</h1> */}
           </HeaderTitle>
 
           <HeaderContent>

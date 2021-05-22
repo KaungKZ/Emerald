@@ -35,6 +35,10 @@ export default function ProductDetailTop({
     cart: false,
     wishlist: false,
   });
+  // const [isOverlapped, setIsOverlapped] = useState({
+  //   cart: false,
+  //   wishlist: false,
+  // });
 
   // const [productAddDialogOpen, setProductAddDialogOpen] = useState(false);
   // const [productWishlistDialogOpen,setProductWishlistDialogOpen ] = useState(false);
@@ -191,6 +195,14 @@ export default function ProductDetailTop({
 
         return;
       }
+
+      // if (addDialogOpen.wishlist) {
+      //   // fix overlap ui bug
+      //   setIsOverlapped({
+      //     ...isOverlapped,
+      //     cart: true,
+      //   });
+      // }
       setAddDialogOpen({ ...addDialogOpen, cart: true });
       // setProductAddDialogOpen(true);
 
@@ -265,7 +277,7 @@ export default function ProductDetailTop({
     }
   }
 
-  console.log(showAlreadyExisted);
+  // console.log(showAlreadyExisted);
 
   return (
     <>

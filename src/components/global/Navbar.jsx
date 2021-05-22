@@ -549,7 +549,10 @@ export default function Navbar() {
                 className={`hidden-lg ${toggleNav && "open"}`}
                 onClick={() => setToggleNav(!toggleNav)}
               >
-                <Icon icon={menuAlt3} style={{ fontSize: "30px" }} />
+                <Icon
+                  icon={menuAlt3}
+                  style={{ fontSize: "30px", color: "606060" }}
+                />
               </NavMobile>
             </NavMain>
           </WrapperNavMain>

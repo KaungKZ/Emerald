@@ -103,6 +103,12 @@ export const HeaderTitle = styled.div`
       letter-spacing: 0;
     }
   }
+
+  @media (max-width: 320px) {
+    h1 {
+      text-align: center;
+    }
+  }
 `;
 
 export const HeaderContent = styled.div`

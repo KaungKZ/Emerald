@@ -18,7 +18,17 @@ export const Section_Title = styled.div`
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
+
+      h1 {
+        margin-bottom: 7px;
+      }
     }
+  }
+
+  @media (max-width: 280px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 `;
 
@@ -38,5 +48,9 @@ export const Section_Title_Text = styled.h1`
 
   @media (max-width: 330px) {
     padding: 7px 10px;
+  }
+
+  @media (max-width: 280px) {
+    margin-bottom: 7px;
   }
 `;
