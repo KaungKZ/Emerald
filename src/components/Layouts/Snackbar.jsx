@@ -24,7 +24,6 @@ const WrapperDialog = styled.div`
   background: var(--general-color);
 
   &.snackbar-enter {
-    /* visibility: hidden; */
     transform: translate(-50%, -100%);
   }
   &.snackbar-enter-active,
@@ -37,8 +36,6 @@ const WrapperDialog = styled.div`
     transform: translate(-50%, calc(0% + 75px));
   }
   &.snackbar-exit-active {
-    /* visibility: hidden; */
-
     transition: transform 300ms;
     transform: translate(-50%, -100%);
   }
@@ -60,18 +57,27 @@ const WrapperDialog = styled.div`
   @media (max-width: 600px) {
     min-width: 300px;
 
+    &.snackbar-enter {
+      transform: translate(-50%, -100%);
+    }
     &.snackbar-enter-active,
     &.snackbar-enter-done {
+      transition: transform 300ms;
+
       transform: translate(-50%, calc(0% + 60px));
     }
     &.snackbar-exit {
       transform: translate(-50%, calc(0% + 60px));
     }
+    &.snackbar-exit-active {
+      transition: transform 300ms;
+      transform: translate(-50%, -100%);
+    }
   }
 
   @media (max-width: 480px) {
     min-width: 80%;
-    z-index: 100;
+    /* z-index: 100; */
   }
 
   @media (max-width: 400px) {

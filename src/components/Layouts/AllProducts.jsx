@@ -26,10 +26,24 @@ const AllItemsWrapper = styled.div`
 
   @media (max-width: 440px) {
     width: 95%;
-    grid-template-columns: repeat(2, 150px);
+    /* grid-template-columns: repeat(2, 150px); */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
     row-gap: 15px;
     column-gap: 15px;
   }
+
+  @media (max-width: 360px) {
+    width: cala(100% - 20px);
+    column-gap: 10px;
+  }
+
+  @media (max-width: 400px) {
+  }
+
+  /* @media (max-width: 360px) {
+    grid-template-columns: repeat(2, 140px);
+  } */
 `;
 
 export default function AllProducts({ product }) {
