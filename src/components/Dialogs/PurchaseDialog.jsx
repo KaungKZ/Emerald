@@ -231,7 +231,12 @@ export default function PurchaseDialog(props) {
               <TextButton onClick={handleCloseDialog}>Close</TextButton>
             </div>
             <div className="keep-shopping-btn">
-              <Arrow_Button to="/products" main underline>
+              <Arrow_Button
+                to="/products"
+                main
+                underline
+                onClick={() => setPurchaseDialogOpen(false)}
+              >
                 Keep Shopping{" "}
                 <Icon
                   icon={arrowRight}
