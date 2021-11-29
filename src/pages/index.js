@@ -28,6 +28,7 @@ export default function index() {
           name="keywords"
           content="e-commerce, front-end development, gatsby e-commerce"
         />
+        <meta property="og:image" content="https://imgur.com/a/jPVrlK0" />
         <meta property="og:site_name" content="Emerald" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Emerald" />
